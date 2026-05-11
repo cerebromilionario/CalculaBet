@@ -1,47 +1,80 @@
 export default function CasaCard({ casa }) {
   return (
-    <div className="card flex flex-col gap-4">
+    <div
+      className="card p-5 flex flex-col gap-4 transition-all duration-200 group cursor-pointer"
+      style={{ '--hover-shadow': `0 0 30px ${casa.cor}15` }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = `${casa.cor}30`;
+        e.currentTarget.style.boxShadow = `0 0 30px ${casa.cor}10`;
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = 'var(--border)';
+        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
+    >
+      {/* Header */}
       <div className="flex items-start justify-between">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white text-sm" style={{ backgroundColor: casa.cor }}>
-              {casa.nome.slice(0, 2).toUpperCase()}
-            </div>
-            <div>
-              <p className="font-bold text-white text-sm">{casa.nome}</p>
-              <div className="flex items-center gap-1">
-                {'★'.repeat(Math.floor(casa.avaliacao)).split('').map((s, i) => (
-                  <span key={i} className="text-amber-400 text-xs">★</span>
-                ))}
-                <span className="text-gray-500 text-xs ml-1">{casa.avaliacao}</span>
-              </div>
+        <div className="flex items-center gap-3">
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold flex-shrink-0"
+            style={{ background: `${casa.cor}20`, color: casa.cor, border: `1px solid ${casa.cor}30` }}
+          >
+            {casa.nome.slice(0, 2).toUpperCase()}
+          </div>
+          <div>
+            <p className="text-sm font-semibold" style={{ color: 'var(--text-1)' }}>{casa.nome}</p>
+            <div className="flex items-center gap-0.5 mt-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg key={i} className="w-3 h-3" viewBox="0 0 24 24" fill={i < Math.floor(casa.avaliacao) ? '#fbbf24' : 'rgba(255,255,255,0.1)'}>
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              ))}
+              <span className="text-xs ml-1" style={{ color: 'var(--text-3)' }}>{casa.avaliacao}</span>
             </div>
           </div>
-          {casa.destaque && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-violet-900/50 text-violet-300 border border-violet-700/50">
-              {casa.destaque}
-            </span>
-          )}
         </div>
-        <div className="flex flex-col gap-1 text-right">
-          {casa.regulamentada && <span className="text-xs text-emerald-400">✓ Regulamentada</span>}
-          {casa.pix && <span className="text-xs text-blue-400">⚡ Pix</span>}
-        </div>
+        {casa.destaque && (
+          <span
+            className="text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0"
+            style={{ background: `${casa.cor}15`, color: casa.cor, border: `1px solid ${casa.cor}25` }}
+          >
+            {casa.destaque}
+          </span>
+        )}
       </div>
-      <div className="bg-gray-800 rounded-xl px-4 py-3">
-        <p className="text-xs text-gray-500 mb-0.5">Bônus</p>
-        <p className="text-sm font-semibold text-emerald-400">{casa.bonus}</p>
-        <p className="text-xs text-gray-500 mt-0.5">Mín. depósito: {casa.minDeposito}</p>
+
+      {/* Bonus */}
+      <div
+        className="rounded-xl px-4 py-3"
+        style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)' }}
+      >
+        <p className="text-xs mb-0.5" style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Bônus</p>
+        <p className="text-sm font-semibold" style={{ color: '#4ade80' }}>{casa.bonus}</p>
+        <p className="text-xs mt-1" style={{ color: 'var(--text-3)' }}>Depósito mínimo: {casa.minDeposito}</p>
       </div>
+
+      {/* Tags */}
+      <div className="flex gap-2 flex-wrap">
+        {casa.regulamentada && <span className="badge-green badge">✓ Regulamentada</span>}
+        {casa.pix && <span className="badge-cyan badge">⚡ Pix</span>}
+      </div>
+
+      {/* CTA */}
       <a
         href={casa.link}
         target="_blank"
         rel="noopener noreferrer nofollow sponsored"
-        className="btn-accent justify-center text-sm py-2"
+        className="btn-green w-full mt-auto text-sm"
+        onClick={e => e.stopPropagation()}
       >
-        Abrir conta →
+        Abrir conta
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
       </a>
-      <p className="text-xs text-gray-600 text-center">+18 | Jogue com responsabilidade | Conteúdo patrocinado</p>
+      <p className="text-xs text-center" style={{ color: 'var(--text-3)' }}>+18 · Conteúdo patrocinado</p>
     </div>
   );
 }

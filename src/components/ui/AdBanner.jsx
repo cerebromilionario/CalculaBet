@@ -1,14 +1,18 @@
-export default function AdBanner({ size = 'leaderboard', label = 'Publicidade' }) {
+export default function AdBanner({ size = 'leaderboard' }) {
   const sizes = {
-    leaderboard: 'h-24 w-full',
-    rectangle: 'h-64 w-full max-w-sm',
-    skyscraper: 'h-96 w-40',
+    leaderboard: 'h-20 w-full',
+    rectangle:   'h-56 w-full',
+    skyscraper:  'h-80 w-36',
   };
   return (
-    <div className={`ad-placeholder ${sizes[size]} my-4`}>
-      <div className="text-center">
-        <p className="text-gray-600 text-xs uppercase tracking-wider mb-1">{label}</p>
-        <p className="text-gray-700 text-xs">Espaço para banner Adsterra/AdSense</p>
+    <div className={`ad-placeholder ${sizes[size]}`}>
+      <div className="text-center space-y-1">
+        <p style={{ color: 'var(--text-3)', fontSize: '0.6875rem', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+          Publicidade
+        </p>
+        <p style={{ color: 'rgba(255,255,255,0.12)', fontSize: '0.75rem' }}>
+          Adsterra · Google AdSense
+        </p>
       </div>
     </div>
   );

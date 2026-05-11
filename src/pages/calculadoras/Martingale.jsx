@@ -3,93 +3,115 @@ import CalcLayout from '../../components/ui/CalcLayout';
 
 export default function Martingale() {
   const [stakeInicial, setStakeInicial] = useState('');
-  const [rodadas, setRodadas] = useState('5');
-  const [odd, setOdd] = useState('2.00');
+  const [rodadas, setRodadas] = useState('8');
 
   const s = parseFloat(stakeInicial);
-  const r = parseInt(rodadas);
-  const o = parseFloat(odd);
-  const valid = s > 0 && r >= 1 && r <= 20 && o > 1;
+  const r = Math.min(parseInt(rodadas) || 1, 20);
+  const valid = s > 0 && r >= 1;
 
-  const simular = () => {
-    if (!valid) return [];
-    const rows = [];
-    let acumulado = 0;
-    for (let i = 0; i < r; i++) {
-      const stake = s * Math.pow(o - 1, i) / Math.pow(o - 1, 0);
-      // standard martingale: double stake each time (for o=2, factor=2)
-      const stakeM = s * Math.pow(2, i);
-      const lucroSeGanhar = stakeM * o - stakeM - acumulado;
-      acumulado += stakeM;
-      rows.push({ rodada: i + 1, stake: stakeM, totalArriscado: acumulado, lucroSeGanhar });
-    }
-    return rows;
-  };
+  const rows = valid ? Array.from({ length: r }, (_, i) => {
+    const stake = s * Math.pow(2, i);
+    const acumulado = s * (Math.pow(2, i + 1) - 1);
+    return { rodada: i + 1, stake, acumulado, lucro: s };
+  }) : [];
 
-  const rows = simular();
+  const maxRisco = rows[rows.length - 1]?.acumulado ?? 0;
 
   const faqs = [
-    { q: 'O que é a estratégia Martingale?', a: 'Martingale é uma estratégia de apostas onde você dobra o stake após cada derrota, na expectativa de recuperar todas as perdas com um único lucro.' },
-    { q: 'Por que o Martingale é perigoso?', a: 'Uma sequência de derrotas pode exigir stakes enormes rapidamente. Com 10 derrotas seguidas a partir de R$10, você precisaria apostar R$10.240 na próxima rodada.' },
-    { q: 'Existe versão mais segura do Martingale?', a: 'Sim: o Anti-Martingale (dobra após vitórias) ou o D\'Alembert (aumenta e diminui gradualmente). Mas todas têm riscos.' },
+    { q: 'O que é Martingale?', a: 'Estratégia de dobrar o stake após cada derrota, na expectativa de recuperar todas as perdas com um único lucro.' },
+    { q: 'Por que o Martingale é arriscado?', a: 'Uma sequência de 10 derrotas partindo de R$10 exigiria R$10.240 na próxima aposta. O risco cresce exponencialmente.' },
+    { q: 'Existe alternativa mais segura?', a: 'Sim: D\'Alembert (incremento linear), Anti-Martingale (dobra após vitórias) ou Kelly Criterion. Nenhuma elimina o risco, mas são menos explosivas.' },
   ];
 
   return (
     <CalcLayout
       title="Calculadora de Martingale"
-      description="Simule a estratégia Martingale: veja quanto você precisaria apostar após cada derrota consecutiva."
+      description="Simule a estratégia Martingale e visualize o crescimento exponencial do risco após derrotas consecutivas."
       slug="martingale"
       faqs={faqs}
       explanation={
-        <div className="space-y-4 text-gray-400 text-sm leading-relaxed">
-          <h2 className="text-xl font-bold text-white">Entenda o risco do Martingale</h2>
-          <p>O Martingale parece seguro no curto prazo mas é extremamente arriscado. Matematicamente, você sempre enfrenta a possibilidade de uma sequência de derrotas que ultrapassa o limite da sua banca.</p>
-          <div className="bg-red-900/20 border border-red-800/40 rounded-xl p-4">
-            <p className="text-red-400 font-semibold text-sm">⚠️ Aviso importante</p>
-            <p className="text-sm mt-1">O CalculaBet não recomenda o uso de Martingale. Use esta calculadora apenas para entender os riscos envolvidos.</p>
+        <div className="space-y-4">
+          <h2 className="text-lg font-bold" style={{ color: 'var(--text-1)' }}>Por que o Martingale é perigoso</h2>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>
+            O Martingale parece infalível no curto prazo, mas o crescimento exponencial dos stakes rapidamente ultrapassa qualquer banca real. Casas impõem limites de apostas que bloqueiam a estratégia no momento mais crítico.
+          </p>
+          <div
+            className="flex items-start gap-3 p-4 rounded-xl"
+            style={{ background: 'rgba(248,113,113,0.05)', border: '1px solid rgba(248,113,113,0.15)' }}
+          >
+            <span className="text-base flex-shrink-0 mt-0.5">⚠️</span>
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              O CalculaBet não recomenda Martingale. Use esta calculadora exclusivamente para compreender os riscos envolvidos.
+            </p>
           </div>
         </div>
       }
     >
-      <div className="space-y-5">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="label">Stake inicial (R$)</label>
             <input type="number" className="input-field" placeholder="10" min="1" value={stakeInicial} onChange={e => setStakeInicial(e.target.value)} />
           </div>
           <div>
-            <label className="label">Odd por rodada</label>
-            <input type="number" className="input-field" placeholder="2.00" step="0.01" min="1.01" value={odd} onChange={e => setOdd(e.target.value)} />
-          </div>
-          <div>
-            <label className="label">Simular {rodadas} derrotas seguidas</label>
-            <input type="number" className="input-field" placeholder="5" min="1" max="20" value={rodadas} onChange={e => setRodadas(e.target.value)} />
+            <label className="label">Derrotas consecutivas a simular ({r})</label>
+            <input type="range" min="1" max="20" value={rodadas} onChange={e => setRodadas(e.target.value)} className="w-full accent-cyan-400" />
+            <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--text-3)' }}>
+              <span>1</span><span>{r}</span><span>20</span>
+            </div>
           </div>
         </div>
 
-        {valid && rows.length > 0 && (
-          <div className="overflow-x-auto rounded-xl border border-gray-800">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-gray-800">
-                  <th className="px-4 py-3 text-left text-gray-400 font-medium">Derrota #</th>
-                  <th className="px-4 py-3 text-right text-gray-400 font-medium">Stake</th>
-                  <th className="px-4 py-3 text-right text-gray-400 font-medium">Total arriscado</th>
-                  <th className="px-4 py-3 text-right text-gray-400 font-medium">Lucro se ganhar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row, i) => (
-                  <tr key={i} className={`border-t border-gray-800 ${i >= 7 ? 'bg-red-950/20' : ''}`}>
-                    <td className="px-4 py-3 text-gray-300">{row.rodada}</td>
-                    <td className="px-4 py-3 text-right text-white font-medium">R${row.stake.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-right text-red-400">R${row.totalArriscado.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-right text-emerald-400">R${row.lucroSeGanhar.toFixed(2)}</td>
-                  </tr>
+        {valid && (
+          <>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="result-box">
+                <p className="result-value" style={{ color: 'var(--red)' }}>R${maxRisco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
+                <p className="result-label">Risco total acumulado</p>
+              </div>
+              <div className="result-box">
+                <p className="result-value" style={{ color: '#4ade80' }}>R${s.toFixed(2)}</p>
+                <p className="result-label">Lucro se ganhar (sempre R${s.toFixed(2)})</p>
+              </div>
+            </div>
+
+            <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+              <div
+                className="grid grid-cols-4 px-4 py-2.5"
+                style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--border)' }}
+              >
+                {['Derrota #', 'Stake', 'Total arriscado', 'Lucro se ganhar'].map(h => (
+                  <p key={h} className="text-xs font-semibold text-right first:text-left" style={{ color: 'var(--text-3)' }}>{h}</p>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </div>
+              <div className="max-h-64 overflow-y-auto">
+                {rows.map((row, i) => {
+                  const danger = i >= 7;
+                  return (
+                    <div
+                      key={i}
+                      className="grid grid-cols-4 px-4 py-3"
+                      style={{
+                        borderBottom: i < rows.length - 1 ? '1px solid var(--border)' : 'none',
+                        background: danger ? 'rgba(248,113,113,0.04)' : 'transparent',
+                      }}
+                    >
+                      <p className="text-xs" style={{ color: 'var(--text-2)' }}>{row.rodada}</p>
+                      <p className="text-xs text-right font-medium tabular-nums" style={{ color: 'var(--text-1)' }}>
+                        R${row.stake.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </p>
+                      <p className="text-xs text-right tabular-nums" style={{ color: danger ? 'var(--red)' : 'var(--text-2)' }}>
+                        R${row.acumulado.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                      </p>
+                      <p className="text-xs text-right tabular-nums" style={{ color: '#4ade80' }}>
+                        R${row.lucro.toFixed(2)}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
         )}
       </div>
     </CalcLayout>
