@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { calculadoras } from '../../data/casas';
 
 export default function CalcLayout({ title, description, slug, children, faqs, schema, explanation }) {
-  const outros = calculadoras.filter(c => c.slug !== slug).slice(0, 6);
+  const outros = calculadoras.filter(c => c.slug !== slug);
+  const relacionadas = outros.slice(0, 4);
 
   return (
     <>
@@ -18,11 +19,11 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <Breadcrumbs items={[{ label: 'Calculadoras', href: '/calculadoras' }, { label: title }]} />
+        <Breadcrumbs items={[{ label: 'Calculadoras', href: '/' }, { label: title }]} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
 
-          {/* Main */}
+          {/* ── Main content ── */}
           <div className="space-y-8 min-w-0">
 
             {/* Title block */}
@@ -52,10 +53,10 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
               {children}
             </div>
 
-            {/* Explanation */}
+            {/* Explanation / long-form SEO content */}
             {explanation && (
               <div
-                className="rounded-2xl p-6 md:p-8 space-y-5"
+                className="rounded-2xl p-6 md:p-8"
                 style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
               >
                 {explanation}
@@ -68,43 +69,87 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
                 <FAQSection items={faqs} />
               </div>
             )}
+
+            {/* Related tools — bottom interlinking */}
+            <div
+              className="rounded-2xl p-6"
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+            >
+              <p className="text-xs font-semibold mb-4" style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+                Ferramentas relacionadas
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {relacionadas.map(c => (
+                  <Link
+                    key={c.slug}
+                    to={`/calculadoras/${c.slug}`}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-150"
+                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border)' }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.borderColor = 'rgba(34,211,238,0.2)';
+                      e.currentTarget.style.background = 'rgba(34,211,238,0.03)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.borderColor = 'var(--border)';
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                    }}
+                  >
+                    <span className="text-lg flex-shrink-0">{c.icon}</span>
+                    <div>
+                      <p className="text-xs font-semibold" style={{ color: 'var(--text-1)' }}>{c.nome}</p>
+                      <p className="text-xs" style={{ color: 'var(--text-3)' }}>{c.desc}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <Link
+                to="/"
+                className="flex items-center gap-1.5 mt-4 text-xs font-medium transition-colors"
+                style={{ color: 'var(--text-3)' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#22d3ee'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-3)'}
+              >
+                Ver todas as calculadoras →
+              </Link>
+            </div>
           </div>
 
-          {/* Sidebar */}
+          {/* ── Sidebar ── */}
           <aside className="space-y-5">
 
-            {/* Other calculators */}
+            {/* All calculators list */}
             <div
               className="rounded-2xl p-5"
               style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
             >
               <p
-                className="text-xs font-semibold mb-4"
+                className="text-xs font-semibold mb-3"
                 style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.07em' }}
               >
-                Outras ferramentas
+                Todas as ferramentas
               </p>
               <ul className="space-y-0.5">
-                {outros.map(c => (
-                  <li key={c.slug}>
-                    <Link
-                      to={`/calculadoras/${c.slug}`}
-                      className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-medium transition-all duration-150"
-                      style={{ color: 'var(--text-2)' }}
-                      onMouseEnter={e => {
-                        e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                        e.currentTarget.style.color = 'var(--text-1)';
-                      }}
-                      onMouseLeave={e => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = 'var(--text-2)';
-                      }}
-                    >
-                      <span>{c.icon}</span>
-                      {c.nome}
-                    </Link>
-                  </li>
-                ))}
+                {calculadoras.map(c => {
+                  const isActive = c.slug === slug;
+                  return (
+                    <li key={c.slug}>
+                      <Link
+                        to={`/calculadoras/${c.slug}`}
+                        className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs font-medium transition-all duration-150"
+                        style={{
+                          background: isActive ? 'rgba(34,211,238,0.08)' : 'transparent',
+                          color: isActive ? '#22d3ee' : 'var(--text-2)',
+                          borderLeft: isActive ? '2px solid rgba(34,211,238,0.5)' : '2px solid transparent',
+                        }}
+                        onMouseEnter={e => { if (!isActive) { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = 'var(--text-1)'; } }}
+                        onMouseLeave={e => { if (!isActive) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-2)'; } }}
+                      >
+                        <span>{c.icon}</span>
+                        <span className="truncate">{c.nome}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -120,8 +165,10 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
                 Parceiro destaque
               </p>
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
-                  style={{ background: 'rgba(0,166,81,0.2)', color: '#00a651', border: '1px solid rgba(0,166,81,0.25)' }}>
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
+                  style={{ background: 'rgba(0,166,81,0.2)', color: '#00a651', border: '1px solid rgba(0,166,81,0.25)' }}
+                >
                   B3
                 </div>
                 <div>
@@ -137,6 +184,36 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
                 Abrir conta →
               </a>
               <p className="text-xs text-center mt-2" style={{ color: 'var(--text-3)' }}>+18 · Patrocinado</p>
+            </div>
+
+            {/* Institutional links */}
+            <div
+              className="rounded-2xl p-5"
+              style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+            >
+              <p className="text-xs font-semibold mb-3" style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
+                Informações
+              </p>
+              <ul className="space-y-1.5">
+                {[
+                  { to: '/casas-apostas', label: 'Casas de Apostas' },
+                  { to: '/sobre', label: 'Sobre o CalculaBet' },
+                  { to: '/jogo-responsavel', label: 'Jogo Responsável' },
+                  { to: '/afiliados', label: 'Política de Afiliados' },
+                ].map(l => (
+                  <li key={l.to}>
+                    <Link
+                      to={l.to}
+                      className="text-xs transition-colors"
+                      style={{ color: 'var(--text-3)' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--text-1)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'var(--text-3)'}
+                    >
+                      {l.label} →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <AdBanner size="rectangle" />
