@@ -21,6 +21,7 @@ import SimuladorLucro from './pages/calculadoras/SimuladorLucro';
 // Institucional
 import Sobre from './pages/institucional/Sobre';
 import Contato from './pages/institucional/Contato';
+import ContatoSucesso from './pages/institucional/ContatoSucesso';
 import Privacidade from './pages/institucional/Privacidade';
 import Termos from './pages/institucional/Termos';
 import Afiliados from './pages/institucional/Afiliados';
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/calculadoras/simulador-lucro" element={<SimuladorLucro />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/contato/sucesso" element={<ContatoSucesso />} />
             <Route path="/privacidade" element={<Privacidade />} />
             <Route path="/termos" element={<Termos />} />
             <Route path="/afiliados" element={<Afiliados />} />
