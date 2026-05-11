@@ -92,6 +92,58 @@ const platformPoints = [
   'Mantemos avisos sobre risco, maioridade e uso consciente das ferramentas.',
 ];
 
+const recursosApoio = [
+  {
+    name: 'CVV – Centro de Valorização da Vida',
+    description: 'Apoio emocional e prevenção do suicídio com atendimento gratuito e confidencial no Brasil.',
+    phone: '188',
+    url: 'https://www.cvv.org.br/',
+    cta: 'Acessar CVV',
+    icon: 'heart',
+    tone: 'cyan',
+  },
+  {
+    name: 'GambleAware',
+    description: 'Organização internacional focada em conscientização e apoio relacionado a problemas com jogos e apostas.',
+    url: 'https://www.gambleaware.org/',
+    cta: 'Acessar GambleAware',
+    icon: 'shield',
+    tone: 'violet',
+  },
+  {
+    name: 'Gamblers Anonymous',
+    description: 'Grupo de apoio internacional para pessoas que desejam recuperar o controle sobre o jogo.',
+    url: 'https://www.gamblersanonymous.org/',
+    cta: 'Acessar GA',
+    icon: 'people',
+    tone: 'emerald',
+  },
+  {
+    name: 'BeGambleAware',
+    description: 'Informações, ferramentas e apoio para ajudar usuários a apostar de forma mais consciente.',
+    url: 'https://www.begambleaware.org/',
+    cta: 'Acessar BeGambleAware',
+    icon: 'compass',
+    tone: 'amber',
+  },
+  {
+    name: 'Ministério da Saúde – Saúde Mental',
+    description: 'Informações públicas sobre saúde mental e canais de apoio no Brasil.',
+    url: 'https://www.gov.br/saude/',
+    cta: 'Acessar gov.br/saúde',
+    icon: 'institution',
+    tone: 'blue',
+  },
+];
+
+const supportToneClasses = {
+  cyan: 'bg-cyan-300/10 border-cyan-300/20 text-cyan-100 shadow-cyan-950/20',
+  violet: 'bg-violet-300/10 border-violet-300/20 text-violet-100 shadow-violet-950/20',
+  emerald: 'bg-emerald-300/10 border-emerald-300/20 text-emerald-100 shadow-emerald-950/20',
+  amber: 'bg-amber-300/10 border-amber-300/20 text-amber-100 shadow-amber-950/20',
+  blue: 'bg-sky-300/10 border-sky-300/20 text-sky-100 shadow-sky-950/20',
+};
+
 const featuredCalculators = [
   { label: 'Gestão de Banca', to: '/calculadoras/gestao-banca', desc: 'Planeje limites proporcionais à sua banca.' },
   { label: 'Conversor de Odds', to: '/calculadoras/conversor-odds', desc: 'Entenda formatos de odds e probabilidade implícita.' },
@@ -113,6 +165,58 @@ const schema = {
   inLanguage: 'pt-BR',
   about: ['jogo responsável', 'apostas conscientes', 'autocontrole em apostas', 'maiores de 18 anos'],
 };
+
+function SupportGlyph({ name }) {
+  const commonProps = {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.75,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
+    className: 'h-6 w-6',
+    'aria-hidden': 'true',
+  };
+
+  const glyphs = {
+    heart: (
+      <svg {...commonProps}>
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+        <path d="M9 12h2l1-2 2 4 1-2h2" />
+      </svg>
+    ),
+    shield: (
+      <svg {...commonProps}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9.5 12.5 11 14l3.5-4" />
+      </svg>
+    ),
+    people: (
+      <svg {...commonProps}>
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+    compass: (
+      <svg {...commonProps}>
+        <circle cx="12" cy="12" r="10" />
+        <path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
+      </svg>
+    ),
+    institution: (
+      <svg {...commonProps}>
+        <path d="M3 21h18" />
+        <path d="M5 21V10h14v11" />
+        <path d="M8 21v-6h8v6" />
+        <path d="M12 3 4 8h16l-8-5z" />
+      </svg>
+    ),
+  };
+
+  return glyphs[name] ?? glyphs.shield;
+}
 
 function SectionHeader({ eyebrow, title, children, align = 'left', id }) {
   return (
@@ -287,41 +391,75 @@ export default function JogoResponsavel() {
           </div>
         </section>
 
-        <section id="ajuda" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="ajuda-title">
-          <div className="grid lg:grid-cols-[1fr_0.95fr] gap-8 items-start">
+        <section id="ajuda" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="ajuda-title">
+          <div className="absolute inset-x-4 top-16 -z-10 h-64 rounded-full bg-cyan-300/5 blur-3xl" aria-hidden="true" />
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
             <div>
-              <SectionHeader eyebrow="Apoio" title="Quando buscar ajuda" id="ajuda-title">
-                Se você sente que perdeu controle, está escondendo perdas ou apostando para aliviar ansiedade, procure apoio. Falar cedo com alguém de confiança ou com um profissional pode evitar danos maiores.
+              <SectionHeader eyebrow="Apoio" title="Recursos de Apoio e Ajuda" id="ajuda-title">
+                Buscar ajuda é um passo importante e positivo. Se as apostas estiverem causando impacto emocional, financeiro ou pessoal, considere conversar com profissionais ou organizações especializadas.
               </SectionHeader>
-              <div className="mt-8 grid sm:grid-cols-2 gap-4">
-                <div className="rounded-2xl border border-white/7 bg-white/[0.025] p-5">
-                  <h3 className="font-bold text-white mb-2">Converse com alguém</h3>
-                  <p className="text-sm leading-relaxed text-gray-400">Compartilhar a situação com uma pessoa de confiança pode reduzir isolamento e facilitar decisões práticas.</p>
+              <div className="mt-8 space-y-4">
+                <div className="rounded-3xl border border-cyan-300/15 bg-gradient-to-br from-cyan-300/10 via-white/[0.035] to-transparent p-5 md:p-6 shadow-2xl shadow-cyan-950/10">
+                  <div className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-100">
+                      <SupportGlyph name="heart" />
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Você não precisa lidar com isso sozinho</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-gray-300">
+                        Se sentir perda de controle, urgência para recuperar prejuízos, ansiedade ou vergonha relacionada às apostas, interrompa a atividade e procure apoio profissional, serviço de saúde ou uma rede de confiança.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="rounded-2xl border border-white/7 bg-white/[0.025] p-5">
-                  <h3 className="font-bold text-white mb-2">Considere apoio profissional</h3>
-                  <p className="text-sm leading-relaxed text-gray-400">Psicólogos, serviços de saúde e grupos de apoio podem ajudar a lidar com impulsividade, ansiedade e consequências financeiras.</p>
+                <div className="rounded-2xl border border-amber-300/15 bg-amber-300/[0.055] p-4">
+                  <div className="flex gap-3">
+                    <Icon name="info" className="mt-0.5 w-5 h-5 text-amber-100" />
+                    <p className="text-xs leading-relaxed text-amber-50/80">
+                      Os recursos externos abaixo são organizações reais e reconhecidas, mas seus sites, serviços, horários e canais podem mudar sem aviso. Em risco imediato à vida ou à integridade física, acione os serviços de emergência da sua localidade.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <aside className="card-glass p-6 md:p-8">
-              <h3 className="text-xl font-bold text-white mb-3">Espaço para recursos verificados</h3>
-              <p className="text-sm leading-relaxed text-gray-400 mb-5">
-                Esta área está preparada para receber organizações de apoio, linhas de ajuda e recursos externos. Antes da publicação, confirme nome, URL, disponibilidade, idioma, abrangência geográfica e se o serviço está ativo.
-              </p>
-              <div className="space-y-3">
-                {['Organização de apoio validada', 'Linha de ajuda verificada', 'Recurso público ou profissional confirmado'].map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-xl border border-dashed border-white/12 bg-white/[0.02] p-4">
-                    <Icon name="external" className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm text-gray-400">{item}</span>
+            <div className="grid gap-4 sm:grid-cols-2" aria-label="Organizações de apoio externas">
+              {recursosApoio.map((resource) => (
+                <article key={resource.name} className="group relative overflow-hidden rounded-3xl border border-white/8 bg-white/[0.025] p-5 shadow-2xl shadow-black/10 transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-300/20 hover:bg-white/[0.04]">
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60" aria-hidden="true" />
+                  <div className="flex h-full flex-col">
+                    <div className="mb-5 flex items-start justify-between gap-3">
+                      <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border shadow-lg ${supportToneClasses[resource.tone]}`}>
+                        <SupportGlyph name={resource.icon} />
+                      </span>
+                      <span className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-400">
+                        Recurso externo
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold tracking-[-0.02em] text-white">{resource.name}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-gray-400">{resource.description}</p>
+                    {resource.phone && (
+                      <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1.5 text-sm font-semibold text-emerald-100">
+                        <span className="h-2 w-2 rounded-full bg-emerald-300" aria-hidden="true" />
+                        Telefone: {resource.phone}
+                      </div>
+                    )}
+                    <div className="mt-6 flex flex-1 items-end">
+                      <a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm font-semibold text-white transition-all duration-200 hover:border-cyan-300/25 hover:bg-cyan-300/10 hover:text-cyan-100"
+                        aria-label={`${resource.cta} em nova aba`}
+                      >
+                        {resource.cta}
+                        <Icon name="external" className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
-                ))}
-              </div>
-              <p className="mt-5 text-xs leading-relaxed text-gray-500">
-                Não listamos organizações sem verificação editorial. Em situação de risco imediato à vida ou à integridade física, procure serviços de emergência da sua localidade.
-              </p>
-            </aside>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
