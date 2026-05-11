@@ -22,7 +22,7 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
 
   const combinedSchema = [
     breadcrumbSchema(title, slug),
-    ...(schema ? [schema] : []),
+    ...(Array.isArray(schema) ? schema : schema ? [schema] : []),
   ];
 
   return (
