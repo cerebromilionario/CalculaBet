@@ -1,0 +1,72 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import CasasApostas from './pages/CasasApostas';
+
+// Calculadoras
+import CalculadoraOdds from './pages/calculadoras/Odds';
+import ApostaSimples from './pages/calculadoras/ApostaSimples';
+import MultiplaParlay from './pages/calculadoras/MultiplaParlay';
+import Arbitragem from './pages/calculadoras/Arbitragem';
+import Dutching from './pages/calculadoras/Dutching';
+import Cashout from './pages/calculadoras/Cashout';
+import Hedge from './pages/calculadoras/Hedge';
+import GestaoBanca from './pages/calculadoras/GestaoBanca';
+import Martingale from './pages/calculadoras/Martingale';
+import ConversorOdds from './pages/calculadoras/ConversorOdds';
+import ROI from './pages/calculadoras/ROI';
+import SimuladorLucro from './pages/calculadoras/SimuladorLucro';
+
+// Institucional
+import Sobre from './pages/institucional/Sobre';
+import Contato from './pages/institucional/Contato';
+import Privacidade from './pages/institucional/Privacidade';
+import Termos from './pages/institucional/Termos';
+import Afiliados from './pages/institucional/Afiliados';
+import JogoResponsavel from './pages/institucional/JogoResponsavel';
+
+function NotFound() {
+  return (
+    <div className="max-w-7xl mx-auto px-4 py-24 text-center">
+      <p className="text-6xl mb-4">🎯</p>
+      <h1 className="text-3xl font-bold text-white mb-4">Página não encontrada</h1>
+      <p className="text-gray-400 mb-8">Esta aposta não existe. Tente uma das nossas calculadoras.</p>
+      <a href="/" className="btn-primary">Voltar ao início</a>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <HelmetProvider>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/casas-apostas" element={<CasasApostas />} />
+            <Route path="/calculadoras/odds" element={<CalculadoraOdds />} />
+            <Route path="/calculadoras/aposta-simples" element={<ApostaSimples />} />
+            <Route path="/calculadoras/multipla-parlay" element={<MultiplaParlay />} />
+            <Route path="/calculadoras/arbitragem" element={<Arbitragem />} />
+            <Route path="/calculadoras/dutching" element={<Dutching />} />
+            <Route path="/calculadoras/cashout" element={<Cashout />} />
+            <Route path="/calculadoras/hedge" element={<Hedge />} />
+            <Route path="/calculadoras/gestao-banca" element={<GestaoBanca />} />
+            <Route path="/calculadoras/martingale" element={<Martingale />} />
+            <Route path="/calculadoras/conversor-odds" element={<ConversorOdds />} />
+            <Route path="/calculadoras/roi" element={<ROI />} />
+            <Route path="/calculadoras/simulador-lucro" element={<SimuladorLucro />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/privacidade" element={<Privacidade />} />
+            <Route path="/termos" element={<Termos />} />
+            <Route path="/afiliados" element={<Afiliados />} />
+            <Route path="/jogo-responsavel" element={<JogoResponsavel />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </HelmetProvider>
+  );
+}
