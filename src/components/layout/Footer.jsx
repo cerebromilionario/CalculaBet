@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { calculadoras } from '../../data/casas';
+import Icon from '../ui/Icons';
 
 const footerLinks = {
   Ferramentas: calculadoras.slice(0, 6).map(c => ({ label: c.nome, to: `/calculadoras/${c.slug}` })),
@@ -20,19 +21,30 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer style={{ background: 'var(--bg-surface)', borderTop: '1px solid var(--border)' }}>
+
       {/* Responsible gambling strip */}
-      <div style={{ background: 'rgba(251,191,36,0.04)', borderBottom: '1px solid rgba(251,191,36,0.08)' }}>
+      <div
+        role="note"
+        aria-label="Aviso de jogo responsável"
+        style={{ background: 'rgba(251,191,36,0.04)', borderBottom: '1px solid rgba(251,191,36,0.08)' }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
           <div className="flex items-center gap-2.5">
-            <span className="badge-amber badge text-xs">+18</span>
+            <span
+              className="text-xs font-bold px-2 py-0.5 rounded flex-shrink-0"
+              style={{ background: 'rgba(251,191,36,0.15)', border: '1px solid rgba(251,191,36,0.25)', color: '#fbbf24' }}
+              aria-label="Conteúdo para maiores de 18 anos"
+            >
+              +18
+            </span>
             <span className="text-xs" style={{ color: 'var(--text-3)' }}>
               Apostas envolvem risco financeiro. Jogue com responsabilidade. Apenas maiores de 18 anos.
             </span>
           </div>
           <Link
             to="/jogo-responsavel"
-            className="text-xs font-medium flex-shrink-0 transition-colors"
-            style={{ color: 'rgba(251,191,36,0.7)' }}
+            className="text-xs font-medium flex-shrink-0 transition-colors hover:opacity-80"
+            style={{ color: 'rgba(251,191,36,0.65)' }}
           >
             Saiba mais →
           </Link>
@@ -41,12 +53,14 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-10">
+
           {/* Brand */}
           <div className="col-span-2">
-            <Link to="/" className="flex items-center gap-2.5 mb-5 group">
+            <Link to="/" className="flex items-center gap-2.5 mb-5 group" aria-label="CalculaBet — página inicial">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
                 style={{ background: 'linear-gradient(135deg, #22d3ee, #818cf8)', color: '#06060a' }}
+                aria-hidden="true"
               >
                 CB
               </div>
@@ -55,12 +69,22 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-2)', maxWidth: '240px' }}>
-              Ferramentas profissionais gratuitas para apostadores brasileiros. Calcule, analise e decida com inteligência.
+              Ferramentas profissionais gratuitas para apostadores brasileiros.
+              Calcule, analise e decida com inteligência.
             </p>
-            <div className="flex gap-2">
-              <span className="badge">+18</span>
-              <span className="badge">Afiliado</span>
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="badge text-xs">+18</span>
+              <span
+                className="badge text-xs"
+                style={{ color: '#fbbf24', background: 'rgba(251,191,36,0.06)', borderColor: 'rgba(251,191,36,0.15)' }}
+              >
+                Afiliado
+              </span>
+              <span className="badge text-xs">100% Gratuito</span>
             </div>
+            <p className="text-xs leading-relaxed" style={{ color: 'var(--text-3)', maxWidth: '220px' }}>
+              Este site pode receber comissão por cliques em links de parceiros. Verifique sempre licença e termos das casas.
+            </p>
           </div>
 
           {/* Link groups */}
@@ -74,10 +98,8 @@ export default function Footer() {
                   <li key={l.to}>
                     <Link
                       to={l.to}
-                      className="text-xs transition-colors"
+                      className="text-xs transition-colors hover:text-[var(--text-1)]"
                       style={{ color: 'var(--text-2)' }}
-                      onMouseEnter={e => e.target.style.color = 'var(--text-1)'}
-                      onMouseLeave={e => e.target.style.color = 'var(--text-2)'}
                     >
                       {l.label}
                     </Link>
@@ -88,20 +110,31 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Bottom bar */}
         <div
           className="flex flex-col md:flex-row items-center justify-between gap-4 mt-12 pt-6"
           style={{ borderTop: '1px solid var(--border)' }}
         >
           <p className="text-xs" style={{ color: 'var(--text-3)' }}>
             © {new Date().getFullYear()} CalculaBet. Todos os direitos reservados.
+            Plataforma educacional — não incentivamos apostas.
           </p>
-          <p className="text-xs text-center" style={{ color: 'var(--text-3)' }}>
-            Este site contém links de afiliados.{' '}
-            <Link to="/afiliados" className="underline underline-offset-2 hover:opacity-80">
-              Política de afiliados
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-center" style={{ color: 'var(--text-3)' }}>
+              Links de afiliados —{' '}
+              <Link to="/afiliados" className="underline underline-offset-2 hover:opacity-80">
+                Política de afiliados
+              </Link>
+            </p>
+            <Link
+              to="/sitemap.xml"
+              className="text-xs transition-colors hover:opacity-80"
+              style={{ color: 'var(--text-3)' }}
+              aria-label="Sitemap"
+            >
+              Sitemap
             </Link>
-            .
-          </p>
+          </div>
         </div>
       </div>
     </footer>
