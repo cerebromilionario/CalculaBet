@@ -4,13 +4,8 @@ import CalcLayout from '../../components/ui/CalcLayout';
 export default function Dutching() {
   const [selecoes, setSelecoes] = useState([{ odd: '', nome: '' }, { odd: '', nome: '' }]);
   const [banca, setBanca] = useState('');
-  const [lucroAlvo, setLucroAlvo] = useState('');
 
-  const atualizar = (i, campo, v) => {
-    const s = [...selecoes];
-    s[i][campo] = v;
-    setSelecoes(s);
-  };
+  const atualizar = (i, campo, v) => { const s = [...selecoes]; s[i][campo] = v; setSelecoes(s); };
   const adicionar = () => setSelecoes([...selecoes, { odd: '', nome: '' }]);
   const remover = (i) => selecoes.length > 2 && setSelecoes(selecoes.filter((_, idx) => idx !== i));
 
@@ -20,35 +15,38 @@ export default function Dutching() {
 
   const totalInv = valid ? oddsN.reduce((acc, o) => acc + 1 / o, 0) : 0;
   const stakes = valid ? oddsN.map(o => bancaN / (o * totalInv)) : [];
-  const retorno = valid ? stakes[0] * oddsN[0] : 0;
+  const retorno = valid && stakes[0] ? stakes[0] * oddsN[0] : 0;
   const lucro = valid ? retorno - bancaN : 0;
+  const roi = valid && bancaN > 0 ? (lucro / bancaN * 100) : 0;
 
   const faqs = [
-    { q: 'O que é dutching?', a: 'Dutching é uma estratégia de apostas onde você distribui o stake entre múltiplos resultados para obter o mesmo lucro independentemente de qual deles ocorra.' },
-    { q: 'Qual a diferença entre dutching e arbitragem?', a: 'Na arbitragem você usa odds de casas diferentes para garantir lucro. No dutching você aposta em vários resultados na mesma casa ou em eventos com mais de 2 resultados.' },
+    { q: 'O que é dutching?', a: 'Distribuir o stake entre múltiplos resultados para obter o mesmo lucro independentemente de qual ocorra.' },
+    { q: 'Diferença entre dutching e arbitragem?', a: 'Na arbitragem você garante lucro cobrindo todos os resultados em casas diferentes. No dutching, você cobre seleções de sua escolha para equalizar o retorno.' },
   ];
 
   return (
     <CalcLayout
       title="Calculadora de Dutching"
-      description="Distribua sua banca entre múltiplos resultados para obter lucro igual em qualquer desfecho."
+      description="Distribua sua banca entre múltiplos resultados para garantir o mesmo retorno em qualquer desfecho."
       slug="dutching"
       faqs={faqs}
       explanation={
-        <div className="space-y-4 text-gray-400 text-sm leading-relaxed">
-          <h2 className="text-xl font-bold text-white">Como funciona o dutching</h2>
-          <p>No dutching, você divide o stake entre várias seleções de forma que, se qualquer uma delas ganhar, você obtém o mesmo retorno. É útil quando você não tem certeza de qual resultado específico ocorrerá, mas acredita que um conjunto deles é mais provável.</p>
+        <div className="space-y-4">
+          <h2 className="text-lg font-bold" style={{ color: 'var(--text-1)' }}>Como funciona o dutching</h2>
+          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>
+            No dutching, você divide o stake entre várias seleções de forma proporcional às probabilidades implícitas. Se qualquer uma das seleções vencer, você recebe o mesmo retorno total.
+          </p>
         </div>
       }
     >
-      <div className="space-y-5">
-        <div className="space-y-3">
+      <div className="space-y-6">
+        <div className="space-y-2.5">
           {selecoes.map((s, i) => (
-            <div key={i} className="flex items-center gap-3">
+            <div key={i} className="flex items-end gap-3">
               <div className="grid grid-cols-2 gap-2 flex-1">
                 <div>
                   <label className="label">Seleção {i + 1}</label>
-                  <input type="text" className="input-field" placeholder="Ex: Time A vence" value={s.nome} onChange={e => atualizar(i, 'nome', e.target.value)} />
+                  <input type="text" className="input-field" placeholder="Ex: Time A" value={s.nome} onChange={e => atualizar(i, 'nome', e.target.value)} />
                 </div>
                 <div>
                   <label className="label">Odd</label>
@@ -56,8 +54,8 @@ export default function Dutching() {
                 </div>
               </div>
               {selecoes.length > 2 && (
-                <button onClick={() => remover(i)} className="mt-6 p-2 text-red-400 hover:text-red-300 rounded-lg transition-colors">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button onClick={() => remover(i)} className="mb-px p-2.5 rounded-xl transition-colors" style={{ color: 'var(--red)', background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.15)' }}>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -66,8 +64,8 @@ export default function Dutching() {
           ))}
         </div>
 
-        <button onClick={adicionar} className="text-sm text-violet-400 hover:text-violet-300 flex items-center gap-1">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button onClick={adicionar} className="text-xs font-medium flex items-center gap-1.5" style={{ color: 'var(--cyan)' }}>
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
           Adicionar seleção
@@ -78,28 +76,48 @@ export default function Dutching() {
           <input type="number" className="input-field" placeholder="500" min="0" value={banca} onChange={e => setBanca(e.target.value)} />
         </div>
 
-        {valid && (
-          <div className="space-y-3 pt-2">
-            <div className="grid grid-cols-2 gap-3">
+        {valid ? (
+          <div className="space-y-3">
+            <div className="grid grid-cols-3 gap-3">
               <div className="result-box">
                 <p className="result-value">R${retorno.toFixed(2)}</p>
-                <p className="result-label">Retorno (qualquer resultado)</p>
+                <p className="result-label">Retorno (qualquer seleção)</p>
               </div>
-              <div className={`result-box ${lucro >= 0 ? '' : 'border-red-500/30'}`}>
-                <p className={`result-value ${lucro >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>R${lucro.toFixed(2)}</p>
+              <div className="result-box">
+                <p className="result-value" style={{ color: lucro >= 0 ? '#4ade80' : 'var(--red)' }}>R${lucro.toFixed(2)}</p>
                 <p className="result-label">Lucro / Prejuízo</p>
+              </div>
+              <div className="result-box">
+                <p className="result-value" style={{ color: '#818cf8' }}>{roi.toFixed(2)}%</p>
+                <p className="result-label">ROI</p>
               </div>
             </div>
 
-            <div className="bg-gray-800 rounded-xl p-4 space-y-2">
-              <p className="text-sm font-semibold text-white mb-2">Stakes por seleção</p>
-              {stakes.map((st, i) => (
-                <div key={i} className="flex justify-between text-sm">
-                  <span className="text-gray-400">{selecoes[i].nome || `Seleção ${i + 1}`} (odd {parseFloat(selecoes[i].odd).toFixed(2)}):</span>
-                  <span className="text-white font-medium">R${st.toFixed(2)}</span>
-                </div>
-              ))}
+            <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+              <div className="px-4 py-2.5" style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid var(--border)' }}>
+                <p className="text-xs font-semibold" style={{ color: 'var(--text-2)' }}>Distribuição de stakes</p>
+              </div>
+              {stakes.map((st, i) => {
+                const pct = (st / bancaN * 100);
+                return (
+                  <div key={i} className="px-4 py-3" style={{ borderBottom: i < stakes.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-xs" style={{ color: 'var(--text-2)' }}>
+                        {selecoes[i].nome || `Seleção ${i + 1}`} · odd {parseFloat(selecoes[i].odd).toFixed(2)}
+                      </span>
+                      <span className="text-sm font-semibold tabular-nums" style={{ color: 'var(--text-1)' }}>R${st.toFixed(2)}</span>
+                    </div>
+                    <div className="h-1 rounded-full" style={{ background: 'rgba(255,255,255,0.05)' }}>
+                      <div className="h-1 rounded-full" style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #22d3ee, #818cf8)' }} />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
+          </div>
+        ) : (
+          <div className="rounded-xl flex items-center justify-center py-8" style={{ background: 'rgba(255,255,255,0.01)', border: '1px dashed var(--border)' }}>
+            <p className="text-sm" style={{ color: 'var(--text-3)' }}>Preencha todas as odds e a banca</p>
           </div>
         )}
       </div>
