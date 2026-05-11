@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -27,6 +28,16 @@ import Termos from './pages/institucional/Termos';
 import Afiliados from './pages/institucional/Afiliados';
 import JogoResponsavel from './pages/institucional/JogoResponsavel';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function NotFound() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-24 text-center">
@@ -42,6 +53,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
