@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { calculadoras } from '../../data/casas';
-import Icon from '../ui/Icons';
 
 const footerLinks = {
   Ferramentas: calculadoras.slice(0, 6).map(c => ({ label: c.nome, to: `/calculadoras/${c.slug}` })),
@@ -119,22 +118,12 @@ export default function Footer() {
             © {new Date().getFullYear()} CalculaBet. Todos os direitos reservados.
             Plataforma educacional — não incentivamos apostas.
           </p>
-          <div className="flex items-center gap-4">
-            <p className="text-xs text-center" style={{ color: 'var(--text-3)' }}>
-              Links de afiliados —{' '}
-              <Link to="/afiliados" className="underline underline-offset-2 hover:opacity-80">
-                Política de afiliados
-              </Link>
-            </p>
-            <Link
-              to="/sitemap.xml"
-              className="text-xs transition-colors hover:opacity-80"
-              style={{ color: 'var(--text-3)' }}
-              aria-label="Sitemap"
-            >
-              Sitemap
+          <p className="text-xs text-center" style={{ color: 'var(--text-3)' }}>
+            Links de afiliados —{' '}
+            <Link to="/afiliados" className="underline underline-offset-2 hover:opacity-80">
+              Política de afiliados
             </Link>
-          </div>
+          </p>
         </div>
       </div>
     </footer>
