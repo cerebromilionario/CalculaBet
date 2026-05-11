@@ -54,16 +54,16 @@ export const casas = [
 ];
 
 export const calculadoras = [
-  { slug: 'odds', nome: 'Calculadora de Odds', icon: 'odds', desc: 'Calcule o retorno das suas apostas a partir das odds.' },
-  { slug: 'aposta-simples', nome: 'Aposta Simples', icon: 'aposta-simples', desc: 'Simule ganho, lucro e ROI de apostas individuais.' },
-  { slug: 'multipla-parlay', nome: 'Múltipla / Parlay', icon: 'multipla-parlay', desc: 'Some odds de múltiplas seleções e calcule o retorno.' },
-  { slug: 'arbitragem', nome: 'Arbitragem', icon: 'arbitragem', desc: 'Identifique e distribua stakes para lucro garantido.' },
-  { slug: 'dutching', nome: 'Dutching', icon: 'dutching', desc: 'Distribua stakes entre vários resultados com lucro igual.' },
-  { slug: 'cashout', nome: 'Cashout', icon: 'cashout', desc: 'Calcule o valor justo do cashout da sua aposta.' },
-  { slug: 'hedge', nome: 'Hedge', icon: 'hedge', desc: 'Proteja seu lucro ou minimize prejuízo com apostas opostas.' },
-  { slug: 'gestao-banca', nome: 'Gestão de Banca', icon: 'gestao-banca', desc: 'Aplique Kelly, flat ou % fixo para proteger sua banca.' },
-  { slug: 'martingale', nome: 'Martingale', icon: 'martingale', desc: 'Simule a estratégia de dobrar stakes após perdas.' },
-  { slug: 'conversor-odds', nome: 'Conversor de Odds', icon: 'conversor-odds', desc: 'Converta decimal, americana, fracionária e probabilidade.' },
-  { slug: 'roi', nome: 'ROI em Apostas', icon: 'roi', desc: 'Calcule o retorno sobre investimento da sua banca.' },
-  { slug: 'simulador-lucro', nome: 'Simulador de Lucro', icon: 'simulador-lucro', desc: 'Projete lucros e perdas ao longo de um período.' },
+  { slug: 'odds',           nome: 'Calculadora de Odds',  icon: 'odds',           categoria: 'odds',       desc: 'Calcule retorno, lucro e probabilidade implícita de qualquer aposta em tempo real.' },
+  { slug: 'aposta-simples', nome: 'Aposta Simples',        icon: 'aposta-simples', categoria: 'odds',       desc: 'Simule ganho, lucro, ROI e percentual de banca de apostas individuais.' },
+  { slug: 'multipla-parlay',nome: 'Múltipla / Parlay',     icon: 'multipla-parlay',categoria: 'odds',       desc: 'Combine odds de múltiplas seleções e calcule retorno e risco da aposta.' },
+  { slug: 'arbitragem',     nome: 'Arbitragem',            icon: 'arbitragem',     categoria: 'arbitragem', desc: 'Identifique e distribua stakes para lucro garantido em qualquer resultado.' },
+  { slug: 'dutching',       nome: 'Dutching',              icon: 'dutching',       categoria: 'arbitragem', desc: 'Distribua stakes entre vários resultados mantendo lucro igual em todos.' },
+  { slug: 'cashout',        nome: 'Cashout',               icon: 'cashout',        categoria: 'arbitragem', desc: 'Calcule o valor justo do cashout e compare com manter a aposta até o fim.' },
+  { slug: 'hedge',          nome: 'Hedge',                 icon: 'hedge',          categoria: 'arbitragem', desc: 'Proteja seu lucro ou minimize prejuízo com apostas opostas estratégicas.' },
+  { slug: 'gestao-banca',   nome: 'Gestão de Banca',       icon: 'gestao-banca',   categoria: 'gestao',     desc: 'Aplique Kelly Criterion, flat betting ou percentual fixo para crescer sua banca.' },
+  { slug: 'martingale',     nome: 'Martingale',            icon: 'martingale',     categoria: 'gestao',     desc: 'Simule a estratégia de dobrar stakes e visualize o risco matemático real.' },
+  { slug: 'conversor-odds', nome: 'Conversor de Odds',     icon: 'conversor-odds', categoria: 'conversao',  desc: 'Converta instantaneamente entre decimal, americana, fracionária e probabilidade.' },
+  { slug: 'roi',            nome: 'ROI em Apostas',        icon: 'roi',            categoria: 'roi',        desc: 'Calcule o retorno sobre investimento e analise sua performance acumulada.' },
+  { slug: 'simulador-lucro',nome: 'Simulador de Lucro',    icon: 'simulador-lucro',categoria: 'simulacao',  desc: 'Projete o crescimento da banca com simulação Monte Carlo e análise de variância.' },
 ];

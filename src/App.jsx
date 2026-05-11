@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import CasasApostas from './pages/CasasApostas';
+import Ferramentas from './pages/Ferramentas';
 
 // Calculadoras
 import CalculadoraOdds from './pages/calculadoras/Odds';
@@ -58,6 +59,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/casas-apostas" element={<CasasApostas />} />
+            <Route path="/ferramentas" element={<Ferramentas />} />
             <Route path="/calculadoras/odds" element={<CalculadoraOdds />} />
             <Route path="/calculadoras/aposta-simples" element={<ApostaSimples />} />
             <Route path="/calculadoras/multipla-parlay" element={<MultiplaParlay />} />
