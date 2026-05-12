@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import AdBanner300x250 from '../ads/AdBanner300x250';
+import CookieConsentBanner from '../privacy/CookieConsentBanner';
 
 // Institutional pages that should not show ads
 const INSTITUTIONAL = [
@@ -33,6 +34,7 @@ export default function Layout({ children }) {
         </div>
       )}
       <Footer />
+      <CookieConsentBanner />
     </>
   );
 }

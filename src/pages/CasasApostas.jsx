@@ -1,7 +1,6 @@
 import SEOHead from '../components/ui/SEOHead';
 import CasaCard from '../components/ui/CasaCard';
 import { casas } from '../data/casas';
-import AdBanner from '../components/ui/AdBanner';
 import AdNativeBanner from '../components/ads/AdNativeBanner';
 
 export default function CasasApostas() {
