@@ -10,9 +10,9 @@ const breadcrumbSchema = (title, slug) => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.com.br' },
-    { '@type': 'ListItem', position: 2, name: 'Calculadoras', item: 'https://calculabet.com.br/#calculadoras' },
-    { '@type': 'ListItem', position: 3, name: title, item: `https://calculabet.com.br/calculadoras/${slug}` },
+    { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.site' },
+    { '@type': 'ListItem', position: 2, name: 'Ferramentas', item: 'https://calculabet.site/ferramentas' },
+    { '@type': 'ListItem', position: 3, name: title, item: `https://calculabet.site/calculadoras/${slug}` },
   ],
 });
 
@@ -40,7 +40,7 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <Breadcrumbs items={[{ label: 'Calculadoras', href: '/' }, { label: title }]} />
+        <Breadcrumbs items={[{ label: 'Ferramentas', href: '/ferramentas' }, { label: title }]} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
 
@@ -228,7 +228,7 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
                   { to: '/casas-apostas', label: 'Casas de Apostas' },
                   { to: '/sobre', label: 'Sobre o CalculaBet' },
                   { to: '/jogo-responsavel', label: 'Jogo Responsável' },
-                  { to: '/afiliados', label: 'Política de Afiliados' },
+                  { to: '/politica-de-afiliados', label: 'Política de Afiliados' },
                 ].map(l => (
                   <li key={l.to}>
                     <Link

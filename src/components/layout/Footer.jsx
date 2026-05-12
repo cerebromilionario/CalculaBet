@@ -10,9 +10,9 @@ const footerLinks = {
     { label: 'Contato', to: '/contato' },
   ],
   Legal: [
-    { label: 'Política de Privacidade', to: '/privacidade' },
-    { label: 'Termos de Uso', to: '/termos' },
-    { label: 'Política de Afiliados', to: '/afiliados' },
+    { label: 'Política de Privacidade', to: '/politica-de-privacidade' },
+    { label: 'Termos de Uso', to: '/termos-de-uso' },
+    { label: 'Política de Afiliados', to: '/politica-de-afiliados' },
     { label: 'Jogo Responsável', to: '/jogo-responsavel' },
   ],
 };
@@ -120,7 +120,7 @@ export default function Footer() {
           </p>
           <p className="text-xs text-center" style={{ color: 'var(--text-3)' }}>
             Links de afiliados —{' '}
-            <Link to="/afiliados" className="underline underline-offset-2 hover:opacity-80">
+            <Link to="/politica-de-afiliados" className="underline underline-offset-2 hover:opacity-80">
               Política de afiliados
             </Link>
           </p>

@@ -61,7 +61,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Arbitragem — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/arbitragem',
+      url: 'https://calculabet.site/calculadoras/arbitragem',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
@@ -159,14 +159,6 @@ function ArbExplanation() {
     { title: 'Fundos insuficientes', desc: 'Precisar de capital simultâneo em múltiplas contas pode ser difícil de gerenciar. Sem fundos disponíveis, a oportunidade some antes de você poder executar.' },
   ];
 
-  const steps = [
-    { n: '1', t: 'Identifique o evento alvo', d: 'Procure eventos com odds equilibradas entre casas. Tênis, basquete e futebol de ligas internacionais costumam apresentar mais divergências. Use ferramentas como OddsPortal ou RebelBetting para acelerar a busca.' },
-    { n: '2', t: 'Verifique a margem', d: 'Insira as odds de cada resultado nesta calculadora e confirme se a margem total está abaixo de 100%. Prefira margens abaixo de 98,5% para ter buffer contra variações durante a execução.' },
-    { n: '3', t: 'Calcule a distribuição de stakes', d: 'Com a banca definida, a calculadora mostra quanto apostar em cada resultado para garantir o mesmo retorno em qualquer desfecho. Anote os valores antes de começar.' },
-    { n: '4', t: 'Abra as contas e confirme os saldos', d: 'Antes de executar, confirme que você tem saldo suficiente nas contas relevantes. Qualquer atraso pode fazer a odd ser movida.' },
-    { n: '5', t: 'Execute o lado menor primeiro', d: 'Comece apostando no resultado com menor liquidez (geralmente a odd mais alta). Isso minimiza a exposição caso a odd do outro lado mude antes de você concluir.' },
-    { n: '6', t: 'Confirme todas as pontas e registre', d: 'Após fechar todas as apostas, registre a operação com os stakes reais, odds, casas e lucro esperado. Isso é essencial para avaliar o ROI acumulado ao longo do tempo.' },
-  ];
 
   return (
     <article className="space-y-12 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>

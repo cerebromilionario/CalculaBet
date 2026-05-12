@@ -23,7 +23,9 @@ export default function AdBanner({ size = 'leaderboard', adSlot, adClient, class
     if (adSlot && adClient && ref.current && typeof window !== 'undefined' && window.adsbygoogle) {
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-      } catch {}
+      } catch {
+        // Ignore invalid ad/odds runtime values and keep the UI responsive.
+      }
     }
   }, [adSlot, adClient]);
 

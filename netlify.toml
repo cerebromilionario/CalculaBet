@@ -3,6 +3,39 @@
   publish = "dist"
 
 [[redirects]]
+  from = "https://www.calculabet.site/*"
+  to = "https://calculabet.site/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://calculabet.site/*"
+  to = "https://calculabet.site/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.calculabet.site/*"
+  to = "https://calculabet.site/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacidade"
+  to = "/politica-de-privacidade"
+  status = 301
+
+[[redirects]]
+  from = "/termos"
+  to = "/termos-de-uso"
+  status = 301
+
+[[redirects]]
+  from = "/afiliados"
+  to = "/politica-de-afiliados"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

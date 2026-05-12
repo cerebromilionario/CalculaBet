@@ -156,11 +156,11 @@ const schema = {
   '@type': 'WebPage',
   name: 'Jogo Responsável',
   description: 'Guia educativo sobre jogo responsável, limites, sinais de alerta, maioridade, ferramentas de autocontrole e uso consciente das calculadoras do CalculaBet.',
-  url: 'https://calculabet.com.br/jogo-responsavel',
+  url: 'https://calculabet.site/jogo-responsavel',
   isPartOf: {
     '@type': 'WebSite',
     name: 'CalculaBet',
-    url: 'https://calculabet.com.br',
+    url: 'https://calculabet.site',
   },
   inLanguage: 'pt-BR',
   about: ['jogo responsável', 'apostas conscientes', 'autocontrole em apostas', 'maiores de 18 anos'],
@@ -482,8 +482,8 @@ export default function JogoResponsavel() {
                 </ul>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link to="/sobre" className="btn-ghost">Sobre</Link>
-                  <Link to="/termos" className="btn-ghost">Termos de uso</Link>
-                  <Link to="/afiliados" className="btn-ghost">Política de Afiliados</Link>
+                  <Link to="/termos-de-uso" className="btn-ghost">Termos de uso</Link>
+                  <Link to="/politica-de-afiliados" className="btn-ghost">Política de Afiliados</Link>
                 </div>
               </div>
             </div>
@@ -520,7 +520,7 @@ export default function JogoResponsavel() {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
                 <Link to="/calculadoras/gestao-banca" className="btn-primary">Começar pela gestão de banca</Link>
-                <Link to="/termos" className="btn-ghost">Ler termos e avisos</Link>
+                <Link to="/termos-de-uso" className="btn-ghost">Ler termos e avisos</Link>
               </div>
             </div>
           </div>

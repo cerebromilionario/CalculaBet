@@ -74,16 +74,16 @@ const schema = [
     '@type': 'AboutPage',
     name: 'Sobre o CalculaBet',
     description: 'Página institucional do CalculaBet, plataforma independente de ferramentas, educação e cálculo para apostas esportivas responsáveis.',
-    url: 'https://calculabet.com.br/sobre',
+    url: 'https://calculabet.site/sobre',
     isPartOf: {
       '@type': 'WebSite',
       name: 'CalculaBet',
-      url: 'https://calculabet.com.br',
+      url: 'https://calculabet.site',
     },
     about: {
       '@type': 'Organization',
       name: 'CalculaBet',
-      url: 'https://calculabet.com.br',
+      url: 'https://calculabet.site',
       description: 'Plataforma independente de calculadoras de odds, gestão de banca, simulações e educação sobre probabilidades em apostas esportivas.',
     },
   },
@@ -91,8 +91,8 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.com.br' },
-      { '@type': 'ListItem', position: 2, name: 'Sobre', item: 'https://calculabet.com.br/sobre' },
+      { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.site' },
+      { '@type': 'ListItem', position: 2, name: 'Sobre', item: 'https://calculabet.site/sobre' },
     ],
   },
 ];
@@ -320,9 +320,9 @@ export default function Sobre() {
                   Antes de se cadastrar em qualquer plataforma externa, verifique diretamente no site parceiro os termos, bônus, requisitos de aposta, limites, regras promocionais, licenças, métodos de pagamento e políticas de jogo responsável.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
-                  <Link to="/afiliados" className="badge">Política de Afiliados</Link>
-                  <Link to="/termos" className="badge">Termos de Uso</Link>
-                  <Link to="/privacidade" className="badge">Privacidade</Link>
+                  <Link to="/politica-de-afiliados" className="badge">Política de Afiliados</Link>
+                  <Link to="/termos-de-uso" className="badge">Termos de Uso</Link>
+                  <Link to="/politica-de-privacidade" className="badge">Privacidade</Link>
                 </div>
               </div>
             </div>

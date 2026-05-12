@@ -57,7 +57,7 @@ const prohibitedUse = [
 
 const internalLinks = [
   { to: '/jogo-responsavel', label: 'Jogo Responsável' },
-  { to: '/privacidade', label: 'Política de Privacidade' },
+  { to: '/politica-de-privacidade', label: 'Política de Privacidade' },
   { to: '/sobre', label: 'Sobre' },
   { to: '/contato', label: 'Contato' },
 ];
@@ -68,18 +68,18 @@ const schema = [
     '@type': 'WebPage',
     name: 'Termos de Uso do CalculaBet',
     description: 'Termos de Uso do CalculaBet, plataforma de ferramentas educativas, calculadoras e conteúdo informativo sobre apostas esportivas.',
-    url: 'https://calculabet.com.br/termos',
+    url: 'https://calculabet.site/termos-de-uso',
     dateModified: '2026-05-11',
     inLanguage: 'pt-BR',
     isPartOf: {
       '@type': 'WebSite',
       name: 'CalculaBet',
-      url: 'https://calculabet.com.br',
+      url: 'https://calculabet.site',
     },
     publisher: {
       '@type': 'Organization',
       name: 'CalculaBet',
-      url: 'https://calculabet.com.br',
+      url: 'https://calculabet.site',
     },
     about: ['termos de uso', 'calculadoras de apostas', 'links afiliados', 'jogo responsável'],
   },
@@ -87,8 +87,8 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.com.br' },
-      { '@type': 'ListItem', position: 2, name: 'Termos de Uso', item: 'https://calculabet.com.br/termos' },
+      { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.site' },
+      { '@type': 'ListItem', position: 2, name: 'Termos de Uso', item: 'https://calculabet.site/termos-de-uso' },
     ],
   },
 ];
@@ -180,7 +180,7 @@ export default function Termos() {
       <SEOHead
         title="Termos de Uso: regras, transparência e responsabilidade"
         description="Leia os Termos de Uso do CalculaBet: regras de utilização, natureza educativa da plataforma, calculadoras, links afiliados, privacidade, limitações e jogo responsável."
-        canonical="/termos"
+        canonical="/termos-de-uso"
         schema={schema}
       />
 
@@ -350,7 +350,7 @@ export default function Termos() {
               <TermsSection id="privacidade" eyebrow="Dados e cookies" title="10. Privacidade">
                 <p>Podemos utilizar cookies, tecnologias similares e ferramentas de analytics para compreender uso agregado da plataforma, melhorar experiência, medir desempenho, proteger o site e apoiar publicidade ou afiliados quando aplicável.</p>
                 <p>Informações enviadas voluntariamente pelo formulário de contato são tratadas conforme nossa Política de Privacidade. Para detalhes sobre dados, cookies, analytics e direitos do usuário, consulte a página específica.</p>
-                <Link to="/privacidade" className="btn-primary mt-2">Ler Política de Privacidade</Link>
+                <Link to="/politica-de-privacidade" className="btn-primary mt-2">Ler Política de Privacidade</Link>
               </TermsSection>
 
               <TermsSection id="contato" eyebrow="Canal oficial" title="11. Contato" accent="green">

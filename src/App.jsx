@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -75,9 +75,12 @@ export default function App() {
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/contato/sucesso" element={<ContatoSucesso />} />
-            <Route path="/privacidade" element={<Privacidade />} />
-            <Route path="/termos" element={<Termos />} />
-            <Route path="/afiliados" element={<Afiliados />} />
+            <Route path="/politica-de-privacidade" element={<Privacidade />} />
+            <Route path="/privacidade" element={<Navigate to="/politica-de-privacidade" replace />} />
+            <Route path="/termos-de-uso" element={<Termos />} />
+            <Route path="/termos" element={<Navigate to="/termos-de-uso" replace />} />
+            <Route path="/politica-de-afiliados" element={<Afiliados />} />
+            <Route path="/afiliados" element={<Navigate to="/politica-de-afiliados" replace />} />
             <Route path="/jogo-responsavel" element={<JogoResponsavel />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

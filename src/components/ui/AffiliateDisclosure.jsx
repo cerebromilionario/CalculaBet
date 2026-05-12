@@ -12,7 +12,7 @@ export default function AffiliateDisclosure({ compact = false }) {
         </span>
         Este site contém links de afiliados. Leia nossa{' '}
         <Link
-          to="/afiliados"
+          to="/politica-de-afiliados"
           className="underline underline-offset-2"
           style={{ color: 'var(--text-2)' }}
         >
@@ -37,7 +37,7 @@ export default function AffiliateDisclosure({ compact = false }) {
         <strong style={{ color: 'var(--text-2)' }}>Aviso de publicidade:</strong>{' '}
         Este site pode receber comissão por cliques ou cadastros via links de parceiros.
         Isso não afeta nossa análise. Verifique sempre licença, termos e disponibilidade na sua região antes de se cadastrar.{' '}
-        <Link to="/afiliados" className="underline underline-offset-2 hover:opacity-80" style={{ color: 'var(--text-2)' }}>
+        <Link to="/politica-de-afiliados" className="underline underline-offset-2 hover:opacity-80" style={{ color: 'var(--text-2)' }}>
           Política de afiliados
         </Link>
         .

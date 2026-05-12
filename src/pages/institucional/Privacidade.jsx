@@ -37,8 +37,8 @@ const toc = [
 
 const internalLinks = [
   { to: '/sobre', label: 'Sobre' },
-  { to: '/termos', label: 'Termos' },
-  { to: '/afiliados', label: 'Afiliados' },
+  { to: '/termos-de-uso', label: 'Termos' },
+  { to: '/politica-de-afiliados', label: 'Afiliados' },
   { to: '/jogo-responsavel', label: 'Jogo Responsável' },
   { to: '/contato', label: 'Contato' },
 ];
@@ -49,20 +49,20 @@ const schema = [
     '@type': 'PrivacyPolicy',
     name: 'Política de Privacidade do CalculaBet',
     description: 'Política de privacidade do CalculaBet, plataforma independente de ferramentas e conteúdo educativo para apostas esportivas.',
-    url: 'https://calculabet.com.br/privacidade',
+    url: 'https://calculabet.site/politica-de-privacidade',
     dateModified: '2026-05-11',
     publisher: {
       '@type': 'Organization',
       name: 'CalculaBet',
-      url: 'https://calculabet.com.br',
+      url: 'https://calculabet.site',
     },
   },
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.com.br' },
-      { '@type': 'ListItem', position: 2, name: 'Política de Privacidade', item: 'https://calculabet.com.br/privacidade' },
+      { '@type': 'ListItem', position: 1, name: 'CalculaBet', item: 'https://calculabet.site' },
+      { '@type': 'ListItem', position: 2, name: 'Política de Privacidade', item: 'https://calculabet.site/politica-de-privacidade' },
     ],
   },
 ];
@@ -98,7 +98,7 @@ export default function Privacidade() {
       <SEOHead
         title="Política de Privacidade: transparência, cookies e dados"
         description="Entenda como o CalculaBet trata informações de contato, cookies, analytics, publicidade, links afiliados e direitos de privacidade dos usuários."
-        canonical="/privacidade"
+        canonical="/politica-de-privacidade"
         schema={schema}
       />
 
@@ -296,7 +296,7 @@ export default function Privacidade() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <Link to="/contato" className="btn-primary px-6 py-3">Abrir formulário de contato</Link>
-                  <Link to="/termos" className="btn-ghost px-6 py-3">Ler termos de uso</Link>
+                  <Link to="/termos-de-uso" className="btn-ghost px-6 py-3">Ler termos de uso</Link>
                 </div>
               </PolicySection>
 

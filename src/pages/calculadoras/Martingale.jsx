@@ -59,7 +59,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Martingale — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/martingale',
+      url: 'https://calculabet.site/calculadoras/martingale',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

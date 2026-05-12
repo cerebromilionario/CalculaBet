@@ -65,7 +65,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Dutching — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/dutching',
+      url: 'https://calculabet.site/calculadoras/dutching',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

@@ -57,13 +57,13 @@ const schema = {
       '@type': 'WebPage',
       name: 'Calculadoras de Apostas Esportivas Gratuitas — CalculaBet',
       description: '12 calculadoras gratuitas para apostas esportivas: odds, arbitragem, gestão de banca com Kelly Critérion, ROI, simulador Monte Carlo e conversão de odds. Sem cadastro.',
-      url: 'https://calculabet.com.br/ferramentas',
+      url: 'https://calculabet.site/ferramentas',
       inLanguage: 'pt-BR',
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://calculabet.com.br' },
-          { '@type': 'ListItem', position: 2, name: 'Ferramentas', item: 'https://calculabet.com.br/ferramentas' },
+          { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://calculabet.site' },
+          { '@type': 'ListItem', position: 2, name: 'Ferramentas', item: 'https://calculabet.site/ferramentas' },
         ],
       },
     },
@@ -77,7 +77,7 @@ const schema = {
         position: i + 1,
         name: c.nome,
         description: RICH_DESC[c.slug] || c.desc,
-        url: `https://calculabet.com.br/calculadoras/${c.slug}`,
+        url: `https://calculabet.site/calculadoras/${c.slug}`,
       })),
     },
     {
@@ -339,11 +339,18 @@ export default function Ferramentas() {
           name="description"
           content="12 calculadoras gratuitas para apostas esportivas: odds, arbitragem, gestão de banca com Kelly Critérion, ROI, simulador Monte Carlo e conversão de odds. Sem cadastro, sem login."
         />
-        <link rel="canonical" href="https://calculabet.com.br/ferramentas" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://calculabet.site/ferramentas" />
         <meta property="og:title" content="Calculadoras de Apostas Esportivas Gratuitas | CalculaBet" />
         <meta property="og:description" content="12 calculadoras gratuitas para apostas esportivas. Odds, arbitragem, gestão de banca, ROI e simulação Monte Carlo. Sem cadastro." />
-        <meta property="og:url" content="https://calculabet.com.br/ferramentas" />
+        <meta property="og:url" content="https://calculabet.site/ferramentas" />
+        <meta property="og:image" content="https://calculabet.site/og-image.png" />
         <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Calculadoras de Apostas Esportivas Gratuitas | CalculaBet" />
+        <meta name="twitter:description" content="12 calculadoras gratuitas para apostas esportivas. Odds, arbitragem, gestão de banca, ROI e simulação Monte Carlo. Sem cadastro." />
+        <meta name="twitter:url" content="https://calculabet.site/ferramentas" />
+        <meta name="twitter:image" content="https://calculabet.site/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
 

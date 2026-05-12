@@ -35,7 +35,7 @@ const websiteSchema = {
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
   description: '12 calculadoras profissionais gratuitas para apostadores esportivos brasileiros.',
-  url: 'https://calculabet.com.br',
+  url: 'https://calculabet.site',
 };
 
 const stats = [
@@ -305,7 +305,7 @@ export default function Home() {
                     className="flex-1 rounded-md px-3 py-1 text-xs"
                     style={{ background: 'rgba(255,255,255,0.03)', color: 'var(--text-3)', maxWidth: '200px', margin: '0 auto' }}
                   >
-                    calculabet.com.br
+                    calculabet.site
                   </div>
                 </div>
 
