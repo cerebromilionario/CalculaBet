@@ -8,6 +8,7 @@
  *   <AdBanner size="leaderboard" />
  */
 import { useEffect, useRef } from 'react';
+import useCookieConsent from '../../hooks/useCookieConsent';
 
 const SIZES = {
   leaderboard: { cls: 'h-20 w-full', label: '728×90' },
@@ -16,20 +17,21 @@ const SIZES = {
 };
 
 export default function AdBanner({ size = 'leaderboard', adSlot, adClient, className = '' }) {
+  const { preferences } = useCookieConsent();
   const ref = useRef(null);
   const cfg = SIZES[size] || SIZES.leaderboard;
 
   useEffect(() => {
-    if (adSlot && adClient && ref.current && typeof window !== 'undefined' && window.adsbygoogle) {
+    if (preferences.marketing && adSlot && adClient && ref.current && typeof window !== 'undefined' && window.adsbygoogle) {
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       } catch {
         // Ignore invalid ad/odds runtime values and keep the UI responsive.
       }
     }
-  }, [adSlot, adClient]);
+  }, [preferences.marketing, adSlot, adClient]);
 
-  if (adSlot && adClient) {
+  if (adSlot && adClient && preferences.marketing) {
     return (
       <div className={`overflow-hidden ${cfg.cls} ${className}`} aria-label="Publicidade">
         <ins

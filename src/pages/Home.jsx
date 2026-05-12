@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { calculadoras, casas } from '../data/casas';
 import SEOHead from '../components/ui/SEOHead';
 import CasaCard from '../components/ui/CasaCard';
-import AdBanner from '../components/ui/AdBanner';
 import AdNativeBanner from '../components/ads/AdNativeBanner';
 import FAQSection from '../components/ui/FAQSection';
 import Icon from '../components/ui/Icons';
