@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { calculadoras } from '../data/casas';
 import Icon from '../components/ui/Icons';
+import AdNativeBanner from '../components/ads/AdNativeBanner';
 
 /* ─── Rich descriptions (local — does NOT modify casas.js) ─── */
 const RICH_DESC = {
@@ -581,6 +582,11 @@ export default function Ferramentas() {
             )}
           </div>
         </section>
+
+        {/* ── Native Ad — mid-page ── */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Publicidade">
+          <AdNativeBanner />
+        </div>
 
         {/* ── Como usar ── */}
         <section
