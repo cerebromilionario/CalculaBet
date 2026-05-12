@@ -159,6 +159,7 @@ export default function CalculadoraOdds() {
             <label className="label">Stake — valor apostado (R$)</label>
             <input
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="100"
               min="0"
@@ -195,6 +196,7 @@ export default function CalculadoraOdds() {
           </label>
           <input
             type="number"
+            inputMode="decimal"
             className="input-field"
             placeholder="Ex: 55 (deixe vazio se não souber)"
             min="1"

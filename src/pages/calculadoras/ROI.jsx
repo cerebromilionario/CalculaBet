@@ -533,6 +533,7 @@ export default function ROI() {
                       <input
                         id={`stake-${i}`}
                         type="number"
+                        inputMode="decimal"
                         className="input-field"
                         placeholder="ex: 100"
                         min="0"
@@ -546,6 +547,7 @@ export default function ROI() {
                       <input
                         id={`retorno-${i}`}
                         type="number"
+                        inputMode="decimal"
                         className="input-field"
                         placeholder="0"
                         min="0"

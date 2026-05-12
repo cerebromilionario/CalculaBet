@@ -501,6 +501,7 @@ export default function SimuladorLucro() {
             <input
               id="banca-input"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="1.000"
               min="1"
@@ -531,6 +532,7 @@ export default function SimuladorLucro() {
             <input
               id="odd-input"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="2.00"
               step="0.01"

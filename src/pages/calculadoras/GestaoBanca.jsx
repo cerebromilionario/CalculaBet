@@ -582,6 +582,7 @@ export default function GestaoBanca() {
           <input
             id="gb-banca"
             type="number"
+            inputMode="decimal"
             className="input-field"
             placeholder="ex: 1000"
             min="0"
@@ -599,6 +600,7 @@ export default function GestaoBanca() {
               <input
                 id="gb-odd"
                 type="number"
+                inputMode="decimal"
                 className="input-field"
                 placeholder="ex: 2.50"
                 step="0.01"
@@ -618,6 +620,7 @@ export default function GestaoBanca() {
               <input
                 id="gb-prob"
                 type="number"
+                inputMode="decimal"
                 className="input-field"
                 placeholder="ex: 55"
                 min="1"

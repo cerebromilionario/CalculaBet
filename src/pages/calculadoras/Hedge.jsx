@@ -583,6 +583,7 @@ export default function Hedge() {
           <input
             id="hedge-stake"
             type="number"
+            inputMode="decimal"
             className="input-field"
             placeholder="ex: 100"
             min="0"
@@ -599,6 +600,7 @@ export default function Hedge() {
             <input
               id="hedge-odd-orig"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="ex: 4.00"
               step="0.01"
@@ -618,6 +620,7 @@ export default function Hedge() {
             <input
               id="hedge-odd-hedge"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="ex: 1.80"
               step="0.01"
