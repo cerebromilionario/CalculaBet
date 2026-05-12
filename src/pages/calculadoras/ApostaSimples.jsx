@@ -235,6 +235,7 @@ export default function ApostaSimples() {
             <input
               id="calc-stake"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="100"
               min="0"
@@ -285,6 +286,7 @@ export default function ApostaSimples() {
           <input
             id="calc-banca"
             type="number"
+            inputMode="decimal"
             className="input-field"
             placeholder="Ex: 1000 (deixe vazio se não quiser)"
             min="0"

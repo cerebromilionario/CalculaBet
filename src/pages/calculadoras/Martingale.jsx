@@ -524,6 +524,7 @@ export default function Martingale() {
             <input
               id="mart-stake"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="ex: 10"
               min="1"
@@ -539,6 +540,7 @@ export default function Martingale() {
             <input
               id="mart-banca"
               type="number"
+              inputMode="decimal"
               className="input-field"
               placeholder="ex: 500"
               min="0"
