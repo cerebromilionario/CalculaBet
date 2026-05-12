@@ -2,6 +2,7 @@ import SEOHead from '../components/ui/SEOHead';
 import CasaCard from '../components/ui/CasaCard';
 import { casas } from '../data/casas';
 import AdBanner from '../components/ui/AdBanner';
+import AdNativeBanner from '../components/ads/AdNativeBanner';
 
 export default function CasasApostas() {
   return (
@@ -12,7 +13,7 @@ export default function CasasApostas() {
         canonical="/casas-apostas"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <AdBanner size="leaderboard" />
+        <AdNativeBanner />
 
         <div className="mt-10 mb-12">
           <span className="badge-green badge mb-4">Regulamentadas · Pix · Bônus</span>

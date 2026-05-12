@@ -5,6 +5,7 @@ import SEOHead from './SEOHead';
 import Icon from './Icons';
 import { Link } from 'react-router-dom';
 import { calculadoras } from '../../data/casas';
+import AdNativeBanner from '../ads/AdNativeBanner';
 
 const breadcrumbSchema = (title, slug) => ({
   '@context': 'https://schema.org',
@@ -74,6 +75,11 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
               }}
             >
               {children}
+            </div>
+
+            {/* Native banner — mid-page, between calculator and educational content */}
+            <div aria-label="Publicidade">
+              <AdNativeBanner />
             </div>
 
             {/* Explanation / SEO content */}

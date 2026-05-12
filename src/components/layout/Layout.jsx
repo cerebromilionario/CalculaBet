@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import AdNativeBanner from '../ads/AdNativeBanner';
 import AdBanner300x250 from '../ads/AdBanner300x250';
 
 // Institutional pages that should not show ads
@@ -27,16 +26,8 @@ export default function Layout({ children }) {
           aria-label="Área de publicidade"
           style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
         >
-          {/* Native banner — full width, blends with content */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <AdNativeBanner />
-          </div>
-
           {/* 300×250 display banner — centered */}
-          <div
-            className="flex justify-center px-4 pb-8"
-            style={{ gap: '16px', flexWrap: 'wrap' }}
-          >
+          <div className="flex justify-center px-4 py-8">
             <AdBanner300x250 />
           </div>
         </div>

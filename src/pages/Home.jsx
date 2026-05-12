@@ -3,6 +3,7 @@ import { calculadoras, casas } from '../data/casas';
 import SEOHead from '../components/ui/SEOHead';
 import CasaCard from '../components/ui/CasaCard';
 import AdBanner from '../components/ui/AdBanner';
+import AdNativeBanner from '../components/ads/AdNativeBanner';
 import FAQSection from '../components/ui/FAQSection';
 import Icon from '../components/ui/Icons';
 import AffiliateDisclosure from '../components/ui/AffiliateDisclosure';
@@ -175,7 +176,7 @@ export default function Home() {
 
       {/* ─── AD ───────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <AdBanner size="leaderboard" />
+        <AdNativeBanner />
       </div>
 
       {/* ─── CALCULADORAS ─────────────────────────────────── */}
