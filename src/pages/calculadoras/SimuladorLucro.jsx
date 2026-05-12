@@ -59,7 +59,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Simulador de Lucro em Apostas — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/simulador-lucro',
+      url: 'https://calculabet.site/calculadoras/simulador-lucro',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

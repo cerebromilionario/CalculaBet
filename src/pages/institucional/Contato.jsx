@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import SEOHead from '../../components/ui/SEOHead';
 
 const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/Willianzacarias77@gmail.com';
-const SUCCESS_URL = 'https://calculabet.com.br/contato/sucesso';
+const SUCCESS_URL = 'https://calculabet.site/contato/sucesso';
 const MESSAGE_LIMIT = 1200;
 
 const cleanValue = (value) => value.replace(/[<>]/g, '').replace(/\s+/g, ' ').trim();

@@ -61,7 +61,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Múltipla / Parlay — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/multipla-parlay',
+      url: 'https://calculabet.site/calculadoras/multipla-parlay',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

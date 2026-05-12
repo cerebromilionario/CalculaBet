@@ -61,7 +61,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Hedge — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/hedge',
+      url: 'https://calculabet.site/calculadoras/hedge',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

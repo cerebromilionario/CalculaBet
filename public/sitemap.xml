@@ -1,103 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://calculabet.com.br/</loc>
+    <loc>https://calculabet.site/</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/casas-apostas</loc>
+    <loc>https://calculabet.site/ferramentas</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/odds</loc>
+    <loc>https://calculabet.site/casas-apostas</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://calculabet.site/calculadoras/odds</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/aposta-simples</loc>
+    <loc>https://calculabet.site/calculadoras/aposta-simples</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/multipla-parlay</loc>
+    <loc>https://calculabet.site/calculadoras/multipla-parlay</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/arbitragem</loc>
+    <loc>https://calculabet.site/calculadoras/arbitragem</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/dutching</loc>
+    <loc>https://calculabet.site/calculadoras/dutching</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/cashout</loc>
+    <loc>https://calculabet.site/calculadoras/cashout</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/hedge</loc>
+    <loc>https://calculabet.site/calculadoras/hedge</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/gestao-banca</loc>
+    <loc>https://calculabet.site/calculadoras/gestao-banca</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/martingale</loc>
+    <loc>https://calculabet.site/calculadoras/martingale</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/conversor-odds</loc>
+    <loc>https://calculabet.site/calculadoras/conversor-odds</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/roi</loc>
+    <loc>https://calculabet.site/calculadoras/roi</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/calculadoras/simulador-lucro</loc>
+    <loc>https://calculabet.site/calculadoras/simulador-lucro</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/sobre</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://calculabet.com.br/contato</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://calculabet.com.br/jogo-responsavel</loc>
+    <loc>https://calculabet.site/sobre</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/privacidade</loc>
+    <loc>https://calculabet.site/contato</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://calculabet.site/politica-de-privacidade</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/termos</loc>
+    <loc>https://calculabet.site/termos-de-uso</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://calculabet.com.br/afiliados</loc>
+    <loc>https://calculabet.site/politica-de-afiliados</loc>
+    <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://calculabet.site/jogo-responsavel</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

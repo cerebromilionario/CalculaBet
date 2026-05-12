@@ -33,9 +33,9 @@ const SOBRE_LINKS = [
   { to: '/jogo-responsavel', label: 'Jogo Responsável' },
   { to: '/contato',          label: 'Contato' },
   null,
-  { to: '/privacidade',      label: 'Privacidade' },
-  { to: '/termos',           label: 'Termos de Uso' },
-  { to: '/afiliados',        label: 'Política de Afiliados' },
+  { to: '/politica-de-privacidade',      label: 'Privacidade' },
+  { to: '/termos-de-uso',           label: 'Termos de Uso' },
+  { to: '/politica-de-afiliados',        label: 'Política de Afiliados' },
 ];
 
 /* ─── Chevron icon ─── */
@@ -70,13 +70,17 @@ export default function Header() {
   const [sobreOpen,             setSobreOpen]             = useState(false);
   const [mobileToolsOpen,       setMobileToolsOpen]       = useState(false);
   const [scrolled,              setScrolled]              = useState(false);
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   /* Close everything on route change */
   useEffect(() => {
-    setMobileOpen(false);
-    setMobileToolsOpen(false);
-  }, [location]);
+    const id = window.setTimeout(() => {
+      setMobileOpen(false);
+      setMobileToolsOpen(false);
+    }, 0);
+
+    return () => window.clearTimeout(id);
+  }, [pathname]);
 
   /* Scroll detection */
   useEffect(() => {

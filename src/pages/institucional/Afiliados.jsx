@@ -67,11 +67,11 @@ export default function Afiliados() {
     '@type': 'WebPage',
     name: 'Política de Afiliados do CalculaBet',
     description: 'Entenda como o CalculaBet utiliza links afiliados, publicidade, parcerias comerciais e critérios de transparência editorial.',
-    url: 'https://calculabet.com.br/afiliados',
+    url: 'https://calculabet.site/politica-de-afiliados',
     isPartOf: {
       '@type': 'WebSite',
       name: 'CalculaBet',
-      url: 'https://calculabet.com.br',
+      url: 'https://calculabet.site',
     },
     inLanguage: 'pt-BR',
   };
@@ -81,7 +81,7 @@ export default function Afiliados() {
       <SEOHead
         title="Política de Afiliados: transparência comercial e publicidade"
         description="Veja como o CalculaBet trabalha com links afiliados, publicidade, plataformas parceiras, transparência editorial e jogo responsável."
-        canonical="/afiliados"
+        canonical="/politica-de-afiliados"
         schema={schema}
       />
 
@@ -289,8 +289,8 @@ export default function Afiliados() {
                   </div>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link to="/jogo-responsavel" className="btn-primary px-5 py-2.5 text-sm">Jogo Responsável</Link>
-                    <Link to="/termos" className="btn-ghost px-5 py-2.5 text-sm">Termos de Uso</Link>
-                    <Link to="/privacidade" className="btn-ghost px-5 py-2.5 text-sm">Política de Privacidade</Link>
+                    <Link to="/termos-de-uso" className="btn-ghost px-5 py-2.5 text-sm">Termos de Uso</Link>
+                    <Link to="/politica-de-privacidade" className="btn-ghost px-5 py-2.5 text-sm">Política de Privacidade</Link>
                     <Link to="/sobre" className="btn-ghost px-5 py-2.5 text-sm">Sobre</Link>
                   </div>
                 </div>

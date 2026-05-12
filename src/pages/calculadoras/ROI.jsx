@@ -59,7 +59,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de ROI em Apostas — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/roi',
+      url: 'https://calculabet.site/calculadoras/roi',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
@@ -473,7 +473,6 @@ export default function ROI() {
   const totalRetorno = validas.reduce((acc, a) => acc + (parseFloat(a.retorno) || 0), 0);
   const lucroLiquido = totalRetorno - totalStake;
   const roi = totalStake > 0 ? (lucroLiquido / totalStake) * 100 : 0;
-  const ganhas = validas.filter(a => parseFloat(a.retorno) > parseFloat(a.stake || 0) * 0).length;
   const ganhasReais = validas.filter(a => parseFloat(a.retorno) > 0).length;
   const winRate = validas.length > 0 ? (ganhasReais / validas.length) * 100 : 0;
   const oddMedia = ganhasReais > 0 ? validas.filter(a => parseFloat(a.retorno) > 0).reduce((acc, a) => acc + parseFloat(a.retorno) / parseFloat(a.stake), 0) / ganhasReais : 0;

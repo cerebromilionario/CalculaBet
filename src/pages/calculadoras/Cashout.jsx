@@ -65,7 +65,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Cashout — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/cashout',
+      url: 'https://calculabet.site/calculadoras/cashout',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

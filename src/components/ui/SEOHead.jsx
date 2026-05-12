@@ -1,13 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-const BASE_URL = 'https://calculabet.com.br';
+export const BASE_URL = 'https://calculabet.site';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 export default function SEOHead({ title, description, canonical, schema, ogImage, noindex }) {
   const fullTitle = title
     ? `${title} | CalculaBet`
     : 'CalculaBet – Ferramentas gratuitas para apostadores esportivos';
-  const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : BASE_URL;
+  const canonicalUrl = canonical
+    ? canonical.startsWith('http')
+      ? canonical
+      : `${BASE_URL}${canonical}`
+    : `${BASE_URL}/`;
   const ogImg = ogImage || DEFAULT_OG_IMAGE;
 
   return (
@@ -35,6 +39,7 @@ export default function SEOHead({ title, description, canonical, schema, ogImage
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       {description && <meta name="twitter:description" content={description} />}
+      <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:image" content={ogImg} />
 
       {/* Structured data */}

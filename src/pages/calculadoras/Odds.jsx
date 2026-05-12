@@ -65,7 +65,9 @@ export default function CalculadoraOdds() {
         if (d > 0 && n >= 0) oddDecimal = 1 + n / d;
       }
     }
-  } catch {}
+  } catch {
+        // Ignore invalid ad/odds runtime values and keep the UI responsive.
+      }
 
   const s = parseFloat(stake);
   const pe = parseFloat(probEstimada);

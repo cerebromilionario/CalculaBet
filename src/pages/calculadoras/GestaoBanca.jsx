@@ -61,7 +61,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Calculadora de Gestão de Banca — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/gestao-banca',
+      url: 'https://calculabet.site/calculadoras/gestao-banca',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },

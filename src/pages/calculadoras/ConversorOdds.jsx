@@ -91,7 +91,7 @@ const schema = {
     {
       '@type': 'WebApplication',
       name: 'Conversor de Odds — CalculaBet',
-      url: 'https://calculabet.com.br/calculadoras/conversor-odds',
+      url: 'https://calculabet.site/calculadoras/conversor-odds',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Any',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
@@ -478,7 +478,9 @@ export default function ConversorOdds() {
       const p = parseFloat(input);
       if (p > 0 && p < 100) decimal = 100 / p;
     }
-  } catch {}
+  } catch {
+        // Ignore invalid ad/odds runtime values and keep the UI responsive.
+      }
 
   const valid = decimal && decimal > 1 && isFinite(decimal);
 
