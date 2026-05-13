@@ -28,6 +28,13 @@ export const BLOG_CATEGORIES = [
     color: '#fbbf24',
   },
   {
+    id: 'cashout-hedge',
+    name: 'Cashout e Hedge',
+    description: 'Guias educativos sobre cashout, hedge em apostas, proteção de posição, odds ao vivo, cálculo e riscos.',
+    icon: 'shield',
+    color: '#fb7185',
+  },
+  {
     id: 'apostas-multiplas',
     name: 'Apostas Múltiplas',
     description: 'Guias sobre aposta múltipla, aposta combinada, parlay, odds combinadas, retorno, lucro e riscos.',
@@ -38,6 +45,23 @@ export const BLOG_CATEGORIES = [
 
 export const BLOG_POSTS = [
 
+
+  {
+    slug: 'cashout-apostas',
+    title: 'Cashout Vale a Pena? Como Funciona e Quando Usar em Apostas',
+    seoTitle: 'Cashout em Apostas: Vale a Pena? Como Funciona e Quando Usar',
+    ogTitle: 'Cashout em Apostas: Vale a Pena?',
+    ogDescription: 'Guia educativo sobre cashout, cálculo, riscos, hedge e uso da calculadora de cashout do CalculaBet.',
+    excerpt: 'Entenda o que é cashout em apostas, como funciona, quando pode valer a pena, quais são os riscos e como usar uma calculadora de cashout.',
+    category: 'cashout-hedge',
+    tags: ['cashout apostas', 'cash out apostas', 'cashout vale a pena', 'quando vale a pena fazer cashout', 'como funciona cashout', 'como calcular cashout', 'calculadora cashout', 'calculadora de cashout', 'cashout parcial', 'cashout total', 'hedge apostas', 'proteger aposta', 'retorno de aposta', 'odds ao vivo', 'gestão de banca', 'apostas responsáveis'],
+    readingTime: '21 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Cashout', href: '/ferramentas/cashout' },
+    popularity: 170,
+  },
 
   {
     slug: 'roi-apostas',
