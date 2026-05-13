@@ -71,7 +71,7 @@ const schema = {
       mainEntity: faqs.map(f => ({
         '@type': 'Question',
         name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
+        acceptedAnswer: { '@type': 'Answer', text: f.answerText || f.a },
       })),
     },
   ],

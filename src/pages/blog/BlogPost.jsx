@@ -3,6 +3,8 @@ import SEOHead, { BASE_URL } from '../../components/ui/SEOHead';
 import Breadcrumbs from '../../components/ui/Breadcrumbs';
 import BlogCard from '../../components/blog/BlogCard';
 import BlogIcon from '../../components/blog/BlogIcon';
+import FAQSection from '../../components/ui/FAQSection';
+import { getSeoFaqsForPage } from '../../data/seoFaqs.jsx';
 import { BLOG_FAQS, getCategoryById, getPostBySlug, getRelatedPosts } from '../../data/blog/blogData';
 
 function formatDate(date) {
@@ -46,13 +48,13 @@ function buildArticleSchema(post, category) {
           { '@type': 'ListItem', position: 3, name: post.title, item: url },
         ],
       },
-      ...(getFaqsForPost(post.slug).length ? [{
+      ...(getSchemaFaqsForPost(post.slug).length ? [{
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
-        mainEntity: getFaqsForPost(post.slug).map(faq => ({
+        mainEntity: getSchemaFaqsForPost(post.slug).map(faq => ({
           '@type': 'Question',
           name: faq.question,
-          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          acceptedAnswer: { '@type': 'Answer', text: faq.answerText || faq.answer },
         })),
       }] : []),
     ],
@@ -357,6 +359,20 @@ function getFaqsForPost(slug) {
     'cashout-apostas': CASHOUT_FAQS,
     'probabilidade-implicita-odds': IMPLIED_PROBABILITY_FAQS,
   }[slug] || [];
+}
+
+
+
+function getSchemaFaqsForPost(slug) {
+  const editorialFaqs = getFaqsForPost(slug);
+  const seoFaqs = getSeoFaqsForPage(slug).map(faq => ({ question: faq.question, answerText: faq.answerText }));
+  const seen = new Set();
+  return [...editorialFaqs, ...seoFaqs].filter(faq => {
+    const question = faq.question;
+    if (seen.has(question)) return false;
+    seen.add(question);
+    return true;
+  });
 }
 
 const bankrollHighlights = [
@@ -1911,6 +1927,7 @@ export default function BlogPost() {
   const category = getCategoryById(post.category);
   const relatedPosts = getRelatedPosts(post);
   const faqItems = BLOG_FAQS.slice(0, 3);
+  const seoFaqItems = getSeoFaqsForPage(post.slug);
 
   return (
     <>
@@ -2002,6 +2019,17 @@ export default function BlogPost() {
             </section>
           )}
           </>
+          )}
+
+          {seoFaqItems.length > 0 && (
+            <section className="mt-12" aria-label="FAQ SEO complementar do artigo">
+              <FAQSection
+                items={seoFaqItems}
+                title="Perguntas frequentes relacionadas"
+                eyebrow="FAQ complementar"
+                description="Dúvidas long tail conectadas a este guia, com links para ferramentas do CalculaBet e alertas de uso responsável."
+              />
+            </section>
           )}
         </div>
       </main>

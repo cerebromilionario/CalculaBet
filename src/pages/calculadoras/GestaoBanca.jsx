@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 const PRESETS_BANCA = [500, 1000, 2000, 5000, 10000];
 
@@ -53,6 +54,7 @@ const faqs = [
     q: 'Quando devo revisar e ajustar minha estratégia de gestão de banca?',
     a: 'Revisão formal a cada 100-200 apostas ou ao final de cada mês. Analise: ROI real vs. estimado, drawdown máximo (maior queda da banca em %), taxa de acerto por mercado e se o edge estimado reflete o resultado real. Se o ROI real for consistentemente abaixo do estimado, reduza o percentual de stake até calibrar melhor as estimativas de probabilidade. Se o ROI real superar consistentemente, pode aumentar o percentual — mas com gradualidade.',
   },
+  ...getSeoFaqsForPage('gestao-de-banca').map(toLegacyFaq),
 ];
 
 const schema = {
@@ -80,7 +82,7 @@ const schema = {
       mainEntity: faqs.map(f => ({
         '@type': 'Question',
         name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
+        acceptedAnswer: { '@type': 'Answer', text: f.answerText || f.a },
       })),
     },
   ],
