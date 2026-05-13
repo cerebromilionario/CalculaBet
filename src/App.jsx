@@ -5,6 +5,8 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import CasasApostas from './pages/CasasApostas';
 import Ferramentas from './pages/Ferramentas';
+import Blog from './pages/blog/Blog';
+import BlogPost from './pages/blog/BlogPost';
 
 // Calculadoras
 import CalculadoraOdds from './pages/calculadoras/Odds';
@@ -60,6 +62,8 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/casas-apostas" element={<CasasApostas />} />
             <Route path="/ferramentas" element={<Ferramentas />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/calculadoras/odds" element={<CalculadoraOdds />} />
             <Route path="/calculadoras/aposta-simples" element={<ApostaSimples />} />
             <Route path="/calculadoras/multipla-parlay" element={<MultiplaParlay />} />
