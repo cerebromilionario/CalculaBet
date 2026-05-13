@@ -72,6 +72,25 @@ export const BLOG_POSTS = [
 
 
   {
+    slug: 'odds-decimais-americanas-fracionarias',
+    title: 'O que são Odds Decimais, Americanas e Fracionárias? Guia Completo',
+    seoTitle: 'Odds Decimais, Americanas e Fracionárias: Guia Completo',
+    ogTitle: 'Odds Decimais, Americanas e Fracionárias',
+    ogDescription: 'Guia educativo para entender formatos de odds, conversão, retorno, lucro e probabilidade implícita.',
+    excerpt: 'Entenda o que são odds decimais, americanas e fracionárias, como funcionam, como converter formatos e usar um conversor de odds.',
+    category: 'odds-probabilidades',
+    tags: ['odds decimais o que é', 'odds americanas como funciona', 'odds fracionárias', 'conversor de odds', 'converter odds', 'como converter odds', 'formato de odds', 'probabilidade implícita odds', 'como calcular odds', 'calculadora de odds', 'retorno de aposta', 'lucro em apostas'],
+    readingTime: '24 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Conversor de Odds', href: '/ferramentas/conversor' },
+    popularity: 210,
+  },
+
+
+
+  {
     slug: 'probabilidade-implicita-odds',
     title: 'O que é Probabilidade Implícita nas Odds? Como Calcular e Interpretar',
     seoTitle: 'O que é Probabilidade Implícita nas Odds? Como Calcular',
