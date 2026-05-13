@@ -8,8 +8,10 @@ import { getSeoFaqsForPage } from '../../data/seoFaqs.jsx';
 import { BLOG_FAQS, getCategoryById, getPostBySlug, getRelatedPosts } from '../../data/blog/blogData';
 import { BEGINNER_GUIDE_FAQS } from '../../data/blog/beginnerGuideFaqs';
 import { ODDS_FORMATS_FAQS } from '../../data/blog/oddsFormatsFaqs';
+import { BET_RETURN_FAQS } from '../../data/blog/betReturnFaqs';
 import BeginnerGuideArticle from './articles/BeginnerGuideArticle';
 import OddsFormatsArticle from './articles/OddsFormatsArticle';
+import BetReturnArticle from './articles/BetReturnArticle';
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
@@ -362,6 +364,7 @@ function getFaqsForPost(slug) {
     'o-que-e-dutching': DUTCHING_FAQS,
     'cashout-apostas': CASHOUT_FAQS,
     'probabilidade-implicita-odds': IMPLIED_PROBABILITY_FAQS,
+    'como-calcular-retorno-de-aposta': BET_RETURN_FAQS,
     'apostas-esportivas-para-iniciantes': BEGINNER_GUIDE_FAQS,
     'odds-decimais-americanas-fracionarias': ODDS_FORMATS_FAQS,
   }[slug] || [];
@@ -1937,7 +1940,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1953,6 +1956,8 @@ export default function BlogPost() {
             <OddsFormatsArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'probabilidade-implicita-odds' ? (
             <ImpliedProbabilityArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'como-calcular-retorno-de-aposta' ? (
+            <BetReturnArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'roi-apostas' ? (
             <ROIArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'o-que-e-dutching' ? (

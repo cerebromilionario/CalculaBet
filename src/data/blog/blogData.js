@@ -71,6 +71,24 @@ export const BLOG_POSTS = [
 
 
 
+
+  {
+    slug: 'como-calcular-retorno-de-aposta',
+    title: 'Como Calcular o Retorno de uma Aposta? Fórmula e Calculadora Gratuita',
+    seoTitle: 'Como Calcular o Retorno de uma Aposta? Fórmula e Calculadora',
+    ogTitle: 'Como Calcular o Retorno de uma Aposta',
+    ogDescription: 'Guia prático para calcular retorno, lucro, odds e exemplos com R$10 usando a Calculadora de Odds do CalculaBet.',
+    excerpt: 'Aprenda como calcular o retorno de uma aposta, diferença entre retorno e lucro, quanto ganha uma aposta de R$10 e use uma calculadora gratuita.',
+    category: 'odds-probabilidades',
+    tags: ['como calcular retorno de aposta', 'como calcular odds', 'quanto ganha uma aposta de R$10', 'calculadora de odds', 'calculadora de aposta simples', 'calcular retorno de aposta', 'retorno de aposta', 'lucro de aposta', 'fórmula retorno aposta', 'como calcular lucro de aposta', 'odd 2.00 quanto ganha', 'odd 1.50 quanto ganha', 'odd 3.00 quanto ganha', 'valor apostado vezes odd', 'apostas esportivas para iniciantes', 'probabilidade implícita'],
+    readingTime: '20 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Odds', href: '/ferramentas/odds' },
+    popularity: 205,
+  },
+
   {
     slug: 'odds-decimais-americanas-fracionarias',
     title: 'O que são Odds Decimais, Americanas e Fracionárias? Guia Completo',
