@@ -1,8 +1,8 @@
 export const BLOG_CATEGORIES = [
   {
     id: 'arbitragem',
-    name: 'Arbitragem',
-    description: 'Guias sobre surebet, arbitragem esportiva, odds diferentes e riscos operacionais.',
+    name: 'Arbitragem e Dutching',
+    description: 'Guias sobre surebet, arbitragem esportiva, dutching, distribuição de stakes e riscos operacionais.',
     icon: 'split',
     color: '#34d399',
   },
@@ -30,6 +30,23 @@ export const BLOG_CATEGORIES = [
 ];
 
 export const BLOG_POSTS = [
+
+  {
+    slug: 'o-que-e-dutching',
+    title: 'O que é Dutching em Apostas? Como Funciona e Como Calcular',
+    seoTitle: 'O que é Dutching em Apostas? Como Funciona e Como Calcular',
+    ogTitle: 'O que é Dutching em Apostas? Como Funciona e Como Calcular',
+    ogDescription: 'Guia educativo sobre Dutching, distribuição de stakes, múltiplos resultados, riscos e uso de calculadora.',
+    excerpt: 'Entenda o que é Dutching em apostas, como distribuir stakes entre resultados, quais são os riscos e como usar uma calculadora de Dutching.',
+    category: 'arbitragem',
+    tags: ['o que é dutching', 'dutching apostas', 'calculadora dutching', 'calculadora de dutching', 'como calcular dutching', 'estratégia dutching', 'dutching apostas esportivas', 'distribuir stakes', 'apostas em múltiplos resultados', 'cobrir resultados', 'stake proporcional', 'arbitragem apostas', 'surebet', 'hedge apostas', 'calculadora de apostas'],
+    readingTime: '23 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Dutching', href: '/ferramentas/dutching' },
+    popularity: 150,
+  },
   {
     slug: 'o-que-e-aposta-multipla',
     title: 'O que é Aposta Múltipla? Como Funciona e Como Calcular',

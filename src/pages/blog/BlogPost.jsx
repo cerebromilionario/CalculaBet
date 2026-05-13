@@ -215,6 +215,24 @@ const BANKROLL_FAQS = [
 ];
 
 
+
+const DUTCHING_FAQS = [
+  { question: 'O que é Dutching em apostas?', answer: 'Dutching é uma técnica de distribuição de stake entre dois ou mais resultados escolhidos, usando as odds para tentar equilibrar retorno ou exposição. É um cálculo de apostas em múltiplos resultados, não uma previsão e não uma garantia de lucro.' },
+  { question: 'Como funciona o Dutching?', answer: 'O usuário escolhe as seleções que deseja cobrir, define uma stake total e divide esse valor proporcionalmente ao inverso das odds. Odds menores costumam receber stake maior e odds maiores costumam receber stake menor para aproximar o retorno bruto.' },
+  { question: 'Como calcular Dutching?', answer: 'Uma forma simplificada é calcular o peso de cada seleção com 1 dividido pela odd, somar todos os pesos e aplicar: stake da seleção = peso da seleção dividido pela soma dos pesos vezes a stake total.' },
+  { question: 'Dutching garante lucro?', answer: 'Não. Dutching ajuda a organizar stakes e pode equilibrar cenários cobertos, mas o resultado depende das odds, do mercado, dos resultados escolhidos, das regras e da execução. A ferramenta calcula números, não prevê eventos.' },
+  { question: 'Qual a diferença entre Dutching e Surebet?', answer: 'Dutching distribui stake entre resultados escolhidos para equilibrar retorno ou exposição. Surebet busca arbitragem, normalmente comparando odds diferentes, para encontrar margem matemática positiva entre todos os resultados de um mercado.' },
+  { question: 'Qual a diferença entre Dutching e Hedge?', answer: 'Dutching costuma ser planejado antes da entrada para dividir stake entre seleções. Hedge é usado para proteger ou ajustar uma posição já aberta, reduzindo exposição ou alterando retorno conforme o mercado muda.' },
+  { question: 'Para que serve uma calculadora Dutching?', answer: 'Uma calculadora Dutching permite inserir múltiplas odds, definir stake total, calcular a distribuição proporcional, estimar retorno em cada cenário e reduzir erros de conta manual.' },
+  { question: 'Como dividir stakes no Dutching?', answer: 'As stakes são divididas pela proporção dos pesos de cada odd. Em geral, seleções com odds menores recebem uma fatia maior da stake total, enquanto seleções com odds maiores recebem uma fatia menor.' },
+  { question: 'Dutching funciona com três resultados?', answer: 'Sim. Dutching pode ser usado em mercados com três resultados, como 1X2 no futebol, desde que o usuário entenda quais seleções está cobrindo e quais riscos permanecem.' },
+  { question: 'Dutching é indicado para iniciantes?', answer: 'Iniciantes podem estudar e simular Dutching, mas devem aprender odds, stake, retorno, margem da casa e gestão de banca antes de usar valores reais. O ideal é praticar com exemplos e limites baixos.' },
+  { question: 'Quais são os riscos do Dutching?', answer: 'Os riscos incluem odds mudarem antes da entrada, erro de cálculo, mercado mal compreendido, regras de anulação, seleção não coberta vencer, margem da casa reduzir retorno e uso de stakes altas demais.' },
+  { question: 'Posso usar Dutching em apostas esportivas?', answer: 'Sim, Dutching pode ser estudado em apostas esportivas com múltiplos resultados, como futebol, tênis com mercados alternativos ou corridas. Ainda assim, apostas envolvem risco financeiro e devem ser tratadas com responsabilidade.' },
+  { question: 'Dutching substitui gestão de banca?', answer: 'Não. Dutching só organiza a distribuição de uma stake total. Gestão de banca continua necessária para definir limites, controlar exposição e evitar decisões impulsivas.' },
+  { question: 'O que acontece se uma odd mudar?', answer: 'Se uma odd mudar, o cálculo precisa ser refeito antes de qualquer decisão. Uma pequena alteração pode mudar a stake proporcional, o retorno estimado e até transformar um cenário equilibrado em perda maior.' },
+];
+
 const MULTIPLE_FAQS = [
   {
     question: 'O que é aposta múltipla?',
@@ -280,6 +298,7 @@ function getFaqsForPost(slug) {
     'o-que-e-surebet': SUREBET_FAQS,
     'o-que-e-gestao-de-banca': BANKROLL_FAQS,
     'o-que-e-aposta-multipla': MULTIPLE_FAQS,
+    'o-que-e-dutching': DUTCHING_FAQS,
   }[slug] || [];
 }
 
@@ -1059,6 +1078,191 @@ function MultipleBetArticle({ post, category, relatedPosts }) {
 }
 
 
+
+function DutchingArticle({ post, category, relatedPosts }) {
+  const highlights = [
+    { title: 'Distribuição proporcional', text: 'A stake total é dividida entre seleções usando as odds como referência matemática.' },
+    { title: 'Retorno ou exposição', text: 'O objetivo pode ser aproximar retornos, reduzir concentração ou comparar cenários antes de apostar.' },
+    { title: 'Sem promessa de ganho', text: 'Dutching não prevê resultados, não elimina perdas e não substitui gestão de banca.' },
+  ];
+
+  const twoResultRows = [
+    ['Resultado A', '2.00', '0,5000', 'R$ 60,00', 'R$ 120,00'],
+    ['Resultado B', '3.00', '0,3333', 'R$ 40,00', 'R$ 120,00'],
+  ];
+
+  const threeResultRows = [
+    ['Vitória mandante', '2.20', '0,4545', 'R$ 42,46', 'R$ 93,41'],
+    ['Empate', '3.40', '0,2941', 'R$ 27,48', 'R$ 93,43'],
+    ['Vitória visitante', '3.10', '0,3226', 'R$ 30,14', 'R$ 93,43'],
+  ];
+
+  const comparisonRows = [
+    ['Dutching', 'Distribuir stake entre resultados.', 'Divide a stake total proporcionalmente às odds para aproximar retorno ou exposição.', 'Antes de apostar, ao cobrir dois ou mais resultados selecionados.', <Link to="/ferramentas/dutching" className="font-semibold" style={{ color: '#67e8f9' }}>Calculadora de Dutching</Link>],
+    ['Surebet', 'Buscar arbitragem apostas com margem teórica.', 'Compara odds, muitas vezes em casas diferentes, e verifica se a soma dos inversos é menor que 100%.', 'Quando todas as pontas do mercado podem ser cobertas com números favoráveis.', <><Link to="/ferramentas/arbitragem" className="font-semibold" style={{ color: '#67e8f9' }}>Calculadora de arbitragem</Link> e <Link to="/blog/o-que-e-surebet" className="font-semibold" style={{ color: '#67e8f9' }}>guia de surebet</Link></>],
+    ['Hedge', 'Proteger ou ajustar uma posição aberta.', 'Cria uma aposta oposta ou complementar depois de uma entrada inicial para alterar o risco.', 'Durante ou depois de uma aposta já feita, quando o cenário mudou.', <Link to="/ferramentas/hedge" className="font-semibold" style={{ color: '#67e8f9' }}>Calculadora de hedge</Link>],
+  ];
+
+  const commonErrors = [
+    'Não entender o mercado, suas regras e quais resultados realmente estão cobertos.',
+    'Escolher resultados demais sem critério e aumentar a exposição total sem perceber.',
+    'Não conferir odds atualizadas antes de confirmar as entradas.',
+    'Calcular stakes manualmente com erro de arredondamento ou digitação.',
+    'Esquecer regras de empate, anulação, void, prorrogação ou mercados que não são equivalentes.',
+    'Apostar sem gestão de banca e sem limite de perda definido previamente.',
+    'Tentar recuperar perdas aumentando a stake total por impulso.',
+    'Achar que Dutching garante lucro em qualquer conjunto de odds.',
+    'Ignorar a margem da casa e o impacto da soma das probabilidades implícitas.',
+    'Usar stakes altas demais em uma estratégia que ainda está sendo aprendida.',
+  ];
+
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#34d399', borderColor: `${category?.color || '#34d399'}35`, background: `${category?.color || '#34d399'}10` }}>Arbitragem e Dutching</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <header className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">O que é Dutching em Apostas? Como Funciona e Como Calcular</h1>
+            <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Dutching é uma técnica usada para distribuir apostas entre múltiplos resultados. Em vez de colocar toda a stake em uma única seleção, o usuário divide o valor total de forma proporcional às odds para tentar equilibrar retorno, lucro potencial ou exposição. Muitos iniciantes confundem Dutching com <Link to="/blog/o-que-e-surebet" className="font-semibold" style={{ color: '#67e8f9' }}>surebet</Link> ou com <Link to="/ferramentas/hedge" className="font-semibold" style={{ color: '#67e8f9' }}>hedge em apostas</Link>, mas cada conceito tem uma finalidade diferente. Este guia explica a matemática, mostra exemplos e reforça riscos de forma educativa e responsável.
+            </p>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Link to="/ferramentas/dutching" className="btn-primary">Abrir calculadora dutching <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+              <Link to="/jogo-responsavel" className="btn-ghost">Jogo responsável</Link>
+            </div>
+          </div>
+          <aside className="rounded-3xl p-6" style={{ background: 'rgba(52,211,153,0.07)', border: '1px solid rgba(52,211,153,0.16)' }} aria-label="Resumo sobre Dutching">
+            <p className="badge badge-green mb-4">Guia educativo</p>
+            <h2 className="text-2xl font-bold">Antes de calcular</h2>
+            <div className="mt-5 space-y-4">
+              {highlights.map(item => <div key={item.title} className="card-glass p-4"><h3 className="font-bold">{item.title}</h3><p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>{item.text}</p></div>)}
+            </div>
+          </aside>
+        </header>
+
+        <SurebetCallout tone="amber"><strong>Importante:</strong> conteúdo apenas educativo, destinado a maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e Dutching não elimina perdas. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Leia nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</SurebetCallout>
+
+        <ArticleSection id="o-que-e-dutching" title="O que é Dutching?">
+          <p>De forma simples, <strong>o que é Dutching</strong>? É uma maneira de dividir o valor apostado entre dois ou mais resultados escolhidos. A divisão não é feita em partes iguais: ela considera as odds de cada seleção para que o retorno bruto fique mais equilibrado entre os cenários cobertos.</p>
+          <p>Em <strong>dutching apostas</strong>, a lógica é matemática. Se uma seleção tem odd menor, ela geralmente exige stake maior para produzir retorno parecido. Se outra seleção tem odd maior, ela geralmente exige stake menor. Por isso a expressão <strong>stake proporcional</strong> é tão importante: a stake acompanha o peso de cada odd no cálculo.</p>
+          <p>Dutching pode ser usado em mercados com múltiplos resultados, como dois placares possíveis, duas seleções em uma corrida ou um mercado 1X2 no futebol. Ainda assim, ele não garante lucro por si só. Se as odds forem desfavoráveis, se um resultado não coberto acontecer ou se o mercado tiver regras diferentes das esperadas, a operação pode terminar negativa.</p>
+        </ArticleSection>
+
+        <ArticleSection id="como-funciona" title="Como funciona o Dutching em apostas?">
+          <p>O processo começa com a escolha de dois ou mais resultados possíveis. Depois, o usuário define uma stake total para distribuir. A partir daí, a stake é dividida proporcionalmente às odds, normalmente buscando retorno semelhante em diferentes cenários cobertos.</p>
+          <p>Imagine que você queira cobrir dois resultados em vez de concentrar todo o valor em apenas um. Com Dutching, a pergunta deixa de ser “quanto coloco em cada palpite por intuição?” e passa a ser “qual distribuição faz sentido com base nas odds?”. Essa mudança reduz improviso, mas não reduz o risco a zero.</p>
+          <p>O cálculo manual pode ser confuso porque envolve inversos de odds, soma de pesos e arredondamentos. Uma <Link to="/ferramentas/dutching" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de Dutching</Link> ajuda a organizar esses números e comparar cenários antes de qualquer decisão.</p>
+        </ArticleSection>
+
+        <ArticleSection id="para-que-serve" title="Para que serve o Dutching?">
+          <div className="grid sm:grid-cols-2 gap-4">
+            {['Cobrir múltiplos resultados em um mesmo mercado.', 'Equilibrar retorno entre seleções escolhidas.', 'Reduzir concentração de toda a stake em um único resultado.', 'Organizar apostas em múltiplos resultados com base em números.', 'Simular cenários de risco e retorno antes de apostar.', 'Comparar combinações diferentes usando uma calculadora de apostas.'].map(item => <div key={item} className="card-glass p-5"><p>{item}</p></div>)}
+          </div>
+          <p>Dutching também pode ser útil para estudar a relação entre odds e distribuição de stake. Ele mostra, de maneira visual, como uma odd mais baixa puxa mais dinheiro para manter o retorno próximo e como uma odd mais alta pode receber menos stake.</p>
+        </ArticleSection>
+
+        <ArticleSection id="garante-lucro" title="Dutching garante lucro?">
+          <p>Não. Dutching não garante lucro, não garante renda e não transforma uma aposta em investimento seguro. Ele depende das odds disponíveis, das stakes, dos resultados escolhidos, das regras do mercado e da execução correta. Se as odds não forem favoráveis, o resultado esperado pode continuar negativo mesmo com uma distribuição bem calculada.</p>
+          <SurebetCallout tone="amber"><strong>Dutching ajuda a organizar a distribuição das stakes, mas não transforma uma aposta ruim em uma aposta lucrativa.</strong></SurebetCallout>
+          <p>Uma ferramenta calcula números; ela não prevê resultados esportivos. O papel da calculadora é reduzir erro manual e mostrar retorno estimado nos cenários cobertos, não dizer se uma aposta deve ser feita.</p>
+        </ArticleSection>
+
+        <ArticleSection id="como-calcular" title="Como calcular Dutching">
+          <p>Para entender <strong>como calcular Dutching</strong>, siga quatro etapas: identifique as odds, defina a stake total, calcule a proporção de cada seleção e ajuste as stakes para equilibrar o retorno. Em termos práticos, odds menores geralmente exigem stake maior e odds maiores geralmente exigem stake menor.</p>
+          <p>A conta fica mais clara quando pensamos em peso. Cada seleção recebe um peso calculado pelo inverso da odd. Depois, cada peso é comparado com a soma de todos os pesos. Essa proporção determina quanto da stake total vai para cada resultado.</p>
+        </ArticleSection>
+
+        <ArticleSection id="formula" title="Fórmula simplificada do Dutching">
+          <p>A fórmula simplificada usa o inverso da odd. O peso representa a participação daquela seleção no conjunto de resultados cobertos. Quanto menor a odd, maior tende a ser o peso, porque é necessário apostar mais para chegar a retorno semelhante.</p>
+          <FormulaBox label="Peso da seleção" formula="Peso = 1 / odd" example="Exemplo: odd 2.00 tem peso 0,50; odd 3.00 tem peso 0,3333." />
+          <FormulaBox label="Stake proporcional" formula="Stake da seleção = (peso da seleção / soma dos pesos) × stake total" example="A soma das stakes deve ficar próxima da stake total. Pequenas diferenças podem ocorrer por arredondamento." />
+          <p>Interpretar o resultado é simples: a calculadora mostra quanto colocar em cada seleção para que o retorno dos cenários cobertos fique próximo. Se as odds mudarem, a distribuição também muda.</p>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-dois-resultados" title="Exemplo prático de Dutching com dois resultados">
+          <p>Considere uma stake total de R$100, Resultado A com odd 2.00 e Resultado B com odd 3.00. O peso A é 1 / 2.00 = 0,5000. O peso B é 1 / 3.00 = 0,3333. A soma dos pesos é aproximadamente 0,8333.</p>
+          <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.09)' }}><table className="w-full text-left text-sm"><thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr>{['Seleção','Odd','Peso','Stake aproximada','Retorno se vencer'].map(h => <th key={h} className="p-4">{h}</th>)}</tr></thead><tbody>{twoResultRows.map(row => <tr key={row[0]} className="border-t border-white/10" style={{ color: 'var(--text-2)' }}>{row.map((cell, i) => <td key={cell} className="p-4" style={i === 0 ? { color: 'var(--text-1)', fontWeight: 700 } : undefined}>{cell}</td>)}</tr>)}</tbody></table></div>
+          <p>Com arredondamento simples, o Resultado A recebe cerca de R$60 e o Resultado B cerca de R$40. Se A vencer, o retorno bruto estimado é R$60 × 2.00 = R$120. Se B vencer, o retorno bruto estimado é R$40 × 3.00 = R$120. O lucro líquido, antes de considerar qualquer regra adicional, seria o retorno menos os R$100 distribuídos.</p>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-tres-resultados" title="Exemplo prático de Dutching com três resultados">
+          <p>Agora veja um mercado 1X2 com stake total de R$100: vitória mandante odd 2.20, empate odd 3.40 e vitória visitante odd 3.10. A soma dos pesos fica próxima de 1,0712, acima de 1. Isso significa que, mesmo distribuindo corretamente, o retorno estimado pode ficar abaixo da stake total.</p>
+          <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.09)' }}><table className="w-full text-left text-sm"><thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr>{['Seleção','Odd','Peso','Stake aproximada','Retorno estimado'].map(h => <th key={h} className="p-4">{h}</th>)}</tr></thead><tbody>{threeResultRows.map(row => <tr key={row[0]} className="border-t border-white/10" style={{ color: 'var(--text-2)' }}>{row.map((cell, i) => <td key={cell} className="p-4" style={i === 0 ? { color: 'var(--text-1)', fontWeight: 700 } : undefined}>{cell}</td>)}</tr>)}</tbody></table></div>
+          <p>Perceba que os retornos ficam parecidos, mas próximos de R$93,42, abaixo dos R$100 distribuídos. Esse exemplo mostra por que Dutching não deve ser tratado como lucro garantido. A <Link to="/ferramentas/dutching" className="font-semibold" style={{ color: '#67e8f9' }}>ferramenta de Dutching do CalculaBet</Link> facilita a visualização da diferença entre os cenários e evidencia quando a soma das probabilidades pesa contra o retorno.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calculadora" title="Como usar a Calculadora de Dutching do CalculaBet">
+          <p>A <Link to="/ferramentas/dutching" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora dutching</Link> do CalculaBet foi criada para simular a distribuição de stakes de forma clara. Você pode inserir múltiplas odds, definir uma stake total, calcular a distribuição ideal, estimar retorno em cada cenário, reduzir erros manuais e comparar diferentes combinações.</p>
+          <div className="rounded-3xl p-6 my-6" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.13), rgba(52,211,153,0.08))', border: '1px solid rgba(34,211,238,0.20)' }}>
+            <p className="badge badge-cyan mb-3">Ferramenta gratuita</p>
+            <h3 className="text-2xl font-bold">Calcular Dutching online</h3>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a calculadora de Dutching para testar odds, stake total, retornos e exposição antes de qualquer decisão.</p>
+            <Link to="/ferramentas/dutching" className="btn-primary mt-5">Usar a Calculadora de Dutching <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+          <SurebetCallout><strong>Se as odds mudarem, o cálculo precisa ser refeito antes de qualquer decisão.</strong></SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="retorno-igual-ou-diferente" title="Dutching com retorno igual ou lucro diferente">
+          <p>O uso mais comum do Dutching é buscar retorno equilibrado entre as seleções cobertas. Porém, algumas pessoas ajustam a distribuição para priorizar um resultado específico, aceitando retorno maior em um cenário e menor em outro. Nesse caso, a matemática deixa de ser puramente equalizada e passa a refletir uma preferência de exposição.</p>
+          <p>Uma ferramenta ajuda porque mostra o impacto de cada mudança. Ao aumentar a stake em uma seleção, você pode melhorar aquele cenário, mas piorar outro. O ponto central é entender o trade-off antes de agir.</p>
+        </ArticleSection>
+
+        <ArticleSection id="diferencas" title="Diferença entre Dutching, Surebet e Hedge">
+          <p>Dutching, surebet e hedge apostas são termos próximos porque todos lidam com distribuição de risco, mas eles não são sinônimos. A tabela resume as diferenças principais.</p>
+          <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.09)' }}><table className="w-full text-left text-sm"><thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr>{['Estratégia','Objetivo','Como funciona','Quando é usada','Ferramenta relacionada'].map(h => <th key={h} className="p-4">{h}</th>)}</tr></thead><tbody>{comparisonRows.map(row => <tr key={row[0]} className="border-t border-white/10" style={{ color: 'var(--text-2)' }}>{row.map((cell, i) => <td key={i} className="p-4 align-top" style={i === 0 ? { color: 'var(--text-1)', fontWeight: 700 } : undefined}>{cell}</td>)}</tr>)}</tbody></table></div>
+        </ArticleSection>
+
+        <ArticleSection id="iniciantes" title="Dutching é indicado para iniciantes?">
+          <p>Iniciantes podem estudar o conceito, principalmente para aprender odds, retorno e distribuição de stake. No começo, porém, o cálculo pode parecer complexo. Por isso é melhor simular antes de apostar, revisar cada número e entender que nenhuma estratégia elimina o risco financeiro.</p>
+          <p>Antes de usar Dutching com dinheiro real, estude <Link to="/blog/como-calcular-odds" className="font-semibold" style={{ color: '#67e8f9' }}>como calcular odds</Link>, pratique <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>gestão de banca</Link> e leia a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>jogo responsável</Link>. O CalculaBet oferece ferramentas e conteúdo educativo; o site não é uma casa de apostas.</p>
+        </ArticleSection>
+
+        <ArticleSection id="erros-comuns" title="Erros comuns ao usar Dutching">
+          <ul className="space-y-3 list-disc pl-6">{commonErrors.map(item => <li key={item}>{item}</li>)}</ul>
+          <SurebetCallout tone="amber"><strong>Dutching ajuda a distribuir stakes, mas não elimina risco financeiro.</strong></SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="gestao-de-banca" title="Dutching e gestão de banca">
+          <p>Distribuir stakes não substitui controle de banca. A stake total precisa respeitar o orçamento do usuário, seus limites e a possibilidade real de perda. Mesmo quando o retorno entre seleções cobertas parece equilibrado, uma sequência negativa pode acontecer e afetar a banca.</p>
+          <p>Evite colocar grande parte da banca em uma única estratégia. Use a <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de gestão de banca</Link> para pensar em limites e registre os resultados para não depender de memória seletiva. Também vale conhecer a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link>, a página geral de <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas</Link> e nossa <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link> para entender o contexto editorial do projeto.</p>
+        </ArticleSection>
+
+        <ArticleSection id="quando-estudar" title="Quando faz sentido estudar Dutching?">
+          <p>Faz sentido estudar Dutching quando você quer entender distribuição de stake, quando existem múltiplos resultados possíveis, quando deseja simular cenários antes de apostar, quando quer comparar risco e retorno ou quando busca uma abordagem mais matemática para organizar apostas esportivas.</p>
+          <p>O estudo também ajuda a perceber limitações. Se a soma dos pesos indicar retorno abaixo da stake total, a distribuição pode estar equilibrada, mas o cenário ainda pode ser ruim. Essa distinção é essencial para não confundir organização de stake com vantagem matemática.</p>
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>Dutching é uma forma de distribuir stake entre resultados usando odds e stake total. O cálculo pode equilibrar retorno ou exposição, mas não elimina risco, não prevê resultados e não garante lucro. Calculadoras ajudam a evitar erro manual e a visualizar cenários, enquanto responsabilidade e gestão de banca continuam essenciais.</p>
+          <p><Link to="/ferramentas/dutching" className="font-semibold" style={{ color: '#67e8f9' }}>Use a Calculadora de Dutching do CalculaBet</Link> para simular a distribuição de stakes entre diferentes resultados.</p>
+        </ArticleSection>
+
+        <section className="mt-12" aria-labelledby="faq-dutching">
+          <h2 id="faq-dutching" className="text-3xl font-bold tracking-tight">FAQ sobre Dutching</h2>
+          <div className="mt-5 space-y-3">
+            {DUTCHING_FAQS.map(faq => <details key={faq.question} className="card-glass p-5"><summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary><p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p></details>)}
+          </div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">
+            {relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
@@ -1071,7 +1275,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1081,7 +1285,9 @@ export default function BlogPost() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
 
-          {post.slug === 'o-que-e-surebet' ? (
+          {post.slug === 'o-que-e-dutching' ? (
+            <DutchingArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'o-que-e-surebet' ? (
             <SurebetArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'como-calcular-odds' ? (
             <OddsArticle post={post} category={category} relatedPosts={relatedPosts} />
