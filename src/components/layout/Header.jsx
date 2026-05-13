@@ -30,6 +30,7 @@ const MEGA_GROUPS = [
 /* ─── Sobre dropdown links ─── */
 const SOBRE_LINKS = [
   { to: '/sobre',            label: 'Sobre o CalculaBet' },
+  { to: '/blog',             label: 'Blog' },
   { to: '/jogo-responsavel', label: 'Jogo Responsável' },
   { to: '/contato',          label: 'Contato' },
   null,
@@ -272,6 +273,15 @@ export default function Header() {
                   </div>
                 </div>
               </div>
+
+              {/* Blog */}
+              <NavLink
+                to="/blog"
+                className="px-3.5 py-2 rounded-lg text-sm font-medium transition-colors duration-150"
+                style={({ isActive }) => ({ color: isActive ? 'var(--text-1)' : 'var(--text-2)' })}
+              >
+                Blog
+              </NavLink>
 
               {/* Casas */}
               <NavLink
@@ -533,6 +543,19 @@ export default function Header() {
               </div>
             )}
           </div>
+
+          {/* Blog */}
+          <NavLink
+            to="/blog"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150"
+            style={({ isActive }) => ({
+              background: isActive ? 'rgba(34,211,238,0.08)' : 'transparent',
+              color: isActive ? '#22d3ee' : 'var(--text-2)',
+            })}
+          >
+            Blog
+          </NavLink>
 
           {/* Casas */}
           <NavLink

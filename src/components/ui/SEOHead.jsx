@@ -5,7 +5,7 @@ const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 export default function SEOHead({ title, description, canonical, schema, ogImage, noindex }) {
   const fullTitle = title
-    ? `${title} | CalculaBet`
+    ? (title.includes('CalculaBet') ? title : `${title} | CalculaBet`)
     : 'CalculaBet – Ferramentas gratuitas para apostadores esportivos';
   const canonicalUrl = canonical
     ? canonical.startsWith('http')
