@@ -46,10 +46,10 @@ function buildArticleSchema(post, category) {
           { '@type': 'ListItem', position: 3, name: post.title, item: url },
         ],
       },
-      ...(post.slug === 'o-que-e-surebet' ? [{
+      ...(['o-que-e-surebet', 'como-calcular-odds'].includes(post.slug) ? [{
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
-        mainEntity: SUREBET_FAQS.map(faq => ({
+        mainEntity: (post.slug === 'como-calcular-odds' ? ODDS_FAQS : SUREBET_FAQS).map(faq => ({
           '@type': 'Question',
           name: faq.question,
           acceptedAnswer: { '@type': 'Answer', text: faq.answer },
@@ -99,6 +99,58 @@ const SUREBET_FAQS = [
   {
     question: 'Como calcular a stake em uma surebet?',
     answer: 'Uma forma comum é definir o retorno bruto desejado e dividir esse retorno por cada odd. Com banca total fixa, a stake de cada resultado pode ser calculada pela proporção entre a probabilidade implícita daquele resultado e a soma das probabilidades implícitas.',
+  },
+];
+
+
+const ODDS_FAQS = [
+  {
+    question: 'Como calcular odds em apostas esportivas?',
+    answer: 'Em odds decimais, multiplique o valor apostado pela odd para encontrar o retorno total. Para saber o lucro, multiplique o valor apostado por odd menos 1. Para interpretar a probabilidade implícita, use 1 dividido pela odd vezes 100.',
+  },
+  {
+    question: 'Qual é a fórmula para calcular o retorno de uma aposta?',
+    answer: 'A fórmula é: Retorno = Valor apostado × Odd. Em uma aposta de R$10 na odd 2.00, o retorno total potencial é R$20, já incluindo os R$10 apostados.',
+  },
+  {
+    question: 'Qual é a diferença entre lucro e retorno?',
+    answer: 'Retorno é o valor total recebido em caso de acerto e inclui a stake original. Lucro é apenas o ganho líquido, calculado como valor apostado × (odd - 1).',
+  },
+  {
+    question: 'Quanto ganha uma aposta de R$10 na odd 2.00?',
+    answer: 'Uma aposta de R$10 na odd 2.00 tem retorno total potencial de R$20 e lucro potencial de R$10. O retorno inclui o valor apostado.',
+  },
+  {
+    question: 'O que é probabilidade implícita nas odds?',
+    answer: 'Probabilidade implícita é a probabilidade sugerida pela cotação. Ela ajuda a traduzir odds em percentual, mas não representa garantia de resultado nem probabilidade real exata.',
+  },
+  {
+    question: 'Como calcular probabilidade implícita?',
+    answer: 'Em odds decimais, use: Probabilidade implícita = 1 / Odd × 100. Odd 2.00 equivale a 50%, odd 1.50 equivale a 66,67% e odd 3.00 equivale a 33,33%.',
+  },
+  {
+    question: 'O que são odds decimais?',
+    answer: 'Odds decimais são o formato mais comum no Brasil. Elas mostram diretamente quanto retorna para cada R$1 apostado. Uma odd 2.50 indica retorno total potencial de R$2,50 para cada R$1.',
+  },
+  {
+    question: 'Como converter odds americanas para decimais?',
+    answer: 'Para odds americanas positivas, divida por 100 e some 1. Exemplo: +150 vira 2.50. Para odds negativas, divida 100 pelo valor absoluto e some 1. Exemplo: -200 vira 1.50.',
+  },
+  {
+    question: 'Como calcular odds de uma aposta múltipla?',
+    answer: 'Em apostas múltiplas com odds decimais, multiplique as odds de todas as seleções. Exemplo: 1.50 × 2.00 × 1.80 = odd combinada 5.40.',
+  },
+  {
+    question: 'Odd alta significa aposta melhor?',
+    answer: 'Não necessariamente. Odd alta indica retorno potencial maior, mas também costuma sugerir menor probabilidade implícita. Uma aposta só deve ser avaliada junto com risco, probabilidade estimada, mercado e gestão de banca.',
+  },
+  {
+    question: 'Como usar uma calculadora de odds?',
+    answer: 'Informe o valor apostado e a odd para simular retorno, lucro e probabilidade implícita. A calculadora ajuda a reduzir erro manual e a entender cenários antes de qualquer decisão.',
+  },
+  {
+    question: 'A calculadora de odds garante lucro?',
+    answer: 'Não. A calculadora de odds apenas faz contas e mostra cenários matemáticos. Ela não prevê resultados, não elimina risco financeiro e não deve ser usada como promessa de ganhos.',
   },
 ];
 
@@ -283,6 +335,177 @@ function SurebetArticle({ post, category, relatedPosts }) {
   );
 }
 
+function FormulaBox({ label, formula, example }) {
+  return (
+    <div className="rounded-3xl p-5 my-6" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.16)' }}>
+      <p className="badge badge-cyan mb-3">Fórmula</p>
+      <h3 className="text-xl font-bold" style={{ color: 'var(--text-1)' }}>{label}</h3>
+      <code className="block mt-4 text-lg sm:text-xl font-bold" style={{ color: '#67e8f9' }}>{formula}</code>
+      {example && <p className="mt-3 text-sm sm:text-base" style={{ color: 'var(--text-2)' }}>{example}</p>}
+    </div>
+  );
+}
+
+function OddsCallout({ tone = 'cyan', children }) {
+  const styles = tone === 'amber'
+    ? { background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }
+    : { background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.16)' };
+  return <div className="rounded-3xl p-5 my-7 leading-relaxed" style={styles}>{children}</div>;
+}
+
+function OddsArticle({ post, category, relatedPosts }) {
+  const examples = [
+    ['R$10', '1.50', 'R$15,00', 'R$5,00'],
+    ['R$10', '2.00', 'R$20,00', 'R$10,00'],
+    ['R$10', '3.00', 'R$30,00', 'R$20,00'],
+    ['R$10', '5.00', 'R$50,00', 'R$40,00'],
+  ];
+  const probabilityExamples = [['1.50', '66,67%'], ['2.00', '50%'], ['3.00', '33,33%']];
+  const commonErrors = [
+    'Confundir retorno com lucro e acreditar que todo valor recebido é ganho líquido.',
+    'Achar que odd alta significa aposta melhor sem comparar probabilidade e risco.',
+    'Ignorar a probabilidade implícita odds e olhar apenas para o possível pagamento.',
+    'Não considerar que a margem da casa pode estar embutida nas cotações.',
+    'Apostar sem gestão de banca, limites de stake e orçamento definido.',
+    'Usar uma calculadora errada ou digitar valores de stake e odd incorretos.',
+    'Comparar odds sem entender se o mercado, regra e período do evento são equivalentes.',
+  ];
+
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#22d3ee', borderColor: `${category?.color || '#22d3ee'}35`, background: `${category?.color || '#22d3ee'}10` }}>Odds e Probabilidades</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <header className="grid lg:grid-cols-[1.08fr_0.92fr] gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">Como Calcular Odds em Apostas Esportivas: Retorno, Lucro e Probabilidade</h1>
+            <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Entender <strong>como calcular odds</strong> é uma das bases para interpretar apostas esportivas com mais clareza. A odd mostra o retorno potencial de uma aposta e também permite estimar a probabilidade implícita daquele preço. Muitos iniciantes confundem retorno com lucro, não percebem que o valor apostado está incluído no retorno e acabam avaliando uma cotação de forma incompleta.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Este guia explica as fórmulas essenciais para calcular odds, retorno de aposta, lucro em apostas esportivas e probabilidade implícita, sempre com exemplos simples. Você também verá quando usar uma <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link> para simular cenários e evitar erro manual.
+            </p>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Link to="/ferramentas/odds" className="btn-primary">Usar calculadora de odds <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+              <Link to="/jogo-responsavel" className="btn-ghost">Jogo responsável</Link>
+            </div>
+          </div>
+          <aside className="rounded-3xl p-6" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.16)' }} aria-label="Resumo do artigo sobre odds">
+            <p className="badge badge-cyan mb-4">Guia educativo</p>
+            <h2 className="text-2xl font-bold">O que você vai aprender</h2>
+            <div className="mt-5 grid gap-4">
+              {[
+                ['Retorno', 'Valor apostado × odd. Inclui a stake original.'],
+                ['Lucro', 'Valor apostado × (odd - 1). Mostra o ganho líquido potencial.'],
+                ['Probabilidade', '1 / odd × 100. Traduz a cotação em percentual implícito.'],
+              ].map(item => <div key={item[0]} className="card-glass p-4"><h3 className="font-bold">{item[0]}</h3><p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>{item[1]}</p></div>)}
+            </div>
+          </aside>
+        </header>
+
+        <OddsCallout tone="amber"><strong>Importante:</strong> conteúdo apenas educativo, indicado para maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e ferramentas devem ser usadas como apoio ao cálculo, não como promessa de resultado. Leia também nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</OddsCallout>
+
+        <ArticleSection id="o-que-sao-odds" title="O que são odds em apostas esportivas?">
+          <p>Odds são cotações que indicam quanto uma aposta pode retornar caso o palpite esteja correto. Em formato decimal, comum no Brasil, uma odd 2.00 significa que cada R$1 apostado pode retornar R$2 no total. Esse total inclui a stake original; por isso, o lucro líquido é menor que o retorno.</p>
+          <p>As casas de apostas usam odds para precificar mercados, equilibrar exposição e incorporar suas margens. A odd também se relaciona com probabilidade: quanto menor a odd, maior a probabilidade implícita sugerida; quanto maior a odd, menor a probabilidade implícita. Isso não significa probabilidade real garantida. É apenas uma leitura matemática da cotação disponível.</p>
+          <p>Odds mudam ao longo do tempo porque novas informações, volume de apostas, escalações, lesões, clima, movimentação de mercado e ajustes internos podem alterar o preço. Por isso, entender o valor da odd ajuda a comparar cenários, mas não transforma uma aposta em resultado previsível.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calcular-retorno" title="Como calcular o retorno de uma aposta">
+          <p>Para saber <strong>como calcular retorno de aposta</strong> em odds decimais, multiplique o valor apostado pela odd. Essa é a conta mais direta para responder quanto volta para a conta se o palpite for vencedor.</p>
+          <FormulaBox label="Retorno total" formula="Retorno = Valor apostado × Odd" example="Exemplo: R$10 × 2.00 = R$20 de retorno total potencial." />
+          <p>O ponto mais importante é que o retorno total inclui o valor apostado. Se você aposta R$10 e recebe R$20 de retorno, não significa que lucrou R$20. Significa que recebeu R$10 de volta mais R$10 de lucro potencial.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calcular-lucro" title="Como calcular o lucro de uma aposta">
+          <p>Para calcular o lucro em apostas esportivas, subtraia a stake do retorno ou use diretamente a fórmula abaixo. Essa diferença é essencial para quem quer entender o resultado líquido de uma aposta.</p>
+          <FormulaBox label="Lucro líquido potencial" formula="Lucro = Valor apostado × (Odd - 1)" example="Exemplo: R$10 × (2.00 - 1) = R$10 de lucro potencial e R$20 de retorno total." />
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="card-glass p-5"><h3 className="font-bold">Retorno</h3><p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>É tudo que volta em caso de acerto: stake + lucro.</p></div>
+            <div className="card-glass p-5"><h3 className="font-bold">Lucro</h3><p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>É apenas o ganho líquido acima do valor apostado.</p></div>
+          </div>
+          <OddsCallout><strong>Importante: retorno não é a mesma coisa que lucro. O retorno inclui o valor apostado.</strong></OddsCallout>
+        </ArticleSection>
+
+        <ArticleSection id="aposta-de-10" title="Como calcular quanto ganha uma aposta de R$10">
+          <p>Uma busca comum de iniciantes é: <strong>quanto ganha uma aposta de R$10</strong>? A resposta depende da odd. A tabela mostra exemplos rápidos de como calcular aposta usando retorno e lucro.</p>
+          <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.09)' }}>
+            <table className="w-full text-left text-sm"><thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr><th className="p-4">Valor apostado</th><th className="p-4">Odd</th><th className="p-4">Retorno</th><th className="p-4">Lucro</th></tr></thead><tbody>{examples.map(row => <tr key={row[1]} className="border-t border-white/10" style={{ color: 'var(--text-2)' }}>{row.map((cell, index) => <td key={`${cell}-${index}`} className={`p-4 ${index === 1 ? 'font-bold' : ''}`} style={index === 1 ? { color: 'var(--text-1)' } : undefined}>{cell}</td>)}</tr>)}</tbody></table>
+          </div>
+          <p>Perceba que odd 5.00 gera retorno maior que odd 1.50, mas isso não torna a aposta automaticamente melhor. Ela apenas oferece pagamento potencial maior para uma ocorrência que, em geral, é precificada como menos provável.</p>
+        </ArticleSection>
+
+        <ArticleSection id="probabilidade-implicita" title="Como calcular probabilidade implícita nas odds">
+          <p>A probabilidade implícita odds é uma forma de transformar cotação decimal em percentual. Ela mostra qual probabilidade está embutida matematicamente no preço, antes de qualquer análise própria sobre o evento.</p>
+          <FormulaBox label="Probabilidade implícita" formula="Probabilidade implícita = 1 / Odd × 100" example="Odd 2.00 = 1 / 2.00 × 100 = 50%." />
+          <div className="grid sm:grid-cols-3 gap-4">{probabilityExamples.map(item => <div key={item[0]} className="card-glass p-5 text-center"><p className="text-2xl font-bold" style={{ color: '#67e8f9' }}>{item[0]}</p><p className="mt-2" style={{ color: 'var(--text-2)' }}>{item[1]} implícitos</p></div>)}</div>
+          <OddsCallout><strong>Odds indicam uma probabilidade implícita, mas não garantem o resultado de um evento.</strong> A margem da casa pode estar embutida, e a probabilidade real depende de fatores que a cotação sozinha não explica.</OddsCallout>
+        </ArticleSection>
+
+        <ArticleSection id="calculadora-odds" title="Como usar a Calculadora de Odds do CalculaBet">
+          <p>A <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link> do CalculaBet ajuda a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calcular odds online</Link> de forma rápida. Você informa o valor apostado e a odd para visualizar retorno, lucro e probabilidade implícita sem fazer contas manualmente.</p>
+          <p>Essa <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>ferramenta de odds do CalculaBet</Link> é útil para simular valores de aposta, comparar cenários e <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calcular retorno de aposta</Link> com menos risco de erro de digitação. Ela não prevê resultados nem recomenda entradas; apenas torna o cálculo transparente.</p>
+          <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.16), rgba(52,211,153,0.10))', border: '1px solid rgba(103,232,249,0.20)' }}><h2 className="text-2xl font-bold">Simule retorno, lucro e probabilidade</h2><p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a calculadora de apostas como apoio educativo antes de tomar qualquer decisão.</p><Link to="/ferramentas/odds" className="btn-primary mt-5">Abrir Calculadora de Odds <BlogIcon name="arrow" className="w-4 h-4" /></Link></div>
+        </ArticleSection>
+
+        <ArticleSection id="tipos-de-odds" title="Tipos de odds: decimal, americana e fracionária">
+          <p>Existem diferentes formatos para representar o mesmo preço. As <strong>odds decimais</strong> são mais comuns no Brasil: exemplo 2.50, em que cada R$1 retorna R$2,50 no total. As <strong>odds americanas</strong> são comuns em mercados dos EUA, como +150 ou -200. As <strong>odds fracionárias</strong> são tradicionais no Reino Unido, como 3/2.</p>
+          <p>Se você encontrar outro formato, use o <Link to="/ferramentas/conversor" className="font-semibold" style={{ color: '#67e8f9' }}>conversor de odds</Link> do CalculaBet para comparar cotações em uma linguagem mais familiar.</p>
+        </ArticleSection>
+
+        <ArticleSection id="converter-odds" title="Como converter odds">
+          <p>A conversão pode ser feita manualmente, mas uma ferramenta reduz erros. Em linhas gerais, o <Link to="/ferramentas/conversor" className="font-semibold" style={{ color: '#67e8f9' }}>conversor de odds</Link> permite transformar decimal para americana, decimal para fracionária, odds para probabilidade e probabilidade para odds.</p>
+          <p>Por exemplo, odd decimal 2.50 equivale a americana +150 e fracionária 3/2. Já uma odd americana -200 equivale a decimal 1.50. Ao estudar mercados internacionais, converter odds ajuda a comparar o valor da odd sem confundir formato com preço real.</p>
+        </ArticleSection>
+
+        <ArticleSection id="valor-esperado" title="O que é valor esperado nas odds?">
+          <p>Valor esperado, ou EV, é a ideia de comparar sua probabilidade estimada com a probabilidade implícita da odd. Uma odd pode parecer alta, mas isso não significa que seja uma boa aposta. Se a chance real estimada for menor do que a chance necessária para justificar aquela odd, o risco pode não compensar.</p>
+          <p>De forma simples: primeiro use a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link> para entender a probabilidade implícita. Depois compare com uma estimativa própria, sempre reconhecendo incerteza, margem de erro e variância. Um futuro guia sobre value bet poderá aprofundar esse tema, mas a base começa por saber calcular odds corretamente.</p>
+        </ArticleSection>
+
+        <ArticleSection id="erros-comuns" title="Erros comuns ao calcular odds">
+          <ul className="grid sm:grid-cols-2 gap-4">{commonErrors.map(item => <li key={item} className="card-glass p-5">{item}</li>)}</ul>
+        </ArticleSection>
+
+        <ArticleSection id="apostas-multiplas" title="Como calcular odds em apostas múltiplas">
+          <p>Em apostas múltiplas, as odds decimais são multiplicadas. Se três seleções têm odds 1.50, 2.00 e 1.80, a odd combinada é 1.50 × 2.00 × 1.80 = 5.40. Uma stake de R$10 teria retorno total potencial de R$54 e lucro potencial de R$44.</p>
+          <p>O ponto crítico é o risco: a múltipla só retorna se todas as seleções forem vencedoras. O retorno pode crescer, mas a chance de acerto diminui conforme mais eventos entram no bilhete. Para simular esse tipo de cenário, use a <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de aposta múltipla</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="gestao-de-banca" title="Odds e gestão de banca">
+          <p>Calcular odds não é suficiente. Também é necessário controlar quanto apostar, qual percentual da banca está exposto e qual perda máxima é aceitável. Stake deve considerar risco, banca disponível e perfil do usuário — nunca pressão emocional ou tentativa de recuperar perdas.</p>
+          <p>A ferramenta de <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>gestão de banca</Link> ajuda a organizar limites, enquanto a calculadora de <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>ROI</Link> pode apoiar análises de histórico. Ainda assim, apostar mais do que pode perder é perigoso. Consulte a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>jogo responsável</Link> e lembre-se de que o CalculaBet oferece <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas para apostas</Link> com foco educativo, não serviços de aposta. Nossa <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link> explica a postura editorial do projeto.</p>
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>Odds indicam retorno potencial, mas precisam ser interpretadas com cuidado. Retorno e lucro são conceitos diferentes: o retorno inclui o valor apostado, enquanto o lucro mostra apenas o ganho líquido. A probabilidade implícita ajuda a traduzir a odd em percentual, mas não garante nenhum resultado.</p>
+          <p>Calculadoras reduzem erro manual e facilitam simulações, porém apostas envolvem risco financeiro e exigem responsabilidade. Use ferramentas como apoio ao cálculo, nunca como promessa de lucro.</p>
+          <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(52,211,153,0.10))', border: '1px solid rgba(103,232,249,0.18)' }}><h2 className="text-2xl font-bold">Use a Calculadora de Odds do CalculaBet</h2><p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a Calculadora de Odds do CalculaBet para simular retorno, lucro e probabilidade implícita antes de tomar qualquer decisão.</p><Link to="/ferramentas/odds" className="btn-primary mt-5">Abrir Calculadora de Odds <BlogIcon name="arrow" className="w-4 h-4" /></Link></div>
+        </ArticleSection>
+
+        <section className="mt-14" aria-labelledby="faq-odds">
+          <p className="badge badge-cyan mb-4">FAQ SEO</p>
+          <h2 id="faq-odds" className="text-3xl font-bold">Perguntas frequentes sobre como calcular odds</h2>
+          <div className="mt-6 space-y-3">{ODDS_FAQS.map(faq => <details key={faq.question} className="card-glass p-5"><summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary><p className="mt-3 text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p></details>)}</div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">{relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}</div>
+        </section>
+      )}
+    </>
+  );
+}
+
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
@@ -295,7 +518,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={post.slug !== 'o-que-e-surebet'} />
+      <SEOHead title={post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds'].includes(post.slug)} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -307,6 +530,8 @@ export default function BlogPost() {
 
           {post.slug === 'o-que-e-surebet' ? (
             <SurebetArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'como-calcular-odds' ? (
+            <OddsArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
