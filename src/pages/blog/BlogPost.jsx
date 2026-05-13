@@ -59,6 +59,24 @@ function buildArticleSchema(post, category) {
   };
 }
 
+
+const ROI_FAQS = [
+  { question: 'O que é ROI em apostas?', answer: 'ROI em apostas é o retorno sobre investimento: uma métrica que compara o lucro líquido com o total apostado em um período. Ela ajuda a analisar desempenho, mas não prevê resultados futuros.' },
+  { question: 'Como calcular ROI em apostas esportivas?', answer: 'Some todas as stakes para encontrar o total apostado, calcule o lucro líquido subtraindo perdas do retorno líquido e aplique: lucro líquido dividido pelo total apostado vezes 100.' },
+  { question: 'Qual é a fórmula do ROI?', answer: 'A fórmula é ROI = (Lucro líquido / Total apostado) × 100. O resultado é percentual e pode ser positivo, negativo ou zero.' },
+  { question: 'Qual a diferença entre ROI e lucro?', answer: 'Lucro é um valor absoluto em reais. ROI é uma porcentagem que mostra quanto esse lucro ou prejuízo representa em relação ao volume total apostado.' },
+  { question: 'Qual a diferença entre ROI e yield?', answer: 'Em apostas, yield geralmente é calculado como lucro líquido dividido pelo volume apostado, ficando muito próximo do ROI. O mais importante é usar a mesma metodologia em todas as análises.' },
+  { question: 'O que é um bom ROI em apostas?', answer: 'Depende da amostra, mercado, risco, odds e volume de apostas. Um ROI alto em poucas apostas pode ser variância; uma amostra maior é mais relevante, mas ainda não garante manutenção futura.' },
+  { question: 'ROI positivo garante lucro futuro?', answer: 'Não. ROI positivo apenas descreve um resultado passado. Apostas envolvem variância, risco financeiro e resultados imprevisíveis, então desempenho anterior não garante desempenho futuro.' },
+  { question: 'Como calcular ROI negativo?', answer: 'Use a mesma fórmula. Se o lucro líquido for negativo, o ROI também será negativo. Exemplo: prejuízo de R$150 em R$1.000 apostados resulta em ROI de -15%.' },
+  { question: 'Como registrar apostas para calcular ROI?', answer: 'Registre data, esporte, mercado, odd, stake, resultado, retorno, lucro ou prejuízo e observações. Sem registro completo, o ROI tende a virar estimativa imprecisa.' },
+  { question: 'ROI funciona para apostas múltiplas?', answer: 'Sim, mas múltiplas costumam ter maior variância. Pode ser útil calcular ROI separado para simples e múltiplas para evitar que uma aposta muito alta distorça toda a leitura.' },
+  { question: 'Calculadora de ROI em apostas é confiável?', answer: 'Uma calculadora é confiável para executar a fórmula quando os dados inseridos estão corretos. Ela não valida a qualidade das apostas, não prevê resultados e não garante lucro.' },
+  { question: 'ROI substitui gestão de banca?', answer: 'Não. ROI mede desempenho passado. Gestão de banca define limites, stake e exposição ao risco. As duas coisas se complementam, mas nenhuma elimina a possibilidade de perdas.' },
+  { question: 'Por que poucas apostas podem distorcer o ROI?', answer: 'Porque uma vitória grande ou uma sequência ruim curta pode alterar muito o percentual. Quanto menor a amostra, maior a influência da variância no resultado.' },
+  { question: 'Como interpretar ROI em apostas esportivas?', answer: 'Interprete junto com volume apostado, número de apostas, odds médias, tipos de mercado, risco, gestão de banca e consistência do registro. ROI isolado pode levar a conclusões erradas.' },
+];
+
 const SUREBET_FAQS = [
   {
     question: 'O que é surebet?',
@@ -294,6 +312,7 @@ const MULTIPLE_FAQS = [
 
 function getFaqsForPost(slug) {
   return {
+    'roi-apostas': ROI_FAQS,
     'como-calcular-odds': ODDS_FAQS,
     'o-que-e-surebet': SUREBET_FAQS,
     'o-que-e-gestao-de-banca': BANKROLL_FAQS,
@@ -699,6 +718,203 @@ function OddsArticle({ post, category, relatedPosts }) {
   );
 }
 
+
+
+const roiHighlights = [
+  { title: 'Mede o resultado líquido', text: 'ROI compara lucro ou prejuízo líquido com o total apostado, evitando confundir volume de retorno com desempenho.' },
+  { title: 'Depende de amostra', text: 'Poucas apostas podem gerar percentuais extremos por variância. Volume e consistência do registro importam.' },
+  { title: 'Não prevê o futuro', text: 'ROI passado descreve o histórico analisado; não garante lucro, sequência positiva ou repetição de performance.' },
+];
+
+const roiRecordFields = ['data', 'esporte', 'mercado', 'odd', 'stake', 'resultado', 'retorno', 'lucro/prejuízo', 'observações'];
+
+const roiErrors = [
+  'calcular ROI com poucas apostas e tirar conclusões definitivas;',
+  'confundir retorno total com lucro líquido;',
+  'ignorar apostas perdidas no registro;',
+  'não registrar todas as stakes usadas;',
+  'mudar o método de cálculo no meio da análise;',
+  'comparar períodos diferentes sem contexto de volume e risco;',
+  'achar que ROI passado garante resultado futuro;',
+  'aumentar stake depois de uma sequência positiva sem critério;',
+  'ignorar gestão de banca e limites pessoais;',
+  'esconder perdas no registro para preservar uma impressão positiva.',
+];
+
+function ROICallout({ tone = 'cyan', children }) {
+  const styles = tone === 'amber'
+    ? { background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }
+    : tone === 'green'
+      ? { background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.18)' }
+      : { background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.16)' };
+  return <div className="rounded-3xl p-5 my-7 leading-relaxed" style={styles}>{children}</div>;
+}
+
+function ROIArticle({ post, category, relatedPosts }) {
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#38bdf8', borderColor: `${category?.color || '#38bdf8'}35`, background: `${category?.color || '#38bdf8'}10` }}>ROI e Análise</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <header className="grid lg:grid-cols-[1.08fr_0.92fr] gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">O que é ROI em Apostas Esportivas? Como Calcular e Interpretar</h1>
+            <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              ROI é uma métrica usada para analisar desempenho. Em apostas esportivas, ela ajuda a responder uma pergunta simples: o resultado líquido foi proporcional ao valor total apostado? Muitos usuários confundem ROI apostas com lucro bruto, retorno recebido ou saldo da conta, mas a métrica correta observa lucro líquido em relação ao volume de stakes.
+            </p>
+            <p className="mt-4 leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Este guia explica o que é ROI apostas, como calcular ROI apostas, diferença entre ROI, lucro e yield apostas esportivas, como interpretar resultados e como usar a <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora ROI apostas</Link> do CalculaBet. O conteúdo é educativo, voltado a maiores de 18 anos, e ROI passado não prevê resultados futuros.
+            </p>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Link to="/ferramentas/roi" className="btn-primary">Usar calculadora de ROI <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+              <Link to="/jogo-responsavel" className="btn-ghost">Jogo responsável</Link>
+            </div>
+          </div>
+          <aside className="rounded-3xl p-6" style={{ background: 'rgba(56,189,248,0.075)', border: '1px solid rgba(56,189,248,0.17)' }} aria-label="Resumo sobre ROI em apostas">
+            <p className="badge mb-4" style={{ color: '#7dd3fc', borderColor: 'rgba(125,211,252,0.28)', background: 'rgba(56,189,248,0.10)' }}>Análise de performance</p>
+            <h2 className="text-2xl font-bold">Três pontos essenciais</h2>
+            <div className="mt-5 space-y-4">
+              {roiHighlights.map(item => (
+                <div key={item.title} className="card-glass p-4">
+                  <h3 className="font-bold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </header>
+
+        <ROICallout tone="amber"><strong>Aviso responsável:</strong> este conteúdo é apenas educativo. Apostas envolvem riscos financeiros, são destinadas apenas a maiores de 18 anos, não há garantia de ganhos e ferramentas devem ser usadas como apoio ao cálculo, não como promessa de resultado. Consulte nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</ROICallout>
+
+        <ArticleSection id="o-que-e-roi-apostas" title="O que é ROI em apostas?">
+          <p>ROI significa <em>Return on Investment</em>, ou retorno sobre investimento. No contexto de apostas esportivas, a expressão deve ser lida com cuidado: apostas não são investimento seguro, não geram renda garantida e podem causar perdas. A métrica é usada apenas para analisar o resultado líquido em relação ao total apostado.</p>
+          <p>Na prática, ROI em apostas esportivas pode ser positivo, negativo ou zero. ROI positivo indica que, no período analisado, o lucro líquido foi maior que zero. ROI negativo indica prejuízo. ROI zero indica que o resultado líquido ficou equilibrado. O valor em percentual facilita comparar períodos diferentes, desde que a metodologia de registro seja a mesma.</p>
+          <p>Essa métrica ajuda a comparar performance em apostas entre meses, mercados ou tipos de aposta, mas não deve ser vista como garantia futura. Mesmo um histórico positivo pode mudar por variância, odds ruins, aumento de stake, erro de registro ou mudança no comportamento do usuário.</p>
+        </ArticleSection>
+
+        <ArticleSection id="como-calcular-roi-apostas" title="Como calcular ROI em apostas">
+          <p>A fórmula do ROI em apostas é direta:</p>
+          <div className="rounded-3xl p-6 text-center text-2xl font-bold" style={{ background: 'rgba(15,23,42,0.72)', border: '1px solid rgba(103,232,249,0.18)', color: '#67e8f9' }}>ROI = (Lucro líquido / Total apostado) × 100</div>
+          <p>Lucro líquido é o resultado depois de considerar ganhos e perdas. Se você recebeu R$1.100 de retorno total após apostar R$1.000, o lucro líquido é R$100. Se recebeu R$850 após apostar R$1.000, o lucro líquido é -R$150.</p>
+          <p>Total apostado é a soma de todas as stakes, não apenas o saldo inicial da banca. Dez apostas de R$100 representam R$1.000 de volume apostado. O resultado final da fórmula é percentual, o que torna a leitura mais clara do que apenas olhar valores absolutos.</p>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-roi-positivo" title="Exemplo prático de cálculo de ROI">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+            {[['Total apostado', 'R$ 1.000'], ['Retorno total recebido', 'R$ 1.100'], ['Lucro líquido', 'R$ 100'], ['ROI', '10%']].map(([label, value]) => <div key={label} className="card-glass p-5"><p className="text-sm" style={{ color: 'var(--text-3)' }}>{label}</p><p className="mt-2 text-2xl font-bold">{value}</p></div>)}
+          </div>
+          <p>Imagine um período em que o total apostado foi R$1.000 e o retorno total recebido foi R$1.100. O lucro líquido é R$100. Aplicando a fórmula, temos: ROI = 100 / 1000 × 100 = 10%.</p>
+          <p>Um ROI de 10% significa que houve retorno líquido de 10% sobre o volume apostado no recorte analisado. Isso não significa que o mesmo percentual continuará acontecendo no futuro. O número descreve um histórico, não uma previsão.</p>
+          <ROICallout tone="cyan">ROI positivo em poucas apostas pode ser apenas variância. Analise amostras maiores antes de tirar conclusões.</ROICallout>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-roi-negativo" title="Exemplo de ROI negativo">
+          <div className="rounded-3xl p-6 my-6" style={{ background: 'rgba(248,113,113,0.07)', border: '1px solid rgba(248,113,113,0.17)' }}>
+            <p><strong>Cenário:</strong> total apostado de R$1.000, retorno total de R$850 e lucro líquido de -R$150. A conta fica: ROI = -150 / 1000 × 100 = -15%.</p>
+          </div>
+          <p>ROI negativo indica prejuízo no período analisado. Isso pode acontecer por uma sequência ruim, odds mal avaliadas, stakes altas demais, múltiplas perdidas ou simples variância. O número precisa ser interpretado junto com volume de apostas, odds, mercados escolhidos e <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>gestão de banca</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="roi-lucro-retorno" title="Diferença entre ROI, lucro e retorno">
+          <p>Uma das maiores fontes de erro em lucro apostas é confundir retorno com lucro. Retorno é o valor recebido de volta em uma aposta vencedora ou em um conjunto de apostas. Lucro é o retorno menos o valor apostado. ROI é o lucro comparado com o total apostado.</p>
+          <div className="overflow-x-auto rounded-3xl my-6" style={{ border: '1px solid rgba(255,255,255,0.09)' }}>
+            <table className="w-full text-left text-sm">
+              <thead style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-1)' }}><tr><th className="p-4">Métrica</th><th className="p-4">O que mede</th><th className="p-4">Exemplo</th></tr></thead>
+              <tbody style={{ color: 'var(--text-2)' }}>
+                <tr className="border-t border-white/10"><td className="p-4 font-semibold">Retorno</td><td className="p-4">Valor recebido de volta</td><td className="p-4">Aposta de R$100 em odd 2.00 retorna R$200</td></tr>
+                <tr className="border-t border-white/10"><td className="p-4 font-semibold">Lucro</td><td className="p-4">Retorno menos valor apostado</td><td className="p-4">R$200 - R$100 = R$100</td></tr>
+                <tr className="border-t border-white/10"><td className="p-4 font-semibold">ROI</td><td className="p-4">Lucro em relação ao total apostado</td><td className="p-4">R$100 / R$1.000 × 100 = 10%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Para aprofundar a parte de cotações, leia o guia sobre <Link to="/blog/como-calcular-odds" className="font-semibold" style={{ color: '#67e8f9' }}>como calcular odds</Link> e use a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link> para entender retorno, lucro e probabilidade implícita.</p>
+        </ArticleSection>
+
+        <ArticleSection id="roi-e-yield" title="ROI e yield são a mesma coisa?">
+          <p>Em apostas, muita gente usa yield como uma métrica semelhante ao ROI. Normalmente, yield apostas esportivas representa lucro líquido dividido pelo volume apostado, o que torna o cálculo muito próximo do ROI usado neste artigo.</p>
+          <p>A diferença mais importante não é o nome, mas a consistência. Se você chama a métrica de ROI e yield, defina exatamente se o denominador é total apostado, banca inicial ou outro valor. Para análise séria, mantenha sempre o mesmo critério e registre todas as apostas, inclusive perdas.</p>
+        </ArticleSection>
+
+        <ArticleSection id="bom-roi" title="O que é considerado um bom ROI em apostas?">
+          <p>Não existe um número universal. Um “bom” ROI depende de amostra, mercado, volume, odds médias, risco assumido e comportamento de stake. ROI muito alto em poucas apostas pode ser só variância; ROI positivo em uma amostra longa tende a ser mais informativo, mas ainda assim não garante manutenção.</p>
+          <p>Também é importante comparar o ROI com o nível de risco. Uma estratégia com grandes oscilações pode parecer boa em um recorte curto e perigosa em outro. Por isso, ROI deve ser lido junto com controle de banca, limite de perdas, frequência de apostas e qualidade do registro.</p>
+        </ArticleSection>
+
+        <ArticleSection id="amostra-importa" title="Por que a amostra importa no ROI?">
+          <p>Poucas apostas podem distorcer o resultado. Uma vitória grande pode inflar ROI, enquanto uma sequência ruim pode derrubá-lo temporariamente. Em ambos os casos, a amostra curta torna difícil separar habilidade analítica, sorte, azar e variância.</p>
+          <p>Análise responsável precisa de volume e tempo. Isso não significa apostar mais para “criar amostra”, mas registrar corretamente o que já foi feito e evitar conclusões precipitadas. ROI é uma métrica de análise, não uma garantia de desempenho futuro.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calculadora-roi-calculabet" title="Como usar a Calculadora de ROI do CalculaBet">
+          <p>A <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>ferramenta de ROI do CalculaBet</Link> foi criada para calcular ROI em apostas de forma simples. Você pode inserir total apostado, lucro ou retorno, calcular ROI percentual, comparar cenários e entender a performance em apostas com mais clareza.</p>
+          <div className="rounded-3xl p-6 my-6" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.13), rgba(52,211,153,0.08))', border: '1px solid rgba(103,232,249,0.20)' }}>
+            <h3 className="text-2xl font-bold">Calcule seu ROI com apoio visual</h3>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a calculadora de ROI em apostas para conferir percentuais, testar cenários e reduzir erro manual. A ferramenta calcula; ela não recomenda apostas nem promete resultado.</p>
+            <Link to="/ferramentas/roi" className="btn-primary mt-5">Abrir calculadora ROI apostas <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+          <p>Depois, explore outras <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas para apostas</Link>, como <Link to="/ferramentas/simulador" className="font-semibold" style={{ color: '#67e8f9' }}>simulador de lucro</Link>, gestão de banca e odds, sempre com foco educativo.</p>
+        </ArticleSection>
+
+        <ArticleSection id="registrar-apostas" title="Como registrar apostas para calcular ROI corretamente">
+          <p>Sem registro, ROI vira chute. Para calcular com precisão, anote:</p>
+          <div className="grid sm:grid-cols-3 gap-3 my-6">{roiRecordFields.map(field => <div key={field} className="card-glass p-4 font-semibold capitalize">{field}</div>)}</div>
+          <p>Acompanhar resultados ajuda a entender padrões: mercados com maior oscilação, horários em que você decide pior, odds médias muito baixas ou excesso de múltiplas. O registro não garante lucro, apenas melhora a qualidade da análise e reduz memória seletiva.</p>
+        </ArticleSection>
+
+        <ArticleSection id="roi-gestao-banca" title="ROI e gestão de banca">
+          <p>ROI não substitui gestão de banca. Um ROI temporariamente positivo não justifica aumentar stake sem critério, porque a próxima sequência pode ser negativa. Banca e stake devem ser controladas antes das apostas, com limites compatíveis com a realidade financeira.</p>
+          <p>Leia também o guia sobre <Link to="/blog/o-que-e-gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>o que é gestão de banca</Link> e use a <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de gestão de banca</Link> para planejar exposição. Gestão ajuda a lidar com variância, mas não elimina riscos.</p>
+        </ArticleSection>
+
+        <ArticleSection id="roi-apostas-multiplas" title="ROI em apostas múltiplas">
+          <p>Apostas múltiplas podem gerar grande variação. Uma múltipla acertada pode inflar ROI, enquanto várias múltiplas perdidas podem derrubar a banca. Por isso, analisar múltiplas separadamente das apostas simples costuma ser útil.</p>
+          <p>Se você estuda esse formato, veja o artigo sobre <Link to="/blog/o-que-e-aposta-multipla" className="font-semibold" style={{ color: '#67e8f9' }}>aposta múltipla</Link> e simule cenários na <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de aposta múltipla</Link>. O objetivo é entender risco, odds combinadas e retorno potencial, não aumentar exposição sem controle.</p>
+        </ArticleSection>
+
+        <ArticleSection id="erros-comuns-roi" title="Erros comuns ao analisar ROI">
+          <ul className="space-y-3 list-disc pl-6">{roiErrors.map(error => <li key={error}>{error}</li>)}</ul>
+        </ArticleSection>
+
+        <ArticleSection id="roi-positivo-continuar" title="ROI positivo significa que vale a pena continuar?">
+          <p>Não necessariamente. É preciso olhar volume, consistência, risco, comportamento, mercados usados e estado emocional. ROI positivo em pequena amostra pode ser variância, e ROI positivo em uma fase longa ainda pode mudar.</p>
+          <p>ROI deve ser uma métrica de análise, não uma autorização para apostar mais. Se a atividade estiver causando ansiedade, perdas fora do limite ou tentativa de recuperar prejuízo, a decisão responsável pode ser parar, reduzir exposição ou buscar orientação.</p>
+          <ROICallout tone="amber">ROI é uma métrica de análise, não uma garantia de desempenho futuro.</ROICallout>
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>ROI mede lucro líquido em relação ao total apostado. Ele ajuda a analisar desempenho, comparar períodos e separar retorno bruto de resultado real. Para ser útil, precisa de registro correto, método consistente e leitura contextual.</p>
+          <p>Ao mesmo tempo, ROI não prevê futuro e não transforma apostas em investimento seguro. Use a métrica junto com gestão de banca, limites pessoais, apostas responsáveis e compreensão de variância.</p>
+          <p><Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>Use a Calculadora de ROI do CalculaBet</Link> para medir seu desempenho de forma simples e entender melhor seus resultados.</p>
+          <p className="text-sm" style={{ color: 'var(--text-3)' }}>O CalculaBet não é casa de apostas, não aceita apostas e não processa pagamentos. Consulte também nossa <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link>.</p>
+        </ArticleSection>
+
+        <section className="mt-12" aria-labelledby="faq-roi">
+          <h2 id="faq-roi" className="text-3xl font-bold tracking-tight">Perguntas frequentes sobre ROI em apostas</h2>
+          <div className="mt-6 space-y-3">
+            {ROI_FAQS.map(faq => (
+              <details key={faq.question} className="card-glass p-5">
+                <summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary>
+                <p className="mt-3 text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">{relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}</div>
+        </section>
+      )}
+    </>
+  );
+}
 
 function BankrollCallout({ tone = 'cyan', children }) {
   const styles = tone === 'amber'
@@ -1275,7 +1491,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1285,7 +1501,9 @@ export default function BlogPost() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
 
-          {post.slug === 'o-que-e-dutching' ? (
+          {post.slug === 'roi-apostas' ? (
+            <ROIArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'o-que-e-dutching' ? (
             <DutchingArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'o-que-e-surebet' ? (
             <SurebetArticle post={post} category={category} relatedPosts={relatedPosts} />

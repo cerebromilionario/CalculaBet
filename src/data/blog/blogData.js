@@ -14,6 +14,13 @@ export const BLOG_CATEGORIES = [
     color: '#22d3ee',
   },
   {
+    id: 'roi-analise',
+    name: 'ROI e Análise',
+    description: 'Guias sobre ROI em apostas, yield, lucro líquido, performance, registro de resultados e interpretação responsável.',
+    icon: 'chart',
+    color: '#38bdf8',
+  },
+  {
     id: 'gestao-de-banca',
     name: 'Gestão de Banca',
     description: 'Guias educativos sobre banca, stake, controle de risco, Critério de Kelly e apostas responsáveis.',
@@ -31,6 +38,23 @@ export const BLOG_CATEGORIES = [
 
 export const BLOG_POSTS = [
 
+
+  {
+    slug: 'roi-apostas',
+    title: 'O que é ROI em Apostas Esportivas? Como Calcular e Interpretar',
+    seoTitle: 'O que é ROI em Apostas Esportivas? Como Calcular e Interpretar',
+    ogTitle: 'O que é ROI em Apostas Esportivas?',
+    ogDescription: 'Guia educativo sobre ROI, yield, lucro, controle de resultados e uso de calculadora de ROI em apostas.',
+    excerpt: 'Entenda o que é ROI em apostas esportivas, como calcular retorno sobre investimento, diferença entre ROI e yield, exemplos práticos e riscos.',
+    category: 'roi-analise',
+    tags: ['ROI apostas', 'o que é ROI apostas', 'como calcular ROI apostas', 'ROI em apostas esportivas', 'calculadora ROI apostas', 'retorno sobre investimento apostas', 'lucro apostas', 'yield apostas esportivas', 'ROI e yield', 'performance em apostas', 'controle de banca', 'gestão de banca', 'calculadora de apostas', 'apostas responsáveis'],
+    readingTime: '20 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de ROI', href: '/ferramentas/roi' },
+    popularity: 160,
+  },
   {
     slug: 'o-que-e-dutching',
     title: 'O que é Dutching em Apostas? Como Funciona e Como Calcular',
