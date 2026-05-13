@@ -72,6 +72,11 @@ export default function App() {
             <Route path="/calculadoras/cashout" element={<Cashout />} />
             <Route path="/calculadoras/hedge" element={<Hedge />} />
             <Route path="/calculadoras/gestao-banca" element={<GestaoBanca />} />
+            <Route path="/ferramentas/odds" element={<CalculadoraOdds />} />
+            <Route path="/ferramentas/arbitragem" element={<Arbitragem />} />
+            <Route path="/ferramentas/dutching" element={<Dutching />} />
+            <Route path="/ferramentas/hedge" element={<Hedge />} />
+            <Route path="/ferramentas/gestao-de-banca" element={<GestaoBanca />} />
             <Route path="/calculadoras/martingale" element={<Martingale />} />
             <Route path="/calculadoras/conversor-odds" element={<ConversorOdds />} />
             <Route path="/calculadoras/roi" element={<ROI />} />
