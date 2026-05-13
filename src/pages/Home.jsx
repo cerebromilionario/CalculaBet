@@ -119,6 +119,7 @@ export default function Home() {
               <span className="text-gradient">Ferramentas inteligentes</span>
               <br />
               <span
+                className="hero-title-accent"
                 style={{
                   background: 'linear-gradient(135deg, #22d3ee 0%, #818cf8 50%, #4ade80 100%)',
                   WebkitBackgroundClip: 'text',
@@ -133,7 +134,7 @@ export default function Home() {
             {/* Subheading */}
             <p
               className="mb-10 mx-auto"
-              style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: '1.65', color: 'var(--text-2)', maxWidth: '540px' }}
+              style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: '1.65', color: '#cbd5e1', maxWidth: '540px' }}
             >
               Calcule odds, arbitragem, Kelly Criterion, cashout e muito mais.
               Precisão profissional, completamente gratuito.

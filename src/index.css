@@ -255,7 +255,8 @@
 
   /* Gradient text */
   .text-gradient {
-    background: linear-gradient(135deg, #eef0f7 0%, rgba(238,240,247,0.55) 100%);
+    color: var(--text-1);
+    background: linear-gradient(135deg, #f8fafc 0%, rgba(226,232,240,0.86) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -271,6 +272,21 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+
+  @media (max-width: 640px) {
+    .text-gradient {
+      background: none;
+      color: #f8fafc;
+      -webkit-text-fill-color: #f8fafc;
+    }
+
+    .hero-title-accent {
+      background: none !important;
+      color: #c4f1ff;
+      -webkit-text-fill-color: #c4f1ff !important;
+    }
   }
 
   /* Section title */
