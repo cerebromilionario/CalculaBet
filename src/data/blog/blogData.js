@@ -207,6 +207,23 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Gestão de Banca', href: '/ferramentas/gestao-de-banca' },
     popularity: 130,
   },
+
+  {
+    slug: 'criterio-de-kelly-apostas',
+    title: 'Critério de Kelly em Apostas: Fórmula, Exemplos e Calculadora',
+    seoTitle: 'Critério de Kelly em Apostas: Fórmula, Exemplos e Calculadora',
+    ogTitle: 'Critério de Kelly em Apostas',
+    ogDescription: 'Guia educativo sobre fórmula de Kelly, stake ideal, gestão de banca, exemplos práticos e uso da calculadora do CalculaBet.',
+    excerpt: 'Entenda o Critério de Kelly em apostas esportivas, fórmula, exemplos práticos, riscos, meio Kelly e como calcular a stake ideal com responsabilidade.',
+    category: 'gestao-de-banca',
+    tags: ['critério de Kelly apostas', 'Kelly Criterion apostas', 'critério de Kelly apostas esportivas', 'fórmula critério de Kelly', 'calculadora critério de Kelly', 'calculadora Kelly apostas', 'como calcular Kelly apostas', 'gestão de banca Kelly', 'quanto apostar em cada jogo', 'stake ideal apostas', 'bankroll management', 'gestão de banca apostas', 'meio Kelly', 'Kelly fracionado', 'apostas responsáveis'],
+    readingTime: '26 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Gestão de Banca', href: '/ferramentas/gestao-de-banca' },
+    popularity: 135,
+  },
   {
     slug: 'como-calcular-odds',
     title: 'Como Calcular Odds em Apostas Esportivas: Retorno, Lucro e Probabilidade',
