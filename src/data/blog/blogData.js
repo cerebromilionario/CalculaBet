@@ -20,9 +20,32 @@ export const BLOG_CATEGORIES = [
     icon: 'shield',
     color: '#fbbf24',
   },
+  {
+    id: 'apostas-multiplas',
+    name: 'Apostas Múltiplas',
+    description: 'Guias sobre aposta múltipla, aposta combinada, parlay, odds combinadas, retorno, lucro e riscos.',
+    icon: 'layers',
+    color: '#a78bfa',
+  },
 ];
 
 export const BLOG_POSTS = [
+  {
+    slug: 'o-que-e-aposta-multipla',
+    title: 'O que é Aposta Múltipla? Como Funciona e Como Calcular',
+    seoTitle: 'O que é Aposta Múltipla? Como Funciona e Como Calcular',
+    ogTitle: 'O que é Aposta Múltipla? Como Funciona e Como Calcular',
+    ogDescription: 'Guia educativo sobre apostas múltiplas, odds combinadas, retorno, lucro, riscos e uso de calculadora.',
+    excerpt: 'Entenda o que é aposta múltipla, como calcular odds combinadas, retorno, lucro e riscos usando uma calculadora de aposta múltipla.',
+    category: 'apostas-multiplas',
+    tags: ['o que é aposta múltipla', 'aposta múltipla', 'aposta combinada', 'aposta múltipla como funciona', 'como calcular aposta múltipla', 'calculadora de odds combinadas', 'calculadora apostas combinadas', 'odds combinadas', 'parlay', 'calculadora de aposta múltipla', 'retorno aposta múltipla', 'lucro aposta múltipla', 'apostas esportivas para iniciantes'],
+    readingTime: '24 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Aposta Múltipla', href: '/ferramentas/multipla' },
+    popularity: 140,
+  },
   {
     slug: 'o-que-e-gestao-de-banca',
     title: 'O que é Gestão de Banca em Apostas Esportivas? Guia Completo para Iniciantes',

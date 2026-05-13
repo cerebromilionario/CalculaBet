@@ -214,11 +214,72 @@ const BANKROLL_FAQS = [
   },
 ];
 
+
+const MULTIPLE_FAQS = [
+  {
+    question: 'O que é aposta múltipla?',
+    answer: 'Aposta múltipla é um bilhete que combina duas ou mais seleções. Ela também pode ser chamada de aposta combinada ou parlay. Em geral, todas as seleções precisam ser vencedoras para a múltipla retornar.',
+  },
+  {
+    question: 'Como funciona uma aposta múltipla?',
+    answer: 'Você escolhe vários eventos ou mercados no mesmo bilhete, as odds decimais são multiplicadas e o retorno potencial passa a depender da odd combinada. O risco aumenta porque o resultado depende de todos os palpites escolhidos.',
+  },
+  {
+    question: 'Aposta múltipla tem que acertar tudo?',
+    answer: 'Sim, na regra geral a aposta múltipla tem que acertar tudo. Se uma seleção perder, normalmente todo o bilhete perde. Seleções anuladas podem ser removidas do cálculo, dependendo das regras da plataforma.',
+  },
+  {
+    question: 'Como calcular odds combinadas?',
+    answer: 'Em odds decimais, multiplique as odds de todas as seleções: Odd combinada = Odd 1 × Odd 2 × Odd 3. Exemplo: 1.50 × 2.00 × 1.80 = 5.40.',
+  },
+  {
+    question: 'Como calcular retorno de aposta múltipla?',
+    answer: 'Multiplique o valor apostado pela odd combinada. Se a aposta for R$10 e a odd combinada for 5.40, o retorno total potencial será R$54. O lucro potencial será R$44, pois o retorno inclui a stake original.',
+  },
+  {
+    question: 'Qual a diferença entre aposta simples e aposta múltipla?',
+    answer: 'Aposta simples depende de uma única seleção. Aposta múltipla depende de duas ou mais seleções no mesmo bilhete. A múltipla pode gerar retorno potencial maior, mas tem maior chance de perder porque exige mais acertos.',
+  },
+  {
+    question: 'O que acontece se uma seleção da múltipla for anulada?',
+    answer: 'Em muitos casos, a seleção anulada recebe odd 1.00 e sai do cálculo, mas isso depende das regras da casa, do mercado, do adiamento e do motivo da anulação. Sempre verifique o regulamento antes de apostar.',
+  },
+  {
+    question: 'Aposta múltipla vale a pena?',
+    answer: 'Depende do objetivo, do risco aceito e da compreensão das probabilidades. Ela não deve ser tratada como forma fácil de ganhar dinheiro. Para fins educativos, simular cenários ajuda a entender o impacto de cada seleção.',
+  },
+  {
+    question: 'Aposta múltipla é indicada para iniciantes?',
+    answer: 'Iniciantes podem estudar o conceito, mas devem reconhecer que o risco é maior do que em uma aposta simples. O ideal é simular, usar poucas seleções para aprender e nunca apostar valores essenciais.',
+  },
+  {
+    question: 'Como calcular uma múltipla com 3 jogos?',
+    answer: 'Multiplique as três odds. Se os jogos tiverem odds 1.70, 1.90 e 2.00, a odd combinada será 6.46. Com R$10, o retorno potencial será R$64,60 e o lucro potencial será R$54,60.',
+  },
+  {
+    question: 'O que é parlay?',
+    answer: 'Parlay é o termo em inglês usado para aposta múltipla ou aposta combinada. O conceito é o mesmo: juntar seleções em um único bilhete e depender do acerto de todas elas.',
+  },
+  {
+    question: 'Como usar uma calculadora de aposta múltipla?',
+    answer: 'Informe as odds de cada seleção e o valor apostado. A calculadora multiplica as odds, calcula o retorno total e mostra o lucro potencial, ajudando a evitar erro manual.',
+  },
+  {
+    question: 'Odd alta em múltipla é melhor?',
+    answer: 'Não necessariamente. Odd alta aumenta o retorno potencial, mas também indica menor probabilidade implícita. Múltiplas com muitas seleções costumam ser mais difíceis de acertar.',
+  },
+  {
+    question: 'Como fazer gestão de banca em múltiplas?',
+    answer: 'Defina uma banca separada, limite o tamanho da stake, evite tentar recuperar perdas e use valores menores em múltiplas por causa da maior variância. Gestão de banca não garante lucro, apenas organiza o risco.',
+  },
+];
+
 function getFaqsForPost(slug) {
   return {
     'como-calcular-odds': ODDS_FAQS,
     'o-que-e-surebet': SUREBET_FAQS,
     'o-que-e-gestao-de-banca': BANKROLL_FAQS,
+    'o-que-e-aposta-multipla': MULTIPLE_FAQS,
   }[slug] || [];
 }
 
@@ -808,6 +869,196 @@ function BankrollArticle({ post, category, relatedPosts }) {
 }
 
 
+function MultipleBetArticle({ post, category, relatedPosts }) {
+  const exampleRows = [
+    ['Seleção 1', '1.60', 'Pendente', '1.60'],
+    ['Seleção 2', '1.75', 'Pendente', '1.60 × 1.75 = 2.80'],
+    ['Seleção 3', '2.10', 'Pendente', '2.80 × 2.10 = 5.88'],
+  ];
+  const comparisonRows = [
+    ['Evento necessário', 'Depende de uma seleção.', 'Depende de duas ou mais seleções.'],
+    ['Retorno potencial', 'Calculado por uma odd individual.', 'Calculado por odds combinadas, multiplicando cada odd.'],
+    ['Risco', 'Concentrado em um resultado.', 'Maior variância, pois uma seleção perdida costuma derrubar o bilhete.'],
+    ['Facilidade de cálculo', 'Mais simples: stake × odd.', 'Exige multiplicar odds e conferir retorno e lucro.'],
+    ['Perfil indicado', 'Mais fácil para apostas esportivas para iniciantes.', 'Deve ser estudada com cautela, preferencialmente com poucas seleções e simulação.'],
+  ];
+  const errors = [
+    'Colocar seleções demais no bilhete e ignorar que cada nova seleção reduz a probabilidade conjunta de acerto.',
+    'Escolher odds altas sem análise, olhando apenas para o retorno aposta múltipla mostrado no cupom.',
+    'Apostar valor alto em múltiplas, mesmo sabendo que a variância é maior.',
+    'Tentar recuperar perdas com uma múltipla, aumentando risco justamente em um momento emocional.',
+    'Não calcular a odd combinada corretamente ou esquecer que odds decimais devem ser multiplicadas.',
+    'Confundir retorno com lucro aposta múltipla: retorno inclui a stake original; lucro é retorno menos stake.',
+    'Ignorar probabilidade implícita e tratar uma odd final alta como se fosse uma oportunidade segura.',
+    'Não fazer gestão de banca, não definir limite de stake e não registrar decisões.',
+    'Apostar por emoção, pressa, torcida ou sensação de que “uma seleção só não vai atrapalhar”.',
+  ];
+
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#a78bfa', borderColor: `${category?.color || '#a78bfa'}35`, background: `${category?.color || '#a78bfa'}10` }}>Apostas Múltiplas</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <header className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">O que é Aposta Múltipla? Como Funciona e Como Calcular</h1>
+            <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              A <strong>aposta múltipla</strong> é muito popular entre iniciantes porque combina várias seleções em um único bilhete e pode mostrar um retorno potencial maior do que uma aposta simples. Esse potencial, porém, vem acompanhado de um ponto essencial: quanto mais seleções entram no bilhete, mais resultados precisam acontecer ao mesmo tempo.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Neste guia educativo você vai entender <strong>o que é aposta múltipla</strong>, <strong>aposta múltipla como funciona</strong>, como calcular odds combinadas, retorno, lucro potencial e riscos. O objetivo é explicar a matemática com exemplos claros e mostrar como usar a <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#c4b5fd' }}>calculadora de aposta múltipla</Link> do CalculaBet como apoio ao cálculo — nunca como promessa de resultado.
+            </p>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Link to="/ferramentas/multipla" className="btn-primary">Usar calculadora de aposta múltipla <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+              <Link to="/jogo-responsavel" className="btn-ghost">Jogo responsável</Link>
+            </div>
+          </div>
+          <aside className="rounded-3xl p-6" style={{ background: 'rgba(167,139,250,0.08)', border: '1px solid rgba(167,139,250,0.18)' }} aria-label="Resumo do artigo sobre aposta múltipla">
+            <p className="badge mb-4" style={{ color: '#c4b5fd', borderColor: 'rgba(196,181,253,0.28)', background: 'rgba(167,139,250,0.12)' }}>Guia para iniciantes</p>
+            <h2 className="text-2xl font-bold">Pontos essenciais</h2>
+            <div className="mt-5 grid gap-4">
+              {[
+                ['Combinação', 'Une duas ou mais seleções no mesmo bilhete.'],
+                ['Odd final', 'Odds decimais são multiplicadas para formar a odd combinada.'],
+                ['Risco', 'Em geral, todas as seleções precisam vencer para haver retorno.'],
+              ].map(item => <div key={item[0]} className="card-glass p-4"><h3 className="font-bold">{item[0]}</h3><p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>{item[1]}</p></div>)}
+            </div>
+          </aside>
+        </header>
+
+        <OddsCallout tone="amber"><strong>Conteúdo educativo:</strong> o CalculaBet não é casa de apostas, não aceita apostas e não processa pagamentos. Apostas envolvem riscos financeiros, são permitidas apenas para maiores de 18 anos e não há garantia de ganhos. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Consulte também a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</OddsCallout>
+
+        <ArticleSection id="o-que-e-aposta-multipla" title="O que é aposta múltipla?">
+          <p>Aposta múltipla é um tipo de bilhete que reúne duas ou mais seleções. Ela também é chamada de <strong>aposta combinada</strong> ou <strong>parlay</strong>. Em vez de apostar em apenas um evento, a pessoa combina mercados diferentes em uma só aposta.</p>
+          <p>A regra central é simples: para a múltipla ser vencedora, todas as seleções precisam ser vencedoras. Se uma seleção perder, normalmente a múltipla inteira perde. Por isso, embora a odd final possa parecer atraente, o risco também cresce.</p>
+          <div className="grid sm:grid-cols-3 gap-4 mt-6">
+            {[
+              ['2+ seleções', 'Uma múltipla começa com duas escolhas no mesmo bilhete.'],
+              ['Odds combinadas', 'A cotação final surge da multiplicação das odds decimais.'],
+              ['Tudo precisa bater', 'Uma seleção perdida costuma encerrar o retorno do cupom.'],
+            ].map(card => <div key={card[0]} className="card-glass p-5"><h3 className="font-bold">{card[0]}</h3><p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>{card[1]}</p></div>)}
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="como-funciona" title="Como funciona uma aposta múltipla?">
+          <p>Para montar uma múltipla, o usuário escolhe vários eventos ou mercados. Pode ser uma combinação de resultados de jogos, mercados de gols, handicaps ou outras seleções disponíveis. Depois disso, as odds são combinadas em uma odd final.</p>
+          <p>O retorno potencial aumenta porque a odd final é maior do que cada odd isolada. Mas a chance de acerto diminui porque o bilhete depende de vários resultados. Um jogo que parecia simples pode anular todo o cálculo se o mercado escolhido não for vencedor.</p>
+          <p>Empates, adiamentos, cancelamentos e anulações podem ter regras diferentes dependendo da casa e do mercado. Em muitos casos, uma seleção anulada é tratada como odd 1.00 e removida do cálculo, mas isso não é universal.</p>
+        </ArticleSection>
+
+        <ArticleSection id="tem-que-acertar-tudo" title="Aposta múltipla tem que acertar tudo?">
+          <p>Sim. Na regra geral, <strong>aposta múltipla tem que acertar tudo</strong>. Se uma seleção perder, a aposta perde. Esse é o principal motivo para iniciantes tratarem múltiplas com cautela.</p>
+          <p>Se uma seleção for anulada, a odd pode ser removida do cálculo ou substituída por 1.00, dependendo das regras da plataforma. Eventos adiados, mercados cancelados e erros de mercado também podem ter tratamento próprio.</p>
+          <OddsCallout tone="amber"><strong>Antes de apostar, confira as regras da plataforma para seleções anuladas, adiadas ou mercados cancelados.</strong></OddsCallout>
+          <OddsCallout tone="amber"><strong>Quanto mais seleções uma múltipla tiver, menor tende a ser a probabilidade de acerto.</strong></OddsCallout>
+        </ArticleSection>
+
+        <ArticleSection id="como-calcular-odds-combinadas" title="Como calcular odds combinadas">
+          <p>Para aprender <strong>como calcular aposta múltipla</strong>, comece pela odd final. Em odds decimais, a fórmula é multiplicar todas as odds do bilhete.</p>
+          <FormulaBox label="Odd combinada" formula="Odd combinada = Odd 1 × Odd 2 × Odd 3..." example="Exemplo: 1.50 × 2.00 × 1.80 = 5.40" />
+          <p>Se a seleção 1 tem odd 1.50, a seleção 2 tem odd 2.00 e a seleção 3 tem odd 1.80, a odd combinada será 5.40. Essa é a cotação usada para calcular o retorno potencial do bilhete.</p>
+          <p>Uma <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#c4b5fd' }}>calculadora de odds combinadas</Link> faz essa multiplicação automaticamente e reduz o risco de erro manual, principalmente quando há várias seleções.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calcular-retorno" title="Como calcular o retorno de uma aposta múltipla">
+          <p>Depois de encontrar a odd combinada, o retorno é calculado multiplicando o valor apostado pela odd final.</p>
+          <FormulaBox label="Retorno da múltipla" formula="Retorno = Valor apostado × Odd combinada" example="Com R$10 e odd combinada 5.40: retorno total = R$54,00; lucro potencial = R$44,00." />
+          <p>O retorno inclui o valor apostado. Por isso, lucro não é a mesma coisa que retorno. O <strong>lucro aposta múltipla</strong> é o retorno total menos o valor apostado.</p>
+          <OddsCallout tone="amber"><strong>Retorno potencial não é lucro garantido. Apostas envolvem risco financeiro.</strong></OddsCallout>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-pratico" title="Exemplo prático de aposta múltipla">
+          <p>Imagine uma aposta combinada com três seleções: odd 1.60, odd 1.75 e odd 2.10. O valor apostado é R$20. A odd combinada será 1.60 × 1.75 × 2.10 = 5.88. O retorno total potencial será R$20 × 5.88 = R$117,60. O lucro potencial será R$117,60 − R$20 = R$97,60.</p>
+          <div className="overflow-x-auto rounded-3xl mt-6" style={{ border: '1px solid rgba(255,255,255,0.09)' }}>
+            <table className="w-full text-left text-sm sm:text-base">
+              <thead style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-1)' }}><tr><th className="p-4">Seleção</th><th className="p-4">Odd</th><th className="p-4">Status</th><th className="p-4">Cálculo acumulado</th></tr></thead>
+              <tbody>{exampleRows.map(row => <tr key={row[0]} style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>{row.map(cell => <td key={cell} className="p-4" style={{ color: 'var(--text-2)' }}>{cell}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <p>Mesmo com odds que parecem moderadas isoladamente, a combinação chega a 5.88. Isso mostra por que múltiplas parecem atraentes e por que o risco precisa ser analisado: três resultados precisam acontecer, não apenas um.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calculadora" title="Como usar a Calculadora de Aposta Múltipla do CalculaBet">
+          <p>A <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#c4b5fd' }}>calculadora de aposta múltipla</Link> do CalculaBet ajuda a multiplicar odds automaticamente, calcular retorno, calcular lucro potencial e simular diferentes valores de stake.</p>
+          <p>Para usar a <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#c4b5fd' }}>ferramenta de múltiplas do CalculaBet</Link>, informe as odds de cada seleção e o valor apostado. A ferramenta mostra a odd combinada, o retorno estimado e o lucro potencial. Isso ajuda a <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#c4b5fd' }}>calcular aposta combinada</Link> com menos erro manual.</p>
+          <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(167,139,250,0.18), rgba(34,211,238,0.10))', border: '1px solid rgba(196,181,253,0.22)' }}>
+            <h2 className="text-2xl font-bold">Simule odds combinadas antes de decidir</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a calculadora apostas combinadas para visualizar retorno e lucro potencial com clareza.</p>
+            <Link to="/ferramentas/multipla" className="btn-primary mt-5">Abrir calculadora de odds combinadas <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="simples-vs-multipla" title="Qual a diferença entre aposta simples e aposta múltipla?">
+          <p>A aposta simples depende de um único evento. Já a aposta múltipla depende de vários eventos ou mercados no mesmo bilhete. Para entender melhor odds individuais, veja também a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link>.</p>
+          <div className="overflow-x-auto rounded-3xl mt-6" style={{ border: '1px solid rgba(255,255,255,0.09)' }}>
+            <table className="w-full text-left text-sm sm:text-base"><thead style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-1)' }}><tr><th className="p-4">Critério</th><th className="p-4">Aposta simples</th><th className="p-4">Aposta múltipla</th></tr></thead><tbody>{comparisonRows.map(row => <tr key={row[0]} style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>{row.map(cell => <td key={cell} className="p-4" style={{ color: 'var(--text-2)' }}>{cell}</td>)}</tr>)}</tbody></table>
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="por-que-atraentes" title="Por que apostas múltiplas parecem tão atraentes?">
+          <p>Apostas múltiplas parecem atraentes porque odds combinadas podem gerar números altos. Um valor pequeno pode mostrar um retorno potencial grande na tela, o que leva muitos iniciantes a focarem no prêmio e não na probabilidade.</p>
+          <p>O problema é que cada seleção adicionada cria uma nova condição para o bilhete vencer. Quanto mais seleções, menor tende a ser a probabilidade conjunta de acerto. Por isso, múltiplas devem ser entendidas como apostas de maior variância, não como estratégia segura.</p>
+        </ArticleSection>
+
+        <ArticleSection id="odd-alta" title="Quanto maior a odd combinada, melhor?">
+          <p>Não necessariamente. Odd alta significa retorno potencial maior, mas também menor probabilidade implícita. Uma múltipla com odd final muito alta pode ser matematicamente difícil de acertar, especialmente quando reúne muitos eventos independentes.</p>
+          <p>Para estudar esse ponto, vale usar a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>ferramenta para calcular odds</Link>, o <Link to="/ferramentas/conversor" className="font-semibold" style={{ color: '#67e8f9' }}>conversor de odds</Link> e o guia <Link to="/blog/como-calcular-odds" className="font-semibold" style={{ color: '#67e8f9' }}>como calcular odds</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="erros-comuns" title="Erros comuns em apostas múltiplas">
+          <ul className="grid gap-3">{errors.map(error => <li key={error} className="card-glass p-4">{error}</li>)}</ul>
+          <p>Esses erros ficam mais perigosos quando não há <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#fbbf24' }}>gestão de banca</Link> ou quando a pessoa ignora orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="gestao-de-banca" title="Aposta múltipla e gestão de banca">
+          <p>Múltiplas podem aumentar a variância. Por isso, stakes devem ser menores, controladas e compatíveis com uma banca previamente definida. Não é recomendado comprometer grande parte da banca em uma única múltipla, pois uma seleção perdida pode encerrar todo o retorno.</p>
+          <p>Definir limite antes de apostar é essencial. A <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#fbbf24' }}>calculadora de gestão de banca</Link> ajuda a simular stakes proporcionais, enquanto a <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de ROI</Link> ajuda a entender resultado líquido em registros de longo prazo.</p>
+        </ArticleSection>
+
+        <ArticleSection id="iniciantes" title="Aposta múltipla é indicada para iniciantes?">
+          <p>Iniciantes podem estudar o conceito, mas precisam entender que o risco é maior. Para aprender, é mais simples simular antes de apostar, começar com poucas seleções e comparar o resultado com uma aposta simples.</p>
+          <p>O uso deve ser responsável: apenas maiores de 18 anos, sem dinheiro essencial, sem promessa de lucro e sem tentativa de recuperar perdas. O CalculaBet oferece <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas para apostas</Link> com foco educativo e mantém uma <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link> transparente.</p>
+        </ArticleSection>
+
+        <ArticleSection id="multipla-3-jogos" title="Como calcular uma aposta múltipla com 3 jogos">
+          <p>Exemplo de long tail: Jogo 1 com odd 1.70, Jogo 2 com odd 1.90 e Jogo 3 com odd 2.00. Primeiro, multiplique as odds: 1.70 × 1.90 × 2.00 = 6.46.</p>
+          <p>Depois, multiplique pela stake. Com aposta de R$10, o retorno total potencial é R$10 × 6.46 = R$64,60. O lucro potencial é R$64,60 − R$10 = R$54,60.</p>
+          <FormulaBox label="Múltipla com 3 jogos" formula="1.70 × 1.90 × 2.00 = 6.46" example="Stake R$10 → retorno R$64,60; lucro potencial R$54,60." />
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>Aposta múltipla combina várias seleções em um único bilhete. Em geral, todas precisam acertar. As odds são multiplicadas para formar a odd combinada, e o retorno é calculado multiplicando a stake por essa odd final.</p>
+          <p>O retorno pode crescer, mas o risco também cresce. Por isso, a calculadora ajuda a evitar erro manual, mas não elimina variância, não prevê resultados e não garante lucro. Responsabilidade é essencial.</p>
+          <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(167,139,250,0.18), rgba(251,191,36,0.10))', border: '1px solid rgba(196,181,253,0.22)' }}>
+            <h2 className="text-2xl font-bold">Use a Calculadora de Aposta Múltipla do CalculaBet</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a Calculadora de Aposta Múltipla do CalculaBet para simular odds combinadas, retorno e lucro antes de tomar qualquer decisão.</p>
+            <Link to="/ferramentas/multipla" className="btn-primary mt-5">Simular aposta múltipla <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <section className="mt-14" aria-labelledby="faq-aposta-multipla">
+          <p className="badge mb-4" style={{ color: '#c4b5fd', borderColor: 'rgba(196,181,253,0.28)', background: 'rgba(167,139,250,0.12)' }}>FAQ SEO</p>
+          <h2 id="faq-aposta-multipla" className="text-3xl font-bold">Perguntas frequentes sobre aposta múltipla</h2>
+          <div className="mt-6 space-y-3">{MULTIPLE_FAQS.map(faq => <details key={faq.question} className="card-glass p-5"><summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary><p className="mt-3 text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p></details>)}</div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">{relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}</div>
+        </section>
+      )}
+    </>
+  );
+}
+
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
@@ -820,7 +1071,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -836,6 +1087,8 @@ export default function BlogPost() {
             <OddsArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'o-que-e-gestao-de-banca' ? (
             <BankrollArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'o-que-e-aposta-multipla' ? (
+            <MultipleBetArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
