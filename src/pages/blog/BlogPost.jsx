@@ -6,6 +6,8 @@ import BlogIcon from '../../components/blog/BlogIcon';
 import FAQSection from '../../components/ui/FAQSection';
 import { getSeoFaqsForPage } from '../../data/seoFaqs.jsx';
 import { BLOG_FAQS, getCategoryById, getPostBySlug, getRelatedPosts } from '../../data/blog/blogData';
+import { BEGINNER_GUIDE_FAQS } from '../../data/blog/beginnerGuideFaqs';
+import BeginnerGuideArticle from './articles/BeginnerGuideArticle';
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
@@ -358,6 +360,7 @@ function getFaqsForPost(slug) {
     'o-que-e-dutching': DUTCHING_FAQS,
     'cashout-apostas': CASHOUT_FAQS,
     'probabilidade-implicita-odds': IMPLIED_PROBABILITY_FAQS,
+    'apostas-esportivas-para-iniciantes': BEGINNER_GUIDE_FAQS,
   }[slug] || [];
 }
 
@@ -1931,7 +1934,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1941,7 +1944,9 @@ export default function BlogPost() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
 
-          {post.slug === 'probabilidade-implicita-odds' ? (
+          {post.slug === 'apostas-esportivas-para-iniciantes' ? (
+            <BeginnerGuideArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'probabilidade-implicita-odds' ? (
             <ImpliedProbabilityArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'roi-apostas' ? (
             <ROIArticle post={post} category={category} relatedPosts={relatedPosts} />

@@ -1,5 +1,12 @@
 export const BLOG_CATEGORIES = [
   {
+    id: 'guias-iniciantes',
+    name: 'Guias para Iniciantes',
+    description: 'Guias pilar para quem está começando: conceitos básicos, glossário, odds, stake, banca, risco e jogo responsável.',
+    icon: 'shield',
+    color: '#67e8f9',
+  },
+  {
     id: 'arbitragem',
     name: 'Arbitragem e Dutching',
     description: 'Guias sobre surebet, arbitragem esportiva, dutching, distribuição de stakes e riscos operacionais.',
@@ -44,6 +51,24 @@ export const BLOG_CATEGORIES = [
 ];
 
 export const BLOG_POSTS = [
+
+  {
+    slug: 'apostas-esportivas-para-iniciantes',
+    title: 'Apostas Esportivas para Iniciantes: Glossário Completo e Guia de Primeiros Passos',
+    seoTitle: 'Apostas Esportivas para Iniciantes: Guia Completo e Glossário',
+    ogTitle: 'Apostas Esportivas para Iniciantes: Guia Completo',
+    ogDescription: 'Aprenda os principais conceitos das apostas esportivas, glossário básico, odds, retorno, banca, stake e uso responsável de ferramentas.',
+    excerpt: 'Guia completo de apostas esportivas para iniciantes. Entenda odds, retorno, lucro, banca, stake, aposta múltipla, cashout e jogo responsável.',
+    category: 'guias-iniciantes',
+    tags: ['apostas esportivas para iniciantes', 'o que é odd', 'como calcular retorno de aposta', 'como funcionam apostas esportivas', 'apostas esportivas guia iniciante', 'glossário apostas esportivas', 'termos de apostas esportivas', 'calculadora de odds', 'como calcular odds', 'lucro em apostas', 'retorno de aposta', 'probabilidade implícita', 'gestão de banca', 'stake apostas', 'aposta simples', 'aposta múltipla', 'cashout', 'jogo responsável'],
+    readingTime: '28 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Odds', href: '/ferramentas/odds' },
+    popularity: 220,
+  },
+
 
 
   {
