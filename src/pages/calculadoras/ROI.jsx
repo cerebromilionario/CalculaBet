@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 const faqs = [
   {
@@ -51,6 +52,7 @@ const faqs = [
     q: 'O que fazer quando o ROI está negativo por muito tempo?',
     a: 'Primeiro, verifique o tamanho da amostra: com menos de 200 apostas, ROI negativo não é conclusivo. Se a amostra for grande, analise por segmento: mercado, liga, horário, tipo de odd. Muitas vezes o ROI global é negativo porque um segmento específico está destruindo o retorno dos demais. Se após análise profunda o ROI continuar negativo em todos os segmentos com amostra suficiente, pode ser necessário rever a metodologia de seleção, migrar para outros mercados ou reduzir o stake até encontrar o edge real.',
   },
+  ...getSeoFaqsForPage('roi').map(toLegacyFaq),
 ];
 
 const schema = {
@@ -71,7 +73,7 @@ const schema = {
       mainEntity: faqs.map(f => ({
         '@type': 'Question',
         name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
+        acceptedAnswer: { '@type': 'Answer', text: f.answerText || f.a },
       })),
     },
   ],

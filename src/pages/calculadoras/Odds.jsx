@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 function americanaToDecimal(a) {
   const v = parseFloat(a);
@@ -20,7 +21,7 @@ const faqSchema = (items) => ({
   mainEntity: items.map(f => ({
     '@type': 'Question',
     name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
+    acceptedAnswer: { '@type': 'Answer', text: f.answerText || f.a },
   })),
 });
 
@@ -114,6 +115,7 @@ export default function CalculadoraOdds() {
       q: 'A calculadora funciona para futebol, tênis e outros esportes?',
       a: 'Sim. A calculadora de odds funciona para qualquer esporte ou mercado — futebol, tênis, basquete, e-sports, corridas de cavalos — desde que você informe a odd corretamente.',
     },
+    ...getSeoFaqsForPage('odds').map(toLegacyFaq),
   ];
 
   return (

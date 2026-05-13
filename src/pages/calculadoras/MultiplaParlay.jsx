@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 const PRESETS = [10, 25, 50, 100, 200, 500];
 
@@ -53,6 +54,7 @@ const faqs = [
     q: 'Como a margem da casa afeta a múltipla?',
     a: 'Cada odd já embute uma margem da casa (overround), que reduz o valor implícito da aposta. Em uma múltipla, essa margem é multiplicada junto com as odds. Quanto mais seleções, mais a margem acumulada pressiona o valor real do bilhete para baixo. Por isso, comparar odds em diferentes casas antes de montar a múltipla pode fazer diferença significativa no retorno potencial e no valor esperado.',
   },
+  ...getSeoFaqsForPage('multipla').map(toLegacyFaq),
 ];
 
 const schema = {
@@ -81,7 +83,7 @@ const schema = {
       mainEntity: faqs.map(item => ({
         '@type': 'Question',
         name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
+        acceptedAnswer: { '@type': 'Answer', text: item.answerText || item.a },
       })),
     },
   ],

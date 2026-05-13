@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 const PRESETS_BANCA = [100, 200, 500, 1000, 2000, 5000];
 
@@ -55,6 +56,7 @@ const faqs = [
     q: 'Posso usar dutching em corridas de cavalos?',
     a: 'Sim — corridas de cavalos são, historicamente, a aplicação mais clássica do dutching. Com vários cavalos competindo, um apostador analítico pode selecionar 3 a 6 favoritos reais e distribuir a banca proporcionalmente, garantindo o mesmo retorno se qualquer um deles vencer. Em corridas com campo grande, o dutching parcial (cobrindo os principais favoritos) é especialmente popular em exchanges como Betfair, onde as odds tendem a ser mais precisas do que nas casas tradicionais.',
   },
+  ...getSeoFaqsForPage('dutching').map(toLegacyFaq),
 ];
 
 /* ─── Schema ─────────────────────────────────────────────── */
@@ -86,7 +88,7 @@ const schema = {
       mainEntity: faqs.map(item => ({
         '@type': 'Question',
         name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
+        acceptedAnswer: { '@type': 'Answer', text: item.answerText || item.a },
       })),
     },
   ],

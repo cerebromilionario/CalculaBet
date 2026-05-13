@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 const PRESETS_BANCA = [100, 200, 500, 1000, 2000, 5000];
 
@@ -19,7 +20,7 @@ const faqs = [
   },
   {
     q: 'A arbitragem em apostas é legal no Brasil?',
-    a: 'Sim, arbitragem é legal no Brasil. Não existe lei que proíba um apostador de realizar apostas em múltiplas casas cobrindo todos os resultados de um evento. O que pode acontecer é a limitação ou encerramento de conta pelas próprias casas de apostas, que têm direito contratual de recusar clientes ou restringir valores. Pinnacle é conhecida por aceitar apostadores profissionais. Betfair Exchange, pelo modelo de bolsa, também é mais tolerante do que casas tradicionais.',
+    a: 'A pergunta envolve interpretação legal, termos contratuais e regras regulatórias que podem mudar. Arbitragem é uma estratégia matemática de comparação de odds, mas isso não significa que toda execução prática seja aceita pelas casas ou esteja livre de restrições. Plataformas podem limitar contas, recusar apostas ou aplicar regras próprias. Este conteúdo é educativo e não é aconselhamento jurídico; verifique a legislação vigente, os termos das casas e orientação profissional se necessário.',
   },
   {
     q: 'Qual a diferença entre arbitragem e value bet?',
@@ -53,6 +54,7 @@ const faqs = [
     q: 'O que é margem (overround) em apostas?',
     a: 'Margem ou overround é o percentual que uma casa de apostas adiciona ao mercado para garantir lucro independente do resultado. Em um evento de moeda justa (50%/50%), as odds justas seriam 2.00 para cada lado. Se a casa oferecer 1.91 para cada lado, a soma das probabilidades implícitas é 52,4% + 52,4% = 104,8% — uma margem de 4,8% sobre o mercado. Em arbitragem, você busca que a soma de probabilidades de diferentes casas fique abaixo de 100%, eliminando essa margem.',
   },
+  ...getSeoFaqsForPage('arbitragem').map(toLegacyFaq),
 ];
 
 const schema = {
@@ -81,7 +83,7 @@ const schema = {
       mainEntity: faqs.map(item => ({
         '@type': 'Question',
         name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
+        acceptedAnswer: { '@type': 'Answer', text: item.answerText || item.a },
       })),
     },
   ],

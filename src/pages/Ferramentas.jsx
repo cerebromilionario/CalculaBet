@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { calculadoras } from '../data/casas';
 import Icon from '../components/ui/Icons';
 import AdNativeBanner from '../components/ads/AdNativeBanner';
+import FAQSection from '../components/ui/FAQSection';
+import { getSeoFaqsForPage } from '../data/seoFaqs.jsx';
 
 /* ─── Rich descriptions (local — does NOT modify casas.js) ─── */
 const RICH_DESC = {
@@ -50,6 +52,8 @@ const CAT_LABEL = {
   conversao:  'Conversão',
 };
 
+const GLOBAL_SEO_FAQS = getSeoFaqsForPage('global');
+
 /* ─── Schema.org JSON-LD ─── */
 const schema = {
   '@context': 'https://schema.org',
@@ -83,83 +87,11 @@ const schema = {
     },
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'O que é uma calculadora de odds e para que serve?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Uma calculadora de odds converte automaticamente a odd oferecida pela casa de apostas em retorno total, lucro líquido, probabilidade implícita e valor esperado. Ela permite ao apostador avaliar matematicamente se a aposta tem valor positivo antes de confirmar, eliminando cálculos manuais e erros humanos.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é probabilidade implícita nas odds?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Probabilidade implícita é a probabilidade de vitória que a casa de apostas embute na odd. A fórmula é: probabilidade implícita (%) = (1 / odd decimal) × 100. Uma odd de 2.00 implica 50% de probabilidade. Se você acredita que a probabilidade real é maior que a implícita, a aposta tem valor esperado positivo.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é value bet (aposta de valor)?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Value bet ocorre quando a probabilidade real de um evento é maior do que a probabilidade implícita refletida na odd. Em outras palavras, a casa subestimou a chance do evento acontecer. Apostar sistematicamente em situações de valor positivo (EV+) é a base da rentabilidade de longo prazo.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é arbitragem esportiva (sure bet)?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Arbitragem esportiva ocorre quando odds divergentes entre casas permitem apostar em todos os resultados possíveis de um evento e garantir lucro independente do desfecho. A calculadora de arbitragem do CalculaBet calcula automaticamente os stakes ideais para cada casa e exibe o percentual de lucro garantido.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é dutching e quando usar?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Dutching é a estratégia de distribuir o stake entre vários resultados possíveis de um mesmo evento de forma proporcional, garantindo o mesmo lucro independente de qual deles ocorra. É utilizado quando o apostador elimina um ou mais resultados improváveis e quer proteger o investimento nos demais.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é o Critério de Kelly?',
-          acceptedAnswer: { '@type': 'Answer', text: 'O Critério de Kelly é uma fórmula matemática que calcula o percentual ideal da banca a arriscar em cada aposta: f = (bp - q) / b, onde b é o lucro líquido por unidade, p é a probabilidade estimada de vitória e q é a probabilidade de derrota. Maximiza o crescimento geométrico da banca no longo prazo. Muitos apostadores usam meio Kelly ou um quarto Kelly para reduzir a variância.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é ROI em apostas é o que é considerado bom?',
-          acceptedAnswer: { '@type': 'Answer', text: 'ROI (Retorno sobre Investimento) em apostas é calculado como (lucro total / total apostado) × 100. Um ROI positivo e consistente acima de 5% ao longo de centenas de apostas é considerado excelente por profissionais. Yield é o ROI médio por aposta. Acompanhar o ROI acumulado é essencial para avaliar se uma estratégia é realmente lucrativa.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Como funciona uma aposta múltipla (parlay)?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Em uma aposta múltipla, as odds decimais de cada seleção são multiplicadas entre si para gerar a odd composta final. Por exemplo, três apostas com odds 1.80, 2.10 e 1.65 resultam em odd combinada de aproximadamente 6.24. O retorno potencial é elevado, mas a probabilidade de acerto cai com cada leg adicionada — todas precisam ser vencedoras.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Quando vale aceitar o cashout?',
-          acceptedAnswer: { '@type': 'Answer', text: 'O cashout vale a pena quando o valor oferecido pela casa é maior ou igual ao valor esperado de manter a aposta aberta. A calculadora de cashout do CalculaBet compara matematicamente os dois cenários, levando em conta a odd atual do mercado é o stake original, para indicar se o cashout representa ganho ou desconto excessivo.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O que é Martingale e por que é arriscado?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Martingale é a estratégia de dobrar o stake após cada derrota, na expectativa de recuperar tudo com uma única vitória. O problema é que sequências de derrotas — matematicamente normais em apostas — levam a um crescimento exponencial do stake necessário, consumindo a banca rápidamente. A calculadora de Martingale do CalculaBet demonstra visualmente esse colapso.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Preciso me cadastrar para usar as ferramentas?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Não. Todas as 12 calculadoras do CalculaBet são 100% gratuitas e não exigem cadastro, login, email ou qualquer dado pessoal. Acesse qualquer ferramenta diretamente pelo navegador e comece a calcular imediatamente.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'As calculadoras funcionam para qualquer esporte?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Sim. As ferramentas são baseadas em matemática universal de apostas — odds decimais, probabilidade implícita, gestão de banca — e funcionam para futebol, tênis, basquete, e-sports, corridas, MMA e qualquer outro mercado que utilize odds numéricas.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Como converter odds decimais para americanas?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Para converter odds decimais para americanas: se a odd decimal for maior que 2.00, a fórmula é (odd - 1) × 100 com sinal positivo. Se for menor que 2.00, a fórmula é -100 / (odd - 1). O conversor de odds do CalculaBet realiza essa conversão instantaneamente nos quatro formatos principais.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Como saber se uma aposta tem valor positivo?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Uma aposta tem valor positivo (EV+) quando sua probabilidade estimada de acerto multiplicada pela odd decimal resulta em valor maior que 1. A fórmula é: EV = (probabilidade estimada × odd) - 1. Se o resultado for positivo, a aposta tem valor. A calculadora de odds do CalculaBet exibe esse indicador automaticamente.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'O CalculaBet incentiva apostas?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Não. O CalculaBet é uma plataforma educacional e de ferramentas matemáticas. As calculadoras têm finalidade de apoio à tomada de decisão racional — não constituem incentivo a apostas. Apostas esportivas envolvem risco financeiro real. O site mantém uma página completa sobre jogo responsável com orientações e recursos de apoio.' },
-        },
-      ],
+      mainEntity: GLOBAL_SEO_FAQS.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answerText },
+      })),
     },
   ],
 };
@@ -1028,7 +960,7 @@ export default function Ferramentas() {
                   E igualmente importante definir limites de ganho: saber quando parar após uma sessao lucrativa evita que a euforia leve a apostas impulsivas que devolvem o lucro conquistado. Registrar todas as apostas — incluindo as perdedoras — e essencial para construir uma base de dados real para avaliar a estratégia ao longo do tempo. Ferramentas como a calculadora de ROI do CalculaBet fácilitam esse acompanhamento sistematico.
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>
-                  Se você sentir que as apostas estao impactando negativamente sua vida financeira, emocional ou relacional, busque informações e suporte. A pagina de <Link to="/jogo-responsável" style={{ color: '#fbbf24', textDecoration: 'underline' }}>jogo responsável do CalculaBet</Link> reune orientacoes e recursos de apoio para apostadores que precisam de ajuda.
+                  Se você sentir que as apostas estao impactando negativamente sua vida financeira, emocional ou relacional, busque informações e suporte. A pagina de <Link to="/jogo-responsavel" style={{ color: '#fbbf24', textDecoration: 'underline' }}>jogo responsável do CalculaBet</Link> reune orientacoes e recursos de apoio para apostadores que precisam de ajuda.
                 </p>
               </div>
 
@@ -1146,6 +1078,23 @@ export default function Ferramentas() {
           </div>
         </section>
 
+
+        {/* ── FAQ global SEO ── */}
+        <section
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20"
+          aria-label="Perguntas frequentes sobre odds, apostas e ferramentas"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+        >
+          <div className="pt-16">
+            <FAQSection
+              items={GLOBAL_SEO_FAQS}
+              title="Perguntas frequentes sobre odds, apostas e ferramentas"
+              eyebrow="FAQ SEO"
+              description="Respostas educativas para dúvidas de busca sobre odds, probabilidade implícita, banca, ROI, cash out, surebet, múltiplas e dutching — com links para as calculadoras certas do CalculaBet. Conteúdo para maiores de 18 anos, sem promessa de lucro."
+            />
+          </div>
+        </section>
+
         {/* ── Explore também ── */}
         <section
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20"
@@ -1167,7 +1116,7 @@ export default function Ferramentas() {
               {[
                 { to: '/sobre', label: 'Sobre o CalculaBet', desc: 'Conheça a plataforma, sua missao e como as ferramentas foram desenvolvidas.', color: '#22d3ee' },
                 { to: '/casas-apostas', label: 'Casas de Apostas', desc: 'Comparativo das principais casas regulamentadas no Brasil com odds e deposito mínimo.', color: '#4ade80' },
-                { to: '/jogo-responsável', label: 'Jogo Responsável', desc: 'Orientações, limites recomendados e recursos de apoio para apostas com controle.', color: '#fbbf24' },
+                { to: '/jogo-responsavel', label: 'Jogo Responsável', desc: 'Orientações, limites recomendados e recursos de apoio para apostas com controle.', color: '#fbbf24' },
                 { to: '/calculadoras/gestao-banca', label: 'Gestão de Banca', desc: 'Kelly Critérion, flat betting e percentual fixo para crescer sua banca com disciplina.', color: '#818cf8' },
                 { to: '/calculadoras/roi', label: 'ROI em Apostas', desc: 'Acompanhe seu retorno sobre investimento e avalie sua performance acumulada.', color: '#fbbf24' },
                 { to: '/calculadoras/arbitragem', label: 'Arbitragem', desc: 'Calcule stakes para sure bets e garanta lucro independente do resultado.', color: '#4ade80' },
@@ -1285,7 +1234,7 @@ export default function Ferramentas() {
               </p>
             </div>
             <Link
-              to="/jogo-responsável"
+              to="/jogo-responsavel"
               className="flex items-center gap-1.5 text-xs font-semibold flex-shrink-0 transition-colors duration-150"
               style={{ color: '#fbbf24' }}
               onMouseEnter={e => e.currentTarget.style.color = '#fde68a'}

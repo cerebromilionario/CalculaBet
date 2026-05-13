@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CalcLayout from '../../components/ui/CalcLayout';
+import { getSeoFaqsForPage, toLegacyFaq } from '../../data/seoFaqs.jsx';
 
 const PRESETS_STAKE = [10, 25, 50, 100, 200, 500];
 
@@ -55,6 +56,7 @@ const faqs = [
     q: 'O que fazer quando o cashout oferecido parece muito baixo?',
     a: 'Quando o cashout da casa está muito abaixo do valor justo (margem acima de 10%), você tem três alternativas: (1) aguardar — se a situação do jogo pode melhorar, esperar pode ser a decisão correta; (2) fazer hedge manual — apostar no resultado oposto em uma casa com melhores odds; (3) aceitar o risco e manter a aposta original. A calculadora mostra a margem exata para embasar essa escolha. Nunca aceite um cashout caro apenas por ansiedade.',
   },
+  ...getSeoFaqsForPage('cashout').map(toLegacyFaq),
 ];
 
 /* ─── Schema ─────────────────────────────────────────────── */
@@ -85,7 +87,7 @@ const schema = {
       mainEntity: faqs.map(item => ({
         '@type': 'Question',
         name: item.q,
-        acceptedAnswer: { '@type': 'Answer', text: item.a },
+        acceptedAnswer: { '@type': 'Answer', text: item.answerText || item.a },
       })),
     },
   ],
