@@ -1,5 +1,12 @@
 export const BLOG_CATEGORIES = [
   {
+    id: 'arbitragem',
+    name: 'Arbitragem',
+    description: 'Guias sobre surebet, arbitragem esportiva, odds diferentes e riscos operacionais.',
+    icon: 'split',
+    color: '#34d399',
+  },
+  {
     id: 'odds-probabilidades',
     name: 'Odds e Probabilidades',
     description: 'Entenda formatos de odds, probabilidade implícita e leitura matemática de cotações.',
@@ -58,6 +65,19 @@ export const BLOG_CATEGORIES = [
 ];
 
 export const BLOG_POSTS = [
+  {
+    slug: 'o-que-e-surebet',
+    title: 'O que é Surebet? Guia Completo de Arbitragem Esportiva',
+    excerpt: 'Entenda o que é surebet, como funciona a arbitragem em apostas esportivas, quais são os riscos, exemplos práticos e como usar uma calculadora de surebet.',
+    category: 'arbitragem',
+    tags: ['o que é surebet', 'surebet', 'arbitragem esportiva', 'calculadora surebet', 'calculadora de arbitragem'],
+    readingTime: '14 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Arbitragem', href: '/ferramentas/arbitragem' },
+    popularity: 100,
+  },
   {
     slug: 'como-calcular-odds-em-apostas-esportivas',
     title: 'Como calcular odds em apostas esportivas',

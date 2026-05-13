@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 export const BASE_URL = 'https://calculabet.site';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
-export default function SEOHead({ title, description, canonical, schema, ogImage, noindex }) {
+export default function SEOHead({ title, description, canonical, schema, ogImage, noindex, ogType = 'website', appendSiteName = true }) {
   const fullTitle = title
-    ? (title.includes('CalculaBet') ? title : `${title} | CalculaBet`)
+    ? (appendSiteName && !title.includes('CalculaBet') ? `${title} | CalculaBet` : title)
     : 'CalculaBet – Ferramentas gratuitas para apostadores esportivos';
   const canonicalUrl = canonical
     ? canonical.startsWith('http')
@@ -25,7 +25,7 @@ export default function SEOHead({ title, description, canonical, schema, ogImage
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph */}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="CalculaBet" />
       <meta property="og:title" content={fullTitle} />
       {description && <meta property="og:description" content={description} />}
