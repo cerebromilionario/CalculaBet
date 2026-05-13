@@ -78,6 +78,7 @@ export default function App() {
             <Route path="/ferramentas/roi" element={<ROI />} />
             <Route path="/ferramentas/arbitragem" element={<Arbitragem />} />
             <Route path="/ferramentas/dutching" element={<Dutching />} />
+            <Route path="/ferramentas/cashout" element={<Cashout />} />
             <Route path="/ferramentas/hedge" element={<Hedge />} />
             <Route path="/ferramentas/gestao-de-banca" element={<GestaoBanca />} />
             <Route path="/ferramentas/simulador" element={<SimuladorLucro />} />

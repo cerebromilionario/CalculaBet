@@ -310,6 +310,24 @@ const MULTIPLE_FAQS = [
   },
 ];
 
+
+const CASHOUT_FAQS = [
+  { question: 'O que é cashout em apostas?', answer: 'Cashout em apostas é a opção de encerrar uma aposta antes do fim do evento por um valor oferecido pela casa. Esse valor muda conforme odds ao vivo, placar, tempo e mercado.' },
+  { question: 'Como funciona o cashout?', answer: 'A casa recalcula a probabilidade do resultado, considera o retorno potencial da aposta e oferece um valor para fechar a posição. O usuário pode aceitar ou manter a aposta aberta.' },
+  { question: 'Cashout vale a pena?', answer: 'Depende do valor oferecido, da probabilidade atual estimada, da odd original, da estratégia e do risco aceito. Não existe resposta universal e cashout não deve ser decidido apenas por medo ou impulso.' },
+  { question: 'Quando vale a pena fazer cashout?', answer: 'Pode fazer sentido quando o cenário mudou, quando você quer reduzir exposição, quando o valor oferecido está próximo do valor esperado estimado ou quando isso já fazia parte de um plano definido antes da aposta.' },
+  { question: 'Como calcular cashout?', answer: 'Uma forma educativa é comparar o cashout oferecido com o valor esperado aproximado: probabilidade atual estimada vezes retorno potencial. A estimativa precisa ser realista e considerar a margem da casa.' },
+  { question: 'O cashout garante lucro?', answer: 'Não. Cashout não garante lucro, não elimina risco e pode inclusive transformar uma aposta com bom valor esperado em uma decisão pior se o valor oferecido estiver muito descontado.' },
+  { question: 'Qual a diferença entre cashout total e parcial?', answer: 'No cashout total, toda a aposta é encerrada e o usuário recebe o valor oferecido. No cashout parcial, apenas parte da exposição é encerrada, mantendo parte do bilhete aberta até o fim.' },
+  { question: 'Cashout em aposta múltipla vale a pena?', answer: 'Pode valer ou não. Em múltiplas, o cashout costuma ser sensível porque uma seleção restante pode alterar muito o valor. Compare retorno potencial, valor oferecido e risco de perder todo o bilhete.' },
+  { question: 'Por que o valor do cashout muda?', answer: 'Porque odds ao vivo, tempo restante, placar, liquidez, suspensões de mercado e novas informações mudam a probabilidade percebida pela casa. O valor também pode desaparecer.' },
+  { question: 'Cashout é melhor que hedge?', answer: 'Não necessariamente. Cashout é mais simples porque vem pronto da casa. Hedge pode dar mais controle, mas exige nova aposta, odds disponíveis, cálculo e atenção a custos e regras.' },
+  { question: 'A casa cobra margem no cashout?', answer: 'Normalmente o valor de cashout incorpora uma margem ou desconto. Por isso, ele pode ficar abaixo do valor esperado estimado, especialmente em mercados voláteis ou com pouca liquidez.' },
+  { question: 'Como usar uma calculadora de cashout?', answer: 'Informe valor apostado, odd original, retorno potencial, cashout oferecido e probabilidade atual estimada. A calculadora ajuda a comparar cenários, mas não recomenda apostas nem promete resultado.' },
+  { question: 'Cashout substitui gestão de banca?', answer: 'Não. Gestão de banca define limites, stake e exposição antes da aposta. Cashout é apenas uma decisão durante o evento e pode ser influenciado por emoção.' },
+  { question: 'O que acontece se eu não aceitar o cashout?', answer: 'A aposta continua aberta conforme as regras do mercado. Você mantém o retorno potencial se vencer, mas também mantém o risco de perder a stake se o resultado final for desfavorável.' },
+];
+
 function getFaqsForPost(slug) {
   return {
     'roi-apostas': ROI_FAQS,
@@ -318,6 +336,7 @@ function getFaqsForPost(slug) {
     'o-que-e-gestao-de-banca': BANKROLL_FAQS,
     'o-que-e-aposta-multipla': MULTIPLE_FAQS,
     'o-que-e-dutching': DUTCHING_FAQS,
+    'cashout-apostas': CASHOUT_FAQS,
   }[slug] || [];
 }
 
@@ -1479,6 +1498,193 @@ function DutchingArticle({ post, category, relatedPosts }) {
   );
 }
 
+function CashoutArticle({ post, category, relatedPosts }) {
+  const decisionCards = [
+    { title: 'Valor oferecido', text: 'Compare o cashout com o retorno potencial e com uma estimativa realista de valor esperado.' },
+    { title: 'Probabilidade atual', text: 'O placar, o tempo restante, lesões, cartões e odds ao vivo alteram o risco que ainda existe.' },
+    { title: 'Plano de banca', text: 'A decisão precisa respeitar limites definidos antes da aposta, não apenas a emoção do momento.' },
+  ];
+  const totalPartialRows = [
+    ['Cashout total', 'Encerra toda a aposta.', 'Recebe o valor oferecido e não participa mais do resultado final.', 'Simplicidade e fim da exposição.', 'Pode abrir mão de valor se a oferta estiver abaixo do valor esperado.'],
+    ['Cashout parcial', 'Encerra apenas parte da aposta.', 'Recebe uma parte agora e mantém parte da exposição aberta.', 'Equilibra redução de risco e potencial retorno.', 'Exige entender quanto ainda está em risco e quanto pode retornar.'],
+  ];
+  const hedgeRows = [
+    ['Cashout', 'Recurso oferecido pela casa de apostas.', 'Encerrar ou reduzir a posição aberta.', 'Menor: o valor vem pronto e pode sumir.', 'Margem embutida, indisponibilidade, valor abaixo do esperado e decisão emocional.'],
+    ['Hedge', 'Executado pelo usuário com aposta oposta ou complementar.', 'Proteger aposta, reduzir exposição ou travar parte do retorno.', 'Maior: depende das odds encontradas e do cálculo de stake.', 'Erro de conta, odds mudarem, liquidez, regras diferentes e necessidade de nova stake.'],
+  ];
+  const acceptScenarios = [
+    'Quando o cenário mudou bastante em relação à análise inicial e o risco restante ficou desconfortável para sua banca.',
+    'Quando o valor oferecido está próximo do valor esperado aproximado e reduzir exposição faz parte da estratégia.',
+    'Quando a aposta já não faz sentido para seu perfil de risco, mesmo que ainda possa vencer.',
+    'Quando a decisão foi prevista antes do evento, com critérios objetivos e sem pressa emocional.',
+  ];
+  const avoidScenarios = [
+    'Quando o cashout oferecido está muito abaixo do valor esperado estimado e você está aceitando apenas por pânico.',
+    'Quando a casa parece aplicar margem alta e você não comparou com odds ao vivo nem com retorno potencial.',
+    'Quando você aceita sempre que aparece a opção, sem considerar probabilidade, stake ou plano de banca.',
+    'Quando a aposta ainda parece ter valor matemático favorável, mas a oscilação normal do jogo gerou ansiedade.',
+  ];
+  const errors = ['aceitar por pânico', 'recusar por ganância', 'não comparar com valor esperado', 'ignorar margem da casa', 'aceitar cashout sempre que aparece', 'usar cashout para tentar controlar emoção', 'não ter estratégia antes da aposta', 'usar cashout para recuperar perdas', 'não entender cashout parcial', 'confundir retorno com lucro'];
+
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#fb7185', borderColor: `${category?.color || '#fb7185'}35`, background: `${category?.color || '#fb7185'}10` }}>Cashout e Hedge</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <header className="grid lg:grid-cols-[1.12fr_0.88fr] gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">Cashout Vale a Pena? Como Funciona e Quando Usar em Apostas</h1>
+            <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Cashout é um dos recursos mais usados em apostas esportivas, principalmente em jogos ao vivo. O problema é que muita gente aceita a oferta por emoção, medo de perder ou impulso, sem comparar o valor recebido com o risco restante da aposta. Este guia explica como funciona cashout, como calcular cashout de forma conceitual e quando a decisão pode ou não fazer sentido.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              O conteúdo é educativo e responsável: cashout não é garantia de lucro, não elimina risco e não transforma uma aposta em investimento. O CalculaBet não é uma casa de apostas; oferecemos ferramentas e conteúdo para apoiar cálculo, comparação e consciência antes de decidir.
+            </p>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Link to="/ferramentas/cashout" className="btn-primary">Abrir calculadora cashout <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+              <Link to="/jogo-responsavel" className="btn-ghost">Jogo responsável +18</Link>
+            </div>
+          </div>
+          <aside className="rounded-3xl p-6" style={{ background: 'rgba(251,113,133,0.08)', border: '1px solid rgba(251,113,133,0.18)' }} aria-label="Resumo sobre cashout apostas">
+            <p className="badge mb-4" style={{ color: '#fda4af', borderColor: 'rgba(251,113,133,0.25)' }}>Guia de decisão</p>
+            <div className="space-y-4">
+              {decisionCards.map(card => <div key={card.title} className="card-glass p-4"><h2 className="font-bold text-lg">{card.title}</h2><p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>{card.text}</p></div>)}
+            </div>
+          </aside>
+        </header>
+
+        <SurebetCallout tone="amber"><strong>Conteúdo apenas educativo.</strong> Apostas envolvem riscos financeiros, são destinadas apenas a maiores de 18 anos, não há garantia de ganhos e cashout não elimina risco. Use ferramentas como apoio ao cálculo, não como promessa de resultado, e leia a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</SurebetCallout>
+
+        <ArticleSection id="o-que-e-cashout" title="O que é cashout em apostas?">
+          <p>Cashout em apostas é a opção de encerrar uma aposta antes do fim do evento por um valor oferecido pela casa. Em vez de esperar o resultado final, o usuário aceita uma quantia calculada com base no cenário atual. Esse valor pode representar lucro, prejuízo menor ou recuperação parcial da stake, dependendo da situação.</p>
+          <p>O cash out apostas pode ser total ou parcial. No cashout total, toda a aposta é encerrada. No cashout parcial, apenas parte da exposição é fechada e outra parte continua dependente do resultado final. O valor muda conforme odds ao vivo, placar, tempo restante, mercado, liquidez e regras da plataforma.</p>
+        </ArticleSection>
+
+        <ArticleSection id="como-funciona" title="Como funciona o cashout?">
+          <p>A lógica por trás do cashout é uma reprecificação. A casa observa a aposta original, o retorno potencial, o estado atual do evento e a probabilidade atual estimada para oferecer um valor de encerramento. Se o cenário ficou mais favorável, a oferta tende a subir; se ficou pior, tende a cair.</p>
+          <p>O usuário pode aceitar o valor ou manter a aposta aberta. A oferta pode subir, cair, ficar suspensa ou desaparecer, especialmente em lances perigosos, mercados com baixa liquidez ou mudanças rápidas de odds ao vivo. Nem todas as apostas têm cashout disponível, e algumas casas limitam esse recurso por esporte, mercado ou status do bilhete.</p>
+        </ArticleSection>
+
+        <ArticleSection id="vale-a-pena" title="Cashout vale a pena?">
+          <p>A resposta honesta é: depende. Cashout vale a pena apenas quando o valor oferecido, o risco restante, a probabilidade atual, a odd original e sua estratégia tornam a troca aceitável. Não existe resposta única para todos os bilhetes.</p>
+          <p>Aceitar por medo nem sempre é a melhor decisão, porque você pode vender uma posição por menos do que ela vale matematicamente. Manter por ganância também pode ser arriscado, porque o resultado ainda pode virar contra você. O ponto é comparar, não reagir.</p>
+          <SurebetCallout><strong>Cashout não deve ser decidido apenas pela emoção.</strong> Compare o valor oferecido com o risco restante da aposta.</SurebetCallout>
+          <SurebetCallout tone="amber"><strong>O cashout oferecido pode incluir margem da casa e nem sempre representa o melhor valor matemático.</strong></SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="como-calcular" title="Como calcular se o cashout é justo">
+          <p>Para estudar se uma oferta parece razoável, compare o cashout oferecido com o valor esperado aproximado da aposta ainda aberta. A ideia é estimar a probabilidade atual de sucesso e multiplicar pelo retorno potencial. Essa conta não prevê o jogo; ela apenas cria uma referência para análise.</p>
+          <div className="rounded-3xl p-6 text-center" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.16)' }}>
+            <p className="text-sm uppercase tracking-[0.25em]" style={{ color: '#67e8f9' }}>Fórmula conceitual</p>
+            <p className="mt-3 text-2xl font-bold" style={{ color: 'var(--text-1)' }}>Valor esperado aproximado = Probabilidade atual × Retorno potencial</p>
+          </div>
+          <p>Se o cashout oferecido é muito menor que o valor esperado estimado, aceitar pode ser ruim do ponto de vista matemático. Se a diferença é pequena e reduzir risco faz sentido para sua gestão de banca, aceitar pode ser justificável. O cálculo depende de uma estimativa realista de probabilidade; estimativas otimistas demais podem distorcer a conclusão.</p>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-pratico" title="Exemplo prático de cashout">
+          <p>Imagine uma aposta inicial de R$50 em odd 3.00. O retorno potencial é R$150. Durante o evento, a casa oferece cashout de R$90. Você estima, de forma conservadora, que a probabilidade atual de vitória seja 65%.</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[['Aposta inicial', 'R$50'], ['Odd inicial', '3.00'], ['Retorno potencial', 'R$150'], ['Cashout oferecido', 'R$90']].map(([label, value]) => <div key={label} className="card-glass p-5 text-center"><p className="text-sm" style={{ color: 'var(--text-2)' }}>{label}</p><p className="text-3xl font-bold mt-2" style={{ color: '#fda4af' }}>{value}</p></div>)}
+          </div>
+          <p><strong>Valor esperado aproximado = 0,65 × 150 = R$97,50.</strong> O cashout oferecido de R$90 está abaixo do valor esperado estimado, mas reduz o risco de terminar com zero retorno no bilhete. Isso não significa decisão automática: uma pessoa mais conservadora pode aceitar a redução de risco, enquanto outra pode manter a posição se a estimativa for confiável e estiver dentro do plano.</p>
+        </ArticleSection>
+
+        <ArticleSection id="calculadora-cashout" title="Como usar a Calculadora de Cashout do CalculaBet">
+          <p>A <Link to="/ferramentas/cashout" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora cashout</Link> do CalculaBet ajuda a organizar a comparação entre valor apostado, odd original, retorno potencial e valor oferecido. Ela foi criada para calcular cashout online em cenários educativos, sem recomendar apostas e sem prometer lucro.</p>
+          <ol className="grid md:grid-cols-2 gap-3 list-decimal list-inside">
+            <li className="card-glass p-4">Insira o valor apostado e a odd original.</li>
+            <li className="card-glass p-4">Confira o retorno potencial do bilhete.</li>
+            <li className="card-glass p-4">Informe o cashout oferecido pela casa.</li>
+            <li className="card-glass p-4">Simule probabilidades e compare se a oferta parece razoável.</li>
+          </ol>
+          <p>Use também ferramentas relacionadas, como a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link>, a <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de ROI</Link> e a página geral de <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas do CalculaBet</Link>, para entender retorno de aposta e métricas antes de decidir.</p>
+        </ArticleSection>
+
+        <ArticleSection id="total-parcial" title="Cashout total e cashout parcial">
+          <p>O cashout total encerra toda a aposta: você recebe o valor oferecido e deixa de participar do resultado final. O cashout parcial encerra apenas parte da posição, mantendo parte do bilhete exposta ao resultado. Em teoria, ele pode equilibrar segurança e potencial retorno, mas exige mais atenção ao que ainda está em risco.</p>
+          <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.10)' }}>
+            <table className="w-full text-left min-w-[760px]"><thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr>{['Tipo', 'Como funciona', 'Resultado imediato', 'Vantagem', 'Atenção'].map(h => <th key={h} className="p-4">{h}</th>)}</tr></thead><tbody>{totalPartialRows.map(row => <tr key={row[0]} className="border-t border-white/10">{row.map((cell, index) => <td key={cell} className={`p-4 ${index === 0 ? 'font-semibold' : ''}`} style={index > 1 ? { color: 'var(--text-2)' } : undefined}>{cell}</td>)}</tr>)}</tbody></table>
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="quando-aceitar" title="Quando pode fazer sentido aceitar cashout?">
+          <ul className="grid gap-3">{acceptScenarios.map(item => <li key={item} className="card-glass p-4">{item}</li>)}</ul>
+          <p>Esses exemplos não são regras universais. Eles indicam situações em que reduzir exposição pode ser coerente, desde que a decisão respeite a gestão de banca e não seja uma tentativa de recuperar perdas.</p>
+        </ArticleSection>
+
+        <ArticleSection id="quando-ruim" title="Quando pode ser ruim aceitar cashout?">
+          <ul className="grid gap-3">{avoidScenarios.map(item => <li key={item} className="card-glass p-4">{item}</li>)}</ul>
+          <SurebetCallout tone="amber"><strong>Decisões de cashout tomadas por medo ou impulso podem prejudicar sua gestão de banca.</strong></SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="multiplas" title="Cashout em apostas múltiplas">
+          <p>Em uma <Link to="/blog/o-que-e-aposta-multipla" className="font-semibold" style={{ color: '#67e8f9' }}>aposta múltipla</Link>, o cashout pode parecer muito atraente quando várias seleções já acertaram e falta apenas uma ou duas. Ainda assim, uma seleção restante pode mudar drasticamente o valor, porque o risco de perder todo o bilhete continua existindo.</p>
+          <p>Antes de aceitar, compare o retorno potencial, o valor oferecido e a probabilidade realista das seleções restantes. Para entender a estrutura do bilhete, simule odds combinadas na <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de aposta múltipla</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="cashout-hedge" title="Cashout e hedge: qual a diferença?">
+          <p>Cashout é um recurso oferecido pela casa para encerrar uma aposta. Hedge em apostas é quando o usuário faz uma aposta oposta ou complementar para proteger aposta, reduzir exposição ou travar parte do retorno. O hedge pode dar mais controle, mas exige cálculo, odds disponíveis e nova stake.</p>
+          <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.10)' }}>
+            <table className="w-full text-left min-w-[820px]"><thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr>{['Recurso', 'Quem oferece/executa', 'Objetivo', 'Controle', 'Riscos'].map(h => <th key={h} className="p-4">{h}</th>)}</tr></thead><tbody>{hedgeRows.map(row => <tr key={row[0]} className="border-t border-white/10">{row.map((cell, index) => <td key={cell} className={`p-4 ${index === 0 ? 'font-semibold' : ''}`} style={index > 0 ? { color: 'var(--text-2)' } : undefined}>{cell}</td>)}</tr>)}</tbody></table>
+          </div>
+          <p>Se quiser estudar <Link to="/ferramentas/hedge" className="font-semibold" style={{ color: '#67e8f9' }}>hedge em apostas</Link>, use a calculadora específica para comparar stake de proteção, retorno líquido e exposição restante.</p>
+        </ArticleSection>
+
+        <ArticleSection id="pior-que-hedge" title="Cashout é sempre pior que hedge?">
+          <p>Não necessariamente. Em alguns cenários, o cashout pode ser mais simples, rápido e suficiente para o objetivo do usuário. Em outros, o hedge pode produzir um resultado melhor porque permite escolher odds e stake de proteção. Tudo depende das odds disponíveis, do valor oferecido, do tempo, da liquidez do mercado e da capacidade de executar o cálculo sem erro.</p>
+          <p>Hedge exige nova aposta e pode aumentar a complexidade. Cashout pode ser mais prático, mas frequentemente vem com margem embutida. Por isso, a pergunta correta não é “qual é sempre melhor?”, e sim “qual alternativa tem melhor relação entre valor, risco e execução neste caso?”.</p>
+        </ArticleSection>
+
+        <ArticleSection id="erros" title="Erros comuns ao usar cashout">
+          <div className="grid sm:grid-cols-2 gap-3">{errors.map(error => <div key={error} className="card-glass p-4"><p className="font-semibold" style={{ color: 'var(--text-1)' }}>{error}</p></div>)}</div>
+          <p>O erro central é tratar o botão de cashout como uma solução emocional. Se a decisão aparece apenas quando o jogo fica tenso, ela tende a ser reativa. O ideal é definir critérios antes da aposta e registrar decisões para aprender com os próprios padrões.</p>
+        </ArticleSection>
+
+        <ArticleSection id="gestao-banca" title="Cashout e gestão de banca">
+          <p>Cashout não substitui <Link to="/blog/o-que-e-gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>gestão de banca</Link>. O valor apostado deve ser planejado antes do evento, com limite por aposta, limite total e consciência de que o dinheiro pode ser perdido. Decisões ao vivo podem ser emocionais; limites reduzem impulsividade.</p>
+          <p>Use a <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de gestão de banca</Link> para simular stakes e revise orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>apostas responsáveis</Link>. O CalculaBet também mantém uma <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link> para explicar transparência editorial.</p>
+        </ArticleSection>
+
+        <ArticleSection id="antes-de-apostar" title="Como decidir antes de apostar">
+          <p>Antes de apostar, defina em quais cenários aceitaria cashout: placar, tempo, valor mínimo, probabilidade estimada e limite emocional. Saiba seu retorno potencial, estime risco, use uma calculadora de cashout e evite decidir apenas no calor do jogo.</p>
+          <p>Um plano simples pode incluir: stake limitada, motivo da entrada, cenário de saída, valor mínimo aceitável e regra de pausa após perdas. Essas regras não garantem resultado, mas ajudam a reduzir decisões impulsivas.</p>
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>Cashout permite encerrar uma aposta antes do fim do evento. Ele pode reduzir risco, mas geralmente envolve margem da casa e nem sempre é bom aceitar. O cálculo ajuda a comparar o valor oferecido com o retorno potencial e com uma estimativa realista de probabilidade atual.</p>
+          <p>Use cashout com responsabilidade, sem promessa de proteção e sem tentar recuperar perdas. <Link to="/ferramentas/cashout" className="font-semibold" style={{ color: '#67e8f9' }}>Use a Calculadora de Cashout do CalculaBet</Link> para comparar o valor oferecido com o retorno potencial e simular cenários antes de decidir.</p>
+          <div className="mt-8 rounded-3xl p-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(251,113,133,0.16), rgba(34,211,238,0.10))', border: '1px solid rgba(255,255,255,0.12)' }}>
+            <h2 className="text-2xl font-bold">Simule antes de aceitar</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Compare cashout oferecido, retorno potencial e probabilidade estimada em uma ferramenta educativa.</p>
+            <Link to="/ferramentas/cashout" className="btn-primary mt-5">Abrir ferramenta de cashout do CalculaBet <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <section className="mt-12" aria-labelledby="faq-cashout">
+          <h2 id="faq-cashout" className="text-3xl font-bold tracking-tight">FAQ sobre cashout em apostas</h2>
+          <div className="mt-5 space-y-3">
+            {CASHOUT_FAQS.map(faq => <details key={faq.question} className="card-glass p-5"><summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary><p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p></details>)}
+          </div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">
+            {relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
@@ -1491,7 +1697,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1513,6 +1719,8 @@ export default function BlogPost() {
             <BankrollArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'o-que-e-aposta-multipla' ? (
             <MultipleBetArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'cashout-apostas' ? (
+            <CashoutArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
