@@ -47,6 +47,24 @@ export const BLOG_POSTS = [
 
 
   {
+    slug: 'probabilidade-implicita-odds',
+    title: 'O que é Probabilidade Implícita nas Odds? Como Calcular e Interpretar',
+    seoTitle: 'O que é Probabilidade Implícita nas Odds? Como Calcular',
+    ogTitle: 'O que é Probabilidade Implícita nas Odds?',
+    ogDescription: 'Guia educativo sobre probabilidade implícita, odds, margem da casa, value bet e uso da calculadora de odds.',
+    excerpt: 'Entenda o que é probabilidade implícita nas odds, como calcular, interpretar odds decimais, margem da casa, value bet e valor esperado.',
+    category: 'odds-probabilidades',
+    tags: ['probabilidade implícita odds', 'o que é probabilidade implícita', 'probabilidade implícita nas odds', 'como calcular probabilidade implícita', 'como calcular odds', 'calculadora de odds', 'odds decimais', 'converter odds em probabilidade', 'probabilidade nas apostas', 'valor esperado apostas', 'value bet', 'margem da casa', 'overround', 'odds apostas esportivas', 'calculadora de apostas', 'apostas responsáveis'],
+    readingTime: '22 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Odds', href: '/ferramentas/odds' },
+    popularity: 180,
+  },
+
+
+  {
     slug: 'cashout-apostas',
     title: 'Cashout Vale a Pena? Como Funciona e Quando Usar em Apostas',
     seoTitle: 'Cashout em Apostas: Vale a Pena? Como Funciona e Quando Usar',

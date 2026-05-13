@@ -328,6 +328,24 @@ const CASHOUT_FAQS = [
   { question: 'O que acontece se eu não aceitar o cashout?', answer: 'A aposta continua aberta conforme as regras do mercado. Você mantém o retorno potencial se vencer, mas também mantém o risco de perder a stake se o resultado final for desfavorável.' },
 ];
 
+
+const IMPLIED_PROBABILITY_FAQS = [
+  { question: 'O que é probabilidade implícita nas odds?', answer: 'Probabilidade implícita nas odds é a chance percentual sugerida por uma odd após uma conversão matemática. Ela ajuda a entender o que a cotação indica, mas não garante o resultado do evento.' },
+  { question: 'Como calcular probabilidade implícita?', answer: 'Em odds decimais, divida 1 pela odd e multiplique por 100. Por exemplo, odd 2.00: 1 / 2.00 × 100 = 50%.' },
+  { question: 'Qual é a fórmula da probabilidade implícita?', answer: 'A fórmula é Probabilidade implícita = 1 / Odd × 100 para odds decimais. O resultado deve ser interpretado como percentual sugerido pela cotação.' },
+  { question: 'Odd 2.00 representa qual probabilidade?', answer: 'Odd 2.00 representa 50% de probabilidade implícita, pois 1 dividido por 2.00 vezes 100 é igual a 50%.' },
+  { question: 'Odd 1.50 representa qual probabilidade?', answer: 'Odd 1.50 representa aproximadamente 66,67% de probabilidade implícita, pois 1 / 1.50 × 100 = 66,67%.' },
+  { question: 'Probabilidade implícita é garantia de resultado?', answer: 'Não. Probabilidade implícita é uma leitura matemática da odd, não uma previsão garantida. Eventos esportivos envolvem incerteza, variância e risco financeiro.' },
+  { question: 'Qual a diferença entre probabilidade implícita e probabilidade real?', answer: 'A probabilidade implícita vem da odd oferecida. A probabilidade real é uma estimativa analítica sobre a chance do evento, que pode divergir da odd e nunca é perfeitamente conhecida.' },
+  { question: 'O que é margem da casa?', answer: 'Margem da casa é a parcela embutida nas odds para que a soma das probabilidades implícitas de um mercado fique acima de 100%. Ela afeta o valor oferecido ao usuário.' },
+  { question: 'O que é overround?', answer: 'Overround é a soma das probabilidades implícitas de todos os resultados possíveis de um mercado. Quando passa de 100%, a diferença representa margem.' },
+  { question: 'Como a probabilidade implícita ajuda a encontrar value bet?', answer: 'Ela permite comparar a chance sugerida pela odd com a probabilidade estimada pelo usuário. Se a estimativa for maior que a probabilidade implícita, pode existir value bet, sem garantia de acerto.' },
+  { question: 'Como converter odds em probabilidade?', answer: 'Para odds decimais, use 1 / odd × 100. Para odds americanas e fracionárias, use fórmulas específicas ou um conversor de odds para reduzir erro manual.' },
+  { question: 'Posso usar uma calculadora de odds para isso?', answer: 'Sim. Uma calculadora de odds pode converter odds em probabilidade implícita, retorno e lucro potencial de forma rápida, desde que os dados inseridos estejam corretos.' },
+  { question: 'Odds altas são melhores?', answer: 'Não necessariamente. Odds altas aumentam o retorno potencial, mas geralmente indicam menor probabilidade implícita e maior risco de a aposta não retornar.' },
+  { question: 'Probabilidade implícita substitui análise?', answer: 'Não. Ela é uma ferramenta de leitura das odds. Análise, contexto, gestão de banca, limites e responsabilidade continuam essenciais.' },
+];
+
 function getFaqsForPost(slug) {
   return {
     'roi-apostas': ROI_FAQS,
@@ -337,6 +355,7 @@ function getFaqsForPost(slug) {
     'o-que-e-aposta-multipla': MULTIPLE_FAQS,
     'o-que-e-dutching': DUTCHING_FAQS,
     'cashout-apostas': CASHOUT_FAQS,
+    'probabilidade-implicita-odds': IMPLIED_PROBABILITY_FAQS,
   }[slug] || [];
 }
 
@@ -1685,6 +1704,204 @@ function CashoutArticle({ post, category, relatedPosts }) {
   );
 }
 
+
+const impliedOddsRows = [
+  ['2.00', '1 / 2.00 × 100', '50%', 'Mercado equilibrado antes de considerar contexto e margem.'],
+  ['1.50', '1 / 1.50 × 100', '66,67%', 'Odd baixa: maior probabilidade implícita e retorno menor.'],
+  ['3.00', '1 / 3.00 × 100', '33,33%', 'Odd intermediária/alta: menor chance implícita e retorno maior.'],
+  ['5.00', '1 / 5.00 × 100', '20%', 'Resultado menos provável segundo a cotação, com maior retorno potencial.'],
+];
+
+const overroundRows = [
+  ['Resultado A', '1.90', '52,63%'],
+  ['Resultado B', '1.90', '52,63%'],
+  ['Soma do mercado', '-', '105,26%'],
+  ['Overround estimado', '-', '5,26%'],
+];
+
+const marginRows = [
+  ['Mercado justo teórico', '100%', 'Sem margem embutida no exemplo simplificado.'],
+  ['Mercado com overround', '105,26%', 'A soma excede 100%; a diferença é margem aproximada.'],
+  ['Impacto prático', 'Odds menores', 'O retorno oferecido tende a ser menor do que em um mercado sem margem.'],
+];
+
+const impliedErrors = [
+  'Achar que probabilidade implícita é garantia de resultado.',
+  'Ignorar margem da casa e overround ao somar resultados do mercado.',
+  'Olhar apenas para odd alta sem considerar a chance implícita.',
+  'Confundir retorno potencial com valor matemático.',
+  'Não comparar a odd com uma probabilidade estimada de forma independente.',
+  'Não considerar gestão de banca, stake e limite de perda.',
+  'Usar uma única odd como verdade absoluta sobre o evento.',
+  'Apostar por emoção, pressa ou tentativa de recuperar perdas.',
+  'Não considerar mudanças de mercado, notícias e escalações.',
+  'Ignorar variância, tamanho da amostra e incerteza em eventos esportivos.',
+];
+
+function PremiumTable({ headers, rows }) {
+  return (
+    <div className="overflow-x-auto rounded-3xl" style={{ border: '1px solid rgba(255,255,255,0.10)' }}>
+      <table className="w-full text-left min-w-[680px]">
+        <thead style={{ background: 'rgba(34,211,238,0.10)' }}>
+          <tr>{headers.map(header => <th key={header} className="p-4 text-sm font-bold" style={{ color: 'var(--text-1)' }}>{header}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => (
+            <tr key={`${row[0]}-${index}`} style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+              {row.map((cell, cellIndex) => <td key={`${cell}-${cellIndex}`} className="p-4 align-top" style={{ color: cellIndex === 0 ? 'var(--text-1)' : 'var(--text-2)' }}>{cell}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function ImpliedProbabilityArticle({ post, category, relatedPosts }) {
+  const highlights = [
+    { title: 'Traduz a odd em percentual', text: 'A probabilidade implícita mostra a chance sugerida pela cotação em odds decimais.' },
+    { title: 'Ajuda a ler risco e retorno', text: 'Odds baixas indicam maior chance implícita; odds altas indicam menor chance implícita.' },
+    { title: 'Não prevê resultados', text: 'A leitura é matemática e educativa. Ela não elimina incerteza nem garante lucro.' },
+  ];
+
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#22d3ee', borderColor: `${category?.color || '#22d3ee'}35`, background: `${category?.color || '#22d3ee'}10` }}>{category?.name}</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">O que é Probabilidade Implícita nas Odds? Como Calcular e Interpretar</h1>
+        <p className="mt-6 text-lg sm:text-xl leading-relaxed" style={{ color: 'var(--text-2)' }}>
+          Odds não mostram apenas quanto uma aposta pode retornar. Elas também carregam uma probabilidade implícita: uma leitura matemática que transforma a cotação em percentual. Muitos iniciantes olham somente para o lucro possível, especialmente em odds altas, mas entender a probabilidade ajuda a interpretar risco, margem da casa, value bet e valor esperado com mais consciência.
+        </p>
+        <p className="mt-4 leading-relaxed" style={{ color: 'var(--text-2)' }}>
+          Este guia explica como calcular probabilidade implícita odds em formato decimal, como interpretar o percentual, por que ele não é uma previsão garantida e como usar a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link> do CalculaBet para converter odds em probabilidade, retorno e lucro potencial. O conteúdo é educativo: apostas envolvem risco financeiro, são permitidas apenas para maiores de 18 anos e não há garantia de ganhos.
+        </p>
+
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          {highlights.map(item => <div key={item.title} className="card-glass p-5"><h2 className="text-lg font-bold">{item.title}</h2><p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>{item.text}</p></div>)}
+        </div>
+
+        <SurebetCallout>
+          <strong>Probabilidade implícita é uma conversão matemática da odd, não uma previsão garantida.</strong> Use o cálculo para compreender a cotação, não para tratar um evento esportivo como certo.
+        </SurebetCallout>
+
+        <ArticleSection id="o-que-e" title="O que é probabilidade implícita nas odds?">
+          <p>Probabilidade implícita é a chance sugerida pela odd quando a cotação é convertida para percentual. Em outras palavras, é o que a odd está “dizendo” matematicamente sobre a chance de um resultado, antes de qualquer análise externa do usuário.</p>
+          <p>Se uma odd decimal é 2.00, a conversão indica 50%. Se a odd é 1.50, a conversão indica 66,67%. Isso não significa que o resultado vai acontecer nessa proporção em um jogo específico. Significa apenas que a cotação pode ser lida como um preço associado a uma probabilidade.</p>
+          <p>Essa distinção é essencial para estudar probabilidade nas apostas sem cair em interpretações exageradas. Probabilidade implícita nas odds é cálculo; resultado esportivo continua incerto.</p>
+        </ArticleSection>
+
+        <ArticleSection id="importancia" title="Por que a probabilidade implícita é importante?">
+          <p>Entender o que é probabilidade implícita ajuda a comparar odds, separar retorno potencial de chance estimada e evitar a armadilha de considerar apenas quanto uma aposta pagaria. Uma odd 5.00 pode parecer atraente por multiplicar a stake por cinco, mas sua probabilidade implícita é de apenas 20%.</p>
+          <p>A leitura também ajuda a entender valor esperado apostas, margem da casa e value bet. Quando você sabe converter odds em probabilidade, consegue comparar a cotação com sua própria estimativa, avaliar se o preço parece alto ou baixo e usar ferramentas como apoio ao cálculo.</p>
+        </ArticleSection>
+
+        <ArticleSection id="formula" title="Como calcular probabilidade implícita em odds decimais">
+          <p>No Brasil, odds decimais são as mais comuns e também as mais simples para cálculo. A fórmula é direta:</p>
+          <div className="rounded-3xl p-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.13), rgba(52,211,153,0.08))', border: '1px solid rgba(103,232,249,0.18)' }}>
+            <p className="text-sm uppercase tracking-[0.25em]" style={{ color: '#67e8f9' }}>Fórmula</p>
+            <p className="mt-3 text-2xl sm:text-3xl font-bold" style={{ color: 'var(--text-1)' }}>Probabilidade implícita = 1 / Odd × 100</p>
+          </div>
+          <p>Aplicando a fórmula: odd 2.00 = 50%; odd 1.50 = 66,67%; odd 3.00 = 33,33%; odd 5.00 = 20%. A tabela resume a interpretação:</p>
+          <PremiumTable headers={['Odd decimal', 'Cálculo', 'Probabilidade implícita', 'Interpretação']} rows={impliedOddsRows} />
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-pratico" title="Exemplo prático de probabilidade implícita">
+          <p>Imagine um mercado em que o Time A aparece com odd 1.80. O cálculo é: 1 / 1.80 × 100 = 55,56%. Portanto, a odd sugere uma probabilidade implícita de 55,56% para aquele resultado.</p>
+          <p>Isso não significa que o Time A tem exatamente 55,56% de chance real. A casa pode incluir margem, o mercado pode reagir a notícias, escalações e volume financeiro, e a sua análise pode chegar a uma estimativa diferente. O cálculo serve para ler a odd; não para transformar a cotação em verdade absoluta.</p>
+        </ArticleSection>
+
+        <ArticleSection id="probabilidade-real" title="Probabilidade implícita não é probabilidade real">
+          <p>Odds são preços de mercado. Elas podem refletir opinião coletiva, gestão de risco da casa, margem comercial e movimentos de dinheiro. Probabilidades mudam quando surgem notícias, quando um atleta importante é confirmado ou cortado, quando o mercado se ajusta ou quando a casa altera sua exposição.</p>
+          <p>A probabilidade real, por sua vez, é uma estimativa. Ela pode ser construída com estatísticas, análise técnica, contexto do evento e critérios próprios, mas nunca é perfeitamente conhecida antes do resultado. Por isso, não existe certeza em eventos esportivos.</p>
+          <SurebetCallout tone="amber"><strong>Probabilidade implícita é uma leitura matemática da odd, não uma previsão garantida do resultado.</strong></SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="calculadora-odds" title="Como usar a Calculadora de Odds do CalculaBet">
+          <p>A <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>ferramenta de odds do CalculaBet</Link> ajuda a calcular probabilidade implícita, retorno total, lucro potencial e simular diferentes cenários com odds apostas esportivas. Ela reduz erro manual, especialmente quando você compara várias odds ou quer verificar rapidamente o impacto de uma stake.</p>
+          <p>Para usar, informe a stake e a odd decimal. A calculadora de apostas mostra o retorno e ajuda a converter odds em probabilidade. Ela é apoio educativo ao cálculo; não recomenda entradas, não prevê eventos e não substitui análise própria ou <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>jogo responsável</Link>.</p>
+          <div className="rounded-3xl p-6 mt-6" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.16), rgba(129,140,248,0.10))', border: '1px solid rgba(103,232,249,0.22)' }}>
+            <h2 className="text-2xl font-bold">Calcule odds, retorno e probabilidade</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a Calculadora de Odds do CalculaBet para converter odds em probabilidade implícita, retorno e lucro de forma simples.</p>
+            <Link to="/ferramentas/odds" className="btn-primary mt-5">Abrir calculadora de odds <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="retorno" title="Probabilidade implícita e retorno da aposta">
+          <p>Odds mais baixas indicam maior probabilidade implícita e menor retorno potencial. Odds mais altas indicam menor probabilidade implícita e maior retorno potencial. Essa relação ajuda a entender por que retorno alto costuma vir acompanhado de maior incerteza.</p>
+          <p>Se você quer revisar os cálculos de retorno, lucro e odd decimal, leia também o guia sobre <Link to="/blog/como-calcular-odds" className="font-semibold" style={{ color: '#67e8f9' }}>como calcular odds</Link> e use a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link> para simular valores antes de qualquer decisão.</p>
+          <SurebetCallout tone="amber"><strong>Odds altas podem parecer atraentes, mas geralmente representam menor probabilidade implícita.</strong></SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="margem-casa" title="O que é margem da casa?">
+          <p>Casas de apostas normalmente embutem margem nas odds. Na prática, isso faz com que a soma das probabilidades implícitas de todos os resultados de um mercado ultrapasse 100%. Essa diferença é conhecida como margem da casa ou overround.</p>
+          <p>A margem afeta o valor oferecido ao usuário porque reduz as odds em relação a um mercado teórico sem margem. Por isso, uma leitura responsável não olha apenas para a probabilidade de uma seleção isolada; ela considera também a estrutura do mercado completo.</p>
+          <PremiumTable headers={['Cenário', 'Soma das probabilidades', 'Leitura']} rows={marginRows} />
+        </ArticleSection>
+
+        <ArticleSection id="overround" title="O que é overround?">
+          <p>Overround é a soma das probabilidades implícitas de todos os resultados possíveis de um mercado. Em um mercado justo simplificado, a soma seria próxima de 100%. Quando passa de 100%, existe margem embutida.</p>
+          <p>Exemplo: Resultado A com odd 1.90 equivale a 52,63%; Resultado B com odd 1.90 equivale a 52,63%. A soma é 105,26%, então o overround estimado é 5,26%.</p>
+          <PremiumTable headers={['Item', 'Odd decimal', 'Probabilidade implícita']} rows={overroundRows} />
+        </ArticleSection>
+
+        <ArticleSection id="value-bet" title="Probabilidade implícita e value bet">
+          <p>Value bet é um conceito usado quando a probabilidade estimada pelo usuário é maior que a probabilidade implícita da odd. Por exemplo: se uma odd sugere 40%, mas sua análise estima 50%, pode haver valor matemático nessa cotação.</p>
+          <p>Mesmo assim, value bet não garante acerto. A estimativa pode estar errada, a amostra pode ser pequena, o evento pode ter alta variância e a margem pode afetar o preço. O conceito é útil para estudo, mas exige método, registro e controle de risco.</p>
+        </ArticleSection>
+
+        <ArticleSection id="valor-esperado" title="Probabilidade implícita e valor esperado">
+          <p>Valor esperado compara probabilidade estimada, odd e stake para avaliar o resultado médio teórico de uma decisão repetida muitas vezes. Em termos simples, ele pergunta se o retorno potencial compensa a chance estimada de perda.</p>
+          <p>EV positivo não garante lucro imediato. Pode haver sequências negativas, erros de análise e mudanças de mercado. Para estudar valor esperado em apostas com mais organização, combine a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link>, a calculadora de <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>ROI em apostas</Link> e a ferramenta de <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>gestão de banca</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="converter" title="Como converter odds americanas e fracionárias em probabilidade">
+          <p>Odds decimais são mais simples para quem está começando no Brasil, mas odds americanas e fracionárias também podem ser convertidas em probabilidade. O problema é que cada formato usa uma lógica diferente, o que aumenta a chance de erro manual.</p>
+          <p>Para comparar formatos, use o <Link to="/ferramentas/conversor" className="font-semibold" style={{ color: '#67e8f9' }}>conversor de odds</Link>. Ele facilita a leitura entre odds decimais, americanas e fracionárias, apoiando quem precisa converter odds em probabilidade sem refazer todas as fórmulas.</p>
+        </ArticleSection>
+
+        <ArticleSection id="erros" title="Erros comuns ao interpretar probabilidade implícita">
+          <ul className="grid sm:grid-cols-2 gap-4">{impliedErrors.map(item => <li key={item} className="card-glass p-5">{item}</li>)}</ul>
+        </ArticleSection>
+
+        <ArticleSection id="responsavel" title="Como usar probabilidade implícita de forma responsável">
+          <p>Use a probabilidade implícita como ferramenta de leitura: compare cenários, estude odds, controle stake e evite decisões impulsivas. Nunca aposte dinheiro essencial, não trate apostas como investimento seguro e não use calculadoras como promessa de resultado.</p>
+          <p>O CalculaBet não é uma casa de apostas: oferece <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas</Link> e conteúdo educativo. Consulte orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>apostas responsáveis</Link>, revise sua <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>gestão de banca</Link>, simule múltiplas na <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de aposta múltipla</Link> quando necessário e leia a <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link> para entender a postura editorial do projeto.</p>
+          <SurebetCallout tone="amber"><strong>Aviso:</strong> conteúdo apenas educativo. Apostas envolvem riscos financeiros, são apenas para maiores de 18 anos, não há garantia de ganhos e probabilidade implícita não prevê resultados.</SurebetCallout>
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>Probabilidade implícita transforma uma odd em percentual e ajuda a entender melhor a relação entre risco e retorno. Ela é útil para comparar cotações, estudar margem da casa, interpretar overround, analisar value bet e refletir sobre valor esperado.</p>
+          <p>Mas ela não é previsão garantida. Margem, mercado, variância e incerteza podem distorcer a leitura. Calculadoras ajudam a evitar erro manual, desde que sejam usadas como apoio educativo e com responsabilidade.</p>
+          <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(52,211,153,0.10))', border: '1px solid rgba(103,232,249,0.18)' }}>
+            <h2 className="text-2xl font-bold">Converta odds em probabilidade implícita</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a Calculadora de Odds do CalculaBet para converter odds em probabilidade implícita, retorno e lucro de forma simples.</p>
+            <Link to="/ferramentas/odds" className="btn-primary mt-5">Usar Calculadora de Odds <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <section className="mt-14" aria-labelledby="faq-probabilidade-implicita">
+          <p className="badge badge-cyan mb-4">FAQ SEO</p>
+          <h2 id="faq-probabilidade-implicita" className="text-3xl font-bold">Perguntas frequentes sobre probabilidade implícita odds</h2>
+          <div className="mt-6 space-y-3">{IMPLIED_PROBABILITY_FAQS.map(faq => <details key={faq.question} className="card-glass p-5"><summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary><p className="mt-3 text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p></details>)}</div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">{relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}</div>
+        </section>
+      )}
+    </>
+  );
+}
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
@@ -1697,7 +1914,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1707,7 +1924,9 @@ export default function BlogPost() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
 
-          {post.slug === 'roi-apostas' ? (
+          {post.slug === 'probabilidade-implicita-odds' ? (
+            <ImpliedProbabilityArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'roi-apostas' ? (
             <ROIArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'o-que-e-dutching' ? (
             <DutchingArticle post={post} category={category} relatedPosts={relatedPosts} />
