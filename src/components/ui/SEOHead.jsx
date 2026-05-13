@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 export const BASE_URL = 'https://calculabet.site';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
-export default function SEOHead({ title, description, canonical, schema, ogImage, noindex, ogType = 'website', appendSiteName = true }) {
+export default function SEOHead({ title, description, canonical, schema, ogImage, noindex, ogType = 'website', appendSiteName = true, ogTitle, ogDescription, twitterCard = 'summary_large_image' }) {
   const fullTitle = title
     ? (appendSiteName && !title.includes('CalculaBet') ? `${title} | CalculaBet` : title)
     : 'CalculaBet – Ferramentas gratuitas para apostadores esportivos';
@@ -13,6 +13,8 @@ export default function SEOHead({ title, description, canonical, schema, ogImage
       : `${BASE_URL}${canonical}`
     : `${BASE_URL}/`;
   const ogImg = ogImage || DEFAULT_OG_IMAGE;
+  const resolvedOgTitle = ogTitle || fullTitle;
+  const resolvedOgDescription = ogDescription || description;
 
   return (
     <Helmet>
@@ -27,8 +29,8 @@ export default function SEOHead({ title, description, canonical, schema, ogImage
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="CalculaBet" />
-      <meta property="og:title" content={fullTitle} />
-      {description && <meta property="og:description" content={description} />}
+      <meta property="og:title" content={resolvedOgTitle} />
+      {resolvedOgDescription && <meta property="og:description" content={resolvedOgDescription} />}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={ogImg} />
       <meta property="og:image:width" content="1200" />
@@ -36,9 +38,9 @@ export default function SEOHead({ title, description, canonical, schema, ogImage
       <meta property="og:locale" content="pt_BR" />
 
       {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      {description && <meta name="twitter:description" content={description} />}
+      <meta name="twitter:card" content={twitterCard} />
+      <meta name="twitter:title" content={resolvedOgTitle} />
+      {resolvedOgDescription && <meta name="twitter:description" content={resolvedOgDescription} />}
       <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:image" content={ogImg} />
 

@@ -13,9 +13,32 @@ export const BLOG_CATEGORIES = [
     icon: 'calculator',
     color: '#22d3ee',
   },
+  {
+    id: 'gestao-de-banca',
+    name: 'Gestão de Banca',
+    description: 'Guias educativos sobre banca, stake, controle de risco, Critério de Kelly e apostas responsáveis.',
+    icon: 'shield',
+    color: '#fbbf24',
+  },
 ];
 
 export const BLOG_POSTS = [
+  {
+    slug: 'o-que-e-gestao-de-banca',
+    title: 'O que é Gestão de Banca em Apostas Esportivas? Guia Completo para Iniciantes',
+    seoTitle: 'O que é Gestão de Banca em Apostas Esportivas? Guia Completo',
+    ogTitle: 'O que é Gestão de Banca em Apostas Esportivas?',
+    ogDescription: 'Guia educativo sobre controle de banca, stakes, risco, Critério de Kelly e apostas responsáveis.',
+    excerpt: 'Entenda o que é gestão de banca em apostas esportivas, como definir stakes, evitar erros comuns e usar uma calculadora de gestão de banca com responsabilidade.',
+    category: 'gestao-de-banca',
+    tags: ['gestão de banca', 'gestão de banca apostas', 'gestão de banca apostas esportivas', 'o que é gestão de banca', 'como fazer gestão de banca', 'gestão de banca 100 reais', 'quanto apostar em cada jogo', 'stake apostas', 'controle de banca', 'critério de Kelly', 'calculadora gestão de banca', 'calculadora de stake', 'apostas responsáveis'],
+    readingTime: '22 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Gestão de Banca', href: '/ferramentas/gestao-de-banca' },
+    popularity: 130,
+  },
   {
     slug: 'como-calcular-odds',
     title: 'Como Calcular Odds em Apostas Esportivas: Retorno, Lucro e Probabilidade',
@@ -96,7 +119,11 @@ export function getPostBySlug(slug) {
 }
 
 export function getRelatedPosts(post, limit = 3) {
-  return BLOG_POSTS
-    .filter(item => item.slug !== post.slug && (item.category === post.category || item.tags.some(tag => post.tags.includes(tag))))
-    .slice(0, limit);
+  const related = BLOG_POSTS
+    .filter(item => item.slug !== post.slug && (item.category === post.category || item.tags.some(tag => post.tags.includes(tag))));
+
+  const fallback = BLOG_POSTS
+    .filter(item => item.slug !== post.slug && !related.some(relatedPost => relatedPost.slug === item.slug));
+
+  return [...related, ...fallback].slice(0, limit);
 }
