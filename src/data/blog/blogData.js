@@ -6,9 +6,29 @@ export const BLOG_CATEGORIES = [
     icon: 'split',
     color: '#34d399',
   },
+  {
+    id: 'odds-probabilidades',
+    name: 'Odds e Probabilidades',
+    description: 'Conteúdos educativos sobre cálculo de odds, retorno, lucro, probabilidade implícita e conversão de cotações.',
+    icon: 'calculator',
+    color: '#22d3ee',
+  },
 ];
 
 export const BLOG_POSTS = [
+  {
+    slug: 'como-calcular-odds',
+    title: 'Como Calcular Odds em Apostas Esportivas: Retorno, Lucro e Probabilidade',
+    excerpt: 'Aprenda como calcular odds em apostas esportivas, retorno, lucro, probabilidade implícita e veja exemplos práticos usando uma calculadora de odds.',
+    category: 'odds-probabilidades',
+    tags: ['como calcular odds', 'calculadora de odds', 'calcular odds', 'retorno de aposta', 'probabilidade implícita odds', 'odds decimais', 'conversor de odds'],
+    readingTime: '18 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Odds', href: '/ferramentas/odds' },
+    popularity: 120,
+  },
   {
     slug: 'o-que-e-surebet',
     title: 'O que é Surebet? Guia Completo de Arbitragem Esportiva',

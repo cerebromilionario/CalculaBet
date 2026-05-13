@@ -136,13 +136,13 @@ export default function Blog() {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link to="/ferramentas" className="btn-primary">Ver ferramentas <BlogIcon name="arrow" className="w-4 h-4" /></Link>
-                <Link to="/blog/o-que-e-surebet" className="btn-ghost">Ler artigo sobre surebet</Link>
+                <Link to="/blog/como-calcular-odds" className="btn-ghost">Ler guia de odds</Link>
               </div>
             </div>
 
             <aside className="rounded-[2rem] p-5 sm:p-6" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.10)' }} aria-label="Aviso institucional">
               <div className="grid grid-cols-2 gap-3 mb-5">
-                {['1 artigo', '100% educativo', 'Sem cadastro', '+18'].map(item => (
+                {[`${BLOG_POSTS.length} artigos`, '100% educativo', 'Sem cadastro', '+18'].map(item => (
                   <div key={item} className="rounded-2xl p-4 text-center" style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.07)' }}>
                     <p className="font-bold" style={{ color: 'var(--text-1)' }}>{item}</p>
                   </div>
