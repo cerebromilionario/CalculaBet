@@ -11,11 +11,13 @@ import { ODDS_FORMATS_FAQS } from '../../data/blog/oddsFormatsFaqs';
 import { BET_RETURN_FAQS } from '../../data/blog/betReturnFaqs';
 import { KELLY_CRITERION_FAQS } from '../../data/blog/kellyCriterionFaqs';
 import { MARTINGALE_FAQS } from '../../data/blog/martingaleFaqs';
+import { VALUE_BET_FAQS } from '../../data/blog/valueBetFaqs';
 import BeginnerGuideArticle from './articles/BeginnerGuideArticle';
 import OddsFormatsArticle from './articles/OddsFormatsArticle';
 import BetReturnArticle from './articles/BetReturnArticle';
 import KellyCriterionArticle from './articles/KellyCriterionArticle';
 import MartingaleArticle from './articles/MartingaleArticle';
+import ValueBetArticle from './articles/ValueBetArticle';
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
@@ -373,6 +375,7 @@ function getFaqsForPost(slug) {
     'odds-decimais-americanas-fracionarias': ODDS_FORMATS_FAQS,
     'criterio-de-kelly-apostas': KELLY_CRITERION_FAQS,
     'martingale-apostas': MARTINGALE_FAQS,
+    'value-bet-o-que-e': VALUE_BET_FAQS,
   }[slug] || [];
 }
 
@@ -1946,7 +1949,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias', 'criterio-de-kelly-apostas', 'martingale-apostas'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['value-bet-o-que-e', 'roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias', 'criterio-de-kelly-apostas', 'martingale-apostas'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -1956,7 +1959,9 @@ export default function BlogPost() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
 
-          {post.slug === 'apostas-esportivas-para-iniciantes' ? (
+          {post.slug === 'value-bet-o-que-e' ? (
+            <ValueBetArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'apostas-esportivas-para-iniciantes' ? (
             <BeginnerGuideArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'odds-decimais-americanas-fracionarias' ? (
             <OddsFormatsArticle post={post} category={category} relatedPosts={relatedPosts} />

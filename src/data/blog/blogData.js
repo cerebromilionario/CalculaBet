@@ -54,6 +54,24 @@ export const BLOG_POSTS = [
 
 
   {
+    slug: 'value-bet-o-que-e',
+    title: 'O que é Value Bet? Como Identificar Apostas com Valor Esperado Positivo',
+    seoTitle: 'O que é Value Bet? Como Identificar Apostas com Valor Esperado',
+    ogTitle: 'O que é Value Bet?',
+    ogDescription: 'Guia educativo sobre value bet, valor esperado, EV positivo, probabilidade implícita, edge e uso das ferramentas do CalculaBet.',
+    excerpt: 'Entenda o que é value bet, como calcular valor esperado em apostas, identificar EV positivo, interpretar odds e evitar erros comuns.',
+    category: 'odds-probabilidades',
+    tags: ['value bet o que é', 'value bet', 'aposta de valor', 'apostas com valor', 'valor esperado apostas', 'EV apostas', 'EV positivo apostas', 'como calcular value bet', 'como calcular valor esperado apostas', 'probabilidade implícita', 'calculadora de odds', 'odds com valor', 'edge apostas', 'vantagem matemática apostas', 'ROI apostas', 'gestão de banca', 'apostas responsáveis'],
+    readingTime: '24 min',
+    date: '2026-05-13',
+    updatedAt: '2026-05-13',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Odds', href: '/ferramentas/odds' },
+    popularity: 225,
+  },
+
+
+  {
     slug: 'martingale-apostas',
     title: 'Martingale em Apostas: Como Funciona e Por que é Arriscado',
     seoTitle: 'Martingale em Apostas: Como Funciona e Por que é Arriscado',
