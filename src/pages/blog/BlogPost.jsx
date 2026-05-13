@@ -46,10 +46,10 @@ function buildArticleSchema(post, category) {
           { '@type': 'ListItem', position: 3, name: post.title, item: url },
         ],
       },
-      ...(['o-que-e-surebet', 'como-calcular-odds'].includes(post.slug) ? [{
+      ...(getFaqsForPost(post.slug).length ? [{
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
-        mainEntity: (post.slug === 'como-calcular-odds' ? ODDS_FAQS : SUREBET_FAQS).map(faq => ({
+        mainEntity: getFaqsForPost(post.slug).map(faq => ({
           '@type': 'Question',
           name: faq.question,
           acceptedAnswer: { '@type': 'Answer', text: faq.answer },
@@ -152,6 +152,120 @@ const ODDS_FAQS = [
     question: 'A calculadora de odds garante lucro?',
     answer: 'Não. A calculadora de odds apenas faz contas e mostra cenários matemáticos. Ela não prevê resultados, não elimina risco financeiro e não deve ser usada como promessa de ganhos.',
   },
+];
+
+
+const BANKROLL_FAQS = [
+  {
+    question: 'O que é gestão de banca?',
+    answer: 'Gestão de banca é o conjunto de regras usado para separar uma banca, definir limites e controlar o tamanho de cada stake. Ela organiza a exposição ao risco, mas não garante lucro nem elimina perdas.',
+  },
+  {
+    question: 'O que é banca em apostas esportivas?',
+    answer: 'Banca é o valor separado exclusivamente para apostas esportivas. Não deve ser salário, dinheiro de contas pessoais, aluguel, alimentação, dívidas ou qualquer valor essencial para a vida financeira.',
+  },
+  {
+    question: 'Como fazer gestão de banca em apostas?',
+    answer: 'Comece definindo uma banca que possa perder sem comprometer despesas, escolha um percentual de stake antes de apostar, registre resultados e evite aumentar valores por emoção ou tentativa de recuperar prejuízo.',
+  },
+  {
+    question: 'Quanto devo apostar em cada jogo?',
+    answer: 'Não existe percentual universal. Muitos iniciantes simulam stakes entre 1% e 2% da banca para reduzir exposição, enquanto valores mais altos aumentam bastante o impacto de sequências negativas.',
+  },
+  {
+    question: 'O que é stake?',
+    answer: 'Stake é o valor colocado em uma aposta específica. Em uma banca de R$100, uma stake de 1% equivale a R$1, 2% equivale a R$2 e 5% equivale a R$5.',
+  },
+  {
+    question: 'Gestão de banca garante lucro?',
+    answer: 'Não. Gestão de banca não transforma apostas em renda segura, não substitui análise e não elimina risco financeiro. Ela apenas ajuda a organizar valores e limites.',
+  },
+  {
+    question: 'Como fazer gestão de banca com R$100?',
+    answer: 'Com R$100, uma abordagem conservadora pode simular stakes pequenas, como R$1 por aposta. O objetivo inicial deve ser aprender odds, risco, registro e disciplina, não buscar recuperar perdas rapidamente.',
+  },
+  {
+    question: 'Qual percentual da banca usar por aposta?',
+    answer: 'Percentuais baixos, como 1% ou 2%, reduzem a exposição por evento. Percentuais como 5% ou mais aumentam o risco e podem afetar a banca rapidamente em uma sequência negativa.',
+  },
+  {
+    question: 'O que é Critério de Kelly?',
+    answer: 'Critério de Kelly é uma fórmula que estima o tamanho da stake com base na odd e na probabilidade estimada pelo usuário. Ele exige estimativas realistas e pode sugerir valores agressivos.',
+  },
+  {
+    question: 'O que é Meio Kelly?',
+    answer: 'Meio Kelly usa metade da stake sugerida pelo Critério de Kelly. É uma adaptação mais conservadora, comum quando o usuário reconhece incerteza na própria estimativa de probabilidade.',
+  },
+  {
+    question: 'Gestão de banca funciona para apostas múltiplas?',
+    answer: 'Sim, mas múltiplas exigem ainda mais cautela. Odds combinadas aumentam retorno potencial, porém reduzem a chance de acerto, então a stake precisa ser limitada com cuidado.',
+  },
+  {
+    question: 'Qual o maior erro na gestão de banca?',
+    answer: 'Um dos maiores erros é aumentar a stake depois de perder para tentar recuperar rapidamente. Essa reação amplia exposição emocional e pode comprometer a banca.',
+  },
+  {
+    question: 'Como controlar perdas nas apostas?',
+    answer: 'Defina limite de banca, limite por aposta, limite de tempo, registre resultados e faça pausas. Se houver sensação de perda de controle, procure orientação e consulte a página de jogo responsável.',
+  },
+  {
+    question: 'Por que não devo tentar recuperar prejuízo?',
+    answer: 'Tentar recuperar prejuízo costuma levar a decisões impulsivas, stakes maiores e exposição desproporcional. Perdas fazem parte do risco e não devem ser tratadas com pressa ou emoção.',
+  },
+];
+
+function getFaqsForPost(slug) {
+  return {
+    'como-calcular-odds': ODDS_FAQS,
+    'o-que-e-surebet': SUREBET_FAQS,
+    'o-que-e-gestao-de-banca': BANKROLL_FAQS,
+  }[slug] || [];
+}
+
+const bankrollHighlights = [
+  { title: 'Banca separada', text: 'Use apenas um valor destinado a aprendizado e simulação, sem comprometer despesas pessoais.' },
+  { title: 'Stake proporcional', text: 'Defina quanto apostar em cada jogo antes da emoção do evento, preferencialmente como percentual da banca.' },
+  { title: 'Risco continua existindo', text: 'Gestão de banca reduz decisões impulsivas, mas não prevê resultados nem garante ganhos.' },
+];
+
+const stakeProfileRows = [
+  ['Conservador', '1%', 'R$ 1,00', 'Menor exposição por aposta; costuma ser mais adequado para aprendizado e controle.'],
+  ['Moderado', '2%', 'R$ 2,00', 'Exposição maior, ainda proporcional, mas a sequência negativa pesa mais.'],
+  ['Agressivo', '5%', 'R$ 5,00', 'Risco alto para iniciantes; poucas perdas seguidas já reduzem a banca de forma relevante.'],
+];
+
+const bankrollMethods = [
+  { title: 'Stake fixa', text: 'Você escolhe um valor constante, como R$2 por aposta. É simples, facilita o registro e reduz variações emocionais, mas precisa ser revisado se a banca mudar muito.' },
+  { title: 'Percentual da banca', text: 'A stake acompanha o tamanho da banca, como 1% ou 2%. Ajuda a manter proporção, porém exige recalcular valores e disciplina para não inflar percentuais.' },
+  { title: 'Critério de Kelly', text: 'Usa odd e probabilidade estimada para sugerir stake. É matemático, mas depende de uma estimativa realista e pode sugerir exposição agressiva.' },
+  { title: 'Meio Kelly', text: 'Aplica metade da sugestão de Kelly. É mais conservador e reconhece que a probabilidade estimada pelo usuário pode estar errada.' },
+  { title: 'Stake conservadora', text: 'Prioriza percentuais baixos e limites rígidos. Pode reduzir a velocidade de perdas, mas também limita retornos potenciais e não elimina riscos.' },
+];
+
+const bankrollErrors = [
+  'Apostar mais depois de perder, como se a próxima aposta tivesse obrigação de compensar a anterior.',
+  'Tentar recuperar prejuízo rapidamente, ignorando limite, variância e estado emocional.',
+  'Aumentar stake sem critério claro, apenas porque uma seleção parece “muito provável”.',
+  'Não registrar apostas, odds, resultados e motivo da entrada.',
+  'Misturar banca com dinheiro pessoal, salário, contas, aluguel, alimentação ou dívidas.',
+  'Apostar por emoção, tédio, pressão de grupo ou confiança excessiva em palpites.',
+  'Ignorar limites de tempo e dinheiro definidos antes de apostar.',
+  'Usar Martingale sem entender que sequências negativas exigem valores cada vez maiores.',
+  'Achar que gestão de banca garante lucro ou transforma aposta em investimento seguro.',
+  'Seguir palpites sem cálculo, sem analisar odds, probabilidade e exposição da banca.',
+];
+
+const beginnerPractices = [
+  'Separe uma banca pequena e compatível com sua realidade financeira.',
+  'Defina limite antes de apostar e respeite esse limite mesmo após perdas.',
+  'Use stakes baixas enquanto aprende odds, risco, ROI e variância.',
+  'Evite recuperar perdas; aceite que uma sequência negativa pode acontecer.',
+  'Entenda odds antes de apostar e simule retorno na calculadora de odds.',
+  'Use calculadoras como apoio ao cálculo, não como promessa de resultado.',
+  'Registre resultados para avaliar decisões com dados, não com memória seletiva.',
+  'Faça pausas quando perceber ansiedade, irritação ou pressa.',
+  'Aposte apenas se for maior de 18 anos.',
+  'Nunca aposte dinheiro essencial para contas, alimentação, moradia ou compromissos financeiros.',
 ];
 
 const surebetHighlights = [
@@ -506,6 +620,194 @@ function OddsArticle({ post, category, relatedPosts }) {
 }
 
 
+function BankrollCallout({ tone = 'cyan', children }) {
+  const styles = tone === 'amber'
+    ? { background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.18)' }
+    : tone === 'green'
+      ? { background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.18)' }
+      : { background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.16)' };
+  return <div className="rounded-3xl p-5 my-7 leading-relaxed" style={styles}>{children}</div>;
+}
+
+function BankrollArticle({ post, category, relatedPosts }) {
+  return (
+    <>
+      <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.058), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
+        <div className="flex flex-wrap items-center gap-3 mb-6">
+          <span className="badge" style={{ color: category?.color || '#fbbf24', borderColor: `${category?.color || '#fbbf24'}35`, background: `${category?.color || '#fbbf24'}10` }}>Gestão de Banca</span>
+          <span className="badge">{post.readingTime}</span>
+          <span className="badge">Publicado em {formatDate(post.date)}</span>
+          <span className="badge">Atualizado em {formatDate(post.updatedAt)}</span>
+        </div>
+
+        <header className="grid lg:grid-cols-[1.08fr_0.92fr] gap-8 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-gradient">O que é Gestão de Banca em Apostas Esportivas? Guia Completo para Iniciantes</h1>
+            <p className="mt-6 text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Gestão de banca é um dos conceitos mais importantes para quem estuda apostas esportivas com responsabilidade. Muitos iniciantes focam apenas em palpites e odds, mas deixam de controlar o valor apostado, a frequência das entradas e o impacto de uma sequência negativa. Este guia explica como fazer gestão de banca, definir stake apostas, acompanhar resultados e usar a ferramenta de banca do CalculaBet como apoio educativo.
+            </p>
+            <p className="mt-4 leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              O objetivo não é prometer lucro. Apostas envolvem risco financeiro, gestão de banca não garante ganhos e o CalculaBet não é uma casa de apostas. A proposta é ajudar você a entender controle de banca, calcular stake e tomar decisões menos impulsivas, sempre com limites claros e foco em <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>apostas responsáveis</Link>.
+            </p>
+            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+              <Link to="/ferramentas/gestao-de-banca" className="btn-primary">Abrir calculadora de gestão de banca <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+              <Link to="/jogo-responsavel" className="btn-ghost">Jogo responsável</Link>
+            </div>
+          </div>
+          <aside className="rounded-3xl p-6" style={{ background: 'rgba(251,191,36,0.075)', border: '1px solid rgba(251,191,36,0.17)' }} aria-label="Resumo do guia de gestão de banca">
+            <p className="badge mb-4" style={{ color: '#fbbf24', borderColor: 'rgba(251,191,36,0.28)', background: 'rgba(251,191,36,0.10)' }}>Guia para iniciantes</p>
+            <h2 className="text-2xl font-bold">Três ideias para guardar</h2>
+            <div className="mt-5 space-y-4">
+              {bankrollHighlights.map(item => (
+                <div key={item.title} className="card-glass p-4">
+                  <h3 className="font-bold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </header>
+
+        <BankrollCallout tone="amber">
+          <strong>Gestão de banca não garante lucro.</strong> Ela ajuda a controlar o tamanho das apostas e reduzir decisões impulsivas. Este conteúdo é apenas educativo, voltado a maiores de 18 anos, e as ferramentas do CalculaBet devem ser usadas como apoio ao cálculo, não como promessa de resultado.
+        </BankrollCallout>
+
+        <ArticleSection id="o-que-e-gestao-de-banca" title="O que é gestão de banca?">
+          <p>Gestão de banca é o conjunto de regras que define quanto dinheiro será separado para apostas e qual valor poderá ser usado em cada evento. Em termos simples, a banca apostas é o orçamento reservado exclusivamente para esse tipo de atividade, enquanto a gestão é o método usado para controlar a stake, limitar exposição e registrar decisões.</p>
+          <p>A diferença entre apostar por impulso e seguir uma regra de stake é enorme. No impulso, o valor costuma mudar conforme emoção, confiança no palpite, influência de terceiros ou vontade de recuperar perdas. Com uma regra, o apostador define antes quanto apostar em cada jogo, por exemplo 1% ou 2% da banca, e usa esse limite mesmo quando a sequência recente parece boa ou ruim.</p>
+          <p>Para iniciantes, gestão de banca para iniciantes é menos sobre buscar fórmulas complexas e mais sobre criar disciplina. Ela ajuda a entender que odds, probabilidades, retorno potencial e risco financeiro caminham juntos. Também torna mais fácil comparar cenários com outras ferramentas, como a <Link to="/ferramentas/odds" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de odds</Link>, antes de qualquer decisão.</p>
+        </ArticleSection>
+
+        <ArticleSection id="banca-apostas-esportivas" title="O que é banca em apostas esportivas?">
+          <p>Banca em apostas esportivas é o dinheiro separado exclusivamente para apostar. Ela não deve ser confundida com salário, reserva de emergência, limite do cartão, dinheiro de contas pessoais ou valores destinados a compromissos familiares. Se perder esse valor comprometer aluguel, alimentação, transporte, saúde, dívidas ou qualquer despesa essencial, ele não deve fazer parte da banca.</p>
+          <p>Separar banca de despesas essenciais é uma regra de proteção. Essa separação cria uma barreira entre entretenimento de risco e vida financeira. Mesmo uma pessoa que estuda odds, acompanha mercados e usa calculadoras continua exposta a variância, erro de análise, eventos imprevisíveis e perdas.</p>
+          <BankrollCallout tone="amber"><strong>Importante:</strong> nunca use dinheiro de aluguel, alimentação, contas ou dívidas para apostar. Nunca aposte valores que comprometam contas, alimentação, moradia ou compromissos financeiros.</BankrollCallout>
+        </ArticleSection>
+
+        <ArticleSection id="por-que-e-importante" title="Por que a gestão de banca é importante?">
+          <p>A gestão de banca é importante porque ajuda a controlar exposição ao risco. Sem limite, uma única aposta pode representar uma parte grande demais do orçamento. Com limite, cada decisão fica proporcional à banca e menos dependente do humor do dia.</p>
+          <p>Outro ponto é evitar apostar valores altos após perdas. Sequências negativas fazem parte da variância em apostas esportivas, inclusive quando a análise parecia coerente. Quando não existe controle de banca, a tentativa de recuperar rapidamente pode levar a stakes maiores, apostas em mercados mal compreendidos e perda de disciplina.</p>
+          <p>Também há benefícios de acompanhamento. Registrar banca, stake, odd, resultado e motivo da entrada facilita entender desempenho, ROI em apostas e padrões de comportamento. Com dados, você consegue avaliar se uma estratégia faz sentido; sem dados, a memória tende a destacar acertos e minimizar erros.</p>
+        </ArticleSection>
+
+        <ArticleSection id="garante-lucro" title="Gestão de banca garante lucro?">
+          <p>Não. Gestão de banca não garante lucro, não transforma apostas em renda segura, não substitui análise e não elimina risco financeiro. Uma pessoa pode usar stake baixa, planilha, calculadora gestão de banca e ainda assim ter prejuízo, porque resultados esportivos são incertos.</p>
+          <p>O papel da gestão de banca é organizar a exposição: quanto da banca está em risco, qual limite será respeitado, que tipo de aposta será evitado e quando fazer pausa. Ela é uma camada de controle, não uma promessa de retorno. Se você busca orientações sobre limites, sinais de alerta e comportamento seguro, leia a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>jogo responsável</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="stake-apostas" title="O que é stake em apostas?">
+          <p>Stake é o valor apostado em uma seleção. Se você coloca R$10 em uma odd 2.00, a stake é R$10. Quando falamos em calculadora de stake, estamos tentando transformar uma regra de banca em um valor prático para uma aposta específica.</p>
+          <p>Existem stakes fixas e variáveis. Na stake fixa, você aposta o mesmo valor por entrada, como R$2. Na stake variável, o valor muda de acordo com percentual da banca, confiança na análise, Critério de Kelly ou outro método. O ponto central é que a stake deve se relacionar com a banca, não com vontade de recuperar perdas.</p>
+          <div className="grid sm:grid-cols-3 gap-4 mt-6">
+            {[['1%', 'R$ 1,00'], ['2%', 'R$ 2,00'], ['5%', 'R$ 5,00']].map(([percent, value]) => (
+              <div key={percent} className="card-glass p-5 text-center">
+                <p className="text-3xl font-bold" style={{ color: '#fbbf24' }}>{percent}</p>
+                <p className="mt-2" style={{ color: 'var(--text-2)' }}>de uma banca de R$100 = <strong style={{ color: 'var(--text-1)' }}>{value}</strong></p>
+              </div>
+            ))}
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="quanto-apostar" title="Como definir quanto apostar em cada jogo?">
+          <p>Não existe resposta única para quanto apostar em cada jogo. O valor depende da banca, do perfil de risco, da experiência, do tipo de mercado e da capacidade de lidar com perdas. Ainda assim, alguns métodos são usados como referência para organizar decisões.</p>
+          <div className="grid md:grid-cols-2 gap-4 mt-6">
+            {bankrollMethods.map(method => <div key={method.title} className="card-glass p-5"><h3 className="text-xl font-bold">{method.title}</h3><p className="mt-3 text-sm sm:text-base" style={{ color: 'var(--text-2)' }}>{method.text}</p></div>)}
+          </div>
+          <p>Antes de escolher um método, simule cenários na <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de gestão de banca</Link>. A ferramenta de gestão de banca do CalculaBet ajuda a <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calcular stake</Link> por perfil e entender como a exposição muda conforme odd, banca e probabilidade estimada.</p>
+        </ArticleSection>
+
+        <ArticleSection id="exemplo-100" title="Exemplo prático de gestão de banca com R$100">
+          <p>Imagine uma banca inicial de R$100. Uma pessoa conservadora pode usar 1% por aposta, ou R$1. Uma pessoa moderada pode simular 2%, ou R$2. Uma pessoa agressiva poderia usar 5%, ou R$5, mas esse nível de exposição costuma ser pesado para iniciantes.</p>
+          <div className="overflow-x-auto rounded-3xl mt-6" style={{ border: '1px solid rgba(255,255,255,0.10)' }}>
+            <table className="w-full text-left min-w-[680px]">
+              <thead style={{ background: 'rgba(255,255,255,0.06)' }}><tr><th className="p-4">Perfil</th><th className="p-4">Percentual da banca</th><th className="p-4">Valor por aposta</th><th className="p-4">Observação</th></tr></thead>
+              <tbody>{stakeProfileRows.map(row => <tr key={row[0]} className="border-t border-white/10"><td className="p-4 font-semibold">{row[0]}</td><td className="p-4">{row[1]}</td><td className="p-4">{row[2]}</td><td className="p-4" style={{ color: 'var(--text-2)' }}>{row[3]}</td></tr>)}</tbody>
+            </table>
+          </div>
+          <p>Quanto maior a stake, maior a exposição. Cinco perdas seguidas usando 1% consomem aproximadamente R$5 da banca inicial; cinco perdas usando 5% consomem R$25 se o valor for fixo. Por isso, uma sequência negativa afeta muito mais quem usa stakes altas. Para iniciantes, o foco normalmente deve ser controle, aprendizado e registro.</p>
+        </ArticleSection>
+
+        <ArticleSection id="gestao-100-como-comecar" title="Gestão de banca com R$100: como começar">
+          <p>A busca por gestão de banca 100 reais é comum porque começar pequeno pode ser útil para aprender. Com uma banca reduzida, o objetivo inicial não deve ser transformar apostas em renda, e sim entender odds, risco, disciplina e comportamento emocional. Uma banca de R$100 não torna a aposta segura; ela apenas limita o tamanho absoluto da exposição se for respeitada.</p>
+          <p>Um plano simples seria: definir stake baixa, registrar todas as entradas, limitar frequência, evitar mercados desconhecidos, revisar resultados semanalmente e usar ferramentas antes de apostar. Se a banca acabar, o correto é pausar e reavaliar, não usar dinheiro essencial nem tentar recuperar perdas com novos depósitos impulsivos.</p>
+        </ArticleSection>
+
+        <ArticleSection id="criterio-de-kelly" title="O que é o Critério de Kelly?">
+          <p>O Critério de Kelly é um método matemático para estimar stake com base em duas informações: a odd oferecida e a probabilidade que você estima para o evento. De forma introdutória, a lógica compara sua probabilidade estimada com a probabilidade implícita da odd para sugerir uma fração da banca.</p>
+          <p>O problema é que Kelly depende de estimativa realista. Se a probabilidade inserida estiver otimista demais, a fórmula pode sugerir stake agressiva e aumentar bastante o risco. Por isso, muitos usuários preferem Meio Kelly, que usa metade da sugestão, ou um limite máximo adicional por aposta. Você pode simular Kelly e Meio Kelly na <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>ferramenta de gestão de banca do CalculaBet</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="como-usar-calculadora" title="Como usar a Calculadora de Gestão de Banca do CalculaBet">
+          <p>A <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de gestão de banca</Link> foi criada para apoiar simulações educativas. Ela não recomenda apostas, não prevê resultados e não promete lucro. A utilidade está em visualizar quanto uma stake representa da banca e comparar perfis antes de tomar qualquer decisão.</p>
+          <ol className="grid gap-3 list-decimal list-inside mt-6">
+            <li className="card-glass p-4">Informe sua banca atual, usando apenas dinheiro separado para apostas.</li>
+            <li className="card-glass p-4">Informe a odd do mercado que deseja estudar.</li>
+            <li className="card-glass p-4">Informe uma probabilidade estimada, se for usar Kelly ou Meio Kelly.</li>
+            <li className="card-glass p-4">Escolha método ou perfil de risco.</li>
+            <li className="card-glass p-4">Veja a stake sugerida e quanto ela representa da banca.</li>
+            <li className="card-glass p-4">Avalie se o valor faz sentido para seu próprio limite de risco.</li>
+          </ol>
+          <div className="rounded-3xl p-6 mt-7 text-center" style={{ background: 'linear-gradient(135deg, rgba(251,191,36,0.16), rgba(34,211,238,0.10))', border: '1px solid rgba(251,191,36,0.22)' }}>
+            <h2 className="text-2xl font-bold">Calcule sua stake com responsabilidade</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a ferramenta de banca do CalculaBet para calcular quanto apostar, calcular stake ideal em cenários simulados e entender riscos antes de agir.</p>
+            <Link to="/ferramentas/gestao-de-banca" className="btn-primary mt-5">Usar calculadora de gestão de banca <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <ArticleSection id="erros-comuns" title="Erros comuns na gestão de banca">
+          <p>Os erros abaixo são frequentes entre iniciantes e podem comprometer a banca rapidamente. Eles não estão ligados apenas à matemática, mas também a emoção, pressa e falta de registro.</p>
+          <ul className="grid md:grid-cols-2 gap-4 mt-6">{bankrollErrors.map(item => <li key={item} className="card-glass p-5">{item}</li>)}</ul>
+          <p>Estratégias como <Link to="/ferramentas/martingale" className="font-semibold" style={{ color: '#67e8f9' }}>Martingale</Link> merecem cuidado especial porque aumentam stakes após perdas e podem exigir valores altos em sequências negativas. Se você percebe dificuldade de parar, acesse a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>jogo responsável</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="multiplas" title="Gestão de banca e apostas múltiplas">
+          <p>Apostas múltiplas combinam seleções e multiplicam odds. Isso aumenta o retorno potencial, mas reduz a chance de acerto, porque todas as seleções precisam ser vencedoras para o bilhete retornar. Por isso, múltiplas têm risco maior e exigem stake cuidadosamente limitada.</p>
+          <p>Evite colocar grande parte da banca em múltiplas, especialmente quando a odd combinada ficou alta apenas pela soma de muitos eventos. Para entender retorno e risco de odds combinadas, use a <Link to="/ferramentas/multipla" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de aposta múltipla</Link> e compare com sua regra de stake.</p>
+        </ArticleSection>
+
+        <ArticleSection id="controle-emocional" title="Gestão de banca e controle emocional">
+          <p>Controle emocional é parte da gestão de banca. Perdas fazem parte da variância e uma sequência negativa pode acontecer mesmo quando você se preparou. O risco aumenta quando a pessoa muda a estratégia por impulso, dobra stake, busca mercados desconhecidos ou aposta apenas para aliviar frustração.</p>
+          <p>Pausas são importantes. Se você sente perda de controle, ansiedade intensa, necessidade de esconder apostas ou vontade de usar dinheiro essencial, interrompa a atividade e procure ajuda. A página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#67e8f9' }}>jogo responsável</Link> reúne orientações e reforça que responsabilidade vem antes de qualquer estratégia.</p>
+        </ArticleSection>
+
+        <ArticleSection id="acompanhar-banca" title="Como acompanhar sua banca">
+          <p>Acompanhar banca significa registrar valor apostado, odd, mercado, resultado, lucro ou prejuízo e motivo da decisão. Esse histórico permite calcular ROI, yield, taxa de acerto e variação da banca ao longo do tempo. Sem registro, fica difícil saber se a estratégia tem coerência ou se a percepção está sendo distorcida por poucos resultados recentes.</p>
+          <p>A <Link to="/ferramentas/roi" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de ROI em apostas</Link> ajuda a avaliar retorno percentual sobre valores apostados. Combine esse acompanhamento com a <Link to="/ferramentas/gestao-de-banca" className="font-semibold" style={{ color: '#67e8f9' }}>calculadora de stake</Link> para entender exposição antes e depois das entradas.</p>
+        </ArticleSection>
+
+        <ArticleSection id="boas-praticas" title="Gestão de banca para iniciantes: boas práticas">
+          <ul className="grid md:grid-cols-2 gap-4">{beginnerPractices.map(item => <li key={item} className="card-glass p-5">{item}</li>)}</ul>
+          <p>O CalculaBet oferece <Link to="/ferramentas" className="font-semibold" style={{ color: '#67e8f9' }}>ferramentas para apostas</Link> e conteúdo educativo, mas não aceita apostas, não processa pagamentos e não garante resultados. Conheça também a página <Link to="/sobre" className="font-semibold" style={{ color: '#67e8f9' }}>sobre o CalculaBet</Link> e nossa <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link>.</p>
+        </ArticleSection>
+
+        <ArticleSection id="conclusao" title="Conclusão">
+          <p>Gestão de banca é controle de risco. Ela organiza a banca, limita o tamanho das stakes, reduz decisões impulsivas e ajuda a acompanhar desempenho com mais clareza. Mesmo assim, não garante lucro, não elimina perdas e não transforma apostas esportivas em investimento seguro.</p>
+          <p>Stakes devem ser proporcionais à banca, compatíveis com seu limite pessoal e definidas antes da emoção do evento. Ferramentas podem ajudar nos cálculos, mas responsabilidade vem antes de qualquer estratégia.</p>
+          <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(251,191,36,0.12))', border: '1px solid rgba(103,232,249,0.18)' }}>
+            <h2 className="text-2xl font-bold">Use a Calculadora de Gestão de Banca do CalculaBet</h2>
+            <p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a Calculadora de Gestão de Banca do CalculaBet para simular stakes, entender riscos e tomar decisões mais conscientes.</p>
+            <Link to="/ferramentas/gestao-de-banca" className="btn-primary mt-5">Abrir ferramenta de gestão de banca <BlogIcon name="arrow" className="w-4 h-4" /></Link>
+          </div>
+        </ArticleSection>
+
+        <section className="mt-14" aria-labelledby="faq-gestao-banca">
+          <p className="badge mb-4" style={{ color: '#fbbf24', borderColor: 'rgba(251,191,36,0.28)', background: 'rgba(251,191,36,0.10)' }}>FAQ SEO</p>
+          <h2 id="faq-gestao-banca" className="text-3xl font-bold">Perguntas frequentes sobre gestão de banca</h2>
+          <div className="mt-6 space-y-3">{BANKROLL_FAQS.map(faq => <details key={faq.question} className="card-glass p-5"><summary className="cursor-pointer font-semibold" style={{ color: 'var(--text-1)' }}>{faq.question}</summary><p className="mt-3 text-sm sm:text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>{faq.answer}</p></details>)}</div>
+        </section>
+      </article>
+
+      {relatedPosts.length > 0 && (
+        <section className="mt-12" aria-labelledby="posts-relacionados">
+          <h2 id="posts-relacionados" className="section-title">Artigos relacionados</h2>
+          <div className="mt-6 grid md:grid-cols-3 gap-5">{relatedPosts.map(item => <BlogCard key={item.slug} post={item} category={getCategoryById(item.category)} />)}</div>
+        </section>
+      )}
+    </>
+  );
+}
+
+
 export default function BlogPost() {
   const { slug } = useParams();
   const post = getPostBySlug(slug);
@@ -518,7 +820,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds'].includes(post.slug)} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['o-que-e-surebet', 'como-calcular-odds', 'o-que-e-gestao-de-banca'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -532,6 +834,8 @@ export default function BlogPost() {
             <SurebetArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'como-calcular-odds' ? (
             <OddsArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'o-que-e-gestao-de-banca' ? (
+            <BankrollArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
