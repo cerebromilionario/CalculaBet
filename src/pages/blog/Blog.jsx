@@ -113,7 +113,7 @@ export default function Blog() {
     <>
       <SEOHead title={title} description={description} canonical="/blog" schema={buildSchema()} />
 
-      <main className="relative overflow-hidden pt-28 pb-20">
+      <main className="relative overflow-x-hidden overflow-y-visible pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[520px] rounded-full blur-3xl opacity-25" style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.30), transparent 65%)' }} />
           <div className="absolute top-56 right-[-160px] w-[520px] h-[520px] rounded-full blur-3xl opacity-20" style={{ background: 'radial-gradient(circle, rgba(129,140,248,0.38), transparent 62%)' }} />
@@ -128,10 +128,10 @@ export default function Blog() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.02] text-gradient">
                 Blog sobre Odds, Apostas Esportivas e Gestão de Banca
               </h1>
-              <p className="mt-6 text-lg sm:text-xl leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              <p className="mt-6 text-lg sm:text-xl leading-relaxed" style={{ color: '#cbd5e1' }}>
                 Conteúdos educativos para entender melhor probabilidades, cálculos, odds, ferramentas e boas práticas de apostas responsáveis.
               </p>
-              <p className="mt-5 text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              <p className="mt-5 text-base leading-relaxed" style={{ color: '#cbd5e1' }}>
                 O Blog CalculaBet reúne guias para iniciantes e materiais práticos sobre leitura de odds, probabilidade implícita, controle de banca, múltiplas, arbitragem, cashout e uso consciente de calculadoras. A proposta é ajudar você a compreender cenários antes de tomar decisões, sempre lembrando que apostas envolvem risco financeiro e não têm resultado garantido.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -169,7 +169,7 @@ export default function Blog() {
             selectedCategoryName={selectedCategoryName}
           />
 
-          <section id="artigos" className="mt-10" aria-labelledby="blog-artigos">
+          <section id="artigos" className="mt-10 overflow-visible" aria-labelledby="blog-artigos">
             <div className="flex items-end justify-between gap-4 mb-5">
               <div>
                 <p className="text-sm" style={{ color: 'var(--text-3)' }}>{filteredPosts.length} artigo(s) encontrados</p>
@@ -178,7 +178,7 @@ export default function Blog() {
             </div>
 
             {filteredPosts.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-visible">
                 {filteredPosts.map(post => <BlogCard key={post.slug} post={post} category={getCategoryById(post.category)} />)}
               </div>
             ) : (
