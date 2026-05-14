@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/ui/Breadcrumbs';
 import BlogCard from '../../components/blog/BlogCard';
 import BlogIcon from '../../components/blog/BlogIcon';
 import FAQSection from '../../components/ui/FAQSection';
+import PartnerRotation from '../../components/ui/PartnerRotation';
 import { getSeoFaqsForPage } from '../../data/seoFaqs.jsx';
 import { BLOG_FAQS, getCategoryById, getPostBySlug, getRelatedPosts } from '../../data/blog/blogData';
 import { BEGINNER_GUIDE_FAQS } from '../../data/blog/beginnerGuideFaqs';
@@ -2050,6 +2051,14 @@ export default function BlogPost() {
           )}
           </>
           )}
+
+          <div className="mt-12">
+            <PartnerRotation
+              seed={`blog-${post.slug}`}
+              title="Parceiros para comparar antes de apostar"
+              context="blog"
+            />
+          </div>
 
           {seoFaqItems.length > 0 && (
             <section className="mt-12" aria-label="FAQ SEO complementar do artigo">

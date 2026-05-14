@@ -380,7 +380,7 @@ export default function Home() {
             </p>
             <h2 id="casas-heading" className="section-title mb-2">Casas para começar</h2>
             <p style={{ color: 'var(--text-2)', fontSize: '0.875rem' }}>
-              Parceiro aprovado em destaque. Verifique termos, bônus, regras e disponibilidade diretamente na plataforma.
+              Plataformas aprovadas para comparação responsável. Verifique termos, bônus, regras e disponibilidade diretamente em cada parceira.
             </p>
           </div>
           <span
@@ -393,8 +393,14 @@ export default function Home() {
 
         <AffiliateDisclosure />
 
-        <div className="mt-6 max-w-4xl">
-          {casas.map(c => <CasaCard key={c.id} casa={c} variant="featured" />)}
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {casas.map(c => <CasaCard key={c.id} casa={c} />)}
+        </div>
+
+        <div className="mt-6 text-center">
+          <Link to="/casas-apostas" className="btn-ghost px-6 py-3 text-sm">
+            Ver transparência dos parceiros
+          </Link>
         </div>
       </section>
 
