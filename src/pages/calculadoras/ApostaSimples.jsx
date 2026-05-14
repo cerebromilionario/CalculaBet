@@ -491,7 +491,7 @@ function ApostaSimplesExplanation() {
             {
               icon: '🎯',
               title: 'Para todos',
-              desc: 'Funciona para qualquer esporte, mercado e casa de apostas regulamentada.',
+              desc: 'Funciona para qualquer esporte, mercado e plataforma; verifique termos e disponibilidade diretamente na casa.',
             },
           ].map((item) => (
             <div
@@ -1028,7 +1028,7 @@ function ApostaSimplesExplanation() {
             },
             {
               err: 'Usar apenas uma casa de apostas',
-              fix: 'As odds variam entre casas de apostas. Cadastrar-se em múltiplas plataformas regulamentadas e comparar antes de apostar pode aumentar seu retorno significativamente no longo prazo.',
+              fix: 'As odds variam entre casas de apostas. Comparar plataformas antes de apostar pode melhorar sua análise de retorno no longo prazo; verifique termos, licença e disponibilidade diretamente em cada casa.',
             },
           ].map((item) => (
             <li
@@ -1228,7 +1228,7 @@ function ApostaSimplesExplanation() {
             },
             {
               t: 'Compare odds entre múltiplas casas',
-              d: 'A mesma seleção pode ter odds diferentes entre plataformas. Pequenas diferenças acumulam grande impacto no longo prazo. Use casas regulamentadas pelo Governo Federal.',
+              d: 'A mesma seleção pode ter odds diferentes entre plataformas. Pequenas diferenças acumulam grande impacto no longo prazo. Verifique licença, termos e disponibilidade diretamente na plataforma antes de apostar.',
             },
             {
               t: 'Registre todas as apostas',

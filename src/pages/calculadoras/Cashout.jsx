@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: 'O que é cashout automático?',
-    a: 'Cashout automático é uma funcionalidade oferecida por algumas casas (como Bet365) que fecha a aposta automaticamente quando o cashout atingir um valor mínimo definido por você. Exemplo: você define que quer fechar se o cashout chegar a R$150. Assim que o mercado atingir esse ponto, a aposta é encerrada automaticamente, mesmo que você não esteja acompanhando o jogo. É útil para jogos ao vivo em que não é possível monitorar em tempo real, mas cuidado: a margem da casa ainda se aplica ao valor automático.',
+    a: 'Cashout automático é uma funcionalidade oferecida por algumas casas que fecha a aposta automaticamente quando o cashout atingir um valor mínimo definido por você. Exemplo: você define que quer fechar se o cashout chegar a R$150. Assim que o mercado atingir esse ponto, a aposta é encerrada automaticamente, mesmo que você não esteja acompanhando o jogo. É útil para jogos ao vivo em que não é possível monitorar em tempo real, mas cuidado: a margem da casa ainda se aplica ao valor automático.',
   },
   {
     q: 'Por que o cashout some ou fica suspenso durante o jogo?',
@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     q: 'Todas as casas de apostas oferecem cashout?',
-    a: 'Não. Casas como Bet365, Betano, Sportingbet e KTO oferecem cashout em vários mercados. Pinnacle, por exemplo, não oferece cashout — a filosofia da casa é diferente. A disponibilidade também varia por mercado: alguns eventos têm cashout disponível durante o jogo, outros apenas pré-evento, e alguns mercados específicos nunca têm cashout. Sempre verifique a política da casa antes de contar com essa funcionalidade.',
+    a: 'Não. Algumas casas oferecem cashout em vários mercados, enquanto outras não oferecem esse recurso — a filosofia e a disponibilidade variam por plataforma. A disponibilidade também varia por mercado: alguns eventos têm cashout disponível durante o jogo, outros apenas pré-evento, e alguns mercados específicos nunca têm cashout. Sempre verifique a política da casa antes de contar com essa funcionalidade.',
   },
   {
     q: 'Cashout é influenciado pela psicologia?',
@@ -211,7 +211,7 @@ function CashoutExplanation() {
           A <strong style={{ color: 'var(--text-1)' }}>calculadora de cashout</strong> é uma ferramenta educativa que revela o <strong style={{ color: 'var(--text-1)' }}>valor justo de mercado</strong> da sua aposta no momento atual e o compara com o valor que a casa está oferecendo. A diferença entre os dois é a <strong style={{ color: 'var(--text-1)' }}>margem de cashout</strong> — o custo real de fechar a aposta antecipadamente, que frequentemente passa despercebido por apostadores.
         </p>
         <p>
-          O cashout é uma das funcionalidades mais populares das casas de apostas modernas, disponível em Bet365, Betano, Sportingbet e outras. Permite encerrar uma aposta antes do resultado final — seja para garantir lucro parcial quando você está vencendo, seja para limitar o prejuízo quando o jogo virou contra você. Parece simples, mas a matemática por trás revela que a casa sempre cobra um preço por essa conveniência.
+          O cashout é uma das funcionalidades mais populares das casas de apostas modernas, disponível em algumas plataformas e indisponível em outras. Permite encerrar uma aposta antes do resultado final — seja para garantir lucro parcial quando você está vencendo, seja para limitar o prejuízo quando o jogo virou contra você. Parece simples, mas a matemática por trás revela que a casa sempre cobra um preço por essa conveniência.
         </p>
         <p>
           Use esta ferramenta antes de clicar em "fazer cashout": ela mostra em segundos se o valor oferecido está próximo do justo ou se a margem da casa está inflada — caso em que um <strong style={{ color: 'var(--text-1)' }}>hedge manual em outra casa</strong> pode ser significativamente mais vantajoso.
