@@ -4,9 +4,9 @@ import FAQSection from './FAQSection';
 import SEOHead from './SEOHead';
 import Icon from './Icons';
 import { Link } from 'react-router-dom';
-import { AFFILIATE_REL, calculadoras, parceiroDestaque } from '../../data/casas';
+import { calculadoras } from '../../data/casas';
 import AdNativeBanner from '../ads/AdNativeBanner';
-import AffiliateBanner from './AffiliateBanner';
+import PartnerRotation from './PartnerRotation';
 
 const breadcrumbSchema = (title, slug) => ({
   '@context': 'https://schema.org',
@@ -76,6 +76,10 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
               }}
             >
               {children}
+            </div>
+
+            <div className="lg:hidden">
+              <PartnerRotation seed={`tool-${slug}`} title="Casas parceiras para comparar com responsabilidade" compact />
             </div>
 
             {/* Native banner — mid-page, between calculator and educational content */}
@@ -187,48 +191,9 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
               </ul>
             </div>
 
-            {/* Partner card */}
-            <div
-              className="rounded-2xl p-4 overflow-hidden"
-              style={{ background: 'rgba(34,211,238,0.035)', border: '1px solid rgba(34,211,238,0.12)' }}
-            >
-              <p className="text-xs font-semibold mb-1" style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-                Parceiro destaque
-              </p>
-              <p className="text-xs mb-3" style={{ color: 'var(--text-3)', fontSize: '0.6rem' }}>Publicidade • Link de afiliado • +18</p>
-
-              <div className="hidden lg:block mb-3">
-                <AffiliateBanner size="300x600" placement="sidebar" />
-              </div>
-              <div className="lg:hidden mb-3">
-                <AffiliateBanner size="320x50" placement="sidebar" />
-              </div>
-
-              <div className="flex items-center gap-3 mb-3">
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
-                  style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.22)' }}
-                  aria-hidden="true"
-                >
-                  1X
-                </div>
-                <div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--text-1)' }}>{parceiroDestaque.nome}</p>
-                  <p className="text-xs" style={{ color: 'var(--text-3)' }}>Bônus conforme termos · Cripto</p>
-                </div>
-              </div>
-              <a
-                href={parceiroDestaque.affiliateUrl}
-                target="_blank"
-                rel={AFFILIATE_REL}
-                className="btn-green w-full text-xs py-2"
-                aria-label="Abrir conta na 1XBIT (link patrocinado)"
-              >
-                Abrir conta →
-              </a>
-              <p className="text-center mt-2 leading-relaxed" style={{ color: 'var(--text-3)', fontSize: '0.6rem' }}>
-                Verifique termos, bônus, regras e disponibilidade. Aposte com responsabilidade.
-              </p>
+            {/* Partner rotation — desktop only to avoid repeating partners on mobile */}
+            <div className="hidden lg:block">
+              <PartnerRotation seed={`tool-${slug}`} title="Parceiros em destaque" compact />
             </div>
 
             {/* Institutional links */}

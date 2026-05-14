@@ -33,10 +33,11 @@ export default function CasaCard({ casa, variant = 'default' }) {
               style={{ background: `${casa.cor}18`, color: casa.cor, border: `1px solid ${casa.cor}28` }}
               aria-hidden="true"
             >
-              1X
+              {casa.initials || casa.nome.slice(0, 2)}
             </div>
             <div>
               <p className="text-lg font-bold" style={{ color: 'var(--text-1)' }}>{casa.nome}</p>
+              <p className="text-xs mt-1" style={{ color: 'var(--text-3)' }}>{casa.category}</p>
               <p className="text-xs mt-1" style={{ color: 'var(--text-3)' }}>Publicidade • Link de afiliado • +18</p>
             </div>
           </div>
@@ -88,7 +89,7 @@ export default function CasaCard({ casa, variant = 'default' }) {
 
       {isFeatured && (
         <div className="relative flex justify-center md:justify-end">
-          <AffiliateBanner size="300x250" placement="home" />
+          <AffiliateBanner partner={casa} placement="home" preferredSizes={['300x250', '728x90', '668x130', '770x436', '800x360', '500x500']} />
         </div>
       )}
     </article>
