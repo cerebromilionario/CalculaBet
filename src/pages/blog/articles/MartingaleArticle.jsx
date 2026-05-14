@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BlogCard from '../../../components/blog/BlogCard';
 import BlogIcon from '../../../components/blog/BlogIcon';
+import ArticleAffiliateBanner from '../../../components/ui/ArticleAffiliateBanner';
 import { getCategoryById } from '../../../data/blog/blogData';
 import { MARTINGALE_FAQS } from '../../../data/blog/martingaleFaqs';
 
@@ -96,6 +97,8 @@ export default function MartingaleArticle({ post, category, relatedPosts }) {
             {['Dobrar após perda', 'Risco exponencial', 'Simulação responsável'].map(item => <div key={item} className="card-glass p-4 text-center font-semibold" style={{ color: 'var(--text-1)' }}>{item}</div>)}
           </div>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">Conteúdo apenas educativo. Apostas envolvem riscos financeiros, são destinadas a maiores de 18 anos, não há garantia de ganhos, Martingale não elimina perdas e ferramentas devem ser usadas como apoio ao cálculo — nunca como promessa de resultado.</Callout>
 
@@ -229,6 +232,8 @@ export default function MartingaleArticle({ post, category, relatedPosts }) {
             <Link to="/ferramentas/martingale" className="btn-primary mt-5">Usar Calculadora Martingale <BlogIcon name="arrow" className="w-4 h-4" /></Link>
           </div>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-14" aria-labelledby="faq-martingale">
           <p className="badge badge-cyan mb-4">FAQ SEO</p>

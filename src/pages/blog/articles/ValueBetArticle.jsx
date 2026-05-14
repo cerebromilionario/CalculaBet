@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BlogCard from '../../../components/blog/BlogCard';
 import BlogIcon from '../../../components/blog/BlogIcon';
+import ArticleAffiliateBanner from '../../../components/ui/ArticleAffiliateBanner';
 import { getCategoryById } from '../../../data/blog/blogData';
 import { VALUE_BET_FAQS } from '../../../data/blog/valueBetFaqs';
 
@@ -100,6 +101,8 @@ export default function ValueBetArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber"><strong>Aviso responsável:</strong> conteúdo apenas educativo, indicado para maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos, value bet não garante vitória e EV positivo não elimina perdas. Não aposte dinheiro essencial e use ferramentas como apoio ao cálculo, não como promessa de resultado. Leia também nossa página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</Callout>
 
@@ -225,6 +228,8 @@ export default function ValueBetArticle({ post, category, relatedPosts }) {
             <div className="mt-5 flex flex-col sm:flex-row justify-center gap-3"><Link to="/ferramentas/odds" className="btn-primary">Calculadora de Odds <BlogIcon name="arrow" className="w-4 h-4" /></Link><Link to="/ferramentas/roi" className="btn-ghost">Calculadora de ROI</Link><Link to="/ferramentas/gestao-de-banca" className="btn-ghost">Gestão de banca</Link></div>
           </div>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-14" aria-labelledby="faq-value-bet">
           <p className="badge badge-cyan mb-4">FAQ SEO</p>
