@@ -5,6 +5,7 @@ import BlogCard from '../../components/blog/BlogCard';
 import BlogIcon from '../../components/blog/BlogIcon';
 import FAQSection from '../../components/ui/FAQSection';
 import PartnerRotation from '../../components/ui/PartnerRotation';
+import ArticleAffiliateBanner from '../../components/ui/ArticleAffiliateBanner';
 import { getSeoFaqsForPage } from '../../data/seoFaqs.jsx';
 import { BLOG_FAQS, getCategoryById, getPostBySlug, getRelatedPosts } from '../../data/blog/blogData';
 import { BEGINNER_GUIDE_FAQS } from '../../data/blog/beginnerGuideFaqs';
@@ -504,6 +505,8 @@ function SurebetArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
+
         <SurebetCallout tone="amber">
           <strong>Importante:</strong> este artigo é conteúdo educativo para maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e ferramentas devem ser usadas como apoio ao cálculo, nunca como promessa de resultado. Consulte nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.
         </SurebetCallout>
@@ -595,6 +598,8 @@ function SurebetArticle({ post, category, relatedPosts }) {
             <Link to="/ferramentas/arbitragem" className="btn-primary mt-5">Abrir Calculadora de Arbitragem <BlogIcon name="arrow" className="w-4 h-4" /></Link>
           </div>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-14" aria-labelledby="faq-surebet">
           <h2 id="faq-surebet" className="text-3xl font-bold">FAQ sobre surebet e arbitragem esportiva</h2>
@@ -694,6 +699,8 @@ function OddsArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
+
         <OddsCallout tone="amber"><strong>Importante:</strong> conteúdo apenas educativo, indicado para maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e ferramentas devem ser usadas como apoio ao cálculo, não como promessa de resultado. Leia também nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</OddsCallout>
 
         <ArticleSection id="o-que-sao-odds" title="O que são odds em apostas esportivas?">
@@ -773,6 +780,8 @@ function OddsArticle({ post, category, relatedPosts }) {
           <p>Calculadoras reduzem erro manual e facilitam simulações, porém apostas envolvem risco financeiro e exigem responsabilidade. Use ferramentas como apoio ao cálculo, nunca como promessa de lucro.</p>
           <div className="rounded-3xl p-6 mt-6 text-center" style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(52,211,153,0.10))', border: '1px solid rgba(103,232,249,0.18)' }}><h2 className="text-2xl font-bold">Use a Calculadora de Odds do CalculaBet</h2><p className="mt-3" style={{ color: 'var(--text-2)' }}>Use a Calculadora de Odds do CalculaBet para simular retorno, lucro e probabilidade implícita antes de tomar qualquer decisão.</p><Link to="/ferramentas/odds" className="btn-primary mt-5">Abrir Calculadora de Odds <BlogIcon name="arrow" className="w-4 h-4" /></Link></div>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-14" aria-labelledby="faq-odds">
           <p className="badge badge-cyan mb-4">FAQ SEO</p>
@@ -861,6 +870,8 @@ function ROIArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <ROICallout tone="amber"><strong>Aviso responsável:</strong> este conteúdo é apenas educativo. Apostas envolvem riscos financeiros, são destinadas apenas a maiores de 18 anos, não há garantia de ganhos e ferramentas devem ser usadas como apoio ao cálculo, não como promessa de resultado. Consulte nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</ROICallout>
 
@@ -966,6 +977,8 @@ function ROIArticle({ post, category, relatedPosts }) {
           <p className="text-sm" style={{ color: 'var(--text-3)' }}>O CalculaBet não é casa de apostas, não aceita apostas e não processa pagamentos. Consulte também nossa <Link to="/politica-de-afiliados" className="font-semibold" style={{ color: '#67e8f9' }}>política de afiliados</Link>.</p>
         </ArticleSection>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
+
         <section className="mt-12" aria-labelledby="faq-roi">
           <h2 id="faq-roi" className="text-3xl font-bold tracking-tight">Perguntas frequentes sobre ROI em apostas</h2>
           <div className="mt-6 space-y-3">
@@ -1036,6 +1049,8 @@ function BankrollArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <BankrollCallout tone="amber">
           <strong>Gestão de banca não garante lucro.</strong> Ela ajuda a controlar o tamanho das apostas e reduzir decisões impulsivas. Este conteúdo é apenas educativo, voltado a maiores de 18 anos, e as ferramentas do CalculaBet devem ser usadas como apoio ao cálculo, não como promessa de resultado.
@@ -1159,6 +1174,8 @@ function BankrollArticle({ post, category, relatedPosts }) {
           </div>
         </ArticleSection>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
+
         <section className="mt-14" aria-labelledby="faq-gestao-banca">
           <p className="badge mb-4" style={{ color: '#fbbf24', borderColor: 'rgba(251,191,36,0.28)', background: 'rgba(251,191,36,0.10)' }}>FAQ SEO</p>
           <h2 id="faq-gestao-banca" className="text-3xl font-bold">Perguntas frequentes sobre gestão de banca</h2>
@@ -1238,6 +1255,8 @@ function MultipleBetArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <OddsCallout tone="amber"><strong>Conteúdo educativo:</strong> o CalculaBet não é casa de apostas, não aceita apostas e não processa pagamentos. Apostas envolvem riscos financeiros, são permitidas apenas para maiores de 18 anos e não há garantia de ganhos. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Consulte também a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</OddsCallout>
 
@@ -1349,6 +1368,8 @@ function MultipleBetArticle({ post, category, relatedPosts }) {
           </div>
         </ArticleSection>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
+
         <section className="mt-14" aria-labelledby="faq-aposta-multipla">
           <p className="badge mb-4" style={{ color: '#c4b5fd', borderColor: 'rgba(196,181,253,0.28)', background: 'rgba(167,139,250,0.12)' }}>FAQ SEO</p>
           <h2 id="faq-aposta-multipla" className="text-3xl font-bold">Perguntas frequentes sobre aposta múltipla</h2>
@@ -1434,6 +1455,8 @@ function DutchingArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <SurebetCallout tone="amber"><strong>Importante:</strong> conteúdo apenas educativo, destinado a maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e Dutching não elimina perdas. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Leia nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</SurebetCallout>
 
@@ -1532,6 +1555,8 @@ function DutchingArticle({ post, category, relatedPosts }) {
           <p><Link to="/ferramentas/dutching" className="font-semibold" style={{ color: '#67e8f9' }}>Use a Calculadora de Dutching do CalculaBet</Link> para simular a distribuição de stakes entre diferentes resultados.</p>
         </ArticleSection>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
+
         <section className="mt-12" aria-labelledby="faq-dutching">
           <h2 id="faq-dutching" className="text-3xl font-bold tracking-tight">FAQ sobre Dutching</h2>
           <div className="mt-5 space-y-3">
@@ -1611,6 +1636,8 @@ function CashoutArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <SurebetCallout tone="amber"><strong>Conteúdo apenas educativo.</strong> Apostas envolvem riscos financeiros, são destinadas apenas a maiores de 18 anos, não há garantia de ganhos e cashout não elimina risco. Use ferramentas como apoio ao cálculo, não como promessa de resultado, e leia a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</SurebetCallout>
 
@@ -1719,6 +1746,8 @@ function CashoutArticle({ post, category, relatedPosts }) {
           </div>
         </ArticleSection>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
+
         <section className="mt-12" aria-labelledby="faq-cashout">
           <h2 id="faq-cashout" className="text-3xl font-bold tracking-tight">FAQ sobre cashout em apostas</h2>
           <div className="mt-5 space-y-3">
@@ -1825,6 +1854,8 @@ function ImpliedProbabilityArticle({ post, category, relatedPosts }) {
           <strong>Probabilidade implícita é uma conversão matemática da odd, não uma previsão garantida.</strong> Use o cálculo para compreender a cotação, não para tratar um evento esportivo como certo.
         </SurebetCallout>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
+
         <ArticleSection id="o-que-e" title="O que é probabilidade implícita nas odds?">
           <p>Probabilidade implícita é a chance sugerida pela odd quando a cotação é convertida para percentual. Em outras palavras, é o que a odd está “dizendo” matematicamente sobre a chance de um resultado, antes de qualquer análise externa do usuário.</p>
           <p>Se uma odd decimal é 2.00, a conversão indica 50%. Se a odd é 1.50, a conversão indica 66,67%. Isso não significa que o resultado vai acontecer nessa proporção em um jogo específico. Significa apenas que a cotação pode ser lida como um preço associado a uma probabilidade.</p>
@@ -1919,6 +1950,8 @@ function ImpliedProbabilityArticle({ post, category, relatedPosts }) {
             <Link to="/ferramentas/odds" className="btn-primary mt-5">Usar Calculadora de Odds <BlogIcon name="arrow" className="w-4 h-4" /></Link>
           </div>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-14" aria-labelledby="faq-probabilidade-implicita">
           <p className="badge badge-cyan mb-4">FAQ SEO</p>
@@ -2027,6 +2060,10 @@ export default function BlogPost() {
                 <p className="mt-2 text-sm" style={{ color: 'var(--text-2)' }}>Revise limites, riscos financeiros e sinais de alerta antes de qualquer decisão.</p>
               </Link>
             </section>
+
+            <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
+
+            <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
             <section className="mt-10" aria-labelledby="post-faq">
               <h2 id="post-faq" className="text-2xl font-bold">Perguntas relacionadas</h2>

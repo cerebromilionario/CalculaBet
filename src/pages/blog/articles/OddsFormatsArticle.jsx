@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BlogCard from '../../../components/blog/BlogCard';
 import BlogIcon from '../../../components/blog/BlogIcon';
+import ArticleAffiliateBanner from '../../../components/ui/ArticleAffiliateBanner';
 import { getCategoryById } from '../../../data/blog/blogData';
 import { ODDS_FORMATS_FAQS } from '../../../data/blog/oddsFormatsFaqs';
 
@@ -129,6 +130,8 @@ export default function OddsFormatsArticle({ post, category, relatedPosts }) {
           </div>
         </header>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
+
         <Callout>Odds mostram retorno potencial e probabilidade implícita, mas não garantem resultado.</Callout>
 
         <ArticleSection id="o-que-sao-odds" title="O que são odds em apostas esportivas?">
@@ -225,6 +228,8 @@ export default function OddsFormatsArticle({ post, category, relatedPosts }) {
           <p>Odds decimais são as mais comuns no Brasil e facilitam o cálculo do retorno total. Odds americanas usam sinais positivo e negativo para mostrar lucro ou stake necessária. Odds fracionárias exibem o lucro em formato de fração. Todos os formatos podem ser convertidos, e o ponto central é entender retorno, lucro e probabilidade implícita.</p>
           <p><Link to="/ferramentas/conversor" className="font-semibold" style={{ color: '#67e8f9' }}>Use o Conversor de Odds do CalculaBet</Link> para transformar odds decimais, americanas e fracionárias em segundos.</p>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-12" aria-labelledby="faq-odds-formatos">
           <h2 id="faq-odds-formatos" className="text-3xl font-bold tracking-tight">FAQ sobre odds decimais, americanas e fracionárias</h2>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BlogCard from '../../../components/blog/BlogCard';
 import BlogIcon from '../../../components/blog/BlogIcon';
+import ArticleAffiliateBanner from '../../../components/ui/ArticleAffiliateBanner';
 import { getCategoryById } from '../../../data/blog/blogData';
 import { KELLY_CRITERION_FAQS } from '../../../data/blog/kellyCriterionFaqs';
 
@@ -97,6 +98,8 @@ export default function KellyCriterionArticle({ post, category, relatedPosts }) 
             </ul>
           </aside>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <div className="mt-8 grid md:grid-cols-2 gap-4">
           <Callout tone="amber"><strong>O Critério de Kelly não garante lucro.</strong> Ele depende da qualidade da probabilidade estimada.</Callout>
@@ -228,6 +231,8 @@ export default function KellyCriterionArticle({ post, category, relatedPosts }) 
           <p>O Critério de Kelly ajuda a calcular stake com base em odd e probabilidade estimada. Ele pode ser útil para conectar valor percebido, banca e exposição, mas exige estimativas realistas e disciplina. Kelly completo pode ser agressivo; Meio Kelly e Kelly fracionado reduzem volatilidade, embora não eliminem risco.</p>
           <p>Use a <Link to="/ferramentas/gestao-de-banca" className="text-cyan-300 hover:text-cyan-200 font-semibold">Calculadora de Gestão de Banca do CalculaBet</Link> para simular o Critério de Kelly, Meio Kelly e diferentes cenários de stake. Depois, continue explorando as <Link to="/ferramentas" className="text-cyan-300 hover:text-cyan-200">ferramentas do CalculaBet</Link> e os guias do <Link to="/blog" className="text-cyan-300 hover:text-cyan-200">blog</Link> com foco educativo e responsável.</p>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-12" aria-labelledby="faq-kelly">
           <h2 id="faq-kelly" className="text-3xl sm:text-4xl font-bold tracking-tight">Perguntas frequentes sobre Critério de Kelly</h2>

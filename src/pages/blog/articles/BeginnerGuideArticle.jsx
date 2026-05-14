@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BlogCard from '../../../components/blog/BlogCard';
 import BlogIcon from '../../../components/blog/BlogIcon';
+import ArticleAffiliateBanner from '../../../components/ui/ArticleAffiliateBanner';
 import { getCategoryById } from '../../../data/blog/blogData';
 import { BEGINNER_GUIDE_FAQS } from '../../../data/blog/beginnerGuideFaqs';
 
@@ -110,6 +111,8 @@ export default function BeginnerGuideArticle({ post, category, relatedPosts }) {
             <Link to="/jogo-responsavel" className="btn-ghost">Ler jogo responsável</Link>
           </div>
         </header>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="rose">
           <strong>Aviso educativo +18:</strong> o CalculaBet não é uma casa de apostas, não aceita apostas e não processa pagamentos. Este conteúdo é apenas educativo e destinado apenas a maiores de 18 anos. Apostas envolvem riscos financeiros, não garantem ganhos, não são investimento seguro e não devem usar dinheiro essencial. Use ferramentas como apoio ao cálculo, não como promessa de resultado.
@@ -258,6 +261,8 @@ export default function BeginnerGuideArticle({ post, category, relatedPosts }) {
           </div>
           <p className="text-sm pt-3">Transparência: conheça também a <Link to="/politica-de-afiliados" className="text-cyan-300 hover:text-cyan-200">política de afiliados</Link> e a página <Link to="/sobre" className="text-cyan-300 hover:text-cyan-200">sobre o CalculaBet</Link>.</p>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-14" aria-labelledby="faq-iniciantes">
           <p className="badge badge-cyan mb-4">FAQ SEO</p>

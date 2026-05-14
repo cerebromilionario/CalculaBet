@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import BlogCard from '../../../components/blog/BlogCard';
 import BlogIcon from '../../../components/blog/BlogIcon';
+import ArticleAffiliateBanner from '../../../components/ui/ArticleAffiliateBanner';
 import { getCategoryById } from '../../../data/blog/blogData';
 import { BET_RETURN_FAQS } from '../../../data/blog/betReturnFaqs';
 
@@ -133,6 +134,8 @@ export default function BetReturnArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
+
         <Callout tone="amber">
           <strong>Importante:</strong> este artigo é apenas educativo, para maiores de 18 anos. Apostas envolvem riscos financeiros, odds não preveem resultados, retorno potencial não é lucro garantido e não há garantia de ganhos. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Leia também nossa página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.
         </Callout>
@@ -247,6 +250,8 @@ export default function BetReturnArticle({ post, category, relatedPosts }) {
             <Link to="/ferramentas/odds" className="btn-primary mt-5">Abrir calculadora gratuita <BlogIcon name="arrow" className="w-4 h-4" /></Link>
           </div>
         </ArticleSection>
+
+        <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
         <section className="mt-12" aria-labelledby="faq-retorno-aposta">
           <h2 id="faq-retorno-aposta" className="text-3xl font-bold tracking-tight" style={{ color: 'var(--text-1)' }}>Perguntas frequentes sobre retorno de aposta</h2>
