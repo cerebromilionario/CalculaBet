@@ -3,15 +3,23 @@ import { Helmet } from 'react-helmet-async';
 export const BASE_URL = 'https://calculabet.site';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
+function toCanonicalUrl(pathOrUrl = '/') {
+  const value = String(pathOrUrl || '/').trim();
+
+  if (value.startsWith('http://') || value.startsWith('https://')) {
+    const parsedUrl = new URL(value);
+    return `${BASE_URL}${parsedUrl.pathname}${parsedUrl.search}${parsedUrl.hash}`;
+  }
+
+  const normalizedPath = value.startsWith('/') ? value : `/${value}`;
+  return `${BASE_URL}${normalizedPath}`;
+}
+
 export default function SEOHead({ title, description, canonical, schema, ogImage, noindex, ogType = 'website', appendSiteName = true, ogTitle, ogDescription, twitterCard = 'summary_large_image' }) {
   const fullTitle = title
     ? (appendSiteName && !title.includes('CalculaBet') ? `${title} | CalculaBet` : title)
     : 'CalculaBet – Ferramentas gratuitas para apostadores esportivos';
-  const canonicalUrl = canonical
-    ? canonical.startsWith('http')
-      ? canonical
-      : `${BASE_URL}${canonical}`
-    : `${BASE_URL}/`;
+  const canonicalUrl = toCanonicalUrl(canonical);
   const ogImg = ogImage || DEFAULT_OG_IMAGE;
   const resolvedOgTitle = ogTitle || fullTitle;
   const resolvedOgDescription = ogDescription || description;

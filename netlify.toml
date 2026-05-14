@@ -3,14 +3,32 @@
   publish = "dist"
 
 [[redirects]]
+  from = "https://www.calculabet.site"
+  to = "https://calculabet.site"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "https://www.calculabet.site/*"
   to = "https://calculabet.site/:splat"
   status = 301
   force = true
 
 [[redirects]]
+  from = "http://calculabet.site"
+  to = "https://calculabet.site"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "http://calculabet.site/*"
   to = "https://calculabet.site/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.calculabet.site"
+  to = "https://calculabet.site"
   status = 301
   force = true
 
