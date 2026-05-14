@@ -1115,7 +1115,7 @@ export default function Ferramentas() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 { to: '/sobre', label: 'Sobre o CalculaBet', desc: 'Conheça a plataforma, sua missao e como as ferramentas foram desenvolvidas.', color: '#22d3ee' },
-                { to: '/casas-apostas', label: 'Casas de Apostas', desc: 'Comparativo das principais casas regulamentadas no Brasil com odds e deposito mínimo.', color: '#4ade80' },
+                { to: '/casas-apostas', label: 'Casas de Apostas', desc: 'Informações sobre a casa parceira aprovada, avisos +18 e transparência de afiliados.', color: '#4ade80' },
                 { to: '/jogo-responsavel', label: 'Jogo Responsável', desc: 'Orientações, limites recomendados e recursos de apoio para apostas com controle.', color: '#fbbf24' },
                 { to: '/calculadoras/gestao-banca', label: 'Gestão de Banca', desc: 'Kelly Critérion, flat betting e percentual fixo para crescer sua banca com disciplina.', color: '#818cf8' },
                 { to: '/calculadoras/roi', label: 'ROI em Apostas', desc: 'Acompanhe seu retorno sobre investimento e avalie sua performance acumulada.', color: '#fbbf24' },

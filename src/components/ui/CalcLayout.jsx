@@ -4,8 +4,9 @@ import FAQSection from './FAQSection';
 import SEOHead from './SEOHead';
 import Icon from './Icons';
 import { Link } from 'react-router-dom';
-import { calculadoras } from '../../data/casas';
+import { AFFILIATE_REL, calculadoras, parceiroDestaque } from '../../data/casas';
 import AdNativeBanner from '../ads/AdNativeBanner';
+import AffiliateBanner from './AffiliateBanner';
 
 const breadcrumbSchema = (title, slug) => ({
   '@context': 'https://schema.org',
@@ -188,36 +189,45 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
 
             {/* Partner card */}
             <div
-              className="rounded-2xl p-5"
-              style={{ background: 'rgba(34,197,94,0.04)', border: '1px solid rgba(34,197,94,0.12)' }}
+              className="rounded-2xl p-4 overflow-hidden"
+              style={{ background: 'rgba(34,211,238,0.035)', border: '1px solid rgba(34,211,238,0.12)' }}
             >
               <p className="text-xs font-semibold mb-1" style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
                 Parceiro destaque
               </p>
-              <p className="text-xs mb-3" style={{ color: 'var(--text-3)', fontSize: '0.6rem' }}>Publicidade</p>
+              <p className="text-xs mb-3" style={{ color: 'var(--text-3)', fontSize: '0.6rem' }}>Publicidade • Link de afiliado • +18</p>
+
+              <div className="hidden lg:block mb-3">
+                <AffiliateBanner size="300x600" placement="sidebar" />
+              </div>
+              <div className="lg:hidden mb-3">
+                <AffiliateBanner size="320x50" placement="sidebar" />
+              </div>
+
               <div className="flex items-center gap-3 mb-3">
                 <div
                   className="w-9 h-9 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
-                  style={{ background: 'rgba(0,166,81,0.15)', color: '#00a651', border: '1px solid rgba(0,166,81,0.22)' }}
+                  style={{ background: 'rgba(34,211,238,0.12)', color: '#22d3ee', border: '1px solid rgba(34,211,238,0.22)' }}
                   aria-hidden="true"
                 >
-                  B3
+                  1X
                 </div>
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: 'var(--text-1)' }}>Bet365</p>
-                  <p className="text-xs" style={{ color: 'var(--text-3)' }}>Bônus até R$200 · Pix</p>
+                  <p className="text-sm font-semibold" style={{ color: 'var(--text-1)' }}>{parceiroDestaque.nome}</p>
+                  <p className="text-xs" style={{ color: 'var(--text-3)' }}>Bônus conforme termos · Cripto</p>
                 </div>
               </div>
               <a
-                href="#afiliado-bet365"
-                rel="noopener noreferrer nofollow sponsored"
+                href={parceiroDestaque.affiliateUrl}
+                target="_blank"
+                rel={AFFILIATE_REL}
                 className="btn-green w-full text-xs py-2"
-                aria-label="Abrir conta na Bet365 (link patrocinado)"
+                aria-label="Abrir conta na 1XBIT (link patrocinado)"
               >
                 Abrir conta →
               </a>
-              <p className="text-center mt-2" style={{ color: 'var(--text-3)', fontSize: '0.6rem' }}>
-                +18 · Patrocinado · Verifique termos
+              <p className="text-center mt-2 leading-relaxed" style={{ color: 'var(--text-3)', fontSize: '0.6rem' }}>
+                Verifique termos, bônus, regras e disponibilidade. Aposte com responsabilidade.
               </p>
             </div>
 

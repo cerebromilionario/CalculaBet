@@ -380,21 +380,21 @@ export default function Home() {
             </p>
             <h2 id="casas-heading" className="section-title mb-2">Casas para começar</h2>
             <p style={{ color: 'var(--text-2)', fontSize: '0.875rem' }}>
-              Verifique licença, termos e disponibilidade na sua região antes de se cadastrar.
+              Parceiro aprovado em destaque. Verifique termos, bônus, regras e disponibilidade diretamente na plataforma.
             </p>
           </div>
           <span
             className="text-xs px-2.5 py-1 rounded-lg flex-shrink-0 self-start sm:self-auto"
             style={{ background: 'rgba(251,191,36,0.06)', border: '1px solid rgba(251,191,36,0.15)', color: '#fbbf24' }}
           >
-            Conteúdo patrocinado
+            Publicidade • Link de afiliado • +18
           </span>
         </div>
 
         <AffiliateDisclosure />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-          {casas.map(c => <CasaCard key={c.id} casa={c} />)}
+        <div className="mt-6 max-w-4xl">
+          {casas.map(c => <CasaCard key={c.id} casa={c} variant="featured" />)}
         </div>
       </section>
 

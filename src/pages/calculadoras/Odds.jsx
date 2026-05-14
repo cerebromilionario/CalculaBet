@@ -511,7 +511,7 @@ function OddsExplanation() {
         </h2>
         <ul className="space-y-3">
           {[
-            ['Compare odds entre casas', 'Odds diferentes para o mesmo evento significam retornos diferentes. Pequenas diferenças de odd acumulam impacto significativo ao longo de centenas de apostas. Use múltiplas casas regulamentadas.'],
+            ['Compare odds entre casas', 'Odds diferentes para o mesmo evento significam retornos diferentes. Pequenas diferenças de odd acumulam impacto significativo ao longo de centenas de apostas. Compare plataformas e verifique licença, termos e disponibilidade diretamente em cada uma.'],
             ['Calcule sempre antes de apostar', 'Nunca aposte sem saber exatamente quanto pode ganhar ou perder. A calculadora de odds elimina esse erro básico.'],
             ['Entenda a margem da casa', 'Casas com menor margem (overround) pagam odds melhores. Em geral, mercados principais de futebol têm margens de 4–7%. Mercados menores podem ter 10–20%.'],
             ['Registre suas apostas', 'Use nossa calculadora de ROI para acompanhar sua performance real ao longo do tempo. Sem registro, é impossível saber se você está lucrando ou perdendo sistematicamente.'],

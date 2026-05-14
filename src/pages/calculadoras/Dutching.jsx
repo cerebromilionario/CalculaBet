@@ -33,8 +33,8 @@ const faqs = [
     a: 'No dutching completo, você cobre todas as seleções possíveis do evento — similar à arbitragem, mas dentro da mesma casa. Você nunca perde, mas o retorno depende da margem da casa. No dutching parcial, você cobre apenas as seleções que considera mais prováveis e deixa os outsiders descobertos. Isso reduz o custo total da operação e melhora o ROI se uma seleção coberta vencer, mas cria exposição a perda total se um resultado não coberto ocorrer.',
   },
   {
-    q: 'Como usar dutching em exchanges como o Betfair?',
-    a: 'Exchanges como Betfair são ideais para dutching porque as odds são formadas pelo mercado de apostadores, resultando em spreads menores e preços mais próximos do valor justo. O Betfair tem uma ferramenta nativa de dutching que calcula os stakes automaticamente. O ponto de atenção é a comissão sobre os lucros (geralmente 5%), que deve ser incorporada ao cálculo: o retorno efetivo é Retorno × (1 − 0.05). Em exchanges, o dutching também é usado como estratégia de trading para montar posições em múltiplos preços.',
+    q: 'Como usar dutching em exchanges de apostas?',
+    a: 'Exchanges são ideais para dutching porque as odds são formadas pelo mercado de apostadores, resultando em spreads menores e preços mais próximos do valor justo. Algumas exchanges têm ferramentas nativas de dutching que calculam os stakes automaticamente. O ponto de atenção é a comissão sobre os lucros (geralmente 5%), que deve ser incorporada ao cálculo: o retorno efetivo é Retorno × (1 − 0.05). Em exchanges, o dutching também é usado como estratégia de trading para montar posições em múltiplos preços.',
   },
   {
     q: 'Quantas seleções é ideal colocar em um dutching?',
@@ -54,7 +54,7 @@ const faqs = [
   },
   {
     q: 'Posso usar dutching em corridas de cavalos?',
-    a: 'Sim — corridas de cavalos são, historicamente, a aplicação mais clássica do dutching. Com vários cavalos competindo, um apostador analítico pode selecionar 3 a 6 favoritos reais e distribuir a banca proporcionalmente, garantindo o mesmo retorno se qualquer um deles vencer. Em corridas com campo grande, o dutching parcial (cobrindo os principais favoritos) é especialmente popular em exchanges como Betfair, onde as odds tendem a ser mais precisas do que nas casas tradicionais.',
+    a: 'Sim — corridas de cavalos são, historicamente, a aplicação mais clássica do dutching. Com vários cavalos competindo, um apostador analítico pode selecionar 3 a 6 favoritos reais e distribuir a banca proporcionalmente, garantindo o mesmo retorno se qualquer um deles vencer. Em corridas com campo grande, o dutching parcial (cobrindo os principais favoritos) é especialmente popular em exchanges, onde as odds tendem a ser mais precisas do que nas casas tradicionais.',
   },
   ...getSeoFaqsForPage('dutching').map(toLegacyFaq),
 ];
@@ -237,12 +237,12 @@ function DutchingExplanation() {
     {
       n: '4',
       t: 'Dutching em corridas de cavalos',
-      d: 'A origem histórica do dutching. Em corridas com campo grande (10+ participantes), a análise individual de cada cavalo pode identificar grupos de favoritos subavaliados. Cobri-los com dutching em uma exchange como Betfair — onde as odds têm menos margem — maximiza a eficiência da estratégia.',
+      d: 'A origem histórica do dutching. Em corridas com campo grande (10+ participantes), a análise individual de cada cavalo pode identificar grupos de favoritos subavaliados. Cobri-los com dutching em uma exchange — onde as odds têm menos margem — maximiza a eficiência da estratégia.',
     },
     {
       n: '5',
       t: 'Dutching com comissão de exchange',
-      d: 'Em exchanges, o lucro é tributado por comissão (geralmente 5% no Betfair). Isso muda o cálculo: o retorno efetivo é Banca ÷ Total × (1 − Comissão). Para o dutching ser lucrativo em exchanges, a soma das probabilidades implícitas precisa ser abaixo de ~95%, não de 100%. A calculadora não inclui comissão automaticamente — ajuste o retorno alvo manualmente.',
+      d: 'Em exchanges, o lucro é tributado por comissão (geralmente 5% em exchanges). Isso muda o cálculo: o retorno efetivo é Banca ÷ Total × (1 − Comissão). Para o dutching ser lucrativo em exchanges, a soma das probabilidades implícitas precisa ser abaixo de ~95%, não de 100%. A calculadora não inclui comissão automaticamente — ajuste o retorno alvo manualmente.',
     },
     {
       n: '6',
@@ -254,7 +254,7 @@ function DutchingExplanation() {
   const errors = [
     { title: 'Incluir seleções sem análise real', desc: 'Adicionar outsiders "porque custam pouco" infla o total de probabilidades e piora o ROI sem compensação. Cada seleção deve ter justificativa analítica própria.' },
     { title: 'Ignorar a margem da casa', desc: 'Com odds de casas tradicionais, a soma das probabilidades normalmente fica em 105% a 112%. Isso já embute perda. Confundir "mesmo retorno entre seleções" com "lucro garantido" é o equívoco mais comum no dutching.' },
-    { title: 'Não considerar comissão em exchanges', desc: 'A comissão do Betfair (geralmente 5%) reduz o retorno líquido. Um dutching com soma de 98% pode parecer lucrativo, mas com 5% de comissão o retorno real fica negativo.' },
+    { title: 'Não considerar comissão em exchanges', desc: 'A comissão de exchanges (geralmente 5%) reduz o retorno líquido. Um dutching com soma de 98% pode parecer lucrativo, mas com 5% de comissão o retorno real fica negativo.' },
     { title: 'Usar dutching para substituir análise', desc: 'Dutching distribui o risco, mas não cria valor onde ele não existe. Se nenhuma das seleções tem odds acima do valor justo, o dutching apenas divide a perda esperada entre múltiplas apostas.' },
   ];
 
@@ -427,25 +427,25 @@ function DutchingExplanation() {
 
       {/* ── Dutching in exchanges ── */}
       <section className="space-y-5">
-        <h2 className="text-xl font-bold" style={{ color: 'var(--text-1)' }}>Dutching em exchanges: Betfair e a eficiência do mercado</h2>
+        <h2 className="text-xl font-bold" style={{ color: 'var(--text-1)' }}>Dutching em exchanges e a eficiência do mercado</h2>
         <p>
-          Exchanges de apostas como Betfair são o ambiente mais eficiente para dutching. Diferente das casas tradicionais, onde a casa define as odds com margem embutida, em uma exchange as odds são determinadas pelos próprios apostadores — o que resulta em preços mais próximos do valor justo e spreads menores.
+          Exchanges de apostas podem ser ambientes eficientes para dutching. Diferente das casas tradicionais, onde a casa define as odds com margem embutida, em uma exchange as odds são determinadas pelos próprios apostadores — o que resulta em preços mais próximos do valor justo e spreads menores.
         </p>
         <p>
-          O Betfair possui uma ferramenta nativa de dutching integrada à plataforma, que calcula automaticamente os stakes para equalizar o retorno entre seleções do mesmo evento. Esse recurso é especialmente popular em corridas de cavalos, onde cobrir um grupo de favoritos é uma estratégia recorrente de apostadores profissionais.
+          Algumas exchanges possuem uma ferramenta nativa de dutching integrada à plataforma, que calcula automaticamente os stakes para equalizar o retorno entre seleções do mesmo evento. Esse recurso é especialmente popular em corridas de cavalos, onde cobrir um grupo de favoritos é uma estratégia recorrente de apostadores profissionais.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <InfoCard title="Vantagens em exchanges" tone="green">
             <ul className="space-y-2 list-disc pl-4">
               <li>Odds com menor margem embutida (spreads mais justos).</li>
               <li>Mercados líquidos em corridas de cavalos, futebol e tênis.</li>
-              <li>Ferramenta nativa de dutching no Betfair.</li>
+              <li>Ferramenta nativa de dutching em exchanges.</li>
               <li>Possibilidade de fazer lay (apostar contra) como complemento.</li>
             </ul>
           </InfoCard>
           <InfoCard title="Atenção à comissão" tone="amber">
             <ul className="space-y-2 list-disc pl-4">
-              <li>Betfair cobra ~5% sobre lucros líquidos.</li>
+              <li>Exchanges podem cobrar comissão sobre lucros líquidos.</li>
               <li>O retorno real é: (Banca ÷ Total_impl) × (1 − 0,05).</li>
               <li>Para o dutching ser lucrativo, a soma das probabilidades precisa ser abaixo de ~95%, não de 100%.</li>
               <li>Apostadores com histórico de alto volume podem ter taxas reduzidas.</li>

@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     q: 'Existem custos ocultos no hedge que devo considerar?',
-    a: 'Sim: (1) Spread entre odds de compra e venda em exchanges como Betfair — a odd que você vê pode não ser a odd que consegue; (2) Comissão de exchange (geralmente 2-5% sobre o lucro) que reduz o retorno efetivo; (3) Variação de odds durante a execução — entre calcular e apostar, a odd pode mudar, especialmente em mercados ao vivo; (4) Requisitos mínimos de stake em algumas casas; (5) Atrasos no processamento de apostas ao vivo. Sempre calcule com margem de segurança de 5-10% sobre o stake de hedge teórico.',
+    a: 'Sim: (1) Spread entre odds de compra e venda em exchanges — a odd que você vê pode não ser a odd que consegue; (2) Comissão de exchange (geralmente 2-5% sobre o lucro) que reduz o retorno efetivo; (3) Variação de odds durante a execução — entre calcular e apostar, a odd pode mudar, especialmente em mercados ao vivo; (4) Requisitos mínimos de stake em algumas casas; (5) Atrasos no processamento de apostas ao vivo. Sempre calcule com margem de segurança de 5-10% sobre o stake de hedge teórico.',
   },
 ];
 
@@ -357,7 +357,7 @@ function HedgeExplanation() {
           {[
             {
               title: 'Comissão de exchange',
-              desc: 'Betfair e outras exchanges cobram 2-5% sobre o lucro líquido de cada aposta vencedora. Em um hedge de R$500 com lucro de R$50, a comissão de 5% retira R$2,50 — reduzindo o ROI real.',
+              desc: 'Exchanges cobram 2-5% sobre o lucro líquido de cada aposta vencedora. Em um hedge de R$500 com lucro de R$50, a comissão de 5% retira R$2,50 — reduzindo o ROI real.',
               tone: 'amber',
             },
             {

@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: 'Onde encontrar oportunidades de arbitragem?',
-    a: 'As melhores oportunidades surgem em eventos com odds equilibradas entre casas, especialmente tênis ATP/WTA, basquete NBA, futebol de ligas menores e e-sports. Ferramentas como OddsPortal, RebelBetting, BetBurger e OddsJam monitoram divergências entre dezenas de casas em tempo real. Também é possível fazer varredura manual comparando odds de 3 a 5 casas para o mesmo evento. No Brasil, divergências frequentes ocorrem entre Bet365, Betano, Pinnacle e casas menores.',
+    a: 'As melhores oportunidades surgem em eventos com odds equilibradas entre casas, especialmente tênis ATP/WTA, basquete NBA, futebol de ligas menores e e-sports. Ferramentas como OddsPortal, RebelBetting, BetBurger e OddsJam monitoram divergências entre dezenas de casas em tempo real. Também é possível fazer varredura manual comparando odds de 3 a 5 casas para o mesmo evento. No Brasil, divergências podem ocorrer entre diferentes plataformas; compare sempre os termos, limites e disponibilidade diretamente em cada casa.',
   },
   {
     q: 'Qual é o maior risco da arbitragem?',
@@ -48,7 +48,7 @@ const faqs = [
   },
   {
     q: 'Como minimizar o risco de limitação de conta?',
-    a: 'As principais práticas são: variar os valores de stake (evitar valores redondos e exatos repetidamente), apostar ocasionalmente em mercados sem relação com arbitragem, não apostar exclusivamente nas odds mais altas disponíveis, distribuir o volume entre o maior número possível de casas, e usar também casas de câmbio como Betfair Exchange, que por natureza aceitam apostadores profissionais. Pinnacle é a casa mais conhecida por não limitar arbitragistas.',
+    a: 'As principais práticas são: variar os valores de stake (evitar valores redondos e exatos repetidamente), apostar ocasionalmente em mercados sem relação com arbitragem, não apostar exclusivamente nas odds mais altas disponíveis, distribuir o volume entre o maior número possível de casas, e usar também plataformas com regras claras para volume elevado. Verifique sempre políticas, limites e termos antes de apostar.',
   },
   {
     q: 'O que é margem (overround) em apostas?',
@@ -210,7 +210,7 @@ function ArbExplanation() {
         </div>
 
         <InfoCard title="Exemplo resolvido — jogo de futebol com 3 resultados" tone="violet">
-          <p>Evento: Time A vs Time B. Odds de diferentes casas: Time A ganha (Bet365: <strong style={{ color: 'var(--text-1)' }}>2.15</strong>), Empate (Betano: <strong style={{ color: 'var(--text-1)' }}>3.40</strong>), Time B ganha (Pinnacle: <strong style={{ color: 'var(--text-1)' }}>4.10</strong>). Banca: <strong style={{ color: 'var(--text-1)' }}>R$1.000</strong>.</p>
+          <p>Evento: Time A vs Time B. Odds de diferentes casas: Time A ganha (Casa A: <strong style={{ color: 'var(--text-1)' }}>2.15</strong>), Empate (Casa B: <strong style={{ color: 'var(--text-1)' }}>3.40</strong>), Time B ganha (Casa C: <strong style={{ color: 'var(--text-1)' }}>4.10</strong>). Banca: <strong style={{ color: 'var(--text-1)' }}>R$1.000</strong>.</p>
           <p><strong style={{ color: 'var(--text-1)' }}>Margem:</strong> 1/2.15 + 1/3.40 + 1/4.10 = 0.4651 + 0.2941 + 0.2439 = <strong style={{ color: '#4ade80' }}>0.9971 (99,7%)</strong> ✓</p>
           <p><strong style={{ color: 'var(--text-1)' }}>Lucro garantido:</strong> R$1.000 × (1/0.9971 − 1) = <strong style={{ color: '#4ade80' }}>R$2,91</strong></p>
           <p><strong style={{ color: 'var(--text-1)' }}>Stakes:</strong> R$466 (Time A) · R$294 (Empate) · R$244 (Time B) — qualquer que seja o resultado, o retorno líquido é R$2,91.</p>
@@ -227,9 +227,9 @@ function ArbExplanation() {
             </thead>
             <tbody>
               {[
-                { res: 'Time A ganha', odd: '2.15 — Bet365',   pct: '46,5%', stake: 'R$466', ret: 'R$1.002,90' },
-                { res: 'Empate',       odd: '3.40 — Betano',   pct: '29,4%', stake: 'R$294', ret: 'R$1.002,90' },
-                { res: 'Time B ganha', odd: '4.10 — Pinnacle', pct: '24,4%', stake: 'R$244', ret: 'R$1.002,90' },
+                { res: 'Time A ganha', odd: '2.15 — Casa A',   pct: '46,5%', stake: 'R$466', ret: 'R$1.002,90' },
+                { res: 'Empate',       odd: '3.40 — Casa B',   pct: '29,4%', stake: 'R$294', ret: 'R$1.002,90' },
+                { res: 'Time B ganha', odd: '4.10 — Casa C', pct: '24,4%', stake: 'R$244', ret: 'R$1.002,90' },
               ].map((row, i) => (
                 <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
                   <td className="px-4 py-3 font-medium" style={{ color: 'var(--text-1)' }}>{row.res}</td>
@@ -392,7 +392,7 @@ function ArbExplanation() {
               <li>Varie os valores de stake: evite padrões de apostas redondas e exatas repetidamente.</li>
               <li>Faça apostas ocasionais fora de contexto de arbitragem para diversificar o histórico da conta.</li>
               <li>Distribua o volume entre o maior número possível de casas (mínimo 4 a 6).</li>
-              <li>Use casas de câmbio como Betfair Exchange e Pinnacle, que aceitam apostadores profissionais por política.</li>
+              <li>Use plataformas com regras claras para volume elevado e verifique políticas, limites e termos antes de apostar.</li>
               <li>Registre cada operação para identificar em quais casas o perfil de conta ainda está ativo.</li>
             </ul>
           </InfoCard>

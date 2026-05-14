@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     q: 'Como funciona a odd americana (moneyline)?',
-    a: 'A odd americana usa valores positivos e negativos. Um valor positivo (ex: +150) indica quanto você lucra para cada R$100 apostados — +150 significa lucro de R$150 com stake de R$100. Um valor negativo (ex: -120) indica quanto você precisa apostar para lucrar R$100 — -120 significa apostar R$120 para lucrar R$100. É o padrão nos EUA, usado em casas como DraftKings, FanDuel e em mercados de beisebol, basquete e futebol americano.',
+    a: 'A odd americana usa valores positivos e negativos. Um valor positivo (ex: +150) indica quanto você lucra para cada R$100 apostados — +150 significa lucro de R$150 com stake de R$100. Um valor negativo (ex: -120) indica quanto você precisa apostar para lucrar R$100 — -120 significa apostar R$120 para lucrar R$100. É o padrão nos EUA, usado em mercados de beisebol, basquete e futebol americano.',
   },
   {
     q: 'O que é odd fracionária e por que ela existe?',
@@ -81,7 +81,7 @@ const faqs = [
   },
   {
     q: 'Qual a diferença entre casas de apostas "sharp" e "soft"?',
-    a: 'Casas "sharp" (como Pinnacle) aceitam apostas grandes de apostadores experientes e têm overround baixo (1-3%). Elas servem como referência de mercado eficiente. Casas "soft" têm margens maiores, limites menores para apostadores bem-sucedidos, mas costumam oferecer bônus e promoções. Para a maioria dos apostadores brasileiros, a estratégia ideal combina as duas: usar as odds da Pinnacle como referência de valor e apostar nas soft books quando a odd estiver acima dessa referência.',
+    a: 'Casas "sharp" aceitam apostas maiores de apostadores experientes e têm overround baixo (1-3%). Elas servem como referência de mercado eficiente. Casas "soft" têm margens maiores, limites menores para apostadores bem-sucedidos, mas costumam oferecer bônus e promoções. Para a maioria dos apostadores brasileiros, a estratégia ideal é comparar linhas de referência e verificar termos, limites e disponibilidade antes de apostar.',
   },
 ];
 
@@ -146,9 +146,9 @@ function SectionLabel({ children }) {
 
 function BookmakerTypesTable() {
   const rows = [
-    { tipo: 'Sharp (ex: Pinnacle)', overround: '1–3%', limites: 'Altos', perfil: 'Referência de mercado', melhor: 'Value betting, CLV', cor: '#4ade80' },
+    { tipo: 'Sharp', overround: '1–3%', limites: 'Altos', perfil: 'Referência de mercado', melhor: 'Value betting, CLV', cor: '#4ade80' },
     { tipo: 'Soft / Recreativa', overround: '5–10%', limites: 'Baixos para winners', perfil: 'Apostador casual', melhor: 'Bônus, promoções', cor: '#22d3ee' },
-    { tipo: 'Exchange (Betfair)', overround: '0% (comissão)', limites: 'Limitado por liquidez', perfil: 'Qualquer perfil', melhor: 'Lay bets, hedge, arb', cor: '#818cf8' },
+    { tipo: 'Exchange', overround: '0% (comissão)', limites: 'Limitado por liquidez', perfil: 'Qualquer perfil', melhor: 'Lay bets, hedge, arb', cor: '#818cf8' },
     { tipo: 'Cripto / Sem KYC', overround: '3–6%', limites: 'Variável', perfil: 'Anonimato, BTC', melhor: 'Mercados alternativos', cor: '#fbbf24' },
     { tipo: 'Pública (Brasil)', overround: '6–12%', limites: 'Padrão regulado', perfil: 'Mercado brasileiro', melhor: 'Acesso nacional, Pix', cor: 'var(--text-2)' },
   ];
@@ -394,7 +394,7 @@ function ConversorExplanation() {
         </p>
         <BookmakerTypesTable />
         <p className="mt-4">
-          A estratégia mais comum entre apostadores profissionais é usar a Pinnacle (ou Betfair exchange) como <strong style={{ color: 'var(--text-1)' }}>referência de mercado</strong> eficiente e apostar em casas soft quando a odd oferecida está acima da linha de referência. Essa prática — chamada de "line shopping" — é a base do apostador consistentemente lucrativo.
+          A estratégia mais comum entre apostadores profissionais é usar uma linha eficiente como <strong style={{ color: 'var(--text-1)' }}>referência de mercado</strong> e comparar casas soft quando a odd oferecida está acima dessa referência. Essa prática — chamada de "line shopping" — é a base do apostador consistentemente lucrativo.
         </p>
       </section>
 
