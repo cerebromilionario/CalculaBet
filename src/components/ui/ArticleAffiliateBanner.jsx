@@ -10,8 +10,8 @@ const PLACEMENT_PARTNER_IDS = {
 const PLACEMENT_BANNER_SIZES = {
   top: ['728x90'],
   'mid-article': ['728x90'],
-  bottom: ['320x50', 'large'],
-  'pre-faq': ['320x50', 'large'],
+  bottom: ['large'],
+  'pre-faq': ['large'],
 };
 
 function getArticleBannerConfig(placement) {
@@ -25,6 +25,10 @@ function getArticleBannerConfig(placement) {
 
 export default function ArticleAffiliateBanner({ placement = 'mid-article', className = '' }) {
   const { partner, banner } = getArticleBannerConfig(placement);
+  const isBottomPlacement = placement === 'bottom' || placement === 'pre-faq';
+  const imageClassName = isBottomPlacement
+    ? 'mx-auto block h-auto w-full max-w-3xl rounded-xl object-contain'
+    : 'mx-auto block h-auto max-h-[260px] w-auto max-w-full object-contain sm:max-h-[320px]';
 
   if (!partner || !banner) return null;
 
@@ -53,7 +57,7 @@ export default function ArticleAffiliateBanner({ placement = 'mid-article', clas
           width={banner.width}
           height={banner.height}
           loading="lazy"
-          className="mx-auto block h-auto max-h-[260px] w-auto max-w-full object-contain sm:max-h-[320px]"
+          className={imageClassName}
         />
       </a>
     </aside>
