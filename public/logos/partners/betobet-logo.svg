@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#111111"/>
+  <text x="100" y="82" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="38" fill="#ffffff" text-anchor="middle" letter-spacing="1">
+    <tspan>bet</tspan>
+  </text>
+  <circle cx="100" cy="100" r="14" fill="none" stroke="#f5c518" stroke-width="3"/>
+  <circle cx="100" cy="100" r="5" fill="#f5c518"/>
+  <text x="100" y="138" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="38" fill="#ffffff" text-anchor="middle" letter-spacing="1">bet</text>
+  <text x="100" y="162" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="#f5c518" text-anchor="middle">betobet. bet like a pro!</text>
+</svg>

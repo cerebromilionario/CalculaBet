@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#0d0d0d"/>
+  <text x="100" y="118" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="56" text-anchor="middle">
+    <tspan fill="#f97316">1x</tspan><tspan fill="#ffffff">Bit</tspan>
+  </text>
+</svg>
