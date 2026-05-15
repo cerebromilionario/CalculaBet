@@ -1,6 +1,6 @@
-import { AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, activePartners } from '../../data/casas';
+import { AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, activePartners, getPreferredBanner, isBannerEnabled } from '../../data/casas';
 
-const ARTICLE_PARTNER_IDS = new Set(['1xbit', 'blaze', 'superbet', 'melbet', 'stake', 'betobet']);
+const ARTICLE_PARTNER_IDS = new Set(['1xbit', 'blaze', 'superbet', 'stake']);
 
 const PLACEMENT_OFFSETS = {
   'mid-article': 0,
@@ -8,6 +8,7 @@ const PLACEMENT_OFFSETS = {
 };
 
 const ARTICLE_BANNER_SIZES = [
+  'large',
   '1400x400',
   '728x90',
   '668x130',
@@ -25,14 +26,11 @@ function hashSeed(seed = '') {
 }
 
 function getArticleBanner(partner) {
-  if (!partner?.banners) return null;
-
-  const size = ARTICLE_BANNER_SIZES.find(candidate => partner.banners[candidate]);
-  return size ? { ...partner.banners[size], size } : null;
+  return getPreferredBanner(partner, ARTICLE_BANNER_SIZES);
 }
 
 function getBannerPartner(postSlug, placement) {
-  const partners = activePartners.filter(partner => ARTICLE_PARTNER_IDS.has(partner.id) && getArticleBanner(partner));
+  const partners = activePartners.filter(partner => ARTICLE_PARTNER_IDS.has(partner.id) && isBannerEnabled(partner) && getArticleBanner(partner));
   if (!partners.length) return null;
 
   const start = hashSeed(`blog-banner-${postSlug}`) % partners.length;
