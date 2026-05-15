@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import AffiliateBanner from './AffiliateBanner';
 import CasaCard from './CasaCard';
-import { AFFILIATE_DISCLOSURE_FULL, AFFILIATE_DISCLOSURE_SHORT, getPartnersForPlacement } from '../../data/casas';
+import { AFFILIATE_DISCLOSURE_FULL, AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, getPartnersForPlacement, isAffiliateEnabled } from '../../data/casas';
 
 export default function PartnerRotation({ seed, title = 'Parceiros selecionados', context = 'content', compact = false }) {
   const partners = getPartnersForPlacement(seed, 2);
@@ -45,15 +45,32 @@ export default function PartnerRotation({ seed, title = 'Parceiros selecionados'
                   <p className="text-xs truncate" style={{ color: 'var(--text-3)' }}>{partner.category}</p>
                 </div>
               </div>
-              <a
-                href={partner.affiliateUrl}
-                target="_blank"
-                rel="sponsored nofollow noopener noreferrer"
-                className="btn-green w-full text-xs py-2"
-                aria-label={`Abrir conta na ${partner.nome} (link patrocinado)`}
-              >
-                Abrir conta →
-              </a>
+              {isAffiliateEnabled(partner) ? (
+                <a
+                  href={partner.affiliateUrl}
+                  target="_blank"
+                  rel={AFFILIATE_REL}
+                  className="btn-green w-full text-xs py-2"
+                  aria-label={`Abrir conta na ${partner.nome} (link patrocinado)`}
+                >
+                  Abrir conta →
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  aria-disabled="true"
+                  className="inline-flex w-full items-center justify-center rounded-xl px-3 py-2 text-xs font-semibold"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(148,163,184,0.16), rgba(71,85,105,0.16))',
+                    color: 'rgba(226,232,240,0.72)',
+                    border: '1px solid rgba(148,163,184,0.22)',
+                    cursor: 'not-allowed',
+                  }}
+                >
+                  Link em atualização
+                </button>
+              )}
             </div>
           ))}
         </div>

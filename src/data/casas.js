@@ -74,24 +74,18 @@ export const casas = [
     featured: true,
     active: true,
     priority: 20,
+    affiliateEnabled: true,
+    bannersEnabled: true,
     banners: {
-      '1400x400': {
-        href: 'https://blaze.cxclick.com/visit/?bta=53199&nci=5382',
-        img: 'https://blazepartners.ck-cdn.com/tn/serve/?cid=858538',
-        width: 1400,
-        height: 400,
+      large: {
+        href: 'https://blaze.cxclick.com/visit/?bta=53199&nci=5459',
+        img: 'https://blazepartners.ck-cdn.com/tn/serve/?cid=858708',
       },
-      '1200x628': {
-        href: 'https://blaze.cxclick.com/visit/?bta=53199&nci=5370',
-        img: 'https://blazepartners.ck-cdn.com/tn/serve/?cid=858541',
-        width: 1200,
-        height: 628,
-      },
-      '770x436': {
-        href: 'https://blaze.cxclick.com/visit/?bta=53199&nci=5373',
-        img: 'https://blazepartners.ck-cdn.com/tn/serve/?cid=858539',
-        width: 770,
-        height: 436,
+      '320x50': {
+        href: 'https://blaze.cxclick.com/visit/?bta=53199&nci=5461',
+        img: 'https://blazepartners.ck-cdn.com/tn/serve/?cid=858717',
+        width: 320,
+        height: 50,
       },
     },
   },
@@ -116,6 +110,8 @@ export const casas = [
     transparency: AFFILIATE_DISCLOSURE_FULL,
     featured: true,
     active: true,
+    affiliateEnabled: true,
+    bannersEnabled: true,
     priority: 30,
     banners: {
       '160x600': {
@@ -149,8 +145,8 @@ export const casas = [
     desc: 'Plataforma de apostas esportivas com campanhas para o mercado brasileiro e diferentes formatos promocionais.',
     bonus: 'Campanhas para o mercado brasileiro conforme termos da plataforma',
     cta: 'Abrir conta',
-    affiliateUrl: 'https://track.afiliapub.com/click?o=85&a=550220524&link_id=543',
-    link: 'https://track.afiliapub.com/click?o=85&a=550220524&link_id=543',
+    affiliateUrl: null,
+    link: null,
     disclaimer: defaultDisclaimer,
     cor: '#facc15',
     licencaInfo: 'Verifique licença, termos e disponibilidade diretamente na plataforma.',
@@ -159,27 +155,11 @@ export const casas = [
     transparency: AFFILIATE_DISCLOSURE_FULL,
     featured: true,
     active: true,
+    affiliateEnabled: false,
+    bannersEnabled: false,
+    status: 'link_updating',
     priority: 40,
-    banners: {
-      '1500x1500': {
-        href: 'https://track.afiliapub.com/click?o=85&a=550220524&link_id=543&creative_id=358',
-        img: 'https://track.afiliapub.com/impression?creative_id=358&affiliate_id=550220524',
-        width: 1500,
-        height: 1500,
-      },
-      '300x600': {
-        href: 'https://track.afiliapub.com/click?o=85&a=550220524&link_id=543&creative_id=352',
-        img: 'https://track.afiliapub.com/impression?creative_id=352&affiliate_id=550220524',
-        width: 300,
-        height: 600,
-      },
-      '668x130': {
-        href: 'https://track.afiliapub.com/click?o=85&a=550220524&link_id=543&creative_id=353',
-        img: 'https://track.afiliapub.com/impression?creative_id=353&affiliate_id=550220524',
-        width: 668,
-        height: 130,
-      },
-    },
+    banners: {},
   },
   {
     id: 'stake',
@@ -217,8 +197,8 @@ export const casas = [
     desc: 'Plataforma de apostas esportivas com campanhas promocionais e experiência voltada para usuários brasileiros.',
     bonus: 'Campanhas promocionais para usuários brasileiros conforme termos da plataforma',
     cta: 'Abrir conta',
-    affiliateUrl: 'https://track.afiliapub.com/click?o=66&a=550220524',
-    link: 'https://track.afiliapub.com/click?o=66&a=550220524',
+    affiliateUrl: null,
+    link: null,
     disclaimer: defaultDisclaimer,
     cor: '#a855f7',
     licencaInfo: 'Verifique licença, termos e disponibilidade diretamente na plataforma.',
@@ -227,27 +207,11 @@ export const casas = [
     transparency: AFFILIATE_DISCLOSURE_FULL,
     featured: true,
     active: true,
+    affiliateEnabled: false,
+    bannersEnabled: false,
+    status: 'link_updating',
     priority: 60,
-    banners: {
-      '500x500': {
-        href: 'https://track.afiliapub.com/click?o=66&a=550220524&creative_id=146',
-        img: 'https://track.afiliapub.com/impression?creative_id=146&affiliate_id=550220524',
-        width: 500,
-        height: 500,
-      },
-      '800x360': {
-        href: 'https://track.afiliapub.com/click?o=66&a=550220524&creative_id=145',
-        img: 'https://track.afiliapub.com/impression?creative_id=145&affiliate_id=550220524',
-        width: 800,
-        height: 360,
-      },
-      '728x90': {
-        href: 'https://track.afiliapub.com/click?o=66&a=550220524&creative_id=143',
-        img: 'https://track.afiliapub.com/impression?creative_id=143&affiliate_id=550220524',
-        width: 728,
-        height: 90,
-      },
-    },
+    banners: {},
   },
 ];
 
@@ -280,14 +244,53 @@ export function getPartnersForPlacement(seed = 'default', count = 2) {
   return partners;
 }
 
+export function isAffiliateEnabled(partner) {
+  return Boolean(partner?.affiliateUrl) && partner.affiliateEnabled !== false;
+}
+
+function isValidBannerEntry(banner) {
+  return Boolean(
+    banner &&
+    typeof banner.href === 'string' &&
+    banner.href.trim() &&
+    typeof banner.img === 'string' &&
+    banner.img.trim(),
+  );
+}
+
+export function isBannerEnabled(partner) {
+  if (!partner || partner.affiliateEnabled === false || partner.bannersEnabled === false) return false;
+  return Object.values(partner.banners || {}).some(isValidBannerEntry);
+}
+
+export const bannerFallbackPartners = activePartners.filter(partner => (
+  ['blaze', 'superbet'].includes(partner.id) && isBannerEnabled(partner)
+));
+
+export const bannerPartners = activePartners.filter(isBannerEnabled);
+
 export function getPreferredBanner(partner, preferredSizes = []) {
-  if (!partner?.banners) return null;
+  if (!isBannerEnabled(partner)) return null;
 
-  const preferred = preferredSizes.find(size => partner.banners[size]);
-  if (preferred) return { ...partner.banners[preferred], size: preferred };
+  const banners = partner.banners || {};
+  const preferred = preferredSizes.find(size => isValidBannerEntry(banners[size]));
+  if (preferred) return { ...banners[preferred], size: preferred };
 
-  const [fallbackSize] = Object.keys(partner.banners);
-  return fallbackSize ? { ...partner.banners[fallbackSize], size: fallbackSize } : null;
+  const fallbackSize = Object.keys(banners).find(size => isValidBannerEntry(banners[size]));
+  return fallbackSize ? { ...banners[fallbackSize], size: fallbackSize } : null;
+}
+
+export function getBannerPartner(partner, preferredSizes = [], excludedPartnerIds = []) {
+  if (getPreferredBanner(partner, preferredSizes)) return partner;
+
+  const excluded = new Set([partner?.id, ...excludedPartnerIds].filter(Boolean));
+  return (
+    bannerFallbackPartners.find(fallback => !excluded.has(fallback.id) && getPreferredBanner(fallback, preferredSizes)) ||
+    bannerFallbackPartners.find(fallback => getPreferredBanner(fallback, preferredSizes)) ||
+    bannerPartners.find(fallback => !excluded.has(fallback.id) && getPreferredBanner(fallback, preferredSizes)) ||
+    bannerPartners.find(fallback => getPreferredBanner(fallback, preferredSizes)) ||
+    null
+  );
 }
 
 export const calculadoras = [

@@ -4,7 +4,7 @@ import CasaCard from '../components/ui/CasaCard';
 import AffiliateBanner from '../components/ui/AffiliateBanner';
 import AffiliateDisclosure from '../components/ui/AffiliateDisclosure';
 import FAQSection from '../components/ui/FAQSection';
-import { AFFILIATE_DISCLOSURE_FULL, casas } from '../data/casas';
+import { AFFILIATE_DISCLOSURE_FULL, bannerPartners as availableBannerPartners, casas } from '../data/casas';
 import { BLOG_POSTS } from '../data/blog/blogData';
 import AdNativeBanner from '../components/ads/AdNativeBanner';
 
@@ -188,7 +188,7 @@ function InlineLink({ to, children }) {
 
 export default function CasasApostas() {
   const heroPartner = casas.find(casa => casa.id === 'blaze') || casas[0];
-  const bannerPartners = casas.filter(casa => Object.keys(casa.banners || {}).length > 0).slice(0, 2);
+  const bannerPartners = availableBannerPartners.slice(0, 2);
 
   return (
     <>
@@ -222,7 +222,7 @@ export default function CasasApostas() {
           </div>
 
           <div className="rounded-3xl p-4" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid var(--border)' }}>
-            <AffiliateBanner partner={heroPartner} placement="casas" preferredSizes={['1400x400', '1200x628', '770x436', '800x360', '728x90']} />
+            <AffiliateBanner partner={heroPartner} placement="casas" preferredSizes={['large', '1400x400', '1200x628', '770x436', '800x360', '728x90', '320x50']} />
             <p className="mt-3 text-xs leading-relaxed" style={{ color: 'var(--text-3)' }}>
               Banner promocional exibido de forma responsiva. Ofertas e condições podem mudar sem aviso no CalculaBet.
             </p>
