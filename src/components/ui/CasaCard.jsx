@@ -37,13 +37,29 @@ export default function CasaCard({ casa, variant = 'default' }) {
       <div className="relative flex flex-col gap-5">
         <header className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div
-              className="w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-bold flex-shrink-0 select-none"
-              style={{ background: `${casa.cor}18`, color: casa.cor, border: `1px solid ${casa.cor}28` }}
-              aria-hidden="true"
-            >
-              {casa.initials || casa.nome.slice(0, 2)}
-            </div>
+            {casa.logo ? (
+              <div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden"
+                style={{ background: `${casa.cor}10`, border: `1px solid ${casa.cor}28` }}
+              >
+                <img
+                  src={casa.logo.src}
+                  alt={casa.logo.alt}
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', maxWidth: '100%' }}
+                />
+              </div>
+            ) : (
+              <div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-bold flex-shrink-0 select-none"
+                style={{ background: `${casa.cor}18`, color: casa.cor, border: `1px solid ${casa.cor}28` }}
+                aria-hidden="true"
+              >
+                {casa.initials || casa.nome.slice(0, 2)}
+              </div>
+            )}
             <div>
               <p className="text-lg font-bold" style={{ color: 'var(--text-1)' }}>{casa.nome}</p>
               <p className="text-xs mt-1" style={{ color: 'var(--text-3)' }}>{casa.category}</p>
