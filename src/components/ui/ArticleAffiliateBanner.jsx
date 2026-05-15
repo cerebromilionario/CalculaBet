@@ -1,47 +1,30 @@
-import { AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, activePartners, getPreferredBanner, isBannerEnabled } from '../../data/casas';
+import { AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, getPartnerById, getPreferredBanner } from '../../data/casas';
 
-const ARTICLE_PARTNER_IDS = new Set(['1xbit', 'blaze', 'superbet', 'stake']);
-
-const PLACEMENT_OFFSETS = {
-  'mid-article': 0,
-  'pre-faq': 1,
+const PLACEMENT_PARTNER_IDS = {
+  top: 'superbet',
+  'mid-article': 'superbet',
+  bottom: 'blaze',
+  'pre-faq': 'blaze',
 };
 
-const ARTICLE_BANNER_SIZES = [
-  'large',
-  '1400x400',
-  '728x90',
-  '668x130',
-  '800x360',
-  '770x436',
-  '1200x628',
-  '320x50',
-  '300x250',
-  '500x500',
-  '1920x1080',
-];
+const PLACEMENT_BANNER_SIZES = {
+  top: ['728x90'],
+  'mid-article': ['728x90'],
+  bottom: ['320x50', 'large'],
+  'pre-faq': ['320x50', 'large'],
+};
 
-function hashSeed(seed = '') {
-  return String(seed).split('').reduce((acc, char) => ((acc * 31) + char.charCodeAt(0)) >>> 0, 7);
+function getArticleBannerConfig(placement) {
+  const partnerId = PLACEMENT_PARTNER_IDS[placement] || PLACEMENT_PARTNER_IDS['mid-article'];
+  const preferredSizes = PLACEMENT_BANNER_SIZES[placement] || PLACEMENT_BANNER_SIZES['mid-article'];
+  const partner = getPartnerById(partnerId);
+  const banner = getPreferredBanner(partner, preferredSizes);
+
+  return { partner, banner };
 }
 
-function getArticleBanner(partner) {
-  return getPreferredBanner(partner, ARTICLE_BANNER_SIZES);
-}
-
-function getBannerPartner(postSlug, placement) {
-  const partners = activePartners.filter(partner => ARTICLE_PARTNER_IDS.has(partner.id) && isBannerEnabled(partner) && getArticleBanner(partner));
-  if (!partners.length) return null;
-
-  const start = hashSeed(`blog-banner-${postSlug}`) % partners.length;
-  const offset = PLACEMENT_OFFSETS[placement] ?? 0;
-
-  return partners[(start + offset) % partners.length];
-}
-
-export default function ArticleAffiliateBanner({ postSlug, placement = 'mid-article', className = '' }) {
-  const partner = getBannerPartner(postSlug, placement);
-  const banner = getArticleBanner(partner);
+export default function ArticleAffiliateBanner({ placement = 'mid-article', className = '' }) {
+  const { partner, banner } = getArticleBannerConfig(placement);
 
   if (!partner || !banner) return null;
 

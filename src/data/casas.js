@@ -172,7 +172,7 @@ export const casas = [
     desc: 'Plataforma internacional de apostas e jogos online com foco em experiência digital e opções relacionadas a cripto.',
     bonus: 'Conta disponível pelo parceiro; confira condições diretamente na plataforma',
     cta: 'Abrir conta',
-    affiliateUrl: 'https://track.afiliapub.com/click?o=82&a=550220524',
+    affiliateUrl: 'https://track.afiliapub.com/click?o=82&a=550220524&link_id=463',
     signupUrl: 'https://track.afiliapub.com/click?o=82&a=550220524&link_id=463',
     link: 'https://track.afiliapub.com/click?o=82&a=550220524',
     disclaimer: defaultDisclaimer,
@@ -230,18 +230,30 @@ export function stablePartnerIndex(seed = '') {
   return String(seed).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % activePartners.length;
 }
 
-export function getPartnersForPlacement(seed = 'default', count = 2) {
-  if (activePartners.length <= count) return activePartners;
+function selectPartnersFromPool(pool, seed = 'default', count = 2) {
+  if (pool.length <= count) return pool;
 
-  const start = stablePartnerIndex(seed);
+  const start = String(seed).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % pool.length;
   const partners = [];
 
-  for (let offset = 0; partners.length < count && offset < activePartners.length; offset += 1) {
-    const partner = activePartners[(start + offset) % activePartners.length];
+  for (let offset = 0; partners.length < count && offset < pool.length; offset += 1) {
+    const partner = pool[(start + offset) % pool.length];
     if (!partners.some(item => item.id === partner.id)) partners.push(partner);
   }
 
   return partners;
+}
+
+export function getPartnersForPlacement(seed = 'default', count = 2) {
+  return selectPartnersFromPool(activePartners, seed, count);
+}
+
+const TOOL_PARTNER_IDS = new Set(['1xbit', 'superbet', 'blaze', 'stake']);
+
+export function getToolPartnersForPlacement(seed = 'default', count = 2) {
+  const toolPartners = activePartners.filter(partner => TOOL_PARTNER_IDS.has(partner.id) && isAffiliateEnabled(partner));
+
+  return selectPartnersFromPool(toolPartners, seed, count);
 }
 
 export function isAffiliateEnabled(partner) {
