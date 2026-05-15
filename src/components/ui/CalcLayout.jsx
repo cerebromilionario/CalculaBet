@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { calculadoras } from '../../data/casas';
 import AdNativeBanner from '../ads/AdNativeBanner';
 import PartnerRotation from './PartnerRotation';
+import SuperbetVerticalBanner from './SuperbetVerticalBanner';
 
 const breadcrumbSchema = (title, slug) => ({
   '@context': 'https://schema.org',
@@ -157,6 +158,13 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
           {/* ── Sidebar ── */}
           <aside className="space-y-5" aria-label="Sidebar">
 
+            <SuperbetVerticalBanner />
+
+            {/* Partner rotation — desktop only to avoid repeating partners on mobile */}
+            <div className="hidden lg:block">
+              <PartnerRotation seed={`tool-${slug}`} title="Parceiros em destaque" compact showBanner={false} />
+            </div>
+
             {/* All calculators list */}
             <div
               className="rounded-2xl p-5"
@@ -189,11 +197,6 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
                   );
                 })}
               </ul>
-            </div>
-
-            {/* Partner rotation — desktop only to avoid repeating partners on mobile */}
-            <div className="hidden lg:block">
-              <PartnerRotation seed={`tool-${slug}`} title="Parceiros em destaque" compact />
             </div>
 
             {/* Institutional links */}
