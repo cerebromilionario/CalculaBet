@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 100" width="280" height="100">
+  <!-- Black background -->
+  <rect width="280" height="100" fill="#0a0a0a" rx="8"/>
+
+  <!-- Flame/shield icon -->
+  <g transform="translate(20, 8)">
+    <!-- Outer flame shape: teardrop pointing up, rounded bottom -->
+    <path d="M42,4 C52,4 66,16 66,32 C66,50 55,64 42,68 C29,64 18,50 18,32 C18,16 32,4 42,4 Z" fill="#FF1F5A"/>
+    <!-- Inner grid: 3x3 arrangement of small rounded squares, black -->
+    <!-- Row 1 -->
+    <rect x="30" y="22" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <rect x="39" y="22" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <rect x="48" y="22" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <!-- Row 2 -->
+    <rect x="30" y="31" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <rect x="39" y="31" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <rect x="48" y="31" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <!-- Row 3 (partial - bottom of flame narrows) -->
+    <rect x="30" y="40" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <rect x="39" y="40" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+    <rect x="48" y="40" width="7" height="7" rx="1.5" fill="#0a0a0a"/>
+  </g>
+
+  <!-- "blaze" text -->
+  <text x="108" y="66" font-family="'Arial', 'Helvetica', sans-serif" font-weight="700" font-size="46" fill="#ffffff" text-anchor="start" letter-spacing="-1">blaze</text>
+</svg>

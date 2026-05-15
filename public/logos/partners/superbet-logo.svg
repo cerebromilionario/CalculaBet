@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Red background -->
+  <rect width="200" height="200" fill="#FF0000" rx="12"/>
+  <!-- SUPERBET text in white, bold, centered -->
+  <text x="100" y="118" font-family="'Impact', 'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="42" fill="#ffffff" text-anchor="middle" letter-spacing="1">SUPERBET</text>
+</svg>

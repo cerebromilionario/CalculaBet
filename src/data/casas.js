@@ -57,7 +57,7 @@ export const casas = [
     name: 'Blaze',
     nome: 'Blaze',
     initials: 'BZ',
-    logo: null, // logo will be added in next update
+    logo: { src: '/logos/partners/blaze-logo.svg', alt: 'Logo Blaze' },
     category: 'Apostas esportivas e cassino online',
     description: 'Plataforma de apostas esportivas e jogos online com oferta de boas-vindas para novos usuários.',
     desc: 'Plataforma de apostas esportivas e jogos online com oferta de boas-vindas para novos usuários.',
@@ -94,7 +94,7 @@ export const casas = [
     name: 'Superbet',
     nome: 'Superbet',
     initials: 'SB',
-    logo: null, // logo will be added in next update
+    logo: { src: '/logos/partners/superbet-logo.svg', alt: 'Logo Superbet' },
     category: 'Apostas esportivas',
     description: 'Casa de apostas esportivas com mercados populares e campanhas promocionais para usuários brasileiros.',
     desc: 'Casa de apostas esportivas com mercados populares e campanhas promocionais para usuários brasileiros.',
