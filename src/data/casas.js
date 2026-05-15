@@ -187,6 +187,33 @@ export const casas = [
     banners: {},
   },
   {
+    id: 'winhugo',
+    name: 'Winhugo',
+    nome: 'Winhugo',
+    initials: 'WH',
+    logo: null,
+    category: 'Apostas esportivas',
+    description: 'Casa de apostas online com mercados esportivos e campanhas promocionais para usuários.',
+    desc: 'Casa de apostas online com mercados esportivos e campanhas promocionais para usuários.',
+    bonus: 'Campanhas promocionais para usuários conforme termos da plataforma',
+    cta: 'Abrir conta',
+    affiliateUrl: 'https://www.gambling-affiliation.com/cpc/v=1XkPG9tiPZRMnubCdwoygh.VYCZuOEPBOXCFfGNegTI_GA7331V2&aff_var_1=',
+    link: 'https://www.gambling-affiliation.com/cpc/v=1XkPG9tiPZRMnubCdwoygh.VYCZuOEPBOXCFfGNegTI_GA7331V2&aff_var_1=',
+    disclaimer: defaultDisclaimer,
+    cor: '#38bdf8',
+    licencaInfo: 'Verifique termos, regras, bônus, licença, disponibilidade regional e requisitos diretamente na plataforma.',
+    destaque: 'Parceiro aprovado',
+    complianceNote: '+18 · Publicidade · Link de afiliado',
+    transparency: AFFILIATE_DISCLOSURE_FULL,
+    featured: false,
+    active: true,
+    affiliateEnabled: true,
+    bannersEnabled: false,
+    rotationEnabled: false,
+    priority: 55,
+    banners: {},
+  },
+  {
     id: 'betobet',
     name: 'BETOBET',
     nome: 'BETOBET',
@@ -245,7 +272,9 @@ function selectPartnersFromPool(pool, seed = 'default', count = 2) {
 }
 
 export function getPartnersForPlacement(seed = 'default', count = 2) {
-  return selectPartnersFromPool(activePartners, seed, count);
+  const placementPartners = activePartners.filter(partner => partner.rotationEnabled !== false);
+
+  return selectPartnersFromPool(placementPartners, seed, count);
 }
 
 const TOOL_PARTNER_IDS = new Set(['1xbit', 'superbet', 'blaze', 'stake']);
