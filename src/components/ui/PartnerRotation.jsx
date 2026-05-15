@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import AffiliateBanner from './AffiliateBanner';
 import CasaCard from './CasaCard';
-import { AFFILIATE_DISCLOSURE_FULL, AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, getPartnersForPlacement, isAffiliateEnabled } from '../../data/casas';
+import { AFFILIATE_DISCLOSURE_FULL, AFFILIATE_DISCLOSURE_SHORT, AFFILIATE_REL, getPartnersForPlacement, getToolPartnersForPlacement, isAffiliateEnabled, isBannerEnabled } from '../../data/casas';
 
 export default function PartnerRotation({ seed, title = 'Parceiros selecionados', context = 'content', compact = false }) {
-  const partners = getPartnersForPlacement(seed, 2);
+  const partners = compact ? getToolPartnersForPlacement(seed, 2) : getPartnersForPlacement(seed, 2);
 
   if (!partners.length) return null;
 
@@ -27,7 +27,7 @@ export default function PartnerRotation({ seed, title = 'Parceiros selecionados'
               className="rounded-xl p-3"
               style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid var(--border)' }}
             >
-              {index === 0 && (
+              {index === 0 && isBannerEnabled(partner) && (
                 <div className="hidden lg:block mb-3">
                   <AffiliateBanner partner={partner} placement="sidebar" />
                 </div>
