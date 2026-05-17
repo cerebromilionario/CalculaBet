@@ -39,7 +39,7 @@ const websiteSchema = {
 };
 
 const stats = [
-  { value: '12', label: 'Calculadoras', suffix: '+' },
+  { value: '13', label: 'Calculadoras', suffix: '+' },
   { value: '100', label: 'Gratuito', suffix: '%' },
   { value: '0', label: 'Cadastros', suffix: '' },
   { value: '∞', label: 'Simulações', suffix: '' },
