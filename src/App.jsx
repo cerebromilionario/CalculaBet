@@ -21,6 +21,7 @@ import Martingale from './pages/calculadoras/Martingale';
 import ConversorOdds from './pages/calculadoras/ConversorOdds';
 import ROI from './pages/calculadoras/ROI';
 import SimuladorLucro from './pages/calculadoras/SimuladorLucro';
+import Overround from './pages/calculadoras/Overround';
 
 // Institucional
 import Sobre from './pages/institucional/Sobre';
@@ -87,6 +88,7 @@ export default function App() {
             <Route path="/calculadoras/conversor-odds" element={<ConversorOdds />} />
             <Route path="/calculadoras/roi" element={<ROI />} />
             <Route path="/calculadoras/simulador-lucro" element={<SimuladorLucro />} />
+            <Route path="/calculadoras/overround" element={<Overround />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/contato/sucesso" element={<ContatoSucesso />} />

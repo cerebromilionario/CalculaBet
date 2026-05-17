@@ -347,4 +347,5 @@ export const calculadoras = [
   { slug: 'conversor-odds', nome: 'Conversor de Odds',     icon: 'conversor-odds', categoria: 'conversao',  desc: 'Converta instantaneamente entre decimal, americana, fracionária e probabilidade.' },
   { slug: 'roi',            nome: 'ROI em Apostas',        icon: 'roi',            categoria: 'roi',        desc: 'Calcule o retorno sobre investimento e analise sua performance acumulada.' },
   { slug: 'simulador-lucro',nome: 'Simulador de Lucro',    icon: 'simulador-lucro',categoria: 'simulacao',  desc: 'Projete o crescimento da banca com simulação Monte Carlo e análise de variância.' },
+  { slug: 'overround',      nome: 'Margem da Casa',        icon: 'overround',      categoria: 'odds',       desc: 'Calcule o overround, payout teórico e odds justas de qualquer mercado de apostas.' },
 ];
