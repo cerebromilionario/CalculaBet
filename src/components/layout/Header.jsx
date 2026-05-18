@@ -257,7 +257,7 @@ export default function Header() {
                       style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
                     >
                       <p className="text-xs" style={{ color: 'var(--text-3)' }}>
-                        12 ferramentas gratuitas · sem cadastro
+                        {calculadoras.length} ferramentas gratuitas · sem cadastro
                       </p>
                       <Link
                         to="/ferramentas"

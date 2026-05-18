@@ -25,7 +25,7 @@ const RICH_DESC = {
 
 /* ─── Category metadata ─── */
 const CATEGORIES = [
-  { id: 'all',        label: 'Todos',            count: 12 },
+  { id: 'all',        label: 'Todos',            count: calculadoras.length },
   { id: 'odds',       label: 'Odds & Apostas',   count: 3 },
   { id: 'arbitragem', label: 'Arbitragem',        count: 4 },
   { id: 'gestao',     label: 'Gestão',            count: 2 },
@@ -337,7 +337,7 @@ export default function Ferramentas() {
               }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" aria-hidden="true" />
-              12 ferramentas gratuitas · sem cadastro · sem login
+              {calculadoras.length} ferramentas gratuitas · sem cadastro · sem login
             </div>
 
             {/* H1 */}
@@ -353,7 +353,7 @@ export default function Ferramentas() {
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg mb-6 max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--text-2)' }}>
-              O CalculaBet reúne 12 ferramentas matemáticas para apostadores esportivos: cálculo de odds, gestão de banca com Kelly Critérion, arbitragem, ROI, simulação Monte Carlo e conversão de formatos. Tome decisões baseadas em dados, não em intuição.
+              O CalculaBet reúne {calculadoras.length} ferramentas matemáticas para apostadores esportivos: cálculo de odds, gestão de banca com Kelly Critérion, arbitragem, ROI, simulação Monte Carlo e conversão de formatos. Tome decisões baseadas em dados, não em intuição.
             </p>
 
             {/* Intro paragraph */}
@@ -1057,7 +1057,7 @@ export default function Ferramentas() {
                 },
                 {
                   q: 'Preciso me cadastrar para usar as ferramentas?',
-                  a: 'Não. Todas as 12 calculadoras do CalculaBet são 100% gratuitas e não exigem cadastro, login, email ou qualquer dado pessoal. Acesse qualquer ferramenta diretamente pelo navegador — os cálculos acontecem localmente, em tempo real, sem necessidade de conta ou conexão com servidores externos.',
+                  a: `Não. Todas as ${calculadoras.length} calculadoras do CalculaBet são 100% gratuitas e não exigem cadastro, login, email ou qualquer dado pessoal. Acesse qualquer ferramenta diretamente pelo navegador — os cálculos acontecem localmente, em tempo real, sem necessidade de conta ou conexão com servidores externos.`,
                 },
                 {
                   q: 'As calculadoras funcionam para qualquer esporte?',
