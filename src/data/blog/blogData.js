@@ -274,6 +274,23 @@ export const BLOG_POSTS = [
     popularity: 120,
   },
   {
+    slug: 'overround-apostas',
+    title: 'Overround nas Apostas: Como Calcular a Margem da Casa pelas Odds',
+    seoTitle: 'Overround nas Apostas: Como Calcular a Margem da Casa pelas Odds',
+    ogTitle: 'Overround nas Apostas: Como Calcular a Margem da Casa',
+    ogDescription: 'Guia educativo sobre overround, margem da casa, payout teórico, odds justas e uso da calculadora de overround do CalculaBet.',
+    excerpt: 'Entenda o que é overround nas apostas, como calcular a margem da casa pelas odds, o que é payout teórico, odds justas e como comparar mercados.',
+    category: 'odds-probabilidades',
+    tags: ['overround apostas', 'o que é overround', 'overround nas apostas', 'como calcular overround', 'margem da casa apostas', 'como calcular margem da casa', 'calculadora overround', 'calculadora de margem', 'payout teórico apostas', 'odds justas', 'probabilidade implícita', 'overround futebol', 'overround 1x2', 'comparar odds plataformas', 'margem da casa odds', 'apostas esportivas odds'],
+    readingTime: '22 min',
+    date: '2026-05-18',
+    updatedAt: '2026-05-18',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Overround', href: '/calculadoras/overround' },
+    popularity: 175,
+  },
+
+  {
     slug: 'o-que-e-surebet',
     title: 'O que é Surebet? Guia Completo de Arbitragem Esportiva',
     excerpt: 'Entenda o que é surebet, como funciona a arbitragem em apostas esportivas, quais são os riscos, exemplos práticos e como usar uma calculadora de surebet.',

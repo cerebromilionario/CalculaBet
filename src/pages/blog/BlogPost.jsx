@@ -14,12 +14,14 @@ import { BET_RETURN_FAQS } from '../../data/blog/betReturnFaqs';
 import { KELLY_CRITERION_FAQS } from '../../data/blog/kellyCriterionFaqs';
 import { MARTINGALE_FAQS } from '../../data/blog/martingaleFaqs';
 import { VALUE_BET_FAQS } from '../../data/blog/valueBetFaqs';
+import { OVERROUND_FAQS } from '../../data/blog/overroundFaqs';
 import BeginnerGuideArticle from './articles/BeginnerGuideArticle';
 import OddsFormatsArticle from './articles/OddsFormatsArticle';
 import BetReturnArticle from './articles/BetReturnArticle';
 import KellyCriterionArticle from './articles/KellyCriterionArticle';
 import MartingaleArticle from './articles/MartingaleArticle';
 import ValueBetArticle from './articles/ValueBetArticle';
+import OverroundArticle from './articles/OverroundArticle';
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
@@ -378,6 +380,7 @@ function getFaqsForPost(slug) {
     'criterio-de-kelly-apostas': KELLY_CRITERION_FAQS,
     'martingale-apostas': MARTINGALE_FAQS,
     'value-bet-o-que-e': VALUE_BET_FAQS,
+    'overround-apostas': OVERROUND_FAQS,
   }[slug] || [];
 }
 
@@ -2021,6 +2024,8 @@ export default function BlogPost() {
             <KellyCriterionArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'martingale-apostas' ? (
             <MartingaleArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'overround-apostas' ? (
+            <OverroundArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
