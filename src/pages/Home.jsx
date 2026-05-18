@@ -189,7 +189,7 @@ export default function Home() {
           <p className="text-xs font-semibold mb-3" style={{ color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
             Ferramentas
           </p>
-          <h2 id="calculadoras-heading" className="section-title mb-4">12 calculadoras gratuitas</h2>
+          <h2 id="calculadoras-heading" className="section-title mb-4">{calculadoras.length} calculadoras gratuitas</h2>
           <p style={{ color: 'var(--text-2)', maxWidth: '480px' }}>
             Tudo que você precisa para apostar com mais inteligência, em uma plataforma só.
           </p>
