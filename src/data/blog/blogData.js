@@ -291,6 +291,23 @@ export const BLOG_POSTS = [
   },
 
   {
+    slug: 'odds-justas',
+    title: 'Odds Justas: Como Calcular a Odd sem Margem da Casa',
+    seoTitle: 'Odds Justas: Como Calcular a Odd sem Margem da Casa',
+    ogTitle: 'Odds Justas: Como Calcular a Odd sem Margem da Casa',
+    ogDescription: 'Guia educativo sobre odds justas, margem da casa, overround, probabilidade implícita e uso da Calculadora de Odds Justas do CalculaBet.',
+    excerpt: 'Entenda o que são odds justas, como calcular odds sem margem da casa, remover overround e usar a Calculadora de Odds Justas do CalculaBet.',
+    category: 'odds-probabilidades',
+    tags: ['odds justas', 'calculadora de odds justas', 'como calcular odds justas', 'odd sem margem da casa', 'odds sem margem', 'remover margem da casa', 'calcular odd justa', 'margem da casa apostas', 'overround apostas', 'probabilidade implícita odds', 'value bet', 'odds oferecidas', 'odds reais apostas', 'calculadora de odds', 'calculadora de margem da casa'],
+    readingTime: '22 min',
+    date: '2026-05-19',
+    updatedAt: '2026-05-19',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Odds Justas', href: '/calculadoras/odds-justas' },
+    popularity: 185,
+  },
+
+  {
     slug: 'como-calcular-ev-apostas',
     title: 'Como Calcular EV em Apostas Esportivas: Fórmula, Exemplos e Calculadora',
     seoTitle: 'Como Calcular EV em Apostas Esportivas: Fórmula e Calculadora',
