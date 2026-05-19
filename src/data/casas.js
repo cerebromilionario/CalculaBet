@@ -218,6 +218,7 @@ export const casas = [
     name: 'Betsson BR',
     nome: 'Betsson BR',
     initials: 'BS',
+    logo: { src: '/logos/partners/betsson-br-logo.svg', alt: 'Logo Betsson BR' },
     category: 'Apostas esportivas e cassino online',
     description: 'Casa de apostas e jogos online com atuação no Brasil e campanhas promocionais para usuários.',
     desc: 'Casa de apostas e jogos online com atuação no Brasil e campanhas promocionais para usuários.',
