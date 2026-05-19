@@ -16,6 +16,7 @@ import { MARTINGALE_FAQS } from '../../data/blog/martingaleFaqs';
 import { VALUE_BET_FAQS } from '../../data/blog/valueBetFaqs';
 import { OVERROUND_FAQS } from '../../data/blog/overroundFaqs';
 import { EV_CALCULATION_FAQS } from '../../data/blog/evCalculationFaqs';
+import { ODDS_JUSTAS_FAQS } from '../../data/blog/oddsJustasFaqs';
 import BeginnerGuideArticle from './articles/BeginnerGuideArticle';
 import OddsFormatsArticle from './articles/OddsFormatsArticle';
 import BetReturnArticle from './articles/BetReturnArticle';
@@ -24,6 +25,7 @@ import MartingaleArticle from './articles/MartingaleArticle';
 import ValueBetArticle from './articles/ValueBetArticle';
 import OverroundArticle from './articles/OverroundArticle';
 import EVCalculationArticle from './articles/EVCalculationArticle';
+import OddsJustasArticle from './articles/OddsJustasArticle';
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
@@ -384,6 +386,7 @@ function getFaqsForPost(slug) {
     'value-bet-o-que-e': VALUE_BET_FAQS,
     'overround-apostas': OVERROUND_FAQS,
     'como-calcular-ev-apostas': EV_CALCULATION_FAQS,
+    'odds-justas': ODDS_JUSTAS_FAQS,
   }[slug] || [];
 }
 
@@ -1989,7 +1992,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['value-bet-o-que-e', 'roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias', 'criterio-de-kelly-apostas', 'martingale-apostas', 'como-calcular-ev-apostas'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['value-bet-o-que-e', 'roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias', 'criterio-de-kelly-apostas', 'martingale-apostas', 'como-calcular-ev-apostas', 'odds-justas'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -2031,6 +2034,8 @@ export default function BlogPost() {
             <OverroundArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'como-calcular-ev-apostas' ? (
             <EVCalculationArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'odds-justas' ? (
+            <OddsJustasArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
