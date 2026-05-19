@@ -172,6 +172,13 @@ const icons = {
       <line x1="4" y1="10" x2="20" y2="10" />
     </svg>
   ),
+  'unidade-stake': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 5L5 19" />
+      <circle cx="6.5" cy="6.5" r="2.5" />
+      <circle cx="17.5" cy="17.5" r="2.5" />
+    </svg>
+  ),
 };
 
 export default function Icon({ name, className = 'w-5 h-5' }) {
