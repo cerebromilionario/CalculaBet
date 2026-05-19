@@ -547,7 +547,7 @@ export default function OddsJustasArticle({ post, category, relatedPosts }) {
       {/* FAQ */}
       <ArticleAffiliateBanner postSlug={post.slug} placement="pre-faq" />
 
-      <FAQSection faqItems={faqItems} title="Perguntas frequentes sobre odds justas" />
+      <FAQSection items={faqItems} title="Perguntas frequentes sobre odds justas" eyebrow="FAQ" />
 
       {/* Artigos relacionados */}
       {relatedPosts?.length > 0 && (
