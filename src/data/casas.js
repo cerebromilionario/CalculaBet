@@ -395,6 +395,7 @@ export const calculadoras = [
   { slug: 'arbitragem',     nome: 'Arbitragem',            icon: 'arbitragem',     categoria: 'arbitragem', desc: 'Identifique e distribua stakes para lucro garantido em qualquer resultado.' },
   { slug: 'dutching',       nome: 'Dutching',              icon: 'dutching',       categoria: 'arbitragem', desc: 'Distribua stakes entre vários resultados mantendo lucro igual em todos.' },
   { slug: 'cashout',        nome: 'Cashout',               icon: 'cashout',        categoria: 'arbitragem', desc: 'Calcule o valor justo do cashout e compare com manter a aposta até o fim.' },
+  { slug: 'cashout-justo', nome: 'Cashout Justo / Manual', icon: 'cashout-justo',  categoria: 'arbitragem', desc: 'Compare a oferta de cashout da casa com uma estimativa de valor justo baseada em retorno potencial e probabilidade atual.' },
   { slug: 'hedge',          nome: 'Hedge',                 icon: 'hedge',          categoria: 'arbitragem', desc: 'Proteja seu lucro ou minimize prejuízo com apostas opostas estratégicas.' },
   { slug: 'gestao-banca',   nome: 'Gestão de Banca',       icon: 'gestao-banca',   categoria: 'gestao',     desc: 'Aplique Kelly Criterion, flat betting ou percentual fixo para crescer sua banca.' },
   { slug: 'martingale',     nome: 'Martingale',            icon: 'martingale',     categoria: 'gestao',     desc: 'Simule a estratégia de dobrar stakes e visualize o risco matemático real.' },
