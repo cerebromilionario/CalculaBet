@@ -15,6 +15,7 @@ import MultiplaParlay from './pages/calculadoras/MultiplaParlay';
 import Arbitragem from './pages/calculadoras/Arbitragem';
 import Dutching from './pages/calculadoras/Dutching';
 import Cashout from './pages/calculadoras/Cashout';
+import CashoutJusto from './pages/calculadoras/CashoutJusto';
 import Hedge from './pages/calculadoras/Hedge';
 import GestaoBanca from './pages/calculadoras/GestaoBanca';
 import Martingale from './pages/calculadoras/Martingale';
@@ -75,6 +76,7 @@ export default function App() {
             <Route path="/calculadoras/arbitragem" element={<Arbitragem />} />
             <Route path="/calculadoras/dutching" element={<Dutching />} />
             <Route path="/calculadoras/cashout" element={<Cashout />} />
+            <Route path="/calculadoras/cashout-justo" element={<CashoutJusto />} />
             <Route path="/calculadoras/hedge" element={<Hedge />} />
             <Route path="/calculadoras/gestao-banca" element={<GestaoBanca />} />
             <Route path="/ferramentas/odds" element={<CalculadoraOdds />} />
