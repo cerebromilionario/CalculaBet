@@ -403,4 +403,5 @@ export const calculadoras = [
   { slug: 'simulador-lucro',nome: 'Simulador de Lucro',    icon: 'simulador-lucro',categoria: 'simulacao',  desc: 'Projete o crescimento da banca com simulação Monte Carlo e análise de variância.' },
   { slug: 'overround',      nome: 'Margem da Casa',        icon: 'overround',      categoria: 'odds',       desc: 'Calcule o overround, payout teórico e odds justas de qualquer mercado de apostas.' },
   { slug: 'value-bet',      nome: 'Value Bet / EV',        icon: 'value-bet',      categoria: 'odds',       desc: 'Calcule valor esperado, EV positivo, edge e probabilidade implícita com base na odd e na sua probabilidade estimada.' },
+  { slug: 'odds-justas',   nome: 'Odds Justas',           icon: 'odds-justas',    categoria: 'odds',       desc: 'Remova a margem da casa e estime as odds justas de cada resultado a partir das probabilidades implícitas do mercado.' },
 ];
