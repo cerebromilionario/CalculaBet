@@ -291,6 +291,23 @@ export const BLOG_POSTS = [
   },
 
   {
+    slug: 'o-que-e-unidade-apostas',
+    title: 'O que é Unidade em Apostas e Como Calcular sua Stake',
+    seoTitle: 'O que é Unidade em Apostas? Como Calcular sua Stake',
+    ogTitle: 'O que é Unidade em Apostas?',
+    ogDescription: 'Guia educativo sobre unidade de aposta, stake fixa, percentual da banca, exemplos práticos e uso da Calculadora de Unidade do CalculaBet.',
+    excerpt: 'Entenda o que é unidade em apostas, como calcular stake fixa, quanto apostar por jogo e como usar uma calculadora de unidade da banca.',
+    category: 'gestao-de-banca',
+    tags: ['o que é unidade em apostas', 'como calcular unidade aposta', 'calculadora de unidade apostas', 'calculadora stake fixa', 'quanto apostar por jogo', 'stake fixa apostas', 'unidade apostas esportivas', 'o que é stake em apostas', 'gestão de banca apostas', 'percentual da banca', 'aposta com 1% da banca', 'stake de 1%', 'stake de 2%', 'controle de banca', 'apostas responsáveis'],
+    readingTime: '22 min',
+    date: '2026-05-19',
+    updatedAt: '2026-05-19',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Unidade / Stake Fixa', href: '/calculadoras/unidade-stake' },
+    popularity: 180,
+  },
+
+  {
     slug: 'odds-justas',
     title: 'Odds Justas: Como Calcular a Odd sem Margem da Casa',
     seoTitle: 'Odds Justas: Como Calcular a Odd sem Margem da Casa',
