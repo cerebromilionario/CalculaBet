@@ -25,6 +25,7 @@ import Overround from './pages/calculadoras/Overround';
 import ValueBet from './pages/calculadoras/ValueBet';
 import OddsJustas from './pages/calculadoras/OddsJustas';
 import UnidadeStake from './pages/calculadoras/UnidadeStake';
+import RolloverBonus from './pages/calculadoras/RolloverBonus';
 
 // Institucional
 import Sobre from './pages/institucional/Sobre';
@@ -95,6 +96,7 @@ export default function App() {
             <Route path="/calculadoras/value-bet" element={<ValueBet />} />
             <Route path="/calculadoras/odds-justas" element={<OddsJustas />} />
             <Route path="/calculadoras/unidade-stake" element={<UnidadeStake />} />
+            <Route path="/calculadoras/rollover-bonus" element={<RolloverBonus />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/contato/sucesso" element={<ContatoSucesso />} />

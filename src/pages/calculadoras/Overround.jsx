@@ -850,14 +850,13 @@ export default function Overround() {
   const oddsN = resultados.map(r => parseOdd(r.odd));
   const allValid = oddsN.every(o => !isNaN(o) && o > 1);
 
-  let soma = 0, overroundPct = 0, payout = 0, payoutPct = 0;
+  let soma = 0, overroundPct = 0, payoutPct = 0;
   let linhas = [];
 
   if (calculado && allValid) {
     soma = oddsN.reduce((acc, o) => acc + 1 / o, 0);
     overroundPct = (soma - 1) * 100;
-    payout = 1 / soma;
-    payoutPct = payout * 100;
+    payoutPct = (1 / soma) * 100;
 
     linhas = resultados.map((r, i) => {
       const odd = oddsN[i];

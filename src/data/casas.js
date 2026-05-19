@@ -404,5 +404,6 @@ export const calculadoras = [
   { slug: 'overround',      nome: 'Margem da Casa',        icon: 'overround',      categoria: 'odds',       desc: 'Calcule o overround, payout teórico e odds justas de qualquer mercado de apostas.' },
   { slug: 'value-bet',      nome: 'Value Bet / EV',        icon: 'value-bet',      categoria: 'odds',       desc: 'Calcule valor esperado, EV positivo, edge e probabilidade implícita com base na odd e na sua probabilidade estimada.' },
   { slug: 'odds-justas',    nome: 'Odds Justas',            icon: 'odds-justas',     categoria: 'odds',       desc: 'Remova a margem da casa e estime as odds justas de cada resultado a partir das probabilidades implícitas do mercado.' },
-  { slug: 'unidade-stake', nome: 'Unidade / Stake Fixa',  icon: 'unidade-stake',   categoria: 'gestao',     desc: 'Calcule quanto vale uma unidade da sua banca e defina uma stake fixa por aposta com mais controle.' },
+  { slug: 'unidade-stake',   nome: 'Unidade / Stake Fixa',         icon: 'unidade-stake',   categoria: 'gestao',  desc: 'Calcule quanto vale uma unidade da sua banca e defina uma stake fixa por aposta com mais controle.' },
+  { slug: 'rollover-bonus',  nome: 'Rollover de Bônus',            icon: 'rollover-bonus',  categoria: 'bonus',   desc: 'Calcule requisitos de rollover, valor restante, prazo, odds mínimas e progresso de bônus promocionais.' },
 ];
