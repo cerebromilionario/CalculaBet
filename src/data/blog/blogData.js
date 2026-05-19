@@ -48,6 +48,13 @@ export const BLOG_CATEGORIES = [
     icon: 'layers',
     color: '#a78bfa',
   },
+  {
+    id: 'bonus-promocoes',
+    name: 'Bônus e Promoções',
+    description: 'Guias educativos sobre rollover, requisitos de aposta, bônus de boas-vindas, odds mínimas, prazos e avaliação responsável de promoções.',
+    icon: 'shield',
+    color: '#fb923c',
+  },
 ];
 
 export const BLOG_POSTS = [
@@ -353,6 +360,23 @@ export const BLOG_POSTS = [
     author: 'Equipe CalculaBet',
     relatedTool: { label: 'Calculadora de Arbitragem', href: '/ferramentas/arbitragem' },
     popularity: 100,
+  },
+
+  {
+    slug: 'rollover-apostas',
+    title: 'Rollover em Apostas: O Que É, Como Calcular e Cuidados com Bônus',
+    seoTitle: 'Rollover em Apostas: O Que É, Como Calcular e Cuidados',
+    ogTitle: 'Rollover em Apostas: O Que É e Como Calcular',
+    ogDescription: 'Guia educativo sobre rollover de bônus, requisitos de aposta, odds mínimas, prazos, riscos e uso da calculadora do CalculaBet.',
+    excerpt: 'Entenda o que é rollover em apostas, como calcular requisitos de bônus, a diferença entre tipos de rollover, odds mínimas, prazos e use a calculadora de rollover.',
+    category: 'bonus-promocoes',
+    tags: ['rollover apostas', 'rollover bônus', 'como calcular rollover', 'calculadora rollover bônus apostas', 'requisito de aposta', 'bônus casas de apostas', 'odd mínima bônus', 'freebet rollover', 'aposta grátis rollover', 'rollover 5x', 'rollover 10x', 'como funciona rollover', 'bônus de apostas', 'regras de bônus apostas', 'casas de apostas bônus', 'jogo responsável'],
+    readingTime: '24 min',
+    date: '2026-05-19',
+    updatedAt: '2026-05-19',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Rollover de Bônus', href: '/calculadoras/rollover-bonus' },
+    popularity: 175,
   },
 ];
 
