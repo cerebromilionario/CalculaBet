@@ -612,11 +612,11 @@ export default function UnidadeStake() {
               <p className="text-xs font-semibold mb-4" style={{ color: '#67e8f9', textTransform: 'uppercase', letterSpacing: '0.07em' }}>Resumo principal</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {[
-                  ['Banca total', `R$ ${fmtBRL(b)}`, 'var(--text-1)'],
+                  ['Banca total', `R$ ${fmtBRL(b)}`, 'var(--text-1)'],
                   ['Percentual por unidade', fmtPct(p), '#67e8f9'],
-                  ['Valor de 1 unidade', `R$ ${fmtBRL(unidade)}`, '#22d3ee'],
+                  ['Valor de 1 unidade', `R$ ${fmtBRL(unidade)}`, '#22d3ee'],
                   ['Qtd. de unidades', u % 1 === 0 ? u.toString() : u.toFixed(2), 'var(--text-1)'],
-                  ['Stake total', `R$ ${fmtBRL(stakeTotal)}`, '#4ade80'],
+                  ['Stake total', `R$ ${fmtBRL(stakeTotal)}`, '#4ade80'],
                 ].map(([label, value, color]) => (
                   <div key={label} className="rounded-xl p-3.5" style={{ background: 'rgba(255,255,255,0.05)' }}>
                     <p className="text-xs mb-1" style={{ color: 'var(--text-3)' }}>{label}</p>
@@ -632,7 +632,7 @@ export default function UnidadeStake() {
               <div className="space-y-3">
                 {[
                   ['Percentual total exposto', fmtPct(Math.min(percentualTotal, 100)), percentualTotal > 20 ? '#f87171' : percentualTotal > 10 ? '#fb923c' : '#fbbf24'],
-                  ['Banca restante se perder', `R$ ${fmtBRL(Math.max(bancaRestante, 0))}`, bancaRestante < 0 ? '#f87171' : '#4ade80'],
+                  ['Banca restante se perder', `R$ ${fmtBRL(Math.max(bancaRestante, 0))}`, bancaRestante < 0 ? '#f87171' : '#4ade80'],
                   ['Apostas desse valor na banca (aprox.)', `~${apostasAteZerar}`, '#67e8f9'],
                 ].map(([label, value, color]) => (
                   <div key={label} className="flex justify-between items-center py-2.5 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
