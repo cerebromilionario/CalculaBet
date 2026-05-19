@@ -23,6 +23,7 @@ import ROI from './pages/calculadoras/ROI';
 import SimuladorLucro from './pages/calculadoras/SimuladorLucro';
 import Overround from './pages/calculadoras/Overround';
 import ValueBet from './pages/calculadoras/ValueBet';
+import OddsJustas from './pages/calculadoras/OddsJustas';
 
 // Institucional
 import Sobre from './pages/institucional/Sobre';
@@ -91,6 +92,7 @@ export default function App() {
             <Route path="/calculadoras/simulador-lucro" element={<SimuladorLucro />} />
             <Route path="/calculadoras/overround" element={<Overround />} />
             <Route path="/calculadoras/value-bet" element={<ValueBet />} />
+            <Route path="/calculadoras/odds-justas" element={<OddsJustas />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/contato/sucesso" element={<ContatoSucesso />} />
