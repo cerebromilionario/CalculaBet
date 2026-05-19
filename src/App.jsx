@@ -22,6 +22,7 @@ import ConversorOdds from './pages/calculadoras/ConversorOdds';
 import ROI from './pages/calculadoras/ROI';
 import SimuladorLucro from './pages/calculadoras/SimuladorLucro';
 import Overround from './pages/calculadoras/Overround';
+import ValueBet from './pages/calculadoras/ValueBet';
 
 // Institucional
 import Sobre from './pages/institucional/Sobre';
@@ -89,6 +90,7 @@ export default function App() {
             <Route path="/calculadoras/roi" element={<ROI />} />
             <Route path="/calculadoras/simulador-lucro" element={<SimuladorLucro />} />
             <Route path="/calculadoras/overround" element={<Overround />} />
+            <Route path="/calculadoras/value-bet" element={<ValueBet />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/contato/sucesso" element={<ContatoSucesso />} />
