@@ -291,6 +291,23 @@ export const BLOG_POSTS = [
   },
 
   {
+    slug: 'como-calcular-ev-apostas',
+    title: 'Como Calcular EV em Apostas Esportivas: Fórmula, Exemplos e Calculadora',
+    seoTitle: 'Como Calcular EV em Apostas Esportivas: Fórmula e Calculadora',
+    ogTitle: 'Como Calcular EV em Apostas Esportivas',
+    ogDescription: 'Guia prático sobre valor esperado, EV positivo, edge, probabilidade implícita e uso da Calculadora de Value Bet do CalculaBet.',
+    excerpt: 'Aprenda como calcular EV em apostas esportivas, entender valor esperado positivo, edge, probabilidade implícita e usar uma calculadora de value bet.',
+    category: 'odds-probabilidades',
+    tags: ['como calcular EV nas apostas', 'valor esperado apostas', 'EV apostas', 'EV positivo apostas', 'calculadora EV apostas', 'calculadora value bet', 'como calcular value bet', 'value bet apostas', 'aposta de valor', 'edge apostas', 'probabilidade implícita odds', 'odds com valor', 'valor esperado positivo', 'fórmula EV apostas', 'EV percentual'],
+    readingTime: '22 min',
+    date: '2026-05-19',
+    updatedAt: '2026-05-19',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Value Bet / EV', href: '/calculadoras/value-bet' },
+    popularity: 190,
+  },
+
+  {
     slug: 'o-que-e-surebet',
     title: 'O que é Surebet? Guia Completo de Arbitragem Esportiva',
     excerpt: 'Entenda o que é surebet, como funciona a arbitragem em apostas esportivas, quais são os riscos, exemplos práticos e como usar uma calculadora de surebet.',
