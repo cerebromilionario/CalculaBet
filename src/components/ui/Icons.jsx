@@ -158,6 +158,11 @@ const icons = {
       <line x1="16" y1="18" x2="16" y2="18" />
     </svg>
   ),
+  'value-bet': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2Z" />
+    </svg>
+  ),
 };
 
 export default function Icon({ name, className = 'w-5 h-5' }) {
