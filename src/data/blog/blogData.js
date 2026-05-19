@@ -378,6 +378,23 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Rollover de Bônus', href: '/calculadoras/rollover-bonus' },
     popularity: 175,
   },
+
+  {
+    slug: 'cashout-manual',
+    title: 'Cashout Manual: Como Calcular se a Oferta da Casa Vale a Pena',
+    seoTitle: 'Cashout Manual: Como Calcular se a Oferta Vale a Pena',
+    ogTitle: 'Cashout Manual: Como Calcular se a Oferta Vale a Pena',
+    ogDescription: 'Guia educativo sobre cashout manual, cashout justo, valor esperado, probabilidade atual e uso da calculadora do CalculaBet.',
+    excerpt: 'Entenda como calcular cashout manual, comparar a oferta da casa com valor justo, probabilidade atual e valor esperado da aposta.',
+    category: 'cashout-hedge',
+    tags: ['calculadora cashout manual', 'cashout manual', 'cashout justo', 'calculadora cashout justo', 'como calcular cashout', 'cashout vale a pena', 'cashout apostas', 'valor justo cashout', 'cashout valor esperado', 'cashout oferecido pela casa', 'cashout em apostas esportivas', 'cashout em aposta multipla', 'cashout ou manter aposta', 'hedge apostas', 'valor esperado apostas'],
+    readingTime: '22 min',
+    date: '2026-05-19',
+    updatedAt: '2026-05-19',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Cashout Justo / Manual', href: '/calculadoras/cashout-justo' },
+    popularity: 180,
+  },
 ];
 
 export const BLOG_FAQS = [
