@@ -411,6 +411,22 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Aposta Multipla', href: '/calculadoras/multipla-parlay' },
     popularity: 190,
   },
+  {
+    slug: 'calculadora-surebet-excel',
+    title: 'Calculadora Surebet no Excel: Fórmula e Alternativa Online',
+    seoTitle: 'Calculadora Surebet no Excel: Fórmula e Alternativa Online',
+    ogTitle: 'Calculadora Surebet no Excel',
+    ogDescription: 'Guia prático para calcular surebet em planilha, entender fórmula de arbitragem e usar a Calculadora de Arbitragem do CalculaBet.',
+    excerpt: 'Aprenda a calcular surebet no Excel, veja fórmulas para arbitragem, divisão de stakes e use uma calculadora online gratuita.',
+    category: 'arbitragem',
+    tags: ['calculadora surebet excel', 'calculadora surebet gratis', 'calculadora de surebet', 'calculadora arbitragem apostas', 'formula surebet', 'como calcular surebet', 'surebet no excel', 'planilha surebet', 'arbitragem apostas esportivas', 'calcular arbitragem apostas', 'dividir stakes surebet', 'surebet 2 resultados', 'surebet 3 resultados', 'calculadora odds surebet'],
+    readingTime: '18 min',
+    date: '2026-05-20',
+    updatedAt: '2026-05-20',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Arbitragem', href: '/calculadoras/arbitragem' },
+    popularity: 185,
+  },
 ];
 
 export const BLOG_FAQS = [
