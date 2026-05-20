@@ -427,6 +427,22 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Arbitragem', href: '/calculadoras/arbitragem' },
     popularity: 185,
   },
+  {
+    slug: 'planilha-gestao-de-banca-apostas',
+    title: 'Planilha de Gestão de Banca: O Que Registrar para Controlar suas Apostas',
+    seoTitle: 'Planilha de Gestão de Banca: O Que Registrar em Apostas',
+    ogTitle: 'Planilha de Gestão de Banca para Apostas',
+    ogDescription: 'Guia prático para organizar uma planilha de apostas, controlar banca, registrar stakes, calcular ROI e acompanhar resultados.',
+    excerpt: 'Veja o que registrar em uma planilha de gestão de banca: stake, unidade, odds, resultado, lucro/prejuízo, ROI e controle de apostas.',
+    category: 'gestao-de-banca',
+    tags: ['planilha gestao de banca apostas', 'gestao de banca planilha', 'planilha apostas esportivas', 'controle de banca apostas', 'como controlar banca apostas', 'registro de apostas esportivas', 'planilha de apostas', 'ROI apostas', 'unidade apostas', 'stake apostas', 'controle de stake', 'calculadora gestao de banca', 'calculadora ROI apostas', 'calculadora unidade apostas'],
+    readingTime: '20 min',
+    date: '2026-05-20',
+    updatedAt: '2026-05-20',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Gestão de Banca', href: '/calculadoras/gestao-banca' },
+    popularity: 195,
+  },
 ];
 
 export const BLOG_FAQS = [
