@@ -459,6 +459,22 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Dutching', href: '/calculadoras/dutching' },
     popularity: 192,
   },
+  {
+    slug: 'surebet-e-crime',
+    title: 'Surebet e Crime? Legalidade, Regras das Casas e Riscos',
+    seoTitle: 'Surebet e Crime? Entenda Legalidade, Regras e Riscos',
+    ogTitle: 'Surebet e Crime? Entenda Regras e Riscos',
+    ogDescription: 'Guia educativo sobre surebet, legalidade, termos das casas, limitacoes de conta, riscos operacionais e uso responsavel de calculadoras.',
+    excerpt: 'Entenda se surebet e crime, quais riscos existem, como regras das casas podem afetar contas e por que arbitragem exige cuidado.',
+    category: 'arbitragem',
+    tags: ['surebet e crime', 'surebet e legal', 'surebet apostas', 'arbitragem apostas esportivas', 'surebet no Brasil', 'regras casas de apostas', 'termos das casas de apostas', 'conta limitada apostas', 'risco surebet', 'calculadora surebet', 'calculadora arbitragem apostas', 'como funciona surebet', 'arbitragem esportiva riscos', 'apostas responsaveis'],
+    readingTime: '18 min',
+    date: '2026-05-20',
+    updatedAt: '2026-05-20',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Arbitragem', href: '/calculadoras/arbitragem' },
+    popularity: 200,
+  },
 ];
 
 export const BLOG_FAQS = [
