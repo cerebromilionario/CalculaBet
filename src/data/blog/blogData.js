@@ -443,6 +443,22 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Gestão de Banca', href: '/calculadoras/gestao-banca' },
     popularity: 195,
   },
+  {
+    slug: 'dutching-ou-surebet',
+    title: 'Dutching ou Surebet: Diferenca e Quando Cada Calculo Faz Sentido',
+    seoTitle: 'Dutching ou Surebet: Diferenca e Quando Usar Cada Calculo',
+    ogTitle: 'Dutching ou Surebet: Entenda a Diferenca',
+    ogDescription: 'Guia comparativo sobre Dutching, Surebet, arbitragem, divisao de stakes, riscos e uso das calculadoras do CalculaBet.',
+    excerpt: 'Entenda a diferenca entre Dutching e Surebet, quando cada calculo faz sentido, como dividir stakes e quais riscos considerar.',
+    category: 'arbitragem',
+    tags: ['dutching ou surebet', 'diferenca entre dutching e surebet', 'dutching apostas', 'surebet apostas', 'arbitragem apostas esportivas', 'calculadora dutching', 'calculadora surebet', 'calculadora arbitragem apostas', 'como calcular dutching', 'como calcular surebet', 'dividir stakes apostas', 'cobrir resultados apostas', 'risco dutching', 'risco surebet'],
+    readingTime: '16 min',
+    date: '2026-05-20',
+    updatedAt: '2026-05-20',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Dutching', href: '/calculadoras/dutching' },
+    popularity: 192,
+  },
 ];
 
 export const BLOG_FAQS = [
