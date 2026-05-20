@@ -24,6 +24,7 @@ import { APOSTA_MULTIPLA_FAQS } from '../../data/blog/apostaMultiplaFaqs';
 import { SUREBET_EXCEL_FAQS } from '../../data/blog/surebetExcelFaqs';
 import { PLANILHA_GESTAO_BANCA_FAQS } from '../../data/blog/planilhaGestaoBancaFaqs';
 import { DUTCHING_OU_SUREBET_FAQS } from '../../data/blog/dutchingOuSurebetFaqs';
+import { SUREBET_E_CRIME_FAQS } from '../../data/blog/surebetECrimeFaqs';
 import BeginnerGuideArticle from './articles/BeginnerGuideArticle';
 import OddsFormatsArticle from './articles/OddsFormatsArticle';
 import BetReturnArticle from './articles/BetReturnArticle';
@@ -40,6 +41,7 @@ import ApostaMultiplaArticle from './articles/ApostaMultiplaArticle';
 import SurebetExcelArticle from './articles/SurebetExcelArticle';
 import PlanilhaGestaoBancaArticle from './articles/PlanilhaGestaoBancaArticle';
 import DutchingOuSurebetArticle from './articles/DutchingOuSurebetArticle';
+import SurebetECrimeArticle from './articles/SurebetECrimeArticle';
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
@@ -408,6 +410,7 @@ function getFaqsForPost(slug) {
     'calculadora-surebet-excel': SUREBET_EXCEL_FAQS,
     'planilha-gestao-de-banca-apostas': PLANILHA_GESTAO_BANCA_FAQS,
     'dutching-ou-surebet': DUTCHING_OU_SUREBET_FAQS,
+    'surebet-e-crime': SUREBET_E_CRIME_FAQS,
   }[slug] || [];
 }
 
@@ -2013,7 +2016,7 @@ export default function BlogPost() {
 
   return (
     <>
-      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['value-bet-o-que-e', 'roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias', 'criterio-de-kelly-apostas', 'martingale-apostas', 'como-calcular-ev-apostas', 'odds-justas', 'o-que-e-unidade-apostas', 'rollover-apostas', 'cashout-manual', 'aposta-multipla-tem-que-acertar-tudo', 'calculadora-surebet-excel', 'planilha-gestao-de-banca-apostas', 'dutching-ou-surebet'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
+      <SEOHead title={post.seoTitle || post.title} description={post.excerpt} canonical={`/blog/${post.slug}`} schema={buildArticleSchema(post, category)} ogType="article" appendSiteName={!['value-bet-o-que-e', 'roi-apostas', 'o-que-e-surebet', 'como-calcular-odds', 'como-calcular-retorno-de-aposta', 'o-que-e-gestao-de-banca', 'o-que-e-aposta-multipla', 'o-que-e-dutching', 'cashout-apostas', 'probabilidade-implicita-odds', 'apostas-esportivas-para-iniciantes', 'odds-decimais-americanas-fracionarias', 'criterio-de-kelly-apostas', 'martingale-apostas', 'como-calcular-ev-apostas', 'odds-justas', 'o-que-e-unidade-apostas', 'rollover-apostas', 'cashout-manual', 'aposta-multipla-tem-que-acertar-tudo', 'calculadora-surebet-excel', 'planilha-gestao-de-banca-apostas', 'dutching-ou-surebet', 'surebet-e-crime'].includes(post.slug)} ogTitle={post.ogTitle} ogDescription={post.ogDescription} />
 
       <main className="relative overflow-hidden pt-28 pb-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -2071,6 +2074,8 @@ export default function BlogPost() {
             <PlanilhaGestaoBancaArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : post.slug === 'dutching-ou-surebet' ? (
             <DutchingOuSurebetArticle post={post} category={category} relatedPosts={relatedPosts} />
+          ) : post.slug === 'surebet-e-crime' ? (
+            <SurebetECrimeArticle post={post} category={category} relatedPosts={relatedPosts} />
           ) : (
           <>
           <article className="rounded-[2rem] p-6 sm:p-8 lg:p-10" style={{ background: 'linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02))', border: '1px solid rgba(255,255,255,0.09)' }}>
