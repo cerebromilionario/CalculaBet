@@ -395,6 +395,22 @@ export const BLOG_POSTS = [
     relatedTool: { label: 'Calculadora de Cashout Justo / Manual', href: '/calculadoras/cashout-justo' },
     popularity: 180,
   },
+  {
+    slug: 'aposta-multipla-tem-que-acertar-tudo',
+    title: 'Aposta Multipla Tem que Acertar Tudo? Entenda Antes de Apostar',
+    seoTitle: 'Aposta Multipla Tem que Acertar Tudo? Entenda as Regras',
+    ogTitle: 'Aposta Multipla Tem que Acertar Tudo?',
+    ogDescription: 'Guia educativo para entender regras de aposta multipla, selecoes perdidas, jogos anulados, odds combinadas e uso da calculadora do CalculaBet.',
+    excerpt: 'Entenda se aposta multipla tem que acertar tudo, o que acontece se uma selecao perde, como jogos anulados afetam a multipla e como calcular odds combinadas.',
+    category: 'apostas-multiplas',
+    tags: ['aposta multipla tem que acertar tudo', 'aposta multipla como funciona', 'aposta combinada tem que acertar todas', 'aposta multipla precisa acertar tudo', 'aposta multipla perdeu uma selecao', 'aposta multipla com jogo anulado', 'calculadora de aposta multipla', 'calculadora de odds combinadas', 'parlay apostas', 'aposta multipla risco', 'como calcular aposta multipla', 'o que e aposta multipla', 'aposta multipla odd'],
+    readingTime: '14 min',
+    date: '2026-05-20',
+    updatedAt: '2026-05-20',
+    author: 'Equipe CalculaBet',
+    relatedTool: { label: 'Calculadora de Aposta Multipla', href: '/calculadoras/multipla-parlay' },
+    popularity: 190,
+  },
 ];
 
 export const BLOG_FAQS = [
