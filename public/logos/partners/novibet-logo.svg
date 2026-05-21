@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Dark navy circle background -->
+  <circle cx="100" cy="100" r="100" fill="#282D3F"/>
+  <!-- White "n" letter in Novibet style -->
+  <text x="100" y="138" font-family="'Arial Black', 'Arial', 'Helvetica', sans-serif" font-weight="900" font-size="110" fill="#ffffff" text-anchor="middle" letter-spacing="-2">n</text>
+</svg>

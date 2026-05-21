@@ -271,6 +271,7 @@ export const casas = [
     id: 'novibet',
     name: 'NOVIBET',
     nome: 'NOVIBET',
+    logo: { src: '/logos/partners/novibet-logo.svg', alt: 'Logo Novibet' },
     initials: 'NV',
     category: 'Apostas esportivas e cassino online',
     description: 'Casa de apostas e jogos online com campanhas promocionais para usuários.',
