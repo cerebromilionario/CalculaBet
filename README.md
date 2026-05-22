@@ -14,3 +14,19 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## TheSportsDB live scores
+
+The homepage "Jogos de hoje e próximos eventos" widget reads from the internal Netlify Function at `/api/live-scores`, which redirects to `/.netlify/functions/live-scores`.
+
+To enable real data:
+
+1. Create or access a TheSportsDB account.
+2. Get the API key from the user profile page. Premium accounts can use the v2 livescore endpoint.
+3. Configure the Netlify environment variable:
+   `THESPORTSDB_API_KEY=your_api_key_here`
+4. Deploy the site.
+
+The function first tries TheSportsDB v2 soccer livescores (`/api/v2/json/livescore/soccer`) with `X-API-KEY`. If livescores are unavailable for the account, it falls back to the v1 schedule endpoints: `eventsday.php` for today's soccer matches and `eventsnextleague.php` for selected priority leagues when needed.
+
+Responses use `Cache-Control: public, max-age=300, s-maxage=900` to cache browser responses for 5 minutes and CDN responses for 15 minutes. If the API key is missing, the upstream API fails, or no relevant matches are returned, the homepage keeps rendering and shows an empty or fallback state without exposing the API key.

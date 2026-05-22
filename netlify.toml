@@ -3,6 +3,11 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/api/live-scores"
+  to = "/.netlify/functions/live-scores"
+  status = 200
+
+[[redirects]]
   from = "https://www.calculabet.site"
   to = "https://calculabet.site"
   status = 301
