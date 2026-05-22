@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { mockLiveScores } from '../../data/mockLiveScores';
 
 const statusConfig = {
   scheduled: { label: 'Agendado', color: '#cbd5e1', bg: 'rgba(148,163,184,0.12)', border: 'rgba(148,163,184,0.35)' },
@@ -12,8 +11,14 @@ const statusConfig = {
 };
 
 function scoreLabel(match) {
-  if (match.homeScore === null || match.awayScore === null) return 'Placar indisponível';
-  return `${match.homeScore} x ${match.awayScore}`;
+  if (match.homeScore !== null && match.awayScore !== null) {
+    return `${match.homeTeam} ${match.homeScore} x ${match.awayScore} ${match.awayTeam}`;
+  }
+
+  if (match.status === 'live') return 'Placar ao vivo indisponível';
+  if (match.status === 'finished') return 'Resultado indisponível';
+
+  return 'Jogo ainda não iniciado';
 }
 
 function formatDate(date) {
@@ -33,7 +38,7 @@ function statusText(status) {
   return statusConfig[status] ?? statusConfig.unknown;
 }
 
-export default function TodayMatchesWidget({ fallbackMatches = mockLiveScores }) {
+export default function TodayMatchesWidget() {
   const [matches, setMatches] = useState([]);
   const [state, setState] = useState('loading');
   const [message, setMessage] = useState('');
@@ -52,7 +57,7 @@ export default function TodayMatchesWidget({ fallbackMatches = mockLiveScores })
         if (!response.ok) throw new Error('Live scores request failed');
 
         const payload = await response.json();
-        const nextMatches = Array.isArray(payload?.matches) ? payload.matches.slice(0, 8) : [];
+        const nextMatches = Array.isArray(payload?.matches) ? payload.matches.slice(0, 6) : [];
 
         if (!active) return;
 
@@ -63,12 +68,12 @@ export default function TodayMatchesWidget({ fallbackMatches = mockLiveScores })
           return;
         }
 
-        setMatches(import.meta.env.DEV ? fallbackMatches.slice(0, 6) : []);
+        setMatches([]);
         setState('empty');
-        setMessage(payload?.message || 'Sem jogos relevantes para exibir no momento.');
+        setMessage(payload?.message || 'Não há jogos relevantes para exibir no momento.');
       } catch {
         if (!active) return;
-        setMatches(import.meta.env.DEV ? fallbackMatches.slice(0, 6) : []);
+        setMatches([]);
         setState('error');
         setMessage('Não foi possível carregar os jogos agora.');
       }
@@ -80,7 +85,7 @@ export default function TodayMatchesWidget({ fallbackMatches = mockLiveScores })
       active = false;
       controller.abort();
     };
-  }, [fallbackMatches]);
+  }, []);
 
   const hasMatches = matches.length > 0;
 
@@ -122,7 +127,10 @@ export default function TodayMatchesWidget({ fallbackMatches = mockLiveScores })
           role="status"
           aria-live="polite"
         >
-          {message}
+          <p className="font-semibold mb-1" style={{ color: 'var(--text-1)' }}>{message}</p>
+          <p className="text-xs" style={{ color: 'var(--text-3)' }}>
+            Volte mais tarde ou use as calculadoras do CalculaBet para simular odds, múltiplas e gestão de banca.
+          </p>
         </div>
       )}
 

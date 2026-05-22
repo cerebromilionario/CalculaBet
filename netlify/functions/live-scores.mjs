@@ -5,17 +5,61 @@ const CACHE_HEADERS = {
 
 const PRIORITY_LEAGUES = [
   { id: '4351', name: 'Brazilian Serie A', priority: 1 },
-  { id: '4480', name: 'UEFA Champions League', priority: 2 },
-  { id: '4501', name: 'Copa Libertadores', priority: 3 },
-  { id: '4328', name: 'English Premier League', priority: 4 },
-  { id: '4335', name: 'Spanish La Liga', priority: 5 },
-  { id: '4332', name: 'Italian Serie A', priority: 6 },
-  { id: '4331', name: 'German Bundesliga', priority: 7 },
-  { id: '4334', name: 'French Ligue 1', priority: 8 },
+  { id: '4404', name: 'Brazilian Serie B', priority: 2 },
+  { id: '4355', name: 'Copa do Brasil', priority: 3 },
+  { id: '4501', name: 'Copa Libertadores', priority: 4 },
+  { id: '4502', name: 'Copa Sudamericana', priority: 5 },
+  { id: '4480', name: 'UEFA Champions League', priority: 6 },
+  { id: '4481', name: 'UEFA Europa League', priority: 7 },
+  { id: '4328', name: 'English Premier League', priority: 8 },
+  { id: '4335', name: 'Spanish La Liga', priority: 9 },
+  { id: '4332', name: 'Italian Serie A', priority: 10 },
+  { id: '4331', name: 'German Bundesliga', priority: 11 },
+  { id: '4334', name: 'French Ligue 1', priority: 12 },
+  { id: '4571', name: 'FIFA Club World Cup', priority: 13 },
 ];
 
 const PRIORITY_LEAGUE_IDS = new Map(PRIORITY_LEAGUES.map(league => [league.id, league.priority]));
 const PRIORITY_LEAGUE_NAMES = new Map(PRIORITY_LEAGUES.map(league => [league.name.toLowerCase(), league.priority]));
+const PRIORITY_LEAGUE_ALIASES = [
+  ['brasileirão série a', 1],
+  ['brasileirao serie a', 1],
+  ['campeonato brasileiro série a', 1],
+  ['brazilian serie a', 1],
+  ['brasileirão série b', 2],
+  ['brasileirao serie b', 2],
+  ['campeonato brasileiro série b', 2],
+  ['brazilian serie b', 2],
+  ['copa do brasil', 3],
+  ['copa libertadores', 4],
+  ['copa conmebol libertadores', 4],
+  ['conmebol libertadores', 4],
+  ['copa sudamericana', 5],
+  ['copa sul-americana', 5],
+  ['conmebol sudamericana', 5],
+  ['uefa champions league', 6],
+  ['champions league', 6],
+  ['uefa europa league', 7],
+  ['europa league', 7],
+  ['english premier league', 8],
+  ['premier league', 8],
+  ['spanish la liga', 9],
+  ['la liga', 9],
+  ['laliga', 9],
+  ['italian serie a', 10],
+  ['serie a', 10],
+  ['german bundesliga', 11],
+  ['bundesliga', 11],
+  ['french ligue 1', 12],
+  ['ligue 1', 12],
+  ['fifa club world cup', 13],
+  ['club world cup', 13],
+  ['fifa world cup', 14],
+  ['uefa european championship', 15],
+  ['copa america', 16],
+];
+const PRIORITY_LEAGUE_ALIASES_MAP = new Map(PRIORITY_LEAGUE_ALIASES.map(([name, priority]) => [normalizeLeagueName(name), priority]));
+const BRAZIL_LEAGUE_PRIORITIES = new Set([1, 2, 3, 4, 5]);
 const LIVE_STATUSES = new Set(['1H', 'HT', '2H', 'ET', 'P', 'BT']);
 const FINISHED_STATUSES = new Set(['FT', 'AET', 'PEN']);
 const POSTPONED_STATUSES = new Set(['PST', 'POST']);
@@ -56,6 +100,15 @@ function normalizeStatus(event) {
   return 'unknown';
 }
 
+function normalizeLeagueName(name) {
+  return String(name || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
 function normalizeEvent(event) {
   return {
     id: String(event.idEvent || event.idLiveScore || `${event.strHomeTeam}-${event.strAwayTeam}-${event.dateEvent}`),
@@ -73,8 +126,33 @@ function normalizeEvent(event) {
 
 function priorityFor(event) {
   const id = String(event.idLeague || '');
-  const name = String(event.strLeague || '').toLowerCase();
-  return PRIORITY_LEAGUE_IDS.get(id) ?? PRIORITY_LEAGUE_NAMES.get(name) ?? 99;
+  const normalizedName = normalizeLeagueName(event.strLeague || event.league);
+
+  return PRIORITY_LEAGUE_IDS.get(id)
+    ?? PRIORITY_LEAGUE_NAMES.get(String(event.strLeague || event.league || '').toLowerCase())
+    ?? PRIORITY_LEAGUE_ALIASES_MAP.get(normalizedName)
+    ?? 99;
+}
+
+function isPriorityEvent(event) {
+  return priorityFor(event) < 99;
+}
+
+function isBrazilPriority(match) {
+  return BRAZIL_LEAGUE_PRIORITIES.has(priorityFor(match));
+}
+
+function timeValue(match) {
+  if (!match.startTime || match.startTime === 'A definir') return Number.MAX_SAFE_INTEGER;
+  const [hours, minutes] = String(match.startTime).split(':').map(Number);
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return Number.MAX_SAFE_INTEGER;
+  return (hours * 60) + minutes;
+}
+
+function logFilter(source, before, after) {
+  if (process.env.NODE_ENV === 'development') {
+    console.info(`[live-scores] ${source}: ${before} received, ${after} after priority filter`);
+  }
 }
 
 function uniqueEvents(events) {
@@ -89,7 +167,13 @@ function uniqueEvents(events) {
 function sortEvents(a, b) {
   if (a.status === 'live' && b.status !== 'live') return -1;
   if (a.status !== 'live' && b.status === 'live') return 1;
-  return String(a.date || '').localeCompare(String(b.date || '')) || String(a.startTime || '').localeCompare(String(b.startTime || ''));
+  if (a.status === 'finished' && b.status !== 'finished') return 1;
+  if (a.status !== 'finished' && b.status === 'finished') return -1;
+  if (isBrazilPriority(a) !== isBrazilPriority(b)) return isBrazilPriority(a) ? -1 : 1;
+
+  return priorityFor(a) - priorityFor(b)
+    || String(a.date || '').localeCompare(String(b.date || ''))
+    || timeValue(a) - timeValue(b);
 }
 
 async function fetchJson(url, options = {}) {
@@ -107,9 +191,10 @@ async function getPremiumLiveScores(apiKey) {
     headers: { 'X-API-KEY': apiKey },
   });
   const events = Array.isArray(data?.livescores) ? data.livescores : Array.isArray(data?.events) ? data.events : [];
+  const filteredEvents = events.filter(event => String(event.strSport || '').toLowerCase() === 'soccer' && isPriorityEvent(event));
+  logFilter('thesportsdb-v2-livescore', events.length, filteredEvents.length);
 
-  return events
-    .filter(event => String(event.strSport || '').toLowerCase() === 'soccer')
+  return filteredEvents
     .sort((a, b) => priorityFor(a) - priorityFor(b))
     .map(normalizeEvent);
 }
@@ -121,8 +206,10 @@ async function getEventsByDay(apiKey, date) {
 
   const data = await fetchJson(url);
   const events = Array.isArray(data?.events) ? data.events : [];
+  const filteredEvents = events.filter(isPriorityEvent);
+  logFilter('thesportsdb-v1-eventsday', events.length, filteredEvents.length);
 
-  return events
+  return filteredEvents
     .sort((a, b) => priorityFor(a) - priorityFor(b))
     .map(normalizeEvent);
 }
@@ -141,6 +228,7 @@ async function getNextLeagueEvents(apiKey) {
   }
 
   return batches
+    .filter(isPriorityEvent)
     .sort((a, b) => priorityFor(a) - priorityFor(b))
     .map(normalizeEvent);
 }
@@ -163,7 +251,7 @@ export default async () => {
       return jsonResponse({
         ok: true,
         source: 'thesportsdb-v2-livescore',
-        matches: uniqueEvents(liveMatches).sort(sortEvents).slice(0, 8),
+        matches: uniqueEvents(liveMatches).sort(sortEvents).slice(0, 6),
       });
     }
   } catch {
@@ -181,9 +269,10 @@ export default async () => {
     }
 
     return jsonResponse({
-      ok: true,
+      ok: matches.length > 0,
       source,
-      matches: uniqueEvents(matches).sort(sortEvents).slice(0, 8),
+      message: matches.length > 0 ? undefined : 'Não há jogos relevantes para exibir no momento.',
+      matches: uniqueEvents(matches).sort(sortEvents).slice(0, 6),
     });
   } catch (error) {
     return jsonResponse({
