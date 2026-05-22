@@ -7,6 +7,7 @@ import FAQSection from '../components/ui/FAQSection';
 import Icon from '../components/ui/Icons';
 import AffiliateDisclosure from '../components/ui/AffiliateDisclosure';
 import ResponsibleGamingNotice from '../components/ui/ResponsibleGamingNotice';
+import TodayMatchesWidget from '../components/home/TodayMatchesWidget';
 
 const faqs = [
   { q: 'O CalculaBet é gratuito?', a: 'Sim. Todas as calculadoras são 100% gratuitas e sem necessidade de cadastro. Nos mantemos por meio de parcerias comerciais com casas de apostas.' },
@@ -178,6 +179,8 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <AdNativeBanner />
       </div>
+
+      <TodayMatchesWidget />
 
       {/* ─── CALCULADORAS ─────────────────────────────────── */}
       <section

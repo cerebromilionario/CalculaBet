@@ -1,0 +1,32 @@
+export const mockLiveScores = [
+  {
+    id: 'match-1',
+    league: 'Brasileirão Série A',
+    homeTeam: 'Flamengo',
+    awayTeam: 'Palmeiras',
+    startTime: '19:00',
+    status: 'scheduled',
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 'match-2',
+    league: 'Premier League',
+    homeTeam: 'Liverpool',
+    awayTeam: 'Arsenal',
+    startTime: '16:30',
+    status: 'live',
+    homeScore: 1,
+    awayScore: 0,
+  },
+  {
+    id: 'match-3',
+    league: 'LaLiga',
+    homeTeam: 'Real Madrid',
+    awayTeam: 'Atlético de Madrid',
+    startTime: '21:45',
+    status: 'finished',
+    homeScore: 2,
+    awayScore: 2,
+  },
+];
