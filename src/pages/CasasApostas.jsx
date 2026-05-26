@@ -189,6 +189,7 @@ function InlineLink({ to, children }) {
 export default function CasasApostas() {
   const heroPartner = casas.find(casa => casa.id === 'blaze') || casas[0];
   const bannerPartners = availableBannerPartners.slice(0, 2);
+  const activePartnerCount = casas.filter(casa => casa.active).length;
 
   return (
     <>
@@ -235,7 +236,7 @@ export default function CasasApostas() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
             <div>
               <p className="text-xs font-semibold mb-2" style={{ color: '#22d3ee', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                9 plataformas aprovadas
+                {activePartnerCount} plataformas aprovadas
               </p>
               <h2 id="grid-parceiros" className="section-title">Parceiros ativos</h2>
             </div>
