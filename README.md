@@ -39,3 +39,9 @@ Para acompanhar visitas vindas do ChatGPT Search:
 - Revise logs e referrers para entradas de `chatgpt.com`.
 - Monitore quais páginas recebem mais visitas com esse referenciador.
 - Mantenha o `OAI-SearchBot` liberado no `robots.txt`.
+
+## AI/GEO
+
+- `/llms.txt` fornece um resumo em Markdown das páginas principais do CalculaBet para sistemas de IA.
+- `/robots.txt` mantém OAI-SearchBot liberado.
+- `/sitemap.xml` lista as URLs indexáveis.
