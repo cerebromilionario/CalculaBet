@@ -112,6 +112,12 @@ export default function BeginnerGuideArticle({ post, category, relatedPosts }) {
           </div>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Apostas esportivas envolvem escolher um mercado, entender a odd, definir uma stake e aceitar o risco do resultado. Para iniciantes, o mais importante é aprender termos básicos, calcular retorno e usar gestão de banca antes de apostar. O conteúdo é educativo, não garante lucro e deve ser usado com responsabilidade.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="rose">

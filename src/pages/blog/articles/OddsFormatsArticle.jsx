@@ -130,6 +130,12 @@ export default function OddsFormatsArticle({ post, category, relatedPosts }) {
           </div>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Odds decimais, americanas e fracionárias são formatos diferentes para representar a mesma relação entre risco, retorno e probabilidade implícita. No Brasil, as odds decimais são as mais comuns. Converter os formatos ajuda a comparar cotações, mas não indica qual aposta fazer.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout>Odds mostram retorno potencial e probabilidade implícita, mas não garantem resultado.</Callout>

@@ -539,6 +539,12 @@ function SurebetArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Surebet é uma situação de arbitragem em que as odds permitem cobrir todos os resultados com retorno matemático teórico positivo. Ela depende da soma das probabilidades implícitas ficar abaixo de 100%. Mesmo assim, existem riscos operacionais como odds mudando, limites e apostas recusadas.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <SurebetCallout tone="amber">
@@ -733,6 +739,12 @@ function OddsArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Para calcular retorno com odds decimais, multiplique o valor apostado pela odd. Para calcular lucro, subtraia o valor apostado do retorno. A odd também pode ser convertida em probabilidade implícita usando 1 / odd × 100.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <OddsCallout tone="amber"><strong>Importante:</strong> conteúdo apenas educativo, indicado para maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e ferramentas devem ser usadas como apoio ao cálculo, não como promessa de resultado. Leia também nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</OddsCallout>
@@ -904,6 +916,12 @@ function ROIArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>ROI em apostas mede o retorno sobre o total apostado. A fórmula é ROI = lucro líquido / total apostado × 100. Ele ajuda a avaliar desempenho histórico, mas não garante resultados futuros.</p>
+        </section>
 
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
@@ -1083,6 +1101,12 @@ function BankrollArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Gestão de banca é o controle do dinheiro separado para apostas, incluindo limites, stake, unidade e registro de resultados. Ela ajuda a reduzir decisões impulsivas e exposição exagerada. Gestão de banca não garante lucro nem elimina perdas.</p>
+        </section>
 
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
@@ -1290,6 +1314,12 @@ function MultipleBetArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Aposta múltipla combina duas ou mais seleções no mesmo bilhete. Em uma múltipla comum, geralmente é preciso acertar todas as seleções para vencer. As odds são multiplicadas, aumentando o retorno potencial e também o risco.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <OddsCallout tone="amber"><strong>Conteúdo educativo:</strong> o CalculaBet não é casa de apostas, não aceita apostas e não processa pagamentos. Apostas envolvem riscos financeiros, são permitidas apenas para maiores de 18 anos e não há garantia de ganhos. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Consulte também a página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</OddsCallout>
@@ -1490,6 +1520,12 @@ function DutchingArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Dutching é uma forma de dividir a stake entre dois ou mais resultados para equilibrar retorno ou exposição. Ele não é automaticamente uma surebet e não garante lucro. O cálculo depende das odds, dos resultados cobertos e da stake total.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <SurebetCallout tone="amber"><strong>Importante:</strong> conteúdo apenas educativo, destinado a maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos e Dutching não elimina perdas. Use ferramentas como apoio ao cálculo, não como promessa de resultado. Leia nossas orientações de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</SurebetCallout>
@@ -1670,6 +1706,12 @@ function CashoutArticle({ post, category, relatedPosts }) {
             </div>
           </aside>
         </header>
+
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Cashout é o recurso que permite encerrar uma aposta antes do resultado final pelo valor oferecido pela casa. A oferta pode estar acima, próxima ou abaixo de uma estimativa de valor justo. Cashout não garante lucro e deve ser avaliado com cuidado.</p>
+        </section>
 
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
@@ -1887,6 +1929,12 @@ function ImpliedProbabilityArticle({ post, category, relatedPosts }) {
         <SurebetCallout>
           <strong>Probabilidade implícita é uma conversão matemática da odd, não uma previsão garantida.</strong> Use o cálculo para compreender a cotação, não para tratar um evento esportivo como certo.
         </SurebetCallout>
+
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Probabilidade implícita é a chance sugerida por uma odd. A fórmula é probabilidade implícita = 1 / odd × 100. Ela ajuda a entender o preço da aposta, mas não prevê o resultado do evento.</p>
+        </section>
 
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
