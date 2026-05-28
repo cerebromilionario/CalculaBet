@@ -19,7 +19,7 @@ const breadcrumbSchema = (title, slug) => ({
   ],
 });
 
-export default function CalcLayout({ title, description, slug, children, faqs, schema, explanation }) {
+export default function CalcLayout({ title, description, slug, children, faqs, schema, explanation, quickAnswer }) {
   const outros = calculadoras.filter(c => c.slug !== slug);
   const relacionadas = outros.slice(0, 4);
 
@@ -67,6 +67,15 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
               </p>
             </div>
 
+            {quickAnswer && (
+              <section className="rounded-2xl p-6" style={{ background: 'rgba(34,211,238,0.06)', border: '1px solid rgba(34,211,238,0.18)' }}>
+                <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-1)' }}>Resposta rápida</h2>
+                <div className="space-y-2 text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>
+                  {quickAnswer.map((line) => (<p key={line}>{line}</p>))}
+                </div>
+              </section>
+            )}
+
             {/* Calculator panel */}
             <div
               className="rounded-2xl p-6 md:p-8"
@@ -104,6 +113,15 @@ export default function CalcLayout({ title, description, slug, children, faqs, s
                 <FAQSection items={faqs} />
               </div>
             )}
+
+            <section className="rounded-2xl p-6" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
+              <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-1)' }}>Como produzimos este conteúdo</h2>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-2)' }}>
+                Os conteúdos do CalculaBet são educativos e baseados em fórmulas matemáticas, exemplos práticos e explicações em linguagem simples.
+                As calculadoras ajudam a entender odds, retorno, margem, stake e risco, mas não preveem resultados e não garantem lucro.
+                O CalculaBet não é casa de apostas e recomenda uso responsável para maiores de 18 anos.
+              </p>
+            </section>
 
             {/* Related tools */}
             <div

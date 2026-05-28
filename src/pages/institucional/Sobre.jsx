@@ -398,6 +398,18 @@ export default function Sobre() {
             </div>
           </div>
         </section>
+
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="rounded-2xl p-6 md:p-8" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}>
+            <h2 className="text-2xl font-bold mb-3" style={{ color: 'var(--text-1)' }}>Como produzimos este conteúdo</h2>
+            <p className="text-base leading-relaxed" style={{ color: 'var(--text-2)' }}>
+              Os conteúdos e calculadoras do CalculaBet são gratuitos, educativos e baseados em fórmulas matemáticas, exemplos práticos e validação básica dos resultados.
+              O site cobre temas como odds, probabilidade implícita, gestão de banca, value bet, cashout, surebet, dutching e rollover.
+              O CalculaBet não é casa de apostas, pode exibir links de afiliados e reforça uso responsável apenas para maiores de 18 anos.
+            </p>
+          </div>
+        </section>
+
       </main>
     </>
   );

@@ -704,6 +704,7 @@ export default function ValueBet() {
       slug="value-bet"
       faqs={faqs}
       schema={faqSchema}
+      quickAnswer={["Value bet ocorre quando sua probabilidade estimada é maior que a probabilidade implícita da odd.", "Isso pode indicar EV positivo em termos matemáticos.", "EV positivo não garante acerto nem lucro em curto prazo."]}
       explanation={<Explanation />}
     >
       <div className="space-y-6">

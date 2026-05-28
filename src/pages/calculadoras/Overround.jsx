@@ -882,6 +882,7 @@ export default function Overround() {
       slug="overround"
       faqs={faqs}
       schema={faqSchema}
+      quickAnswer={["Overround é a soma das probabilidades implícitas de todos os resultados de um mercado.", "Quando a soma passa de 100%, a diferença representa a margem aproximada da casa.", "A calculadora ajuda a comparar mercados, mas não garante vantagem prática."]}
       explanation={<Explanation />}
     >
       <div className="space-y-6">

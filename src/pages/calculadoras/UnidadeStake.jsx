@@ -503,6 +503,7 @@ export default function UnidadeStake() {
       slug="unidade-stake"
       faqs={faqs}
       schema={faqSchema}
+      quickAnswer={["Stake por unidade define o tamanho da aposta como parte da banca.", "Uma referência comum é 1u entre 1% e 2% da banca, conforme perfil de risco.", "Gestão de stake reduz exposição, mas não elimina perdas."]}
       explanation={<Explanation />}
     >
       <div className="space-y-6">

@@ -701,6 +701,7 @@ export default function OddsJustas() {
       slug="odds-justas"
       faqs={faqs}
       schema={faqSchema}
+      quickAnswer={["Odds justas representam uma cotação sem margem da casa, baseada na probabilidade estimada.", "A fórmula comum é odd justa = 1 ÷ probabilidade (em decimal).", "Elas servem para comparação educativa e não prometem lucro."]}
       explanation={<Explanation />}
     >
       <div className="space-y-6">

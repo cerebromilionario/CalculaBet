@@ -587,6 +587,7 @@ export default function RolloverBonus() {
       slug="rollover-bonus"
       faqs={faqs}
       schema={faqSchema}
+      quickAnswer={["Rollover é o volume exigido pela promoção antes de liberar saque do bônus.", "A calculadora estima quanto precisa ser apostado para cumprir a regra.", "Leia os termos da casa: odds mínimas, prazo e mercados válidos mudam por oferta."]}
       explanation={<Explanation />}
     >
       <div className="space-y-6">

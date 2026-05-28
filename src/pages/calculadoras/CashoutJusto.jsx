@@ -616,6 +616,7 @@ export default function CashoutJusto() {
       slug="cashout-justo"
       faqs={faqs}
       schema={faqSchema}
+      quickAnswer={["Cashout justo compara o valor oferecido com um valor esperado aproximado do bilhete.", "Isso ajuda a avaliar se o desconto do cashout está alto ou baixo.", "A decisão continua incerta e depende de probabilidade estimada e risco aceito."]}
       explanation={<Explanation />}
     >
       <div className="space-y-6">

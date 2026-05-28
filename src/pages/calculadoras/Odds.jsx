@@ -125,6 +125,7 @@ export default function CalculadoraOdds() {
       slug="odds"
       faqs={faqs}
       schema={[pageSchema, faqSchema(faqs)]}
+      quickAnswer={["A calculadora de odds mostra retorno potencial, lucro líquido e probabilidade implícita.", "A fórmula principal é retorno = valor apostado × odd decimal.", "A ferramenta é educativa: ajuda a entender números da aposta, sem prever resultados."]}
       explanation={<OddsExplanation />}
     >
       <div className="space-y-6">

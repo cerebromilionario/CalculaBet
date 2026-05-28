@@ -494,6 +494,7 @@ export default function MultiplaParlay() {
       slug="multipla-parlay"
       faqs={faqs}
       schema={schema}
+      quickAnswer={["Em uma múltipla comum, normalmente é preciso acertar todas as seleções para vencer.", "A odd combinada é a multiplicação das odds de cada seleção.", "Se uma seleção for anulada, muitas casas tratam como odd 1.00, conforme regulamento."]}
       explanation={<MultiplaExplanation />}
     >
       <div className="space-y-6">
