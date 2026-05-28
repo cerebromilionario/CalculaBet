@@ -30,3 +30,12 @@ To enable real data:
 The function first tries TheSportsDB v2 soccer livescores (`/api/v2/json/livescore/soccer`) with `X-API-KEY`. If livescores are unavailable for the account, it falls back to the v1 schedule endpoints: `eventsday.php` for today's soccer matches and `eventsnextleague.php` for selected priority leagues when needed.
 
 Responses use `Cache-Control: public, max-age=300, s-maxage=900` to cache browser responses for 5 minutes and CDN responses for 15 minutes. If the API key is missing, the upstream API fails, or no relevant matches are returned, the homepage keeps rendering and shows an empty or fallback state without exposing the API key.
+
+## Monitoramento de tráfego do ChatGPT Search
+
+Para acompanhar visitas vindas do ChatGPT Search:
+
+- Verifique no Google Analytics sessões com `utm_source=chatgpt.com`.
+- Revise logs e referrers para entradas de `chatgpt.com`.
+- Monitore quais páginas recebem mais visitas com esse referenciador.
+- Mantenha o `OAI-SearchBot` liberado no `robots.txt`.

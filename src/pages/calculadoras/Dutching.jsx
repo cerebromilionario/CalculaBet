@@ -545,6 +545,7 @@ export default function Dutching() {
       slug="dutching"
       faqs={faqs}
       schema={schema}
+      quickAnswer={["Dutching distribui a stake total em múltiplos resultados para equilibrar retornos.", "A divisão usa proporção inversa das odds selecionadas.", "A técnica organiza cálculo, mas não garante lucro e mantém risco de mercado."]}
       explanation={<DutchingExplanation />}
     >
       <div className="space-y-6">

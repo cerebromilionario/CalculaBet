@@ -492,6 +492,7 @@ export default function Arbitragem() {
       slug="arbitragem"
       faqs={faqs}
       schema={schema}
+      quickAnswer={["Arbitragem (surebet) busca distribuir stakes para cobrir resultados do mesmo mercado.", "A regra-base é verificar se a soma dos inversos das odds fica abaixo de 1.", "Mesmo com margem teórica, execução e regras das casas podem gerar risco."]}
       explanation={<ArbExplanation />}
     >
       <div className="space-y-6">

@@ -384,6 +384,7 @@ const IMPLIED_PROBABILITY_FAQS = [
   { question: 'Probabilidade implícita substitui análise?', answer: 'Não. Ela é uma ferramenta de leitura das odds. Análise, contexto, gestão de banca, limites e responsabilidade continuam essenciais.' },
 ];
 
+
 function getFaqsForPost(slug) {
   return {
     'roi-apostas': ROI_FAQS,
