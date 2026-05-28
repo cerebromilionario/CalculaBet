@@ -99,6 +99,12 @@ export default function KellyCriterionArticle({ post, category, relatedPosts }) 
           </aside>
         </header>
 
+
+        <section id="resposta-rapida" className="mt-8 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rápida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>O Critério de Kelly é uma fórmula que estima o tamanho da stake com base na odd e na probabilidade estimada pelo usuário. Ele pode ajudar a dimensionar exposição, mas depende totalmente da qualidade da estimativa de probabilidade. Kelly não garante lucro e pode ser agressivo se usado sem cautela.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <div className="mt-8 grid md:grid-cols-2 gap-4">
