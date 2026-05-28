@@ -188,6 +188,7 @@ export default function ApostaSimples() {
     <CalcLayout
       title="Calculadora de Aposta Simples"
       description="Calcule retorno total, lucro líquido, ROI e probabilidade implícita de apostas simples em tempo real. Ferramenta gratuita com guia completo de fórmulas, exemplos práticos e estratégias de gestão de banca."
+      quickAnswer={["A calculadora de aposta simples estima retorno total, lucro líquido e perda máxima de um bilhete individual.", "O cálculo-base é retorno = stake × odd decimal, com lucro = retorno − stake.", "Ela apoia análise matemática e não prevê resultado de jogo nem garante lucro."]}
       slug="aposta-simples"
       faqs={faqs}
       schema={[pageSchema, howToSchema, faqSchema(faqs)]}

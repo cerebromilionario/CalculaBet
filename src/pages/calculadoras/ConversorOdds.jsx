@@ -497,6 +497,7 @@ export default function ConversorOdds() {
     <CalcLayout
       title="Conversor de Odds"
       description="Converta odds entre decimal, americana (moneyline), fracionária e probabilidade implícita instantaneamente. Tabela completa, fórmulas e guia de overround, CLV e value betting."
+      quickAnswer={["O conversor de odds transforma cotações decimais, americanas e fracionárias em formatos equivalentes.", "Também calcula probabilidade implícita para facilitar comparação entre mercados e casas.", "A conversão melhora leitura dos números, mas não indica qual aposta fazer."]}
       slug="conversor-odds"
       faqs={faqs}
       schema={schema}

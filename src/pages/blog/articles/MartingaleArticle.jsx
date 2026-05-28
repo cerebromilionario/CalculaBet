@@ -98,6 +98,11 @@ export default function MartingaleArticle({ post, category, relatedPosts }) {
           </div>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Martingale é uma progressão de stakes após perdas para tentar recuperar prejuízo em vitórias futuras. A matemática mostra que a exposição cresce rapidamente com sequências negativas. Este conteúdo é educativo e não recomenda a estratégia como solução de risco.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">Conteúdo apenas educativo. Apostas envolvem riscos financeiros, são destinadas a maiores de 18 anos, não há garantia de ganhos, Martingale não elimina perdas e ferramentas devem ser usadas como apoio ao cálculo — nunca como promessa de resultado.</Callout>

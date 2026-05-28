@@ -531,6 +531,7 @@ export default function GestaoBanca() {
     <CalcLayout
       title="Calculadora de Gestão de Banca"
       description="Calcule o stake ideal usando Kelly Criterion, Half-Kelly, flat betting ou percentual fixo. Gerencie sua banca com disciplina e maximize o crescimento a longo prazo."
+      quickAnswer={["A calculadora de gestão de banca estima stake por aposta com métodos como Kelly, percentual fixo e valor fixo.", "O objetivo é controlar exposição e manter consistência no tamanho das entradas.", "Gestão reduz decisões impulsivas, mas não remove variância nem garante lucro."]}
       slug="gestao-banca"
       faqs={faqs}
       schema={schema}

@@ -122,6 +122,11 @@ export default function RolloverApostasArticle({ post, category, relatedPosts })
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Rollover é o volume de apostas exigido para liberar bônus ou saldo promocional. A conta básica é valor base do bônus multiplicado pelo requisito (ex.: 100 × 5x). O cálculo ajuda no planejamento, mas não transforma bônus em lucro garantido.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">

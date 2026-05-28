@@ -103,6 +103,11 @@ export default function OddsJustasArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Odds justas são estimativas de cotação sem a margem da casa. O cálculo usa as probabilidades implícitas de todos os resultados do mercado, normaliza essa soma e converte de volta em odds. Isso ajuda a comparar preços com mais clareza, mas não prevê resultados nem garante lucro.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">

@@ -543,6 +543,7 @@ export default function Cashout() {
     <CalcLayout
       title="Calculadora de Cashout Online"
       description="Calcule o valor justo do cashout grátis: compare com o oferecido pela casa, descubra a margem cobrada e decida com dados se vale fechar sua aposta antecipadamente. Educativa, sem cadastro."
+      quickAnswer={["A calculadora de cashout estima retorno e lucro ao encerrar uma aposta antes do fim do evento.", "Ela compara o valor de saída com o potencial de manter o bilhete até o resultado final.", "Use como apoio matemático: a ferramenta não recomenda decisão automática nem prevê desfechos."]}
       slug="cashout"
       faqs={faqs}
       schema={schema}

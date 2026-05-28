@@ -122,6 +122,11 @@ export default function PlanilhaGestaoBancaArticle({ post, category, relatedPost
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Uma planilha de gestão de banca organiza stake, odd, resultado, lucro/prejuízo e ROI em histórico único. Esse registro ajuda a medir disciplina e identificar padrões de risco ao longo do tempo. Controle de banca melhora processo, mas não garante ganhos.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">

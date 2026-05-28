@@ -134,6 +134,11 @@ export default function BetReturnArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>O retorno de aposta em odds decimais é calculado por stake × odd, e o lucro líquido é retorno menos stake. Essa conta ajuda a simular cenários antes de confirmar o bilhete. O cálculo descreve valores possíveis, não prevê resultado esportivo.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">

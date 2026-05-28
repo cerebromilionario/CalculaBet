@@ -497,6 +497,7 @@ export default function ROI() {
     <CalcLayout
       title="Calculadora de ROI em Apostas"
       description="Calcule o ROI (Retorno sobre Investimento) das suas apostas esportivas, acompanhe win rate e meça sua performance real como apostador."
+      quickAnswer={["A calculadora de ROI mede desempenho histórico com a fórmula ROI = lucro líquido ÷ total apostado × 100.", "Ela ajuda a comparar períodos, estratégias e disciplina de stake ao longo do tempo.", "ROI descreve histórico; não prevê resultados futuros nem garante lucro."]}
       slug="roi"
       faqs={faqs}
       schema={schema}

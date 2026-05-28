@@ -102,6 +102,11 @@ export default function ValueBetArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Value bet acontece quando sua probabilidade estimada é maior que a probabilidade implícita da odd. A diferença entre essas duas medidas define o valor esperado da entrada. É um conceito matemático de longo prazo e não promessa de acerto imediato.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber"><strong>Aviso responsável:</strong> conteúdo apenas educativo, indicado para maiores de 18 anos. Apostas envolvem riscos financeiros, não há garantia de ganhos, value bet não garante vitória e EV positivo não elimina perdas. Não aposte dinheiro essencial e use ferramentas como apoio ao cálculo, não como promessa de resultado. Leia também nossa página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</Callout>
