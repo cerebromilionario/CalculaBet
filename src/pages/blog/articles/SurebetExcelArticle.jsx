@@ -122,6 +122,11 @@ export default function SurebetExcelArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Surebet no Excel usa a soma dos inversos das odds para verificar arbitragem matemática. Quando essa soma fica abaixo de 1, pode existir margem teórica para distribuir stakes entre resultados. A execução prática continua sujeita a regras, limites e risco operacional.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">

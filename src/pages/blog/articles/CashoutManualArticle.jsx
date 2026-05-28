@@ -127,6 +127,11 @@ export default function CashoutManualArticle({ post, category, relatedPosts }) {
           <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.
         </Callout>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Cashout manual compara a oferta da casa com uma estimativa de valor justo da aposta naquele momento. A referência comum usa retorno potencial multiplicado por uma probabilidade atual estimada. É apoio de cálculo: não existe decisão automática nem previsão do resultado final.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         {/* O que é cashout */}

@@ -102,6 +102,11 @@ export default function OverroundArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Overround é a soma das probabilidades implícitas de todos os resultados de um mercado. Quando passa de 100%, a diferença representa a margem aproximada da casa. Esse indicador melhora a leitura das odds, mas não aponta vencedor de evento.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber"><strong>Aviso responsável:</strong> conteúdo apenas educativo, indicado para maiores de 18 anos. Apostas envolvem riscos financeiros. Overround não prevê resultados e margem baixa não garante retorno positivo. Não aposte dinheiro essencial. Leia nossa página de <Link to="/jogo-responsavel" className="font-semibold" style={{ color: '#fbbf24' }}>jogo responsável</Link>.</Callout>

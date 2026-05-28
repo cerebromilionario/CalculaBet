@@ -488,6 +488,7 @@ export default function SimuladorLucro() {
     <CalcLayout
       title="Simulador de Lucro em Apostas"
       description="Projete o crescimento da sua banca com simulação Monte Carlo. Configure win rate, odds médias e gestão de banca para ver cenários reais de lucro ou prejuízo."
+      quickAnswer={["O simulador de lucro projeta cenários de banca a partir de stake, taxa de acerto, odds médias e número de apostas.", "Ele serve para testar sensibilidade de longo prazo e entender impacto de variância e gestão.", "A simulação é hipotética, não representa promessa de resultado real."]}
       slug="simulador-lucro"
       faqs={faqs}
       schema={schema}

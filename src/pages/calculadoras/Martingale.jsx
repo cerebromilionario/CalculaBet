@@ -500,6 +500,7 @@ export default function Martingale() {
     <CalcLayout
       title="Calculadora de Martingale"
       description="Simule a estratégia Martingale e visualize o crescimento exponencial do risco após derrotas consecutivas. Calculadora educativa com análise matemática dos perigos de qualquer sistema de progressão."
+      quickAnswer={["A calculadora Martingale simula progressões de stake após perdas para mostrar como a exposição cresce.", "Ela projeta sequência de entradas, valor necessário e risco acumulado em cada etapa.", "É uma ferramenta educativa e não recomenda Martingale como forma segura de recuperar prejuízos."]}
       slug="martingale"
       faqs={faqs}
       schema={schema}

@@ -115,6 +115,11 @@ export default function EVCalculationArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>EV em apostas mede o valor esperado com base em odd, stake e probabilidade estimada. Em termos simples, ele compara ganho potencial ponderado pela chance de acerto com a perda possível. EV positivo é apenas uma vantagem matemática teórica e não garante lucro em aposta isolada.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">

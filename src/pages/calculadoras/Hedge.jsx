@@ -553,6 +553,7 @@ export default function Hedge() {
     <CalcLayout
       title="Calculadora de Hedge"
       description="Calcule o stake ideal para fazer hedge e proteger sua aposta — garanta lucro ou limite perdas independente do resultado. Hedge completo, parcial e em múltiplas."
+      quickAnswer={["A calculadora de hedge ajuda a definir a stake de cobertura para reduzir exposição em um resultado oposto.", "A lógica combina odd original, odd de proteção e lucro alvo para simular cenários.", "Hedge altera a relação risco-retorno, mas não elimina perdas nem garante lucro."]}
       slug="hedge"
       faqs={faqs}
       schema={schema}

@@ -124,6 +124,11 @@ export default function UnidadeStakeArticle({ post, category, relatedPosts }) {
           </aside>
         </header>
 
+        <section id="resposta-rapida" className="mt-10 rounded-3xl p-5" style={{ background: 'rgba(34,211,238,0.07)', border: '1px solid rgba(34,211,238,0.18)' }}>
+          <p className="badge badge-cyan mb-3">Resposta rapida</p>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-2)' }}>Unidade de aposta é uma forma de padronizar stake como parte da banca, por exemplo 1u = 1% ou 2%. Essa padronização facilita controle de risco e comparação de desempenho entre períodos. Mesmo com unidade fixa, perdas continuam possíveis.</p>
+        </section>
+
         <ArticleAffiliateBanner postSlug={post.slug} placement="mid-article" />
 
         <Callout tone="amber">
