@@ -1,13 +1,75 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculadoras, casas } from '../data/casas';
 import SEOHead from '../components/ui/SEOHead';
-import CasaCard from '../components/ui/CasaCard';
-import AdNativeBanner from '../components/ads/AdNativeBanner';
+
 import FAQSection from '../components/ui/FAQSection';
 import Icon from '../components/ui/Icons';
 import AffiliateDisclosure from '../components/ui/AffiliateDisclosure';
 import ResponsibleGamingNotice from '../components/ui/ResponsibleGamingNotice';
-import TodayMatchesWidget from '../components/home/TodayMatchesWidget';
+
+
+const CasaCard = lazy(() => import('../components/ui/CasaCard'));
+const AdNativeBanner = lazy(() => import('../components/ads/AdNativeBanner'));
+const TodayMatchesWidget = lazy(() => import('../components/home/TodayMatchesWidget'));
+
+function useIsNearViewport(rootMargin = '500px') {
+  const ref = useRef(null);
+  const [isNear, setIsNear] = useState(false);
+
+  useEffect(() => {
+    if (isNear) return undefined;
+
+    const node = ref.current;
+    if (!node) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      const fallback = window.setTimeout(() => setIsNear(true), 800);
+      return () => window.clearTimeout(fallback);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [isNear, rootMargin]);
+
+  return [ref, isNear];
+}
+
+function DeferredSection({ children, fallback = null, rootMargin = '500px', minHeight }) {
+  const [ref, isNear] = useIsNearViewport(rootMargin);
+
+  return (
+    <div ref={ref} style={minHeight ? { minHeight } : undefined}>
+      {isNear ? children : fallback}
+    </div>
+  );
+}
+
+function SectionPlaceholder({ label, minHeight = 240 }) {
+  return (
+    <div
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      style={{ minHeight }}
+      role="status"
+      aria-label={label}
+    >
+      <div
+        className="rounded-2xl"
+        style={{ height: 96, background: 'rgba(255,255,255,0.025)', border: '1px solid var(--border)' }}
+      />
+    </div>
+  );
+}
 
 const faqs = [
   { q: 'O CalculaBet é gratuito?', a: 'Sim. Todas as calculadoras são 100% gratuitas e sem necessidade de cadastro. Nos mantemos por meio de parcerias comerciais com casas de apostas.' },
@@ -72,7 +134,7 @@ export default function Home() {
             }}
           />
           <div
-            className="absolute top-0 left-1/2 -translate-x-1/2"
+            className="mobile-static-glow absolute top-0 left-1/2 -translate-x-1/2"
             style={{
               width: '900px',
               height: '700px',
@@ -176,15 +238,27 @@ export default function Home() {
       </section>
 
       {/* ─── AD ───────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <AdNativeBanner />
-      </div>
+      <DeferredSection rootMargin="300px" fallback={null} minHeight={1}>
+        <Suspense fallback={null}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <AdNativeBanner />
+          </div>
+        </Suspense>
+      </DeferredSection>
 
-      <TodayMatchesWidget />
+      <DeferredSection
+        rootMargin="600px"
+        minHeight={360}
+        fallback={<SectionPlaceholder label="Carregando jogos" minHeight={360} />}
+      >
+        <Suspense fallback={<SectionPlaceholder label="Carregando jogos" minHeight={360} />}>
+          <TodayMatchesWidget />
+        </Suspense>
+      </DeferredSection>
 
       {/* ─── CALCULADORAS ─────────────────────────────────── */}
       <section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+        className="content-visibility-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
         id="calculadoras"
         aria-labelledby="calculadoras-heading"
       >
@@ -242,6 +316,7 @@ export default function Home() {
 
       {/* ─── MOCKUP / FEATURE PREVIEW ──────────────────────── */}
       <section
+        className="content-visibility-section"
         style={{ background: 'var(--bg-surface)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}
         aria-label="Como funciona"
       >
@@ -373,7 +448,7 @@ export default function Home() {
 
       {/* ─── CASAS PARCEIRAS ──────────────────────────────── */}
       <section
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+        className="content-visibility-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
         aria-labelledby="casas-heading"
       >
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -397,7 +472,9 @@ export default function Home() {
         <AffiliateDisclosure />
 
         <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-5">
-          {casas.map(c => <CasaCard key={c.id} casa={c} />)}
+          <Suspense fallback={<SectionPlaceholder label="Carregando casas parceiras" minHeight={320} />}>
+            {casas.map(c => <CasaCard key={c.id} casa={c} />)}
+          </Suspense>
         </div>
 
         <div className="mt-6 text-center">
@@ -411,7 +488,7 @@ export default function Home() {
       <ResponsibleGamingNotice variant="banner" />
 
       {/* ─── FAQ ──────────────────────────────────────────── */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20" aria-label="Perguntas frequentes">
+      <section className="content-visibility-section max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20" aria-label="Perguntas frequentes">
         <FAQSection items={faqs} />
       </section>
     </>
