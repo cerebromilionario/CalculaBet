@@ -15,10 +15,13 @@ const TodayMatchesWidget = lazy(() => import('../components/home/TodayMatchesWid
 
 function useIsNearViewport(rootMargin = '500px') {
   const ref = useRef(null);
-  const [isNear, setIsNear] = useState(false);
+  const shouldDefer = typeof window === 'undefined'
+    ? true
+    : window.matchMedia('(max-width: 768px)').matches;
+  const [isNear, setIsNear] = useState(!shouldDefer);
 
   useEffect(() => {
-    if (isNear) return undefined;
+    if (!shouldDefer || isNear) return undefined;
 
     const node = ref.current;
     if (!node) return undefined;
@@ -40,7 +43,7 @@ function useIsNearViewport(rootMargin = '500px') {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [isNear, rootMargin]);
+  }, [isNear, rootMargin, shouldDefer]);
 
   return [ref, isNear];
 }
