@@ -2,8 +2,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
-
-const Home = lazy(() => import('./pages/Home'));
+import Home from './pages/Home';
 const CasasApostas = lazy(() => import('./pages/CasasApostas'));
 const Ferramentas = lazy(() => import('./pages/Ferramentas'));
 const Blog = lazy(() => import('./pages/blog/Blog'));
