@@ -1,41 +1,55 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/layout/Layout';
-import Home from './pages/Home';
-import CasasApostas from './pages/CasasApostas';
-import Ferramentas from './pages/Ferramentas';
-import Blog from './pages/blog/Blog';
-import BlogPost from './pages/blog/BlogPost';
+
+const Home = lazy(() => import('./pages/Home'));
+const CasasApostas = lazy(() => import('./pages/CasasApostas'));
+const Ferramentas = lazy(() => import('./pages/Ferramentas'));
+const Blog = lazy(() => import('./pages/blog/Blog'));
+const BlogPost = lazy(() => import('./pages/blog/BlogPost'));
 
 // Calculadoras
-import CalculadoraOdds from './pages/calculadoras/Odds';
-import ApostaSimples from './pages/calculadoras/ApostaSimples';
-import MultiplaParlay from './pages/calculadoras/MultiplaParlay';
-import Arbitragem from './pages/calculadoras/Arbitragem';
-import Dutching from './pages/calculadoras/Dutching';
-import Cashout from './pages/calculadoras/Cashout';
-import CashoutJusto from './pages/calculadoras/CashoutJusto';
-import Hedge from './pages/calculadoras/Hedge';
-import GestaoBanca from './pages/calculadoras/GestaoBanca';
-import Martingale from './pages/calculadoras/Martingale';
-import ConversorOdds from './pages/calculadoras/ConversorOdds';
-import ROI from './pages/calculadoras/ROI';
-import SimuladorLucro from './pages/calculadoras/SimuladorLucro';
-import Overround from './pages/calculadoras/Overround';
-import ValueBet from './pages/calculadoras/ValueBet';
-import OddsJustas from './pages/calculadoras/OddsJustas';
-import UnidadeStake from './pages/calculadoras/UnidadeStake';
-import RolloverBonus from './pages/calculadoras/RolloverBonus';
+const CalculadoraOdds = lazy(() => import('./pages/calculadoras/Odds'));
+const ApostaSimples = lazy(() => import('./pages/calculadoras/ApostaSimples'));
+const MultiplaParlay = lazy(() => import('./pages/calculadoras/MultiplaParlay'));
+const Arbitragem = lazy(() => import('./pages/calculadoras/Arbitragem'));
+const Dutching = lazy(() => import('./pages/calculadoras/Dutching'));
+const Cashout = lazy(() => import('./pages/calculadoras/Cashout'));
+const CashoutJusto = lazy(() => import('./pages/calculadoras/CashoutJusto'));
+const Hedge = lazy(() => import('./pages/calculadoras/Hedge'));
+const GestaoBanca = lazy(() => import('./pages/calculadoras/GestaoBanca'));
+const Martingale = lazy(() => import('./pages/calculadoras/Martingale'));
+const ConversorOdds = lazy(() => import('./pages/calculadoras/ConversorOdds'));
+const ROI = lazy(() => import('./pages/calculadoras/ROI'));
+const SimuladorLucro = lazy(() => import('./pages/calculadoras/SimuladorLucro'));
+const Overround = lazy(() => import('./pages/calculadoras/Overround'));
+const ValueBet = lazy(() => import('./pages/calculadoras/ValueBet'));
+const OddsJustas = lazy(() => import('./pages/calculadoras/OddsJustas'));
+const UnidadeStake = lazy(() => import('./pages/calculadoras/UnidadeStake'));
+const RolloverBonus = lazy(() => import('./pages/calculadoras/RolloverBonus'));
 
 // Institucional
-import Sobre from './pages/institucional/Sobre';
-import Contato from './pages/institucional/Contato';
-import ContatoSucesso from './pages/institucional/ContatoSucesso';
-import Privacidade from './pages/institucional/Privacidade';
-import Termos from './pages/institucional/Termos';
-import Afiliados from './pages/institucional/Afiliados';
-import JogoResponsavel from './pages/institucional/JogoResponsavel';
+const Sobre = lazy(() => import('./pages/institucional/Sobre'));
+const Contato = lazy(() => import('./pages/institucional/Contato'));
+const ContatoSucesso = lazy(() => import('./pages/institucional/ContatoSucesso'));
+const Privacidade = lazy(() => import('./pages/institucional/Privacidade'));
+const Termos = lazy(() => import('./pages/institucional/Termos'));
+const Afiliados = lazy(() => import('./pages/institucional/Afiliados'));
+const JogoResponsavel = lazy(() => import('./pages/institucional/JogoResponsavel'));
+
+function RouteFallback() {
+  return (
+    <div
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24"
+      role="status"
+      aria-live="polite"
+      style={{ color: 'var(--text-2)' }}
+    >
+      Carregando...
+    </div>
+  );
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -64,6 +78,7 @@ export default function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Layout>
+          <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/casas-apostas" element={<CasasApostas />} />
@@ -111,6 +126,7 @@ export default function App() {
             <Route path="/jogo-responsavel" element={<JogoResponsavel />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </Layout>
       </BrowserRouter>
     </HelmetProvider>

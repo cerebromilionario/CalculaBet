@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+const CACHE_KEY = 'calculabet:today-matches:v1';
+const CACHE_TTL = 5 * 60 * 1000;
+
 const statusConfig = {
   scheduled: { label: 'Agendado', color: '#cbd5e1', bg: 'rgba(148,163,184,0.12)', border: 'rgba(148,163,184,0.35)' },
   live: { label: 'Ao vivo', color: '#22d3ee', bg: 'rgba(34,211,238,0.1)', border: 'rgba(34,211,238,0.35)' },
@@ -45,10 +48,55 @@ export default function TodayMatchesWidget() {
 
   useEffect(() => {
     let active = true;
+    let idleId;
+    let timeoutId;
     const controller = new AbortController();
+
+    function applyPayload(payload) {
+      const nextMatches = Array.isArray(payload?.matches) ? payload.matches.slice(0, 6) : [];
+
+      if (nextMatches.length > 0) {
+        setMatches(nextMatches);
+        setState('ready');
+        setMessage('');
+        return;
+      }
+
+      setMatches([]);
+      setState('empty');
+      setMessage(payload?.message || 'Não há jogos relevantes para exibir no momento.');
+    }
+
+    function readCachedPayload() {
+      try {
+        const cached = window.sessionStorage.getItem(CACHE_KEY);
+        if (!cached) return null;
+
+        const parsed = JSON.parse(cached);
+        if (!parsed?.payload || Date.now() - parsed.savedAt > CACHE_TTL) return null;
+
+        return parsed.payload;
+      } catch {
+        return null;
+      }
+    }
+
+    function savePayload(payload) {
+      try {
+        window.sessionStorage.setItem(CACHE_KEY, JSON.stringify({ payload, savedAt: Date.now() }));
+      } catch {
+        // Storage can be unavailable in restricted browsers; the widget still works without cache.
+      }
+    }
 
     async function loadMatches() {
       try {
+        const cachedPayload = readCachedPayload();
+        if (cachedPayload && active) {
+          applyPayload(cachedPayload);
+          return;
+        }
+
         const response = await fetch('/api/live-scores', {
           signal: controller.signal,
           headers: { Accept: 'application/json' },
@@ -57,20 +105,11 @@ export default function TodayMatchesWidget() {
         if (!response.ok) throw new Error('Live scores request failed');
 
         const payload = await response.json();
-        const nextMatches = Array.isArray(payload?.matches) ? payload.matches.slice(0, 6) : [];
 
         if (!active) return;
 
-        if (nextMatches.length > 0) {
-          setMatches(nextMatches);
-          setState('ready');
-          setMessage('');
-          return;
-        }
-
-        setMatches([]);
-        setState('empty');
-        setMessage(payload?.message || 'Não há jogos relevantes para exibir no momento.');
+        savePayload(payload);
+        applyPayload(payload);
       } catch {
         if (!active) return;
         setMatches([]);
@@ -79,11 +118,17 @@ export default function TodayMatchesWidget() {
       }
     }
 
-    loadMatches();
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(loadMatches, { timeout: 1800 });
+    } else {
+      timeoutId = window.setTimeout(loadMatches, 350);
+    }
 
     return () => {
       active = false;
       controller.abort();
+      if (idleId) window.cancelIdleCallback(idleId);
+      if (timeoutId) window.clearTimeout(timeoutId);
     };
   }, []);
 

@@ -341,6 +341,28 @@
     animation: pulse-dot 2.5s ease-in-out infinite;
   }
 
+
+  .content-visibility-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 760px;
+  }
+
+  @media (max-width: 768px) {
+    .content-visibility-section {
+      contain-intrinsic-size: 1px 920px;
+    }
+  }
+
+  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    .mobile-static-glow {
+      animation: none !important;
+    }
+
+    .dot-live {
+      animation: none !important;
+    }
+  }
+
   /* Range input */
   input[type="range"] {
     height: 4px;
